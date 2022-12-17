@@ -39,8 +39,8 @@ const ro = new ResizeObserver((entries, observer) =>
       console.log(`Element's paddings: ${top}px ${right}px ${bottom}px ${left}px`);
     }
 
-    document.documentElement.style.setProperty("--width", `${width - entry.target.clientWidth}px`);
-    document.documentElement.style.setProperty("--height", `${height - entry.target.clientHeight}px`);
+    document.documentElement.style.setProperty("--width", `${width}px`);
+    document.documentElement.style.setProperty("--height", `${height}px`);
 
     observer.observe(entry.target);
   })

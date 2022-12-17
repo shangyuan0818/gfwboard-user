@@ -21,17 +21,22 @@ import { store } from "@/store";
 import { ConfigProvider } from "@/contexts/ConfigContext";
 import reportWebVitals from "@/reportWebVitals";
 
+// hash router change to browser router
+if (window.location.hash) {
+  window.location.href = window.location.hash;
+}
+
 const container = document.getElementById("root");
 const root = createRoot(container!);
 
 const ro = new ResizeObserver((entries, observer) =>
   entries.forEach((entry) => {
-    const { left, top, width, height } = entry.contentRect;
+    const { left, top, right, bottom, width, height } = entry.contentRect;
 
     if (import.meta.env.DEV) {
       console.log("Element:", entry.target);
       console.log(`Element's size: ${width}px x ${height}px`);
-      console.log(`Element's paddings: ${top}px ; ${left}px`);
+      console.log(`Element's paddings: ${top}px ${right}px ${bottom}px ${left}px`);
     }
 
     document.documentElement.style.setProperty("--width", `${width - entry.target.clientWidth}px`);

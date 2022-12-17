@@ -1,5 +1,5 @@
 // types
-import { DefaultConfigProps } from 'types/config';
+import { DefaultConfigProps } from '@/types/config';
 
 export const drawerWidth = 260;
 

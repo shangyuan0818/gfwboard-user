@@ -1,21 +1,34 @@
-import { useRef, useState, ReactNode, SyntheticEvent } from 'react';
+import { useRef, useState, ReactNode, SyntheticEvent } from "react";
 
 // material-ui
-import { useTheme } from '@mui/material/styles';
-import { Box, ButtonBase, CardContent, ClickAwayListener, Grid, Paper, Popper, Stack, Tab, Tabs, Tooltip, Typography } from '@mui/material';
+import { useTheme } from "@mui/material/styles";
+import {
+  Box,
+  ButtonBase,
+  CardContent,
+  ClickAwayListener,
+  Grid,
+  Paper,
+  Popper,
+  Stack,
+  Tab,
+  Tabs,
+  Tooltip,
+  Typography
+} from "@mui/material";
 
 // project import
-import Avatar from 'components/@extended/Avatar';
-import MainCard from 'components/MainCard';
-import Transitions from 'components/@extended/Transitions';
-import IconButton from 'components/@extended/IconButton';
-import useAuth from 'hooks/useAuth';
-import ProfileTab from './ProfileTab';
-import SettingTab from './SettingTab';
+import Avatar from "@/components/@extended/Avatar";
+import MainCard from "@/components/MainCard";
+import Transitions from "@/components/@extended/Transitions";
+import IconButton from "@/components/@extended/IconButton";
+import useAuth from "@/hooks/useAuth";
+import ProfileTab from "./ProfileTab";
+import SettingTab from "./SettingTab";
 
 // assets
-import avatar1 from 'assets/images/users/avatar-1.png';
-import { LogoutOutlined, SettingOutlined, UserOutlined } from '@ant-design/icons';
+import avatar1 from "@/assets/images/users/avatar-1.png";
+import { LogoutOutlined, SettingOutlined, UserOutlined } from "@ant-design/icons";
 
 // types
 interface TabPanelProps {
@@ -30,7 +43,13 @@ function TabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props;
 
   return (
-    <div role="tabpanel" hidden={value !== index} id={`profile-tabpanel-${index}`} aria-labelledby={`profile-tab-${index}`} {...other}>
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`profile-tabpanel-${index}`}
+      aria-labelledby={`profile-tab-${index}`}
+      {...other}
+    >
       {value === index && children}
     </div>
   );
@@ -39,7 +58,7 @@ function TabPanel(props: TabPanelProps) {
 function a11yProps(index: number) {
   return {
     id: `profile-tab-${index}`,
-    'aria-controls': `profile-tabpanel-${index}`
+    "aria-controls": `profile-tabpanel-${index}`
   };
 }
 
@@ -76,24 +95,24 @@ const Profile = () => {
     setValue(newValue);
   };
 
-  const iconBackColorOpen = theme.palette.mode === 'dark' ? 'grey.200' : 'grey.300';
+  const iconBackColorOpen = theme.palette.mode === "dark" ? "grey.200" : "grey.300";
 
   return (
     <Box sx={{ flexShrink: 0, ml: 0.75 }}>
       <ButtonBase
         sx={{
           p: 0.25,
-          bgcolor: open ? iconBackColorOpen : 'transparent',
+          bgcolor: open ? iconBackColorOpen : "transparent",
           borderRadius: 1,
-          '&:hover': { bgcolor: theme.palette.mode === 'dark' ? 'secondary.light' : 'secondary.lighter' },
-          '&:focus-visible': {
+          "&:hover": { bgcolor: theme.palette.mode === "dark" ? "secondary.light" : "secondary.lighter" },
+          "&:focus-visible": {
             outline: `2px solid ${theme.palette.secondary.dark}`,
             outlineOffset: 2
           }
         }}
         aria-label="open profile"
         ref={anchorRef}
-        aria-controls={open ? 'profile-grow' : undefined}
+        aria-controls={open ? "profile-grow" : undefined}
         aria-haspopup="true"
         onClick={handleToggle}
       >
@@ -112,7 +131,7 @@ const Profile = () => {
         popperOptions={{
           modifiers: [
             {
-              name: 'offset',
+              name: "offset",
               options: {
                 offset: [0, 9]
               }
@@ -129,7 +148,7 @@ const Profile = () => {
                   width: 290,
                   minWidth: 240,
                   maxWidth: 290,
-                  [theme.breakpoints.down('md')]: {
+                  [theme.breakpoints.down("md")]: {
                     maxWidth: 250
                   }
                 }}
@@ -151,7 +170,7 @@ const Profile = () => {
                         </Grid>
                         <Grid item>
                           <Tooltip title="Logout">
-                            <IconButton size="large" sx={{ color: 'text.primary' }} onClick={handleLogout}>
+                            <IconButton size="large" sx={{ color: "text.primary" }} onClick={handleLogout}>
                               <LogoutOutlined />
                             </IconButton>
                           </Tooltip>
@@ -160,29 +179,29 @@ const Profile = () => {
                     </CardContent>
                     {open && (
                       <>
-                        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                        <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
                           <Tabs variant="fullWidth" value={value} onChange={handleChange} aria-label="profile tabs">
                             <Tab
                               sx={{
-                                display: 'flex',
-                                flexDirection: 'row',
-                                justifyContent: 'center',
-                                alignItems: 'center',
-                                textTransform: 'capitalize'
+                                display: "flex",
+                                flexDirection: "row",
+                                justifyContent: "center",
+                                alignItems: "center",
+                                textTransform: "capitalize"
                               }}
-                              icon={<UserOutlined style={{ marginBottom: 0, marginRight: '10px' }} />}
+                              icon={<UserOutlined style={{ marginBottom: 0, marginRight: "10px" }} />}
                               label="Profile"
                               {...a11yProps(0)}
                             />
                             <Tab
                               sx={{
-                                display: 'flex',
-                                flexDirection: 'row',
-                                justifyContent: 'center',
-                                alignItems: 'center',
-                                textTransform: 'capitalize'
+                                display: "flex",
+                                flexDirection: "row",
+                                justifyContent: "center",
+                                alignItems: "center",
+                                textTransform: "capitalize"
                               }}
-                              icon={<SettingOutlined style={{ marginBottom: 0, marginRight: '10px' }} />}
+                              icon={<SettingOutlined style={{ marginBottom: 0, marginRight: "10px" }} />}
                               label="Setting"
                               {...a11yProps(1)}
                             />

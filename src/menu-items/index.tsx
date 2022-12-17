@@ -1,6 +1,6 @@
 // project import
-import other from './other';
-import { NavItemType } from 'types/menu';
+import other from "./other";
+import { NavItemType } from "@/types/menu";
 
 // ==============================|| MENU ITEMS ||============================== //
 

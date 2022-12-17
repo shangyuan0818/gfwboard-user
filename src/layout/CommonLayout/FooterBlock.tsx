@@ -1,23 +1,23 @@
 // material-ui
-import { useTheme } from '@mui/material/styles';
-import { Box, Button, Container, CardMedia, Divider, Grid, Link, Typography } from '@mui/material';
+import { useTheme } from "@mui/material/styles";
+import { Box, Button, Container, CardMedia, Divider, Grid, Link, Typography } from "@mui/material";
 
 // third party
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 
 // project import
-import useConfig from 'hooks/useConfig';
+import useConfig from "@/hooks/useConfig";
 
 // assets
-import { SendOutlined } from '@ant-design/icons';
+import { SendOutlined } from "@ant-design/icons";
 
-import imgfooterlogo from 'assets/images/landing/codedthemes-logo.svg';
-import imgfootersoc1 from 'assets/images/landing/img-soc1.svg';
-import imgfootersoc2 from 'assets/images/landing/img-soc2.svg';
-import imgfootersoc3 from 'assets/images/landing/img-soc3.svg';
-import AnimateButton from 'components/@extended/AnimateButton';
+import imgfooterlogo from "@/assets/images/landing/codedthemes-logo.svg";
+import imgfootersoc1 from "@/assets/images/landing/img-soc1.svg";
+import imgfootersoc2 from "@/assets/images/landing/img-soc2.svg";
+import imgfootersoc3 from "@/assets/images/landing/img-soc3.svg";
+import AnimateButton from "@/components/@extended/AnimateButton";
 
-const dashImage = require.context('assets/images/landing', true);
+const dashImage = require.context("assets/images/landing", true);
 
 // ==============================|| LANDING - FOOTER PAGE ||============================== //
 
@@ -31,11 +31,11 @@ const FooterBlock = ({ isFull }: showProps) => {
 
   const linkSX = {
     color: theme.palette.common.white,
-    fontSize: '0.875rem',
+    fontSize: "0.875rem",
     fontWeight: 400,
-    opacity: '0.6',
-    '&:hover': {
-      opacity: '1'
+    opacity: "0.6",
+    "&:hover": {
+      opacity: "1"
     }
   };
 
@@ -44,17 +44,17 @@ const FooterBlock = ({ isFull }: showProps) => {
       {isFull && (
         <Box
           sx={{
-            position: 'relative',
+            position: "relative",
             bgcolor: theme.palette.grey.A700,
             zIndex: 1,
             mt: { xs: 0, md: 13.75 },
             pt: { xs: 8, sm: 7.5, md: 18.75 },
             pb: { xs: 2.5, md: 10 },
-            '&:after': {
+            "&:after": {
               content: '""',
-              position: 'absolute',
-              width: '100%',
-              height: '80%',
+              position: "absolute",
+              width: "100%",
+              height: "80%",
               bottom: 0,
               left: 0,
               background: `linear-gradient(180deg, transparent 0%, ${theme.palette.grey.A700} 70%)`
@@ -65,18 +65,18 @@ const FooterBlock = ({ isFull }: showProps) => {
             component="img"
             image={dashImage(`./img-footer-${presetColor}.png`)}
             sx={{
-              display: { xs: 'none', md: 'block' },
-              width: '55%',
+              display: { xs: "none", md: "block" },
+              width: "55%",
               maxWidth: 700,
-              position: 'absolute',
-              top: '-28%',
+              position: "absolute",
+              top: "-28%",
               right: 0
             }}
           />
           <Container>
             <Grid container alignItems="center" justifyContent="space-between" spacing={2}>
-              <Grid item xs={12} md={6} sx={{ position: 'relative', zIndex: 1 }}>
-                <Grid container spacing={2} sx={{ [theme.breakpoints.down('md')]: { pr: 0, textAlign: 'center' } }}>
+              <Grid item xs={12} md={6} sx={{ position: "relative", zIndex: 1 }}>
+                <Grid container spacing={2} sx={{ [theme.breakpoints.down("md")]: { pr: 0, textAlign: "center" } }}>
                   <Grid item xs={12}>
                     <Typography variant="subtitle1" sx={{ color: theme.palette.common.white }}>
                       Roadmap
@@ -87,7 +87,7 @@ const FooterBlock = ({ isFull }: showProps) => {
                       initial={{ opacity: 0, translateY: 550 }}
                       animate={{ opacity: 1, translateY: 0 }}
                       transition={{
-                        type: 'spring',
+                        type: "spring",
                         stiffness: 150,
                         damping: 30
                       }}
@@ -109,7 +109,7 @@ const FooterBlock = ({ isFull }: showProps) => {
                     </Typography>
                   </Grid>
                   <Grid item xs={12} sx={{ my: 2 }}>
-                    <Box sx={{ display: 'inline-block' }}>
+                    <Box sx={{ display: "inline-block" }}>
                       <AnimateButton>
                         <Button
                           size="large"
@@ -139,19 +139,19 @@ const FooterBlock = ({ isFull }: showProps) => {
                 initial={{ opacity: 0, translateY: 550 }}
                 animate={{ opacity: 1, translateY: 0 }}
                 transition={{
-                  type: 'spring',
+                  type: "spring",
                   stiffness: 150,
                   damping: 30
                 }}
               >
                 <Grid container spacing={2}>
                   <Grid item xs={12}>
-                    <CardMedia component="img" image={imgfooterlogo} sx={{ width: 'auto' }} />
+                    <CardMedia component="img" image={imgfooterlogo} sx={{ width: "auto" }} />
                   </Grid>
                   <Grid item xs={12}>
                     <Typography variant="subtitle1" sx={{ fontWeight: 400, color: theme.palette.common.white }}>
-                      Since 2017, More than 50K+ Developers trust the CodedThemes Digital Product. Mantis React is Manage under their
-                      Experienced Team Players.
+                      Since 2017, More than 50K+ Developers trust the CodedThemes Digital Product. Mantis React is
+                      Manage under their Experienced Team Players.
                     </Typography>
                   </Grid>
                 </Grid>
@@ -164,7 +164,7 @@ const FooterBlock = ({ isFull }: showProps) => {
                     initial={{ opacity: 0, translateY: 550 }}
                     animate={{ opacity: 1, translateY: 0 }}
                     transition={{
-                      type: 'spring',
+                      type: "spring",
                       stiffness: 150,
                       damping: 30,
                       delay: 0.2
@@ -187,7 +187,12 @@ const FooterBlock = ({ isFull }: showProps) => {
                         </Link>
                       </Grid>
                       <Grid item xs={12}>
-                        <Link href="https://material-ui.com/store/contributors/codedthemes/" underline="none" sx={linkSX} target="_blank">
+                        <Link
+                          href="https://material-ui.com/store/contributors/codedthemes/"
+                          underline="none"
+                          sx={linkSX}
+                          target="_blank"
+                        >
                           Portfolio
                         </Link>
                       </Grid>
@@ -204,7 +209,7 @@ const FooterBlock = ({ isFull }: showProps) => {
                     initial={{ opacity: 0, translateY: 550 }}
                     animate={{ opacity: 1, translateY: 0 }}
                     transition={{
-                      type: 'spring',
+                      type: "spring",
                       stiffness: 150,
                       damping: 30,
                       delay: 0.4
@@ -217,7 +222,12 @@ const FooterBlock = ({ isFull }: showProps) => {
                         </Typography>
                       </Grid>
                       <Grid item xs={12}>
-                        <Link href="https://codedthemes.gitbook.io/mantis/" underline="none" target="_blank" sx={linkSX}>
+                        <Link
+                          href="https://codedthemes.gitbook.io/mantis/"
+                          underline="none"
+                          target="_blank"
+                          sx={linkSX}
+                        >
                           Documentation
                         </Link>
                       </Grid>
@@ -227,7 +237,12 @@ const FooterBlock = ({ isFull }: showProps) => {
                         </Link>
                       </Grid>
                       <Grid item xs={12}>
-                        <Link href="https://codedthemes.gitbook.io/mantis/changelog" underline="none" target="_blank" sx={linkSX}>
+                        <Link
+                          href="https://codedthemes.gitbook.io/mantis/changelog"
+                          underline="none"
+                          target="_blank"
+                          sx={linkSX}
+                        >
                           Change Log
                         </Link>
                       </Grid>
@@ -239,7 +254,7 @@ const FooterBlock = ({ isFull }: showProps) => {
                     initial={{ opacity: 0, translateY: 550 }}
                     animate={{ opacity: 1, translateY: 0 }}
                     transition={{
-                      type: 'spring',
+                      type: "spring",
                       stiffness: 150,
                       damping: 30,
                       delay: 0.6
@@ -289,11 +304,11 @@ const FooterBlock = ({ isFull }: showProps) => {
           </Grid>
         </Container>
       </Box>
-      <Divider sx={{ borderColor: 'grey.700' }} />
+      <Divider sx={{ borderColor: "grey.700" }} />
       <Box
         sx={{
           py: 1.5,
-          bgcolor: theme.palette.mode === 'dark' ? theme.palette.grey[50] : theme.palette.grey[800]
+          bgcolor: theme.palette.mode === "dark" ? theme.palette.grey[50] : theme.palette.grey[800]
         }}
       >
         <Container>
@@ -304,7 +319,7 @@ const FooterBlock = ({ isFull }: showProps) => {
               </Typography>
             </Grid>
             <Grid item xs={12} sm={4}>
-              <Grid container spacing={2} alignItems="center" sx={{ justifyContent: 'flex-end' }}>
+              <Grid container spacing={2} alignItems="center" sx={{ justifyContent: "flex-end" }}>
                 <Grid item>
                   <Link href="#" underline="none" sx={linkSX}>
                     <CardMedia component="img" image={imgfootersoc1} />

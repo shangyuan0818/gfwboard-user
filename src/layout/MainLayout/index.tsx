@@ -1,28 +1,28 @@
-import { useEffect, useState } from 'react';
-import { Outlet } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from "react";
+import { Outlet } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 // material-ui
-import { useTheme } from '@mui/material/styles';
-import { useMediaQuery, Box, Container, Toolbar } from '@mui/material';
+import { useTheme } from "@mui/material/styles";
+import { useMediaQuery, Box, Container, Toolbar } from "@mui/material";
 
 // project import
-import Drawer from './Drawer';
-import Header from './Header';
-import Footer from './Footer';
-import navigation from 'menu-items';
-import useConfig from 'hooks/useConfig';
-import Breadcrumbs from 'components/@extended/Breadcrumbs';
+import Drawer from "./Drawer";
+import Header from "./Header";
+import Footer from "./Footer";
+import navigation from "@/menu-items";
+import useConfig from "@/hooks/useConfig";
+import Breadcrumbs from "@/components/@extended/Breadcrumbs";
 
 // types
-import { RootStateProps } from 'types/root';
-import { openDrawer } from 'store/reducers/menu';
+import { RootStateProps } from "@/types/root";
+import { openDrawer } from "@/store/reducers/menu";
 
 // ==============================|| MAIN LAYOUT ||============================== //
 
 const MainLayout = () => {
   const theme = useTheme();
-  const matchDownLG = useMediaQuery(theme.breakpoints.down('xl'));
+  const matchDownLG = useMediaQuery(theme.breakpoints.down("xl"));
 
   const { container, miniDrawer } = useConfig();
   const dispatch = useDispatch();
@@ -52,15 +52,21 @@ const MainLayout = () => {
   // }, [drawerOpen]);
 
   return (
-    <Box sx={{ display: 'flex', width: '100%' }}>
+    <Box sx={{ display: "flex", width: "100%" }}>
       <Header open={open} handleDrawerToggle={handleDrawerToggle} />
       <Drawer open={open} handleDrawerToggle={handleDrawerToggle} />
-      <Box component="main" sx={{ width: 'calc(100% - 260px)', flexGrow: 1, p: { xs: 2, sm: 3 } }}>
+      <Box component="main" sx={{ width: "calc(100% - 260px)", flexGrow: 1, p: { xs: 2, sm: 3 } }}>
         <Toolbar />
         {container && (
           <Container
             maxWidth="xl"
-            sx={{ px: { xs: 0, sm: 2 }, position: 'relative', minHeight: 'calc(100vh - 110px)', display: 'flex', flexDirection: 'column' }}
+            sx={{
+              px: { xs: 0, sm: 2 },
+              position: "relative",
+              minHeight: "calc(100vh - 110px)",
+              display: "flex",
+              flexDirection: "column"
+            }}
           >
             <Breadcrumbs navigation={navigation} title titleBottom card={false} divider={false} />
             <Outlet />
@@ -68,7 +74,9 @@ const MainLayout = () => {
           </Container>
         )}
         {!container && (
-          <Box sx={{ position: 'relative', minHeight: 'calc(100vh - 110px)', display: 'flex', flexDirection: 'column' }}>
+          <Box
+            sx={{ position: "relative", minHeight: "calc(100vh - 110px)", display: "flex", flexDirection: "column" }}
+          >
             <Breadcrumbs navigation={navigation} title titleBottom card={false} divider={false} />
             <Outlet />
             <Footer />

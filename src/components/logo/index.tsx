@@ -1,14 +1,14 @@
-import { Link } from 'react-router-dom';
-import { To } from 'history';
+import { Link } from "react-router-dom";
+import { To } from "history";
 
 // material-ui
-import { ButtonBase } from '@mui/material';
-import { SxProps } from '@mui/system';
+import { ButtonBase } from "@mui/material";
+import { SxProps } from "@mui/system";
 
 // project import
-import Logo from './LogoMain';
-import LogoIcon from './LogoIcon';
-import config from 'config';
+import Logo from "./LogoMain";
+import LogoIcon from "./LogoIcon";
+import config from "@/config";
 
 // ==============================|| MAIN LOGO ||============================== //
 

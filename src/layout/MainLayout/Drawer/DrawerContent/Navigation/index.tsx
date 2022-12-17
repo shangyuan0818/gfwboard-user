@@ -1,14 +1,14 @@
-import { useSelector } from 'react-redux';
+import { useSelector } from "react-redux";
 
 // material-ui
-import { Box, Typography } from '@mui/material';
+import { Box, Typography } from "@mui/material";
 
 // types
-import { RootStateProps } from 'types/root';
+import { RootStateProps } from "@/types/root";
 
 // project import
-import NavGroup from './NavGroup';
-import menuItem from 'menu-items';
+import NavGroup from "./NavGroup";
+import menuItem from "@/menu-items";
 
 // ==============================|| DRAWER CONTENT - NAVIGATION ||============================== //
 
@@ -18,7 +18,7 @@ const Navigation = () => {
 
   const navGroups = menuItem.items.map((item) => {
     switch (item.type) {
-      case 'group':
+      case "group":
         return <NavGroup key={item.id} item={item} />;
       default:
         return (
@@ -29,7 +29,7 @@ const Navigation = () => {
     }
   });
 
-  return <Box sx={{ pt: drawerOpen ? 2 : 0, '& > ul:first-of-type': { mt: 0 } }}>{navGroups}</Box>;
+  return <Box sx={{ pt: drawerOpen ? 2 : 0, "& > ul:first-of-type": { mt: 0 } }}>{navGroups}</Box>;
 };
 
 export default Navigation;

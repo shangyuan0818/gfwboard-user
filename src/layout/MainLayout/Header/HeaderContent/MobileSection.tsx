@@ -1,17 +1,17 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from "react";
 
 // material-ui
-import { useTheme } from '@mui/material/styles';
-import { AppBar, Box, ClickAwayListener, Paper, Popper, Toolbar } from '@mui/material';
+import { useTheme } from "@mui/material/styles";
+import { AppBar, Box, ClickAwayListener, Paper, Popper, Toolbar } from "@mui/material";
 
 // project import
-import Search from './Search';
-import Profile from './Profile';
-import IconButton from 'components/@extended/IconButton';
-import Transitions from 'components/@extended/Transitions';
+import Search from "./Search";
+import Profile from "./Profile";
+import IconButton from "@/components/@extended/IconButton";
+import Transitions from "@/components/@extended/Transitions";
 
 // assets
-import { MoreOutlined } from '@ant-design/icons';
+import { MoreOutlined } from "@ant-design/icons";
 
 // ==============================|| HEADER CONTENT - MOBILE ||============================== //
 
@@ -42,16 +42,16 @@ const MobileSection = () => {
     prevOpen.current = open;
   }, [open]);
 
-  const iconBackColorOpen = theme.palette.mode === 'dark' ? 'grey.200' : 'grey.300';
-  const iconBackColor = theme.palette.mode === 'dark' ? 'background.default' : 'grey.100';
+  const iconBackColorOpen = theme.palette.mode === "dark" ? "grey.200" : "grey.300";
+  const iconBackColor = theme.palette.mode === "dark" ? "background.default" : "grey.100";
 
   return (
     <>
       <Box sx={{ flexShrink: 0, ml: 0.75 }}>
         <IconButton
-          sx={{ color: 'text.primary', bgcolor: open ? iconBackColorOpen : iconBackColor }}
+          sx={{ color: "text.primary", bgcolor: open ? iconBackColorOpen : iconBackColor }}
           ref={anchorRef}
-          aria-controls={open ? 'menu-list-grow' : undefined}
+          aria-controls={open ? "menu-list-grow" : undefined}
           aria-haspopup="true"
           onClick={handleToggle}
           color="secondary"
@@ -68,12 +68,12 @@ const MobileSection = () => {
         transition
         disablePortal
         style={{
-          width: '100%'
+          width: "100%"
         }}
         popperOptions={{
           modifiers: [
             {
-              name: 'offset',
+              name: "offset",
               options: {
                 offset: [0, 9]
               }

@@ -1,18 +1,18 @@
-import { SyntheticEvent } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { SyntheticEvent } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 // material-ui
-import { Alert, Button, Fade, Grow, Slide, SlideProps } from '@mui/material';
-import MuiSnackbar from '@mui/material/Snackbar';
+import { Alert, Button, Fade, Grow, Slide, SlideProps } from "@mui/material";
+import MuiSnackbar from "@mui/material/Snackbar";
 
 // project-import
-import IconButton from './IconButton';
+import IconButton from "./IconButton";
 
 // assets
-import { CloseOutlined } from '@ant-design/icons';
+import { CloseOutlined } from "@ant-design/icons";
 
-import { KeyedObject, RootStateProps } from 'types/root';
-import { closeSnackbar } from 'store/reducers/snackbar';
+import { KeyedObject, RootStateProps } from "@/types/root";
+import { closeSnackbar } from "@/store/reducers/snackbar";
 
 // animation function
 function TransitionSlideLeft(props: SlideProps) {
@@ -53,7 +53,7 @@ const Snackbar = () => {
   const { actionButton, anchorOrigin, alert, close, message, open, transition, variant } = snackbar;
 
   const handleClose = (event: SyntheticEvent | Event, reason?: string) => {
-    if (reason === 'clickaway') {
+    if (reason === "clickaway") {
       return;
     }
     dispatch(closeSnackbar());
@@ -62,7 +62,7 @@ const Snackbar = () => {
   return (
     <>
       {/* default snackbar */}
-      {variant === 'default' && (
+      {variant === "default" && (
         <MuiSnackbar
           anchorOrigin={anchorOrigin}
           open={open}
@@ -84,7 +84,7 @@ const Snackbar = () => {
       )}
 
       {/* alert snackbar */}
-      {variant === 'alert' && (
+      {variant === "alert" && (
         <MuiSnackbar
           TransitionComponent={animation[transition]}
           anchorOrigin={anchorOrigin}
@@ -117,8 +117,8 @@ const Snackbar = () => {
               </>
             }
             sx={{
-              ...(alert.variant === 'outlined' && {
-                bgcolor: 'grey.0'
+              ...(alert.variant === "outlined" && {
+                bgcolor: "grey.0"
               })
             }}
           >

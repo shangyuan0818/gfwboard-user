@@ -1,12 +1,12 @@
 // material-ui
-import { Theme } from '@mui/material/styles';
-import { Box, CheckboxProps } from '@mui/material';
+import { Theme } from "@mui/material/styles";
+import { Box, CheckboxProps } from "@mui/material";
 
 // project import
-import getColors from 'utils/getColors';
+import getColors from "@/utils/getColors";
 
 // types
-import { ExtendedStyleProps } from 'types/extended';
+import { ExtendedStyleProps } from "@/types/extended";
 
 // ==============================|| RADIO - COLORS ||============================== //
 
@@ -15,13 +15,13 @@ function getColorStyle({ color, theme }: ExtendedStyleProps) {
   const { lighter, main, dark } = colors;
 
   return {
-    '& .dot': {
+    "& .dot": {
       backgroundColor: main
     },
-    '&:hover': {
+    "&:hover": {
       backgroundColor: lighter
     },
-    '&.Mui-focusVisible': {
+    "&.Mui-focusVisible": {
       outline: `2px solid ${dark}`,
       outlineOffset: -4
     }
@@ -36,13 +36,13 @@ interface RadioSizeProps {
   position: number;
 }
 
-function getSizeStyle(size?: CheckboxProps['size']): RadioSizeProps {
+function getSizeStyle(size?: CheckboxProps["size"]): RadioSizeProps {
   switch (size) {
-    case 'small':
+    case "small":
       return { size: 16, dotSize: 8, position: 3 };
-    case 'large':
+    case "large":
       return { size: 24, dotSize: 12, position: 5 };
-    case 'medium':
+    case "medium":
     default:
       return { size: 20, dotSize: 10, position: 4 };
   }
@@ -50,14 +50,14 @@ function getSizeStyle(size?: CheckboxProps['size']): RadioSizeProps {
 
 // ==============================|| CHECKBOX - STYLE ||============================== //
 
-function radioStyle(size?: CheckboxProps['size']) {
+function radioStyle(size?: CheckboxProps["size"]) {
   const sizes: RadioSizeProps = getSizeStyle(size);
 
   return {
-    '& .icon': {
+    "& .icon": {
       width: sizes.size,
       height: sizes.size,
-      '& .dot': {
+      "& .dot": {
         width: sizes.dotSize,
         height: sizes.dotSize,
         top: sizes.position,
@@ -75,18 +75,23 @@ export default function Radio(theme: Theme) {
   return {
     MuiRadio: {
       defaultProps: {
-        className: 'size-small',
-        icon: <Box className="icon" sx={{ width: 16, height: 16, border: '1px solid', borderColor: 'inherit', borderRadius: '50%' }} />,
+        className: "size-small",
+        icon: (
+          <Box
+            className="icon"
+            sx={{ width: 16, height: 16, border: "1px solid", borderColor: "inherit", borderRadius: "50%" }}
+          />
+        ),
         checkedIcon: (
           <Box
             className="icon"
             sx={{
               width: 16,
               height: 16,
-              border: '1px solid',
-              borderColor: 'inherit',
-              borderRadius: '50%',
-              position: 'relative'
+              border: "1px solid",
+              borderColor: "inherit",
+              borderRadius: "50%",
+              position: "relative"
             }}
           >
             <Box
@@ -94,9 +99,9 @@ export default function Radio(theme: Theme) {
               sx={{
                 width: 8,
                 height: 8,
-                backgroundColor: 'inherit',
-                borderRadius: '50%',
-                position: 'absolute',
+                backgroundColor: "inherit",
+                borderRadius: "50%",
+                position: "absolute",
                 top: 3,
                 left: 3
               }}
@@ -107,22 +112,22 @@ export default function Radio(theme: Theme) {
       styleOverrides: {
         root: {
           color: palette.secondary[300],
-          '&.size-small': {
-            ...radioStyle('small')
+          "&.size-small": {
+            ...radioStyle("small")
           },
-          '&.size-medium': {
-            ...radioStyle('medium')
+          "&.size-medium": {
+            ...radioStyle("medium")
           },
-          '&.size-large': {
-            ...radioStyle('large')
+          "&.size-large": {
+            ...radioStyle("large")
           }
         },
-        colorPrimary: getColorStyle({ color: 'primary', theme }),
-        colorSecondary: getColorStyle({ color: 'secondary', theme }),
-        colorSuccess: getColorStyle({ color: 'success', theme }),
-        colorWarning: getColorStyle({ color: 'warning', theme }),
-        colorInfo: getColorStyle({ color: 'info', theme }),
-        colorError: getColorStyle({ color: 'error', theme })
+        colorPrimary: getColorStyle({ color: "primary", theme }),
+        colorSecondary: getColorStyle({ color: "secondary", theme }),
+        colorSuccess: getColorStyle({ color: "success", theme }),
+        colorWarning: getColorStyle({ color: "warning", theme }),
+        colorInfo: getColorStyle({ color: "info", theme }),
+        colorError: getColorStyle({ color: "error", theme })
       }
     }
   };

@@ -1,16 +1,25 @@
-import { forwardRef, CSSProperties, ReactNode, Ref } from 'react';
+import { forwardRef, CSSProperties, ReactNode, Ref } from "react";
 
 // material-ui
-import { useTheme } from '@mui/material/styles';
-import { Card, CardContent, CardHeader, Divider, Typography, CardProps, CardHeaderProps, CardContentProps } from '@mui/material';
+import { useTheme } from "@mui/material/styles";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  Divider,
+  Typography,
+  CardProps,
+  CardHeaderProps,
+  CardContentProps
+} from "@mui/material";
 
 // types
-import { KeyedObject } from 'types/root';
+import { KeyedObject } from "@/types/root";
 
 // header style
 const headerSX = {
   p: 2.5,
-  '& .MuiCardHeader-action': { m: '0px auto', alignSelf: 'center' }
+  "& .MuiCardHeader-action": { m: "0px auto", alignSelf: "center" }
 };
 
 // ==============================|| CUSTOM - MAIN CARD ||============================== //
@@ -22,11 +31,11 @@ export interface MainCardProps extends KeyedObject {
   subheader?: ReactNode | string;
   style?: CSSProperties;
   content?: boolean;
-  contentSX?: CardContentProps['sx'];
+  contentSX?: CardContentProps["sx"];
   darkTitle?: boolean;
   divider?: boolean;
-  sx?: CardProps['sx'];
-  secondary?: CardHeaderProps['action'];
+  sx?: CardProps["sx"];
+  secondary?: CardHeaderProps["action"];
   shadow?: string;
   elevation?: number;
   title?: ReactNode | string;
@@ -55,7 +64,7 @@ const MainCard = forwardRef(
     ref: Ref<HTMLDivElement>
   ) => {
     const theme = useTheme();
-    boxShadow = theme.palette.mode === 'dark' ? boxShadow || true : boxShadow;
+    boxShadow = theme.palette.mode === "dark" ? boxShadow || true : boxShadow;
 
     return (
       <Card
@@ -63,23 +72,24 @@ const MainCard = forwardRef(
         ref={ref}
         {...others}
         sx={{
-          position: 'relative',
-          border: border ? '1px solid' : 'none',
+          position: "relative",
+          border: border ? "1px solid" : "none",
           borderRadius: 1,
-          borderColor: theme.palette.mode === 'dark' ? theme.palette.divider : theme.palette.grey.A800,
-          boxShadow: boxShadow && (!border || theme.palette.mode === 'dark') ? shadow || theme.customShadows.z1 : 'inherit',
-          ':hover': {
-            boxShadow: boxShadow ? shadow || theme.customShadows.z1 : 'inherit'
+          borderColor: theme.palette.mode === "dark" ? theme.palette.divider : theme.palette.grey.A800,
+          boxShadow:
+            boxShadow && (!border || theme.palette.mode === "dark") ? shadow || theme.customShadows.z1 : "inherit",
+          ":hover": {
+            boxShadow: boxShadow ? shadow || theme.customShadows.z1 : "inherit"
           },
           ...(modal && {
-            position: 'absolute' as 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            width: { xs: `calc( 100% - 50px)`, sm: 'auto' },
-            '& .MuiCardContent-root': {
-              overflowY: 'auto',
-              minHeight: 'auto',
+            position: "absolute" as "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: { xs: `calc( 100% - 50px)`, sm: "auto" },
+            "& .MuiCardContent-root": {
+              overflowY: "auto",
+              minHeight: "auto",
               maxHeight: `calc(100vh - 200px)`
             }
           }),
@@ -90,13 +100,15 @@ const MainCard = forwardRef(
         {!darkTitle && title && (
           <CardHeader
             sx={headerSX}
-            titleTypographyProps={{ variant: 'subtitle1' }}
+            titleTypographyProps={{ variant: "subtitle1" }}
             title={title}
             action={secondary}
             subheader={subheader}
           />
         )}
-        {darkTitle && title && <CardHeader sx={headerSX} title={<Typography variant="h4">{title}</Typography>} action={secondary} />}
+        {darkTitle && title && (
+          <CardHeader sx={headerSX} title={<Typography variant="h4">{title}</Typography>} action={secondary} />
+        )}
 
         {/* content & header divider */}
         {title && divider && <Divider />}

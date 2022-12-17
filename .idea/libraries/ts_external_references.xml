@@ -1,0 +1,16 @@
+<component name="libraryTable">
+  <library name="ts-external-references" type="javaScript">
+    <properties>
+      <sourceFilesUrls>
+        <item url="file://$PROJECT_DIR$/node_modules/.pnpm/@types+node@17.0.19/node_modules/@types/node/index.d.ts" />
+        <item url="file://$PROJECT_DIR$/node_modules/.pnpm/@types+react@17.0.39/node_modules/@types/react/index.d.ts" />
+      </sourceFilesUrls>
+    </properties>
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/node_modules/.pnpm/@types+node@17.0.19/node_modules/@types/node/index.d.ts" />
+      <root url="file://$PROJECT_DIR$/node_modules/.pnpm/@types+react@17.0.39/node_modules/@types/react/index.d.ts" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

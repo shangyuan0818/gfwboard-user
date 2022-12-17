@@ -1,7 +1,7 @@
 // types
-import { PaletteThemeProps } from 'types/theme';
-import { PalettesProps } from '@ant-design/colors';
-import { PaletteColorOptions } from '@mui/material/styles';
+import { PaletteThemeProps } from "@/types/theme";
+import { PalettesProps } from "@ant-design/colors";
+import { PaletteColorOptions } from "@mui/material/styles";
 
 // ==============================|| PRESET THEME - DEFAULT ||============================== //
 
@@ -26,7 +26,7 @@ const Default = (colors: PalettesProps): PaletteThemeProps => {
     A700: grey[14],
     A800: grey[16]
   };
-  const contrastText = '#fff';
+  const contrastText = "#fff";
 
   return {
     primary: {

@@ -1,8 +1,8 @@
-import { useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useRef, useState } from "react";
+import { Link } from "react-router-dom";
 
 // material-ui
-import { useTheme } from '@mui/material/styles';
+import { useTheme } from "@mui/material/styles";
 import {
   Button,
   Box,
@@ -18,20 +18,20 @@ import {
   Popper,
   Stack,
   Typography
-} from '@mui/material';
+} from "@mui/material";
 
 // project import
-import MainCard from 'components/MainCard';
-import Dot from 'components/@extended/Dot';
-import IconButton from 'components/@extended/IconButton';
-import Transitions from 'components/@extended/Transitions';
-import { drawerWidth } from 'config';
+import MainCard from "@/components/MainCard";
+import Dot from "@/components/@extended/Dot";
+import IconButton from "@/components/@extended/IconButton";
+import Transitions from "@/components/@extended/Transitions";
+import { drawerWidth } from "@/config";
 
 // assets
-import { ArrowRightOutlined, WindowsOutlined } from '@ant-design/icons';
-import backgroundVector from 'assets/images/mega-menu/back.svg';
-import imageChart from 'assets/images/mega-menu/chart.svg';
-import AnimateButton from 'components/@extended/AnimateButton';
+import { ArrowRightOutlined, WindowsOutlined } from "@ant-design/icons";
+import backgroundVector from "@/assets/images/mega-menu/back.svg";
+import imageChart from "@/assets/images/mega-menu/chart.svg";
+import AnimateButton from "@/components/@extended/AnimateButton";
 
 // ==============================|| HEADER CONTENT - MEGA MENU SECTION ||============================== //
 
@@ -51,18 +51,18 @@ const MegaMenuSection = () => {
     setOpen(false);
   };
 
-  const iconBackColorOpen = theme.palette.mode === 'dark' ? 'grey.200' : 'grey.300';
-  const iconBackColor = theme.palette.mode === 'dark' ? 'background.default' : 'grey.100';
+  const iconBackColorOpen = theme.palette.mode === "dark" ? "grey.200" : "grey.300";
+  const iconBackColor = theme.palette.mode === "dark" ? "background.default" : "grey.100";
 
   return (
     <Box sx={{ flexShrink: 0, ml: 0.75 }}>
       <IconButton
         color="secondary"
         variant="light"
-        sx={{ color: 'text.primary', bgcolor: open ? iconBackColorOpen : iconBackColor }}
+        sx={{ color: "text.primary", bgcolor: open ? iconBackColorOpen : iconBackColor }}
         aria-label="open profile"
         ref={anchorRef}
-        aria-controls={open ? 'profile-grow' : undefined}
+        aria-controls={open ? "profile-grow" : undefined}
         aria-haspopup="true"
         onClick={handleToggle}
       >
@@ -78,7 +78,7 @@ const MegaMenuSection = () => {
         popperOptions={{
           modifiers: [
             {
-              name: 'offset',
+              name: "offset",
               options: {
                 offset: [-180, 9]
               }
@@ -111,8 +111,8 @@ const MegaMenuSection = () => {
                       }}
                     >
                       <Box sx={{ p: 4.5, pb: 3 }}>
-                        <Stack sx={{ color: 'background.paper' }}>
-                          <Typography variant="h2" sx={{ fontSize: '1.875rem', mb: 1 }}>
+                        <Stack sx={{ color: "background.paper" }}>
+                          <Typography variant="h2" sx={{ fontSize: "1.875rem", mb: 1 }}>
                             Explore Components
                           </Typography>
                           <Typography variant="h6">
@@ -124,9 +124,9 @@ const MegaMenuSection = () => {
                                 variant="contained"
                                 color="secondary"
                                 sx={{
-                                  bgcolor: 'background.paper',
-                                  color: 'text.primary',
-                                  '&:hover': { bgcolor: 'background.paper', color: 'text.primary' }
+                                  bgcolor: "background.paper",
+                                  color: "text.primary",
+                                  "&:hover": { bgcolor: "background.paper", color: "text.primary" }
                                 }}
                                 endIcon={<ArrowRightOutlined />}
                                 component={Link}
@@ -136,7 +136,12 @@ const MegaMenuSection = () => {
                                 View All
                               </Button>
                             </AnimateButton>
-                            <CardMedia component="img" src={imageChart} alt="Chart" sx={{ mr: -2.5, mb: -2.5, width: 124 }} />
+                            <CardMedia
+                              component="img"
+                              src={imageChart}
+                              alt="Chart"
+                              sx={{ mr: -2.5, mb: -2.5, width: 124 }}
+                            />
                           </Stack>
                         </Stack>
                       </Box>
@@ -145,19 +150,19 @@ const MegaMenuSection = () => {
                       <Box
                         sx={{
                           p: 4,
-                          '& .MuiList-root': {
+                          "& .MuiList-root": {
                             pb: 0
                           },
-                          '& .MuiListSubheader-root': {
+                          "& .MuiListSubheader-root": {
                             p: 0,
                             pb: 1.5
                           },
-                          '& .MuiListItemButton-root': {
+                          "& .MuiListItemButton-root": {
                             p: 0.5,
-                            '&:hover': {
-                              background: 'transparent',
-                              '& .MuiTypography-root': {
-                                color: 'primary.main'
+                            "&:hover": {
+                              background: "transparent",
+                              "& .MuiTypography-root": {
+                                color: "primary.main"
                               }
                             }
                           }
@@ -200,7 +205,12 @@ const MegaMenuSection = () => {
                                 </ListItemIcon>
                                 <ListItemText primary="Forgot Password" />
                               </ListItemButton>
-                              <ListItemButton disableRipple component={Link} target="_blank" to="/auth/code-verification">
+                              <ListItemButton
+                                disableRipple
+                                component={Link}
+                                target="_blank"
+                                to="/auth/code-verification"
+                              >
                                 <ListItemIcon>
                                   <Dot size={7} color="secondary" variant="outlined" />
                                 </ListItemIcon>
@@ -244,13 +254,23 @@ const MegaMenuSection = () => {
                                 </ListItemIcon>
                                 <ListItemText primary="Payment" />
                               </ListItemButton>
-                              <ListItemButton disableRipple component={Link} target="_blank" to="/maintenance/under-construction">
+                              <ListItemButton
+                                disableRipple
+                                component={Link}
+                                target="_blank"
+                                to="/maintenance/under-construction"
+                              >
                                 <ListItemIcon>
                                   <Dot size={7} color="secondary" variant="outlined" />
                                 </ListItemIcon>
                                 <ListItemText primary="Construction" />
                               </ListItemButton>
-                              <ListItemButton disableRipple component={Link} target="_blank" to="/maintenance/coming-soon">
+                              <ListItemButton
+                                disableRipple
+                                component={Link}
+                                target="_blank"
+                                to="/maintenance/coming-soon"
+                              >
                                 <ListItemIcon>
                                   <Dot size={7} color="secondary" variant="outlined" />
                                 </ListItemIcon>

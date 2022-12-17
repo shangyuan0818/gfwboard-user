@@ -1,7 +1,7 @@
-import { useRef, useState } from 'react';
+import { useRef, useState } from "react";
 
 // material-ui
-import { useTheme } from '@mui/material/styles';
+import { useTheme } from "@mui/material/styles";
 import {
   Avatar,
   Box,
@@ -16,19 +16,19 @@ import {
   Popper,
   Typography,
   useMediaQuery
-} from '@mui/material';
+} from "@mui/material";
 
 // project import
-import MainCard from 'components/MainCard';
-import IconButton from 'components/@extended/IconButton';
-import Transitions from 'components/@extended/Transitions';
+import MainCard from "@/components/MainCard";
+import IconButton from "@/components/@extended/IconButton";
+import Transitions from "@/components/@extended/Transitions";
 
 // assets
-import avatar2 from 'assets/images/users/avatar-2.png';
-import avatar3 from 'assets/images/users/avatar-3.png';
-import avatar4 from 'assets/images/users/avatar-4.png';
-import avatar5 from 'assets/images/users/avatar-5.png';
-import { MailOutlined, CloseOutlined } from '@ant-design/icons';
+import avatar2 from "@/assets/images/users/avatar-2.png";
+import avatar3 from "@/assets/images/users/avatar-3.png";
+import avatar4 from "@/assets/images/users/avatar-4.png";
+import avatar5 from "@/assets/images/users/avatar-5.png";
+import { MailOutlined, CloseOutlined } from "@ant-design/icons";
 
 // sx styles
 const avatarSX = {
@@ -37,19 +37,19 @@ const avatarSX = {
 };
 
 const actionSX = {
-  mt: '6px',
+  mt: "6px",
   ml: 1,
-  top: 'auto',
-  right: 'auto',
-  alignSelf: 'flex-start',
-  transform: 'none'
+  top: "auto",
+  right: "auto",
+  alignSelf: "flex-start",
+  transform: "none"
 };
 
 // ==============================|| HEADER CONTENT - MESSAGES ||============================== //
 
 const Message = () => {
   const theme = useTheme();
-  const matchesXs = useMediaQuery(theme.breakpoints.down('md'));
+  const matchesXs = useMediaQuery(theme.breakpoints.down("md"));
 
   const anchorRef = useRef<any>(null);
   const [open, setOpen] = useState(false);
@@ -64,25 +64,25 @@ const Message = () => {
     setOpen(false);
   };
 
-  const iconBackColorOpen = theme.palette.mode === 'dark' ? 'grey.200' : 'grey.300';
-  const iconBackColor = theme.palette.mode === 'dark' ? 'background.default' : 'grey.100';
+  const iconBackColorOpen = theme.palette.mode === "dark" ? "grey.200" : "grey.300";
+  const iconBackColor = theme.palette.mode === "dark" ? "background.default" : "grey.100";
 
   return (
     <Box sx={{ flexShrink: 0, ml: 0.75 }}>
       <IconButton
         color="secondary"
         variant="light"
-        sx={{ color: 'text.primary', bgcolor: open ? iconBackColorOpen : iconBackColor }}
+        sx={{ color: "text.primary", bgcolor: open ? iconBackColorOpen : iconBackColor }}
         aria-label="open profile"
         ref={anchorRef}
-        aria-controls={open ? 'profile-grow' : undefined}
+        aria-controls={open ? "profile-grow" : undefined}
         aria-haspopup="true"
         onClick={handleToggle}
       >
         <MailOutlined />
       </IconButton>
       <Popper
-        placement={matchesXs ? 'bottom' : 'bottom-end'}
+        placement={matchesXs ? "bottom" : "bottom-end"}
         open={open}
         anchorEl={anchorRef.current}
         role={undefined}
@@ -91,7 +91,7 @@ const Message = () => {
         popperOptions={{
           modifiers: [
             {
-              name: 'offset',
+              name: "offset",
               options: {
                 offset: [matchesXs ? -60 : 0, 9]
               }
@@ -104,10 +104,10 @@ const Message = () => {
             <Paper
               sx={{
                 boxShadow: theme.customShadows.z1,
-                width: '100%',
+                width: "100%",
                 minWidth: 285,
                 maxWidth: 420,
-                [theme.breakpoints.down('md')]: {
+                [theme.breakpoints.down("md")]: {
                   maxWidth: 285
                 }
               }}
@@ -128,10 +128,10 @@ const Message = () => {
                     component="nav"
                     sx={{
                       p: 0,
-                      '& .MuiListItemButton-root': {
+                      "& .MuiListItemButton-root": {
                         py: 1.5,
-                        '& .MuiAvatar-root': avatarSX,
-                        '& .MuiListItemSecondaryAction-root': { ...actionSX, position: 'relative' }
+                        "& .MuiAvatar-root": avatarSX,
+                        "& .MuiListItemSecondaryAction-root": { ...actionSX, position: "relative" }
                       }
                     }}
                   >
@@ -142,10 +142,10 @@ const Message = () => {
                       <ListItemText
                         primary={
                           <Typography variant="h6">
-                            It&apos;s{' '}
+                            It&apos;s{" "}
                             <Typography component="span" variant="subtitle1">
                               Cristina danny&apos;s
-                            </Typography>{' '}
+                            </Typography>{" "}
                             birthday today.
                           </Typography>
                         }
@@ -167,7 +167,7 @@ const Message = () => {
                           <Typography variant="h6">
                             <Typography component="span" variant="subtitle1">
                               Aida Burg
-                            </Typography>{' '}
+                            </Typography>{" "}
                             commented your post.
                           </Typography>
                         }
@@ -208,8 +208,8 @@ const Message = () => {
                           <Typography variant="h6">
                             <Typography component="span" variant="subtitle1">
                               Cristina Danny
-                            </Typography>{' '}
-                            invited to join{' '}
+                            </Typography>{" "}
+                            invited to join{" "}
                             <Typography component="span" variant="subtitle1">
                               Meeting.
                             </Typography>
@@ -224,7 +224,7 @@ const Message = () => {
                       </ListItemSecondaryAction>
                     </ListItemButton>
                     <Divider />
-                    <ListItemButton sx={{ textAlign: 'center' }}>
+                    <ListItemButton sx={{ textAlign: "center" }}>
                       <ListItemText
                         primary={
                           <Typography variant="h6" color="primary">

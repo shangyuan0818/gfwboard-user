@@ -1,11 +1,11 @@
 // types
-import { MenuProps } from 'types/menu';
-import { createSlice } from '@reduxjs/toolkit';
+import { MenuProps } from "@/types/menu";
+import { createSlice } from "@reduxjs/toolkit";
 
 // initial state
 const initialState: MenuProps = {
-  openItem: ['dashboard'],
-  openComponent: 'buttons',
+  openItem: ["dashboard"],
+  openComponent: "buttons",
   drawerOpen: false,
   componentDrawerOpen: true
 };
@@ -13,7 +13,7 @@ const initialState: MenuProps = {
 // ==============================|| SLICE - MENU ||============================== //
 
 const menu = createSlice({
-  name: 'menu',
+  name: "menu",
   initialState,
   reducers: {
     activeItem(state, action) {

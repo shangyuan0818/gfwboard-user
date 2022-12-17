@@ -1,6 +1,6 @@
-import { useEffect, useState, SyntheticEvent } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useEffect, useState, SyntheticEvent } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 // material-ui
 import {
@@ -14,25 +14,25 @@ import {
   OutlinedInput,
   Stack,
   Typography
-} from '@mui/material';
+} from "@mui/material";
 
 // third party
-import * as Yup from 'yup';
-import { Formik } from 'formik';
+import * as Yup from "yup";
+import { Formik } from "formik";
 
 // project import
-import useAuth from 'hooks/useAuth';
-import useScriptRef from 'hooks/useScriptRef';
-import IconButton from 'components/@extended/IconButton';
-import AnimateButton from 'components/@extended/AnimateButton';
-import { strengthColor, strengthIndicator } from 'utils/password-strength';
-import { openSnackbar } from 'store/reducers/snackbar';
+import useAuth from "@/hooks/useAuth";
+import useScriptRef from "@/hooks/useScriptRef";
+import IconButton from "@/components/@extended/IconButton";
+import AnimateButton from "@/components/@extended/AnimateButton";
+import { strengthColor, strengthIndicator } from "@/utils/password-strength";
+import { openSnackbar } from "@/store/reducers/snackbar";
 
 // types
-import { StringColorProps } from 'types/password';
+import { StringColorProps } from "@/types/password";
 
 // assets
-import { EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons';
+import { EyeOutlined, EyeInvisibleOutlined } from "@ant-design/icons";
 
 // ============================|| STATIC - RESET PASSWORD ||============================ //
 
@@ -59,24 +59,24 @@ const AuthResetPassword = () => {
   };
 
   useEffect(() => {
-    changePassword('');
+    changePassword("");
   }, []);
 
   return (
     <>
       <Formik
         initialValues={{
-          password: '',
-          confirmPassword: '',
+          password: "",
+          confirmPassword: "",
           submit: null
         }}
         validationSchema={Yup.object().shape({
-          password: Yup.string().max(255).required('Password is required'),
+          password: Yup.string().max(255).required("Password is required"),
           confirmPassword: Yup.string()
-            .required('Confirm Password is required')
-            .when('password', {
+            .required("Confirm Password is required")
+            .when("password", {
               is: (val: string) => !!(val && val.length > 0),
-              then: Yup.string().oneOf([Yup.ref('password')], 'Both Password must be match!')
+              then: Yup.string().oneOf([Yup.ref("password")], "Both Password must be match!")
             })
         })}
         onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
@@ -89,17 +89,17 @@ const AuthResetPassword = () => {
               dispatch(
                 openSnackbar({
                   open: true,
-                  message: 'Successfuly reset password.',
-                  variant: 'alert',
+                  message: "Successfuly reset password.",
+                  variant: "alert",
                   alert: {
-                    color: 'success'
+                    color: "success"
                   },
                   close: false
                 })
               );
 
               setTimeout(() => {
-                navigate(isLoggedIn ? '/auth/login' : '/login', { replace: true });
+                navigate(isLoggedIn ? "/auth/login" : "/login", { replace: true });
               }, 1500);
             }
           } catch (err: any) {
@@ -122,7 +122,7 @@ const AuthResetPassword = () => {
                     fullWidth
                     error={Boolean(touched.password && errors.password)}
                     id="password-reset"
-                    type={showPassword ? 'text' : 'password'}
+                    type={showPassword ? "text" : "password"}
                     value={values.password}
                     name="password"
                     onBlur={handleBlur}
@@ -154,7 +154,7 @@ const AuthResetPassword = () => {
                 <FormControl fullWidth sx={{ mt: 2 }}>
                   <Grid container spacing={2} alignItems="center">
                     <Grid item>
-                      <Box sx={{ bgcolor: level?.color, width: 85, height: 8, borderRadius: '7px' }} />
+                      <Box sx={{ bgcolor: level?.color, width: 85, height: 8, borderRadius: "7px" }} />
                     </Grid>
                     <Grid item>
                       <Typography variant="subtitle1" fontSize="0.75rem">
@@ -193,7 +193,15 @@ const AuthResetPassword = () => {
               )}
               <Grid item xs={12}>
                 <AnimateButton>
-                  <Button disableElevation disabled={isSubmitting} fullWidth size="large" type="submit" variant="contained" color="primary">
+                  <Button
+                    disableElevation
+                    disabled={isSubmitting}
+                    fullWidth
+                    size="large"
+                    type="submit"
+                    variant="contained"
+                    color="primary"
+                  >
                     Reset Password
                   </Button>
                 </AnimateButton>

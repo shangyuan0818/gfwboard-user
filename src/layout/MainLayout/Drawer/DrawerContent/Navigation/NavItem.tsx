@@ -1,17 +1,17 @@
-import { forwardRef, useEffect, ForwardRefExoticComponent, RefAttributes } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { forwardRef, useEffect, ForwardRefExoticComponent, RefAttributes } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 // material-ui
-import { useTheme } from '@mui/material/styles';
-import { Avatar, Chip, ListItemButton, ListItemIcon, ListItemText, Typography } from '@mui/material';
+import { useTheme } from "@mui/material/styles";
+import { Avatar, Chip, ListItemButton, ListItemIcon, ListItemText, Typography } from "@mui/material";
 
 // project import
-import { activeItem } from 'store/reducers/menu';
+import { activeItem } from "@/store/reducers/menu";
 
 // types
-import { LinkTarget, NavItemType } from 'types/menu';
-import { RootStateProps } from 'types/root';
+import { LinkTarget, NavItemType } from "@/types/menu";
+import { RootStateProps } from "@/types/root";
 
 // ==============================|| NAVIGATION - LIST ITEM ||============================== //
 
@@ -26,9 +26,9 @@ const NavItem = ({ item, level }: Props) => {
   const menu = useSelector((state: RootStateProps) => state.menu);
   const { drawerOpen, openItem } = menu;
 
-  let itemTarget: LinkTarget = '_self';
+  let itemTarget: LinkTarget = "_self";
   if (item.target) {
-    itemTarget = '_blank';
+    itemTarget = "_blank";
   }
 
   let listItemProps: {
@@ -37,11 +37,11 @@ const NavItem = ({ item, level }: Props) => {
     target?: LinkTarget;
   } = { component: forwardRef((props, ref) => <Link {...props} to={item.url!} target={itemTarget} />) };
   if (item?.external) {
-    listItemProps = { component: 'a', href: item.url, target: itemTarget };
+    listItemProps = { component: "a", href: item.url, target: itemTarget };
   }
 
   const Icon = item.icon!;
-  const itemIcon = item.icon ? <Icon style={{ fontSize: drawerOpen ? '1rem' : '1.25rem' }} /> : false;
+  const itemIcon = item.icon ? <Icon style={{ fontSize: drawerOpen ? "1rem" : "1.25rem" }} /> : false;
 
   const isSelected = openItem.findIndex((id) => id === item.id) > -1;
 
@@ -49,14 +49,14 @@ const NavItem = ({ item, level }: Props) => {
 
   // active menu item on page load
   useEffect(() => {
-    if (pathname && pathname.includes('product-details')) {
-      if (item.url && item.url.includes('product-details')) {
+    if (pathname && pathname.includes("product-details")) {
+      if (item.url && item.url.includes("product-details")) {
         dispatch(activeItem({ openItem: [item.id] }));
       }
     }
 
-    if (pathname && pathname.includes('kanban')) {
-      if (item.url && item.url.includes('kanban')) {
+    if (pathname && pathname.includes("kanban")) {
+      if (item.url && item.url.includes("kanban")) {
         dispatch(activeItem({ openItem: [item.id] }));
       }
     }
@@ -67,8 +67,8 @@ const NavItem = ({ item, level }: Props) => {
     // eslint-disable-next-line
   }, [pathname]);
 
-  const textColor = theme.palette.mode === 'dark' ? 'grey.400' : 'text.primary';
-  const iconSelectedColor = theme.palette.mode === 'dark' && drawerOpen ? 'text.primary' : 'primary.main';
+  const textColor = theme.palette.mode === "dark" ? "grey.400" : "text.primary";
+  const iconSelectedColor = theme.palette.mode === "dark" && drawerOpen ? "text.primary" : "primary.main";
 
   return (
     <ListItemButton
@@ -80,28 +80,28 @@ const NavItem = ({ item, level }: Props) => {
         pl: drawerOpen ? `${level * 28}px` : 1.5,
         py: !drawerOpen && level === 1 ? 1.25 : 1,
         ...(drawerOpen && {
-          '&:hover': {
-            bgcolor: theme.palette.mode === 'dark' ? 'divider' : 'primary.lighter'
+          "&:hover": {
+            bgcolor: theme.palette.mode === "dark" ? "divider" : "primary.lighter"
           },
-          '&.Mui-selected': {
-            bgcolor: theme.palette.mode === 'dark' ? 'divider' : 'primary.lighter',
+          "&.Mui-selected": {
+            bgcolor: theme.palette.mode === "dark" ? "divider" : "primary.lighter",
             borderRight: `2px solid ${theme.palette.primary.main}`,
             color: iconSelectedColor,
-            '&:hover': {
+            "&:hover": {
               color: iconSelectedColor,
-              bgcolor: theme.palette.mode === 'dark' ? 'divider' : 'primary.lighter'
+              bgcolor: theme.palette.mode === "dark" ? "divider" : "primary.lighter"
             }
           }
         }),
         ...(!drawerOpen && {
-          '&:hover': {
-            bgcolor: 'transparent'
+          "&:hover": {
+            bgcolor: "transparent"
           },
-          '&.Mui-selected': {
-            '&:hover': {
-              bgcolor: 'transparent'
+          "&.Mui-selected": {
+            "&:hover": {
+              bgcolor: "transparent"
             },
-            bgcolor: 'transparent'
+            bgcolor: "transparent"
           }
         })
       }}
@@ -115,17 +115,17 @@ const NavItem = ({ item, level }: Props) => {
               borderRadius: 1.5,
               width: 36,
               height: 36,
-              alignItems: 'center',
-              justifyContent: 'center',
-              '&:hover': {
-                bgcolor: theme.palette.mode === 'dark' ? 'secondary.light' : 'secondary.lighter'
+              alignItems: "center",
+              justifyContent: "center",
+              "&:hover": {
+                bgcolor: theme.palette.mode === "dark" ? "secondary.light" : "secondary.lighter"
               }
             }),
             ...(!drawerOpen &&
               isSelected && {
-                bgcolor: theme.palette.mode === 'dark' ? 'primary.900' : 'primary.lighter',
-                '&:hover': {
-                  bgcolor: theme.palette.mode === 'dark' ? 'primary.darker' : 'primary.lighter'
+                bgcolor: theme.palette.mode === "dark" ? "primary.900" : "primary.lighter",
+                "&:hover": {
+                  bgcolor: theme.palette.mode === "dark" ? "primary.darker" : "primary.lighter"
                 }
               })
           }}

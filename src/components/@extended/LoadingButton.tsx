@@ -1,23 +1,23 @@
-import { forwardRef, ReactNode, Ref } from 'react';
+import { forwardRef, ReactNode, Ref } from "react";
 
 // material-ui
-import MuiLoadingButton from '@mui/lab/LoadingButton';
-import { alpha, styled, useTheme } from '@mui/material/styles';
-import { ButtonProps } from '@mui/material';
-import { LoadingButtonProps } from '@mui/lab';
+import MuiLoadingButton from "@mui/lab/LoadingButton";
+import { alpha, styled, useTheme } from "@mui/material/styles";
+import { ButtonProps } from "@mui/material";
+import { LoadingButtonProps } from "@mui/lab";
 
 // project imports
-import getColors from 'utils/getColors';
-import getShadow from 'utils/getShadow';
+import getColors from "@/utils/getColors";
+import getShadow from "@/utils/getShadow";
 
 // types
-import { ButtonVariantProps, ExtendedStyleProps, IconButtonShapeProps } from 'types/extended';
+import { ButtonVariantProps, ExtendedStyleProps, IconButtonShapeProps } from "@/types/extended";
 
 // ==============================|| LOADING BUTTON - COLOR STYLE ||============================== //
 
 interface LoadingButtonStyleProps extends ExtendedStyleProps {
   variant: ButtonVariantProps;
-  loadingPosition?: LoadingButtonProps['loadingPosition'];
+  loadingPosition?: LoadingButtonProps["loadingPosition"];
 }
 
 function getColorStyle({ variant, theme, color, loadingPosition }: LoadingButtonStyleProps) {
@@ -28,90 +28,90 @@ function getColorStyle({ variant, theme, color, loadingPosition }: LoadingButton
   const shadows = getShadow(theme, buttonShadow);
 
   const loadingIndicator = {
-    '& .MuiLoadingButton-loadingIndicator': {
+    "& .MuiLoadingButton-loadingIndicator": {
       color: main
     }
   };
 
   const loadingColor = {
     ...(loadingPosition &&
-      loadingPosition !== 'center' && {
+      loadingPosition !== "center" && {
         color: main
       })
   };
 
   const commonShadow = {
-    '&::after': {
+    "&::after": {
       boxShadow: `0 0 6px 6px ${alpha(main, 0.9)}`
     },
-    '&:active::after': {
+    "&:active::after": {
       boxShadow: `0 0 0 0 ${alpha(main, 0.9)}`
     },
-    '&:focus-visible': {
+    "&:focus-visible": {
       outline: `2px solid ${dark}`,
       outlineOffset: 2
     }
   };
 
   switch (variant) {
-    case 'contained':
+    case "contained":
       return {
         backgroundColor: main,
         ...(loadingPosition &&
-          loadingPosition !== 'center' && {
+          loadingPosition !== "center" && {
             color: contrastText
           }),
-        '& .MuiLoadingButton-loadingIndicator': {
+        "& .MuiLoadingButton-loadingIndicator": {
           color: contrastText
         },
-        '&:hover': {
+        "&:hover": {
           backgroundColor: dark,
           color: contrastText
         },
         ...commonShadow
       };
-    case 'light':
+    case "light":
       return {
         backgroundColor: main,
         ...(loadingPosition &&
-          loadingPosition !== 'center' && {
+          loadingPosition !== "center" && {
             color: contrastText
           }),
-        '& .MuiLoadingButton-loadingIndicator': {
+        "& .MuiLoadingButton-loadingIndicator": {
           color: contrastText
         },
-        '&:hover': {
+        "&:hover": {
           backgroundColor: dark,
           color: contrastText
         },
         ...commonShadow
       };
-    case 'shadow':
+    case "shadow":
       return {
         boxShadow: shadows,
         backgroundColor: main,
         ...(loadingPosition &&
-          loadingPosition !== 'center' && {
+          loadingPosition !== "center" && {
             color: contrastText
           }),
-        '& .MuiLoadingButton-loadingIndicator': {
+        "& .MuiLoadingButton-loadingIndicator": {
           color: contrastText
         },
-        '&:hover': {
-          boxShadow: 'none',
+        "&:hover": {
+          boxShadow: "none",
           backgroundColor: dark,
           color: contrastText
         },
         ...commonShadow
       };
-    case 'outlined':
+    case "outlined":
       return {
-        backgroundColor: 'transparent',
+        backgroundColor: "transparent",
         borderColor: main,
         ...loadingColor,
         ...loadingIndicator
       };
-    case 'dashed':
+    case "dashed":
       return {
         backgroundColor: lighter,
         borderColor: main,
@@ -119,7 +119,7 @@ function getColorStyle({ variant, theme, color, loadingPosition }: LoadingButton
         ...loadingIndicator,
         ...commonShadow
       };
-    case 'text':
+    case "text":
     default:
       return {
         color: main,
@@ -133,96 +133,96 @@ function getColorStyle({ variant, theme, color, loadingPosition }: LoadingButton
 
 interface StyleProps extends LoadingButtonStyleProps {
   shape?: IconButtonShapeProps;
-  loading: LoadingButtonProps['loading'];
+  loading: LoadingButtonProps["loading"];
 }
 
-const LoadingButtonStyle = styled(MuiLoadingButton, { shouldForwardProp: (prop) => prop !== 'shape' && prop !== 'variant' })(
-  ({ theme, variant, shape, color, loading, loadingPosition }: StyleProps) => ({
-    '::after': {
-      content: '""',
-      display: 'block',
-      position: 'absolute',
-      left: 0,
-      top: 0,
-      width: '100%',
-      height: '100%',
-      borderRadius: shape === 'rounded' ? '50%' : 4,
-      opacity: 0,
-      transition: 'all 0.5s'
+const LoadingButtonStyle = styled(MuiLoadingButton, {
+  shouldForwardProp: (prop) => prop !== "shape" && prop !== "variant"
+})(({ theme, variant, shape, color, loading, loadingPosition }: StyleProps) => ({
+  "::after": {
+    content: '""',
+    display: "block",
+    position: "absolute",
+    left: 0,
+    top: 0,
+    width: "100%",
+    height: "100%",
+    borderRadius: shape === "rounded" ? "50%" : 4,
+    opacity: 0,
+    transition: "all 0.5s"
+  },
+
+  ":active::after": {
+    position: "absolute",
+    borderRadius: shape === "rounded" ? "50%" : 4,
+    left: 0,
+    top: 0,
+    opacity: 1,
+    transition: "0s"
+  },
+  ...(variant === "text" && {
+    ...getColorStyle({ variant, theme, color, loadingPosition }),
+    "&.MuiButton-sizeMedium": {
+      height: 36
     },
-
-    ':active::after': {
-      position: 'absolute',
-      borderRadius: shape === 'rounded' ? '50%' : 4,
-      left: 0,
-      top: 0,
-      opacity: 1,
-      transition: '0s'
+    "&.MuiButton-sizeSmall": {
+      height: 30
     },
-    ...(variant === 'text' && {
-      ...getColorStyle({ variant, theme, color, loadingPosition }),
-      '&.MuiButton-sizeMedium': {
-        height: 36
-      },
-      '&.MuiButton-sizeSmall': {
-        height: 30
-      },
-      '&.MuiButton-sizeLarge': {
-        height: 44
-      }
-    }),
-    ...(shape && {
-      minWidth: 0,
-      '&.MuiButton-sizeMedium': {
-        width: 36,
-        height: 36
-      },
-      '&.MuiButton-sizeSmall': {
-        width: 30,
-        height: 30
-      },
-      '&.MuiButton-sizeLarge': {
-        width: 44,
-        height: 44
-      },
-      ...(shape === 'rounded' && {
-        borderRadius: '50%'
-      })
-    }),
-
-    ...(variant === 'outlined' && {
-      border: '1px solid'
-    }),
-    ...(variant === 'dashed' && {
-      border: '1px dashed'
-    }),
-    ...((variant === 'contained' || variant === 'shadow') &&
-      !loading && {
-        color: '#fff'
-      }),
-    ...(variant !== 'text' && {
-      ...getColorStyle({ variant, theme, color, loadingPosition })
-    }),
-
-    '&.Mui-disabled': {
-      ...(variant !== 'text' && {
-        ...getColorStyle({ variant, theme, color, loadingPosition })
-      })
+    "&.MuiButton-sizeLarge": {
+      height: 44
     }
-  })
-);
+  }),
+  ...(shape && {
+    minWidth: 0,
+    "&.MuiButton-sizeMedium": {
+      width: 36,
+      height: 36
+    },
+    "&.MuiButton-sizeSmall": {
+      width: 30,
+      height: 30
+    },
+    "&.MuiButton-sizeLarge": {
+      width: 44,
+      height: 44
+    },
+    ...(shape === "rounded" && {
+      borderRadius: "50%"
+    })
+  }),
+
+  ...(variant === "outlined" && {
+    border: "1px solid"
+  }),
+  ...(variant === "dashed" && {
+    border: "1px dashed"
+  }),
+  ...((variant === "contained" || variant === "shadow") &&
+    !loading && {
+      color: "#fff"
+    }),
+  ...(variant !== "text" && {
+    ...getColorStyle({ variant, theme, color, loadingPosition })
+  }),
+
+  "&.Mui-disabled": {
+    ...(variant !== "text" && {
+      ...getColorStyle({ variant, theme, color, loadingPosition })
+    })
+  }
+}));
 
 // ==============================|| EXTENDED - LOADING BUTTON ||============================== //
 
 interface Props extends LoadingButtonProps {
-  color?: ButtonProps['color'];
+  color?: ButtonProps["color"];
   variant?: ButtonVariantProps;
   shape?: IconButtonShapeProps;
   children: ReactNode;
 }
 
 const LoadingButton = forwardRef(
-  ({ variant = 'text', shape, children, color = 'primary', ...others }: Props, ref: Ref<HTMLButtonElement>) => {
+  ({ variant = "text", shape, children, color = "primary", ...others }: Props, ref: Ref<HTMLButtonElement>) => {
     const theme = useTheme();
 
     return (
@@ -242,6 +242,6 @@ const LoadingButton = forwardRef(
   }
 );
 
-LoadingButton.displayName = 'LoadingButton';
+LoadingButton.displayName = "LoadingButton";
 
 export default LoadingButton;

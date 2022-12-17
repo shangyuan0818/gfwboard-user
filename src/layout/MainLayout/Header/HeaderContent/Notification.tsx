@@ -1,7 +1,7 @@
-import { useRef, useState } from 'react';
+import { useRef, useState } from "react";
 
 // material-ui
-import { useTheme } from '@mui/material/styles';
+import { useTheme } from "@mui/material/styles";
 import {
   Avatar,
   Badge,
@@ -18,38 +18,38 @@ import {
   Tooltip,
   Typography,
   useMediaQuery
-} from '@mui/material';
+} from "@mui/material";
 
 // project import
-import MainCard from 'components/MainCard';
-import IconButton from 'components/@extended/IconButton';
-import Transitions from 'components/@extended/Transitions';
+import MainCard from "@/components/MainCard";
+import IconButton from "@/components/@extended/IconButton";
+import Transitions from "@/components/@extended/Transitions";
 
 // assets
-import { BellOutlined, CheckCircleOutlined, GiftOutlined, MessageOutlined, SettingOutlined } from '@ant-design/icons';
+import { BellOutlined, CheckCircleOutlined, GiftOutlined, MessageOutlined, SettingOutlined } from "@ant-design/icons";
 
 // sx styles
 const avatarSX = {
   width: 36,
   height: 36,
-  fontSize: '1rem'
+  fontSize: "1rem"
 };
 
 const actionSX = {
-  mt: '6px',
+  mt: "6px",
   ml: 1,
-  top: 'auto',
-  right: 'auto',
-  alignSelf: 'flex-start',
+  top: "auto",
+  right: "auto",
+  alignSelf: "flex-start",
 
-  transform: 'none'
+  transform: "none"
 };
 
 // ==============================|| HEADER CONTENT - NOTIFICATION ||============================== //
 
 const Notification = () => {
   const theme = useTheme();
-  const matchesXs = useMediaQuery(theme.breakpoints.down('md'));
+  const matchesXs = useMediaQuery(theme.breakpoints.down("md"));
 
   const anchorRef = useRef<any>(null);
   const [read, setRead] = useState(2);
@@ -65,18 +65,18 @@ const Notification = () => {
     setOpen(false);
   };
 
-  const iconBackColorOpen = theme.palette.mode === 'dark' ? 'grey.200' : 'grey.300';
-  const iconBackColor = theme.palette.mode === 'dark' ? 'background.default' : 'grey.100';
+  const iconBackColorOpen = theme.palette.mode === "dark" ? "grey.200" : "grey.300";
+  const iconBackColor = theme.palette.mode === "dark" ? "background.default" : "grey.100";
 
   return (
     <Box sx={{ flexShrink: 0, ml: 0.75 }}>
       <IconButton
         color="secondary"
         variant="light"
-        sx={{ color: 'text.primary', bgcolor: open ? iconBackColorOpen : iconBackColor }}
+        sx={{ color: "text.primary", bgcolor: open ? iconBackColorOpen : iconBackColor }}
         aria-label="open profile"
         ref={anchorRef}
-        aria-controls={open ? 'profile-grow' : undefined}
+        aria-controls={open ? "profile-grow" : undefined}
         aria-haspopup="true"
         onClick={handleToggle}
       >
@@ -85,7 +85,7 @@ const Notification = () => {
         </Badge>
       </IconButton>
       <Popper
-        placement={matchesXs ? 'bottom' : 'bottom-end'}
+        placement={matchesXs ? "bottom" : "bottom-end"}
         open={open}
         anchorEl={anchorRef.current}
         role={undefined}
@@ -94,7 +94,7 @@ const Notification = () => {
         popperOptions={{
           modifiers: [
             {
-              name: 'offset',
+              name: "offset",
               options: {
                 offset: [matchesXs ? -5 : 0, 9]
               }
@@ -107,10 +107,10 @@ const Notification = () => {
             <Paper
               sx={{
                 boxShadow: theme.customShadows.z1,
-                width: '100%',
+                width: "100%",
                 minWidth: 285,
                 maxWidth: 420,
-                [theme.breakpoints.down('md')]: {
+                [theme.breakpoints.down("md")]: {
                   maxWidth: 285
                 }
               }}
@@ -126,7 +126,7 @@ const Notification = () => {
                       {read > 0 && (
                         <Tooltip title="Mark as all read">
                           <IconButton color="success" size="small" onClick={() => setRead(0)}>
-                            <CheckCircleOutlined style={{ fontSize: '1.15rem' }} />
+                            <CheckCircleOutlined style={{ fontSize: "1.15rem" }} />
                           </IconButton>
                         </Tooltip>
                       )}
@@ -137,11 +137,11 @@ const Notification = () => {
                     component="nav"
                     sx={{
                       p: 0,
-                      '& .MuiListItemButton-root': {
+                      "& .MuiListItemButton-root": {
                         py: 0.5,
-                        '&.Mui-selected': { bgcolor: 'grey.50', color: 'text.primary' },
-                        '& .MuiAvatar-root': avatarSX,
-                        '& .MuiListItemSecondaryAction-root': { ...actionSX, position: 'relative' }
+                        "&.Mui-selected": { bgcolor: "grey.50", color: "text.primary" },
+                        "& .MuiAvatar-root": avatarSX,
+                        "& .MuiListItemSecondaryAction-root": { ...actionSX, position: "relative" }
                       }
                     }}
                   >
@@ -149,8 +149,8 @@ const Notification = () => {
                       <ListItemAvatar>
                         <Avatar
                           sx={{
-                            color: 'success.main',
-                            bgcolor: 'success.lighter'
+                            color: "success.main",
+                            bgcolor: "success.lighter"
                           }}
                         >
                           <GiftOutlined />
@@ -159,10 +159,10 @@ const Notification = () => {
                       <ListItemText
                         primary={
                           <Typography variant="h6">
-                            It&apos;s{' '}
+                            It&apos;s{" "}
                             <Typography component="span" variant="subtitle1">
                               Cristina danny&apos;s
-                            </Typography>{' '}
+                            </Typography>{" "}
                             birthday today.
                           </Typography>
                         }
@@ -179,8 +179,8 @@ const Notification = () => {
                       <ListItemAvatar>
                         <Avatar
                           sx={{
-                            color: 'primary.main',
-                            bgcolor: 'primary.lighter'
+                            color: "primary.main",
+                            bgcolor: "primary.lighter"
                           }}
                         >
                           <MessageOutlined />
@@ -191,7 +191,7 @@ const Notification = () => {
                           <Typography variant="h6">
                             <Typography component="span" variant="subtitle1">
                               Aida Burg
-                            </Typography>{' '}
+                            </Typography>{" "}
                             commented your post.
                           </Typography>
                         }
@@ -208,8 +208,8 @@ const Notification = () => {
                       <ListItemAvatar>
                         <Avatar
                           sx={{
-                            color: 'error.main',
-                            bgcolor: 'error.lighter'
+                            color: "error.main",
+                            bgcolor: "error.lighter"
                           }}
                         >
                           <SettingOutlined />
@@ -221,7 +221,7 @@ const Notification = () => {
                             Your Profile is Complete &nbsp;
                             <Typography component="span" variant="subtitle1">
                               60%
-                            </Typography>{' '}
+                            </Typography>{" "}
                           </Typography>
                         }
                         secondary="7 hours ago"
@@ -237,8 +237,8 @@ const Notification = () => {
                       <ListItemAvatar>
                         <Avatar
                           sx={{
-                            color: 'primary.main',
-                            bgcolor: 'primary.lighter'
+                            color: "primary.main",
+                            bgcolor: "primary.lighter"
                           }}
                         >
                           C
@@ -249,8 +249,8 @@ const Notification = () => {
                           <Typography variant="h6">
                             <Typography component="span" variant="subtitle1">
                               Cristina Danny
-                            </Typography>{' '}
-                            invited to join{' '}
+                            </Typography>{" "}
+                            invited to join{" "}
                             <Typography component="span" variant="subtitle1">
                               Meeting.
                             </Typography>
@@ -265,7 +265,7 @@ const Notification = () => {
                       </ListItemSecondaryAction>
                     </ListItemButton>
                     <Divider />
-                    <ListItemButton sx={{ textAlign: 'center', py: `${12}px !important` }}>
+                    <ListItemButton sx={{ textAlign: "center", py: `${12}px !important` }}>
                       <ListItemText
                         primary={
                           <Typography variant="h6" color="primary">

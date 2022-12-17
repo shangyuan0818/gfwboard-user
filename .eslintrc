@@ -49,12 +49,11 @@
       "warn",
       {
         "bracketSpacing": true,
-        "printWidth": 140,
-        "singleQuote": true,
+        "printWidth": 120,
+        "singleQuote": false,
         "trailingComma": "none",
         "tabWidth": 2,
-        "useTabs": false,
-        "endOfLine": "auto"
+        "useTabs": false
       }
     ]
   }

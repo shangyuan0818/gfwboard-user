@@ -1,10 +1,11 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "allowJs": true,
     "skipLibCheck": true,
-    "esModuleInterop": true,
+    "esModuleInterop": false,
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
@@ -16,14 +17,17 @@
     "noEmit": true,
     "jsx": "react-jsx",
     // custom config
-    "noUnusedLocals": true,
+    "noUnusedLocals": false, // change
     "noImplicitAny": true,
     "noImplicitThis": true,
     "strictNullChecks": true,
-    "types": ["node", "jest", "webpack-env"],
+    "types": ["node"],
     "typeRoots": ["./types"],
     "baseUrl": "src",
-    "downlevelIteration": true
+    "downlevelIteration": true,
+    "paths": {
+      "@/*": ["*"]
+    }
   },
   "include": ["src"]
 }

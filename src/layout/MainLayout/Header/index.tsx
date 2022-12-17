@@ -1,16 +1,16 @@
-import { ReactNode, useMemo } from 'react';
+import { ReactNode, useMemo } from "react";
 
 // material-ui
-import { useTheme } from '@mui/material/styles';
-import { AppBar, Toolbar, useMediaQuery, AppBarProps } from '@mui/material';
+import { useTheme } from "@mui/material/styles";
+import { AppBar, Toolbar, useMediaQuery, AppBarProps } from "@mui/material";
 
 // project import
-import AppBarStyled from './AppBarStyled';
-import HeaderContent from './HeaderContent';
-import IconButton from 'components/@extended/IconButton';
+import AppBarStyled from "./AppBarStyled";
+import HeaderContent from "./HeaderContent";
+import IconButton from "@/components/@extended/IconButton";
 
 // assets
-import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
+import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 
 // ==============================|| MAIN LAYOUT - HEADER ||============================== //
 
@@ -21,13 +21,13 @@ interface Props {
 
 const Header = ({ open, handleDrawerToggle }: Props) => {
   const theme = useTheme();
-  const matchDownMD = useMediaQuery(theme.breakpoints.down('lg'));
+  const matchDownMD = useMediaQuery(theme.breakpoints.down("lg"));
 
   // header content
   const headerContent = useMemo(() => <HeaderContent />, []);
 
-  const iconBackColorOpen = theme.palette.mode === 'dark' ? 'grey.200' : 'grey.300';
-  const iconBackColor = theme.palette.mode === 'dark' ? 'background.default' : 'grey.100';
+  const iconBackColorOpen = theme.palette.mode === "dark" ? "grey.200" : "grey.300";
+  const iconBackColor = theme.palette.mode === "dark" ? "background.default" : "grey.100";
 
   // common header
   const mainHeader: ReactNode = (
@@ -38,7 +38,7 @@ const Header = ({ open, handleDrawerToggle }: Props) => {
         edge="start"
         color="secondary"
         variant="light"
-        sx={{ color: 'text.primary', bgcolor: open ? iconBackColorOpen : iconBackColor, ml: { xs: 0, lg: -2 } }}
+        sx={{ color: "text.primary", bgcolor: open ? iconBackColorOpen : iconBackColor, ml: { xs: 0, lg: -2 } }}
       >
         {!open ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
       </IconButton>
@@ -48,8 +48,8 @@ const Header = ({ open, handleDrawerToggle }: Props) => {
 
   // app-bar params
   const appBar: AppBarProps = {
-    position: 'fixed',
-    color: 'inherit',
+    position: "fixed",
+    color: "inherit",
     elevation: 0,
     sx: {
       borderBottom: `1px solid ${theme.palette.divider}`,

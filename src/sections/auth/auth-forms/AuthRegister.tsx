@@ -1,5 +1,5 @@
-import { useEffect, useState, SyntheticEvent } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import { useEffect, useState, SyntheticEvent } from "react";
+import { Link as RouterLink } from "react-router-dom";
 
 // material-ui
 import {
@@ -15,25 +15,25 @@ import {
   OutlinedInput,
   Stack,
   Typography
-} from '@mui/material';
+} from "@mui/material";
 
 // third party
-import * as Yup from 'yup';
-import { Formik } from 'formik';
+import * as Yup from "yup";
+import { Formik } from "formik";
 
 // project import
-import useAuth from 'hooks/useAuth';
-import useScriptRef from 'hooks/useScriptRef';
-import IconButton from 'components/@extended/IconButton';
-import AnimateButton from 'components/@extended/AnimateButton';
-import FirebaseSocial from './FirebaseSocial';
-import { strengthColor, strengthIndicator } from 'utils/password-strength';
+import useAuth from "@/hooks/useAuth";
+import useScriptRef from "@/hooks/useScriptRef";
+import IconButton from "@/components/@extended/IconButton";
+import AnimateButton from "@/components/@extended/AnimateButton";
+import FirebaseSocial from "./FirebaseSocial";
+import { strengthColor, strengthIndicator } from "@/utils/password-strength";
 
 // types
-import { StringColorProps } from 'types/password';
+import { StringColorProps } from "@/types/password";
 
 // assets
-import { EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons';
+import { EyeOutlined, EyeInvisibleOutlined } from "@ant-design/icons";
 
 // ============================|| FIREBASE - REGISTER ||============================ //
 
@@ -57,25 +57,25 @@ const AuthRegister = () => {
   };
 
   useEffect(() => {
-    changePassword('');
+    changePassword("");
   }, []);
 
   return (
     <>
       <Formik
         initialValues={{
-          firstname: '',
-          lastname: '',
-          email: '',
-          company: '',
-          password: '',
+          firstname: "",
+          lastname: "",
+          email: "",
+          company: "",
+          password: "",
           submit: null
         }}
         validationSchema={Yup.object().shape({
-          firstname: Yup.string().max(255).required('First Name is required'),
-          lastname: Yup.string().max(255).required('Last Name is required'),
-          email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
-          password: Yup.string().max(255).required('Password is required')
+          firstname: Yup.string().max(255).required("First Name is required"),
+          lastname: Yup.string().max(255).required("Last Name is required"),
+          email: Yup.string().email("Must be a valid email").max(255).required("Email is required"),
+          password: Yup.string().max(255).required("Password is required")
         })}
         onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
           try {
@@ -198,7 +198,7 @@ const AuthRegister = () => {
                     fullWidth
                     error={Boolean(touched.password && errors.password)}
                     id="password-signup"
-                    type={showPassword ? 'text' : 'password'}
+                    type={showPassword ? "text" : "password"}
                     value={values.password}
                     name="password"
                     onBlur={handleBlur}
@@ -231,7 +231,7 @@ const AuthRegister = () => {
                 <FormControl fullWidth sx={{ mt: 2 }}>
                   <Grid container spacing={2} alignItems="center">
                     <Grid item>
-                      <Box sx={{ bgcolor: level?.color, width: 85, height: 8, borderRadius: '7px' }} />
+                      <Box sx={{ bgcolor: level?.color, width: 85, height: 8, borderRadius: "7px" }} />
                     </Grid>
                     <Grid item>
                       <Typography variant="subtitle1" fontSize="0.75rem">
@@ -260,7 +260,15 @@ const AuthRegister = () => {
               )}
               <Grid item xs={12}>
                 <AnimateButton>
-                  <Button disableElevation disabled={isSubmitting} fullWidth size="large" type="submit" variant="contained" color="primary">
+                  <Button
+                    disableElevation
+                    disabled={isSubmitting}
+                    fullWidth
+                    size="large"
+                    type="submit"
+                    variant="contained"
+                    color="primary"
+                  >
                     Create Account
                   </Button>
                 </AnimateButton>

@@ -1,11 +1,11 @@
 // material-ui
-import { Theme } from '@mui/material/styles';
+import { Theme } from "@mui/material/styles";
 
 // project import
-import getColors from 'utils/getColors';
+import getColors from "@/utils/getColors";
 
 // types
-import { ExtendedStyleProps } from 'types/extended';
+import { ExtendedStyleProps } from "@/types/extended";
 
 // ==============================|| OVERRIDES - TAB ||============================== //
 
@@ -23,29 +23,29 @@ export default function Slider(theme: Theme) {
     MuiSlider: {
       styleOverrides: {
         track: {
-          height: '1px'
+          height: "1px"
         },
         thumb: {
           width: 14,
           height: 14,
           border: `2px solid ${theme.palette.primary.main}`,
           backgroundColor: theme.palette.background.paper,
-          '&.MuiSlider-thumbColorPrimary': getColorStyle({ color: 'primary', theme }),
-          '&.MuiSlider-thumbColorSecondary': getColorStyle({ color: 'secondary', theme }),
-          '&.MuiSlider-thumbColorSuccess': getColorStyle({ color: 'success', theme }),
-          '&.MuiSlider-thumbColorWarning': getColorStyle({ color: 'warning', theme }),
-          '&.MuiSlider-thumbColorInfo': getColorStyle({ color: 'info', theme }),
-          '&.MuiSlider-thumbColorError': getColorStyle({ color: 'error', theme })
+          "&.MuiSlider-thumbColorPrimary": getColorStyle({ color: "primary", theme }),
+          "&.MuiSlider-thumbColorSecondary": getColorStyle({ color: "secondary", theme }),
+          "&.MuiSlider-thumbColorSuccess": getColorStyle({ color: "success", theme }),
+          "&.MuiSlider-thumbColorWarning": getColorStyle({ color: "warning", theme }),
+          "&.MuiSlider-thumbColorInfo": getColorStyle({ color: "info", theme }),
+          "&.MuiSlider-thumbColorError": getColorStyle({ color: "error", theme })
         },
         mark: {
           width: 4,
           height: 4,
-          borderRadius: '50%',
+          borderRadius: "50%",
           border: `1px solid ${theme.palette.secondary.light}`,
           backgroundColor: theme.palette.background.paper,
-          '&.MuiSlider-markActive': {
+          "&.MuiSlider-markActive": {
             opacity: 1,
-            borderColor: 'inherit',
+            borderColor: "inherit",
             borderWidth: 2
           }
         },
@@ -53,14 +53,14 @@ export default function Slider(theme: Theme) {
           color: theme.palette.secondary.light
         },
         root: {
-          '&.Mui-disabled': {
-            '.MuiSlider-rail': {
+          "&.Mui-disabled": {
+            ".MuiSlider-rail": {
               opacity: 0.25
             },
-            '.MuiSlider-track': {
+            ".MuiSlider-track": {
               color: theme.palette.secondary.lighter
             },
-            '.MuiSlider-thumb': {
+            ".MuiSlider-thumb": {
               border: `2px solid ${theme.palette.secondary.lighter}`
             }
           }

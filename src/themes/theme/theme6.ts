@@ -1,8 +1,8 @@
 // types
-import { PaletteThemeProps } from 'types/theme';
-import { PalettesProps } from '@ant-design/colors';
-import { PaletteColorOptions } from '@mui/material/styles';
-import { ThemeMode } from 'types/config';
+import { PaletteThemeProps } from "@/types/theme";
+import { PalettesProps } from "@ant-design/colors";
+import { PaletteColorOptions } from "@mui/material/styles";
+import { ThemeMode } from "@/types/config";
 
 // ==============================|| PRESET THEME - TEAL THEME6 ||============================== //
 
@@ -27,20 +27,42 @@ const Theme6 = (colors: PalettesProps, mode: ThemeMode): PaletteThemeProps => {
     A700: grey[14],
     A800: grey[16]
   };
-  const contrastText = '#fff';
+  const contrastText = "#fff";
 
-  let primaryColors = ['#e1f0ef', '#c8e3e2', '#9ad6d6', '#71c6c9', '#4bb5bd', '#2aa1af', '#1a7b8a', '#0e5563', '#06323d', '#021217'];
-  let errorColors = ['#FDE8E7', '#F25E52', '#F04134', '#EE3B2F', '#E92A21'];
-  let warningColors = ['#FFF7E0', '#FFC926', '#FFBF00', '#FFB900', '#FFA900'];
-  let infoColors = ['#E0F4F5', '#26B0BA', '#00A2AE', '#009AA7', '#008694'];
-  let successColors = ['#E0F5EA', '#26B56E', '#00A854', '#00A04D', '#008D3A'];
+  let primaryColors = [
+    "#e1f0ef",
+    "#c8e3e2",
+    "#9ad6d6",
+    "#71c6c9",
+    "#4bb5bd",
+    "#2aa1af",
+    "#1a7b8a",
+    "#0e5563",
+    "#06323d",
+    "#021217"
+  ];
+  let errorColors = ["#FDE8E7", "#F25E52", "#F04134", "#EE3B2F", "#E92A21"];
+  let warningColors = ["#FFF7E0", "#FFC926", "#FFBF00", "#FFB900", "#FFA900"];
+  let infoColors = ["#E0F4F5", "#26B0BA", "#00A2AE", "#009AA7", "#008694"];
+  let successColors = ["#E0F5EA", "#26B56E", "#00A854", "#00A04D", "#008D3A"];
 
-  if (mode === 'dark') {
-    primaryColors = ['#1c2628', '#1d3539', '#22454a', '#23595f', '#26737c', '#288d99', '#47a6ad', '#6dbec0', '#96d0d0', '#c5dfde'];
-    errorColors = ['#321d1d', '#7d2e28', '#d13c31', '#e66859', '#f8baaf'];
-    warningColors = ['#342c1a', '#836611', '#dda705', '#e9bf28', '#f8e577'];
-    infoColors = ['#1a2628', '#11595f', '#058e98', '#1ea6aa', '#64cfcb'];
-    successColors = ['#1a2721', '#115c36', '#05934c', '#1da65d', '#61ca8b'];
+  if (mode === "dark") {
+    primaryColors = [
+      "#1c2628",
+      "#1d3539",
+      "#22454a",
+      "#23595f",
+      "#26737c",
+      "#288d99",
+      "#47a6ad",
+      "#6dbec0",
+      "#96d0d0",
+      "#c5dfde"
+    ];
+    errorColors = ["#321d1d", "#7d2e28", "#d13c31", "#e66859", "#f8baaf"];
+    warningColors = ["#342c1a", "#836611", "#dda705", "#e9bf28", "#f8e577"];
+    infoColors = ["#1a2628", "#11595f", "#058e98", "#1ea6aa", "#64cfcb"];
+    successColors = ["#1a2721", "#115c36", "#05934c", "#1da65d", "#61ca8b"];
   }
 
   return {

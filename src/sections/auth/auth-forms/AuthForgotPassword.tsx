@@ -1,18 +1,18 @@
-import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 // material-ui
-import { Button, FormHelperText, Grid, InputLabel, OutlinedInput, Stack, Typography } from '@mui/material';
+import { Button, FormHelperText, Grid, InputLabel, OutlinedInput, Stack, Typography } from "@mui/material";
 
 // third party
-import * as Yup from 'yup';
-import { Formik } from 'formik';
+import * as Yup from "yup";
+import { Formik } from "formik";
 
 // project import
-import useAuth from 'hooks/useAuth';
-import useScriptRef from 'hooks/useScriptRef';
-import AnimateButton from 'components/@extended/AnimateButton';
-import { openSnackbar } from 'store/reducers/snackbar';
+import useAuth from "@/hooks/useAuth";
+import useScriptRef from "@/hooks/useScriptRef";
+import AnimateButton from "@/components/@extended/AnimateButton";
+import { openSnackbar } from "@/store/reducers/snackbar";
 
 // ============================|| FIREBASE - FORGOT PASSWORD ||============================ //
 
@@ -27,11 +27,11 @@ const AuthForgotPassword = () => {
     <>
       <Formik
         initialValues={{
-          email: '',
+          email: "",
           submit: null
         }}
         validationSchema={Yup.object().shape({
-          email: Yup.string().email('Must be a valid email').max(255).required('Email is required')
+          email: Yup.string().email("Must be a valid email").max(255).required("Email is required")
         })}
         onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
           try {
@@ -42,16 +42,16 @@ const AuthForgotPassword = () => {
                 dispatch(
                   openSnackbar({
                     open: true,
-                    message: 'Check mail for reset password link',
-                    variant: 'alert',
+                    message: "Check mail for reset password link",
+                    variant: "alert",
                     alert: {
-                      color: 'success'
+                      color: "success"
                     },
                     close: false
                   })
                 );
                 setTimeout(() => {
-                  navigate(isLoggedIn ? '/auth/check-mail' : '/check-mail', { replace: true });
+                  navigate(isLoggedIn ? "/auth/check-mail" : "/check-mail", { replace: true });
                 }, 1500);
 
                 // WARNING: do not set any formik state here as formik might be already destroyed here. You may get following error by doing so.
@@ -110,7 +110,15 @@ const AuthForgotPassword = () => {
               </Grid>
               <Grid item xs={12}>
                 <AnimateButton>
-                  <Button disableElevation disabled={isSubmitting} fullWidth size="large" type="submit" variant="contained" color="primary">
+                  <Button
+                    disableElevation
+                    disabled={isSubmitting}
+                    fullWidth
+                    size="large"
+                    type="submit"
+                    variant="contained"
+                    color="primary"
+                  >
                     Send Password Reset Email
                   </Button>
                 </AnimateButton>

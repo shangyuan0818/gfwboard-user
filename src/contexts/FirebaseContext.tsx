@@ -1,17 +1,17 @@
-import React, { createContext, useEffect, useReducer } from 'react';
+import React, { createContext, useEffect, useReducer } from "react";
 
 // third-party
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/auth';
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
 
 // action - state management
-import { LOGIN, LOGOUT } from 'store/reducers/actions';
-import authReducer from 'store/reducers/auth';
+import { LOGIN, LOGOUT } from "@/store/reducers/actions";
+import authReducer from "@/store/reducers/auth";
 
 // project import
-import Loader from 'components/Loader';
-import { FIREBASE_API } from 'config';
-import { AuthProps, FirebaseContextType } from 'types/auth';
+import Loader from "@/components/Loader";
+import { FIREBASE_API } from "@/config";
+import { AuthProps, FirebaseContextType } from "@/types/auth";
 
 // firebase initialize
 if (!firebase.apps.length) {
@@ -43,8 +43,8 @@ export const FirebaseProvider = ({ children }: { children: React.ReactElement })
               user: {
                 id: user.uid,
                 email: user.email!,
-                name: user.displayName || 'Stebin Ben',
-                role: 'UI/UX Designer'
+                name: user.displayName || "Stebin Ben",
+                role: "UI/UX Designer"
               }
             }
           });
@@ -58,7 +58,8 @@ export const FirebaseProvider = ({ children }: { children: React.ReactElement })
     [dispatch]
   );
 
-  const firebaseEmailPasswordSignIn = (email: string, password: string) => firebase.auth().signInWithEmailAndPassword(email, password);
+  const firebaseEmailPasswordSignIn = (email: string, password: string) =>
+    firebase.auth().signInWithEmailAndPassword(email, password);
 
   const firebaseGoogleSignIn = () => {
     const provider = new firebase.auth.GoogleAuthProvider();
@@ -75,7 +76,8 @@ export const FirebaseProvider = ({ children }: { children: React.ReactElement })
     return firebase.auth().signInWithPopup(provider);
   };
 
-  const firebaseRegister = async (email: string, password: string) => firebase.auth().createUserWithEmailAndPassword(email, password);
+  const firebaseRegister = async (email: string, password: string) =>
+    firebase.auth().createUserWithEmailAndPassword(email, password);
 
   const logout = () => firebase.auth().signOut();
 

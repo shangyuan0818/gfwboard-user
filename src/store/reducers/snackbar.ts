@@ -1,22 +1,22 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 // types
-import { SnackbarProps } from 'types/snackbar';
+import { SnackbarProps } from "@/types/snackbar";
 
 const initialState: SnackbarProps = {
   action: false,
   open: false,
-  message: 'Note archived',
+  message: "Note archived",
   anchorOrigin: {
-    vertical: 'bottom',
-    horizontal: 'right'
+    vertical: "bottom",
+    horizontal: "right"
   },
-  variant: 'default',
+  variant: "default",
   alert: {
-    color: 'primary',
-    variant: 'filled'
+    color: "primary",
+    variant: "filled"
   },
-  transition: 'Fade',
+  transition: "Fade",
   close: true,
   actionButton: false
 };
@@ -24,7 +24,7 @@ const initialState: SnackbarProps = {
 // ==============================|| SLICE - SNACKBAR ||============================== //
 
 const snackbar = createSlice({
-  name: 'snackbar',
+  name: "snackbar",
   initialState,
   reducers: {
     openSnackbar(state, action) {

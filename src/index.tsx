@@ -1,24 +1,52 @@
-import { createRoot } from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
+import React from "react";
+import { createRoot } from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
 
 // third-party
-import { Provider as ReduxProvider } from 'react-redux';
+import { Provider as ReduxProvider } from "react-redux";
 
 // scroll bar
-import 'simplebar/src/simplebar.css';
+import "simplebar/src/simplebar.css";
 
 // apex-chart
-import 'assets/third-party/apex-chart.css';
-import 'assets/third-party/react-table.css';
+import "@/assets/third-party/apex-chart.css";
+import "@/assets/third-party/react-table.css";
+
+// resize observer
+import ResizeObserver from "resize-observer-polyfill";
 
 // project import
-import App from './App';
-import { store } from 'store';
-import { ConfigProvider } from 'contexts/ConfigContext';
-import reportWebVitals from './reportWebVitals';
+import App from "@/App";
+import { store } from "@/store";
+import { ConfigProvider } from "@/contexts/ConfigContext";
+import reportWebVitals from "@/reportWebVitals";
 
-const container = document.getElementById('root');
+// hash router change to browser router
+if (window.location.hash) {
+  window.location.href = window.location.hash;
+}
+
+const container = document.getElementById("root");
 const root = createRoot(container!);
+
+const ro = new ResizeObserver((entries, observer) =>
+  entries.forEach((entry) => {
+    const { left, top, right, bottom, width, height } = entry.contentRect;
+
+    if (import.meta.env.DEV) {
+      console.log("Element:", entry.target);
+      console.log(`Element's size: ${width}px x ${height}px`);
+      console.log(`Element's paddings: ${top}px ${right}px ${bottom}px ${left}px`);
+    }
+
+    document.documentElement.style.setProperty("--width", `${width}px`);
+    document.documentElement.style.setProperty("--height", `${height}px`);
+
+    observer.observe(entry.target);
+  })
+);
+
+ro.observe(container!);
 
 // ==============================|| MAIN - REACT DOM RENDER  ||============================== //
 

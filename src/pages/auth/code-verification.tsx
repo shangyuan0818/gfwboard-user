@@ -1,9 +1,9 @@
 // material-ui
-import { Grid, Stack, Typography } from '@mui/material';
+import { Grid, Stack, Typography } from "@mui/material";
 
 // project import
-import AuthWrapper from 'sections/auth/AuthWrapper';
-import AuthCodeVerification from 'sections/auth/auth-forms/AuthCodeVerification';
+import AuthWrapper from "@/sections/auth/AuthWrapper";
+import AuthCodeVerification from "@/sections/auth/auth-forms/AuthCodeVerification";
 
 // ================================|| CODE VERIFICATION ||================================ //
 

@@ -1,14 +1,14 @@
-import { useMemo } from 'react';
+import { useMemo } from "react";
 
 // material-ui
-import { useTheme } from '@mui/material/styles';
-import { Box, Drawer, useMediaQuery } from '@mui/material';
+import { useTheme } from "@mui/material/styles";
+import { Box, Drawer, useMediaQuery } from "@mui/material";
 
 // project import
-import DrawerHeader from './DrawerHeader';
-import DrawerContent from './DrawerContent';
-import MiniDrawerStyled from './MiniDrawerStyled';
-import { drawerWidth } from 'config';
+import DrawerHeader from "./DrawerHeader";
+import DrawerContent from "./DrawerContent";
+import MiniDrawerStyled from "./MiniDrawerStyled";
+import { drawerWidth } from "@/config";
 
 // ==============================|| MAIN LAYOUT - DRAWER ||============================== //
 
@@ -20,7 +20,7 @@ interface Props {
 
 const MainDrawer = ({ open, handleDrawerToggle, window }: Props) => {
   const theme = useTheme();
-  const matchDownMD = useMediaQuery(theme.breakpoints.down('lg'));
+  const matchDownMD = useMediaQuery(theme.breakpoints.down("lg"));
 
   // responsive drawer container
   const container = window !== undefined ? () => window().document.body : undefined;
@@ -44,13 +44,13 @@ const MainDrawer = ({ open, handleDrawerToggle, window }: Props) => {
           onClose={handleDrawerToggle}
           ModalProps={{ keepMounted: true }}
           sx={{
-            display: { xs: 'block', lg: 'none' },
-            '& .MuiDrawer-paper': {
-              boxSizing: 'border-box',
+            display: { xs: "block", lg: "none" },
+            "& .MuiDrawer-paper": {
+              boxSizing: "border-box",
               width: drawerWidth,
               borderRight: `1px solid ${theme.palette.divider}`,
-              backgroundImage: 'none',
-              boxShadow: 'inherit'
+              backgroundImage: "none",
+              boxShadow: "inherit"
             }
           }}
         >

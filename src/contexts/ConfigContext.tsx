@@ -1,11 +1,11 @@
-import { createContext, ReactNode } from 'react';
+import { createContext, ReactNode } from "react";
 
 // project import
-import config from 'config';
-import useLocalStorage from 'hooks/useLocalStorage';
+import config from "@/config";
+import useLocalStorage from "@/hooks/useLocalStorage";
 
 // types
-import { CustomizationProps, FontFamily, PresetColor, ThemeDirection, ThemeMode } from 'types/config';
+import { CustomizationProps, FontFamily, PresetColor, ThemeDirection, ThemeMode } from "@/types/config";
 
 // initial state
 const initialState: CustomizationProps = {
@@ -27,7 +27,7 @@ type ConfigProviderProps = {
 };
 
 function ConfigProvider({ children }: ConfigProviderProps) {
-  const [config, setConfig] = useLocalStorage('mantis-react-ts-config', initialState);
+  const [config, setConfig] = useLocalStorage("mantis-react-ts-config", initialState);
 
   const onChangeContainer = () => {
     setConfig({

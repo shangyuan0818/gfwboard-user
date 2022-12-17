@@ -1,12 +1,12 @@
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 // project import
-import config from 'config';
-import useAuth from 'hooks/useAuth';
+import config from "@/config";
+import useAuth from "@/hooks/useAuth";
 
 // types
-import { GuardProps } from 'types/auth';
+import { GuardProps } from "@/types/auth";
 
 // ==============================|| GUEST GUARD ||============================== //
 

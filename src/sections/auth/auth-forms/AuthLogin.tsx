@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import React from "react";
+import { Link as RouterLink } from "react-router-dom";
 
 // material-ui
 import {
@@ -15,21 +15,21 @@ import {
   OutlinedInput,
   Stack,
   Typography
-} from '@mui/material';
+} from "@mui/material";
 
 // third party
-import * as Yup from 'yup';
-import { Formik } from 'formik';
+import * as Yup from "yup";
+import { Formik } from "formik";
 
 // project import
-import useAuth from 'hooks/useAuth';
-import useScriptRef from 'hooks/useScriptRef';
-import FirebaseSocial from './FirebaseSocial';
-import IconButton from 'components/@extended/IconButton';
-import AnimateButton from 'components/@extended/AnimateButton';
+import useAuth from "@/hooks/useAuth";
+import useScriptRef from "@/hooks/useScriptRef";
+import FirebaseSocial from "./FirebaseSocial";
+import IconButton from "@/components/@extended/IconButton";
+import AnimateButton from "@/components/@extended/AnimateButton";
 
 // assets
-import { EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons';
+import { EyeOutlined, EyeInvisibleOutlined } from "@ant-design/icons";
 
 // ============================|| FIREBASE - LOGIN ||============================ //
 
@@ -50,7 +50,7 @@ const AuthLogin = () => {
   };
 
   const onKeyDown = (keyEvent: any) => {
-    if (keyEvent.getModifierState('CapsLock')) {
+    if (keyEvent.getModifierState("CapsLock")) {
       setCapsWarning(true);
     } else {
       setCapsWarning(false);
@@ -61,13 +61,13 @@ const AuthLogin = () => {
     <>
       <Formik
         initialValues={{
-          email: 'info@codedthemes.com',
-          password: '123456',
+          email: "info@codedthemes.com",
+          password: "123456",
           submit: null
         }}
         validationSchema={Yup.object().shape({
-          email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
-          password: Yup.string().max(255).required('Password is required')
+          email: Yup.string().email("Must be a valid email").max(255).required("Email is required"),
+          password: Yup.string().max(255).required("Password is required")
         })}
         onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
           try {
@@ -123,10 +123,10 @@ const AuthLogin = () => {
                   <InputLabel htmlFor="password-login">Password</InputLabel>
                   <OutlinedInput
                     fullWidth
-                    color={capsWarning ? 'warning' : 'primary'}
+                    color={capsWarning ? "warning" : "primary"}
                     error={Boolean(touched.password && errors.password)}
                     id="-password-login"
-                    type={showPassword ? 'text' : 'password'}
+                    type={showPassword ? "text" : "password"}
                     value={values.password}
                     name="password"
                     onBlur={(event: React.FocusEvent<any, Element>) => {
@@ -151,7 +151,11 @@ const AuthLogin = () => {
                     placeholder="Enter password"
                   />
                   {capsWarning && (
-                    <Typography variant="caption" sx={{ color: 'warning.main' }} id="warning-helper-text-password-login">
+                    <Typography
+                      variant="caption"
+                      sx={{ color: "warning.main" }}
+                      id="warning-helper-text-password-login"
+                    >
                       Caps lock on!
                     </Typography>
                   )}
@@ -180,7 +184,7 @@ const AuthLogin = () => {
                   <Link
                     variant="h6"
                     component={RouterLink}
-                    to={isLoggedIn ? '/auth/forgot-password' : '/forgot-password'}
+                    to={isLoggedIn ? "/auth/forgot-password" : "/forgot-password"}
                     color="text.primary"
                   >
                     Forgot Password?
@@ -194,7 +198,15 @@ const AuthLogin = () => {
               )}
               <Grid item xs={12}>
                 <AnimateButton>
-                  <Button disableElevation disabled={isSubmitting} fullWidth size="large" type="submit" variant="contained" color="primary">
+                  <Button
+                    disableElevation
+                    disabled={isSubmitting}
+                    fullWidth
+                    size="large"
+                    type="submit"
+                    variant="contained"
+                    color="primary"
+                  >
                     Login
                   </Button>
                 </AnimateButton>

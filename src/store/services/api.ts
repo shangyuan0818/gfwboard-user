@@ -59,7 +59,7 @@ const api = createApi({
         }
       }),
       transformResponse: (response: LoginResponse) => {
-        localStorage.setItem("gfw_token", response.token);
+        localStorage.setItem("gfw_token", response.auth_data);
         dispatch(
           login({
             isAdmin: response.is_admin

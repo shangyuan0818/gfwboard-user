@@ -1,5 +1,5 @@
 // third-party
-import { FormattedMessage } from "react-intl";
+import { Trans } from "react-i18next";
 
 // assets
 import { ChromeOutlined, QuestionOutlined, DeploymentUnitOutlined } from "@ant-design/icons";
@@ -18,19 +18,19 @@ const icons = {
 
 const other: NavItemType = {
   id: "other",
-  title: <FormattedMessage id="others" />,
+  title: <Trans>other</Trans>,
   type: "group",
   children: [
     {
       id: "sample-page",
-      title: <FormattedMessage id="sample-page" />,
+      title: <Trans>sample_page</Trans>,
       type: "item",
       url: "/sample-page",
       icon: icons.ChromeOutlined
     },
     {
       id: "documentation",
-      title: <FormattedMessage id="documentation" />,
+      title: <Trans>documentation</Trans>,
       type: "item",
       url: "https://codedthemes.gitbook.io/mantis/",
       icon: icons.QuestionOutlined,
@@ -44,7 +44,7 @@ const other: NavItemType = {
     },
     {
       id: "roadmap",
-      title: <FormattedMessage id="roadmap" />,
+      title: <Trans>roadmap</Trans>,
       type: "item",
       url: "https://codedthemes.gitbook.io/mantis/roadmap",
       icon: icons.DeploymentUnitOutlined,

@@ -31,12 +31,12 @@ const axiosBaseQuery: () => BaseQueryFn =
 
       return { data: response.data.data };
     } catch (error) {
-      const err: AxiosError = error as AxiosError;
+      const err: AxiosError<ApiResponse> = error as AxiosError<ApiResponse>;
 
       return {
         error: {
           status: err.response?.status || 500,
-          message: err.response?.data || err.message
+          message: err.response?.data?.message || err.message
         }
       };
     }

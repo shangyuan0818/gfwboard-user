@@ -89,6 +89,7 @@ specifiers:
   stylis-plugin-rtl: ^2.1.1
   tailwindcss: ^3.0.2
   terser: ^5.16.1
+  tss-react: ^4.4.5
   typescript: ^4.8.4
   util: ^0.12.5
   uuid: ^9.0.0
@@ -155,6 +156,7 @@ dependencies:
   stylis-plugin-rtl: 2.1.1_stylis@4.1.3
   tailwindcss: 3.2.4_postcss@8.4.20
   terser: 5.16.1
+  tss-react: 4.4.5_hp5f5nkljdiwilp4rgxyefcplu
   util: 0.12.5
   uuid: 9.0.0
   vite: 4.0.1_u4qtfkm32ppnvboczhv56utkqi
@@ -7586,6 +7588,23 @@ packages:
 
   /tslib/2.4.0:
     resolution: {integrity: sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==}
+    dev: false
+
+  /tss-react/4.4.5_hp5f5nkljdiwilp4rgxyefcplu:
+    resolution: {integrity: sha512-yKKwAuaTKyJf0R1Kn7o0T3RVw/Q3lufQQy2Cic2ZFiD1wnamjYCfPgDjQ44Wyk0lyVJGnTXHbUOwh7dhP5lTsA==}
+    peerDependencies:
+      '@emotion/react': ^11.4.1
+      '@emotion/server': ^11.4.0
+      react: ^16.8.0 || ^17.0.2 || ^18.0.0
+    peerDependenciesMeta:
+      '@emotion/server':
+        optional: true
+    dependencies:
+      '@emotion/cache': 11.10.5
+      '@emotion/react': 11.10.5_weohr3svf6vrfbybzz2cheulci
+      '@emotion/serialize': 1.1.1
+      '@emotion/utils': 1.2.0
+      react: 18.2.0
     dev: false
 
   /tsutils/3.21.0_typescript@4.8.4:

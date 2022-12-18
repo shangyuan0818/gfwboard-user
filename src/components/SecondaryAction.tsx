@@ -1,8 +1,9 @@
-import { ReactNode } from 'react';
+import { ReactNode } from "react";
 
 // material-ui
-import { useTheme } from '@mui/material/styles';
-import { Avatar, ButtonBase, Link, Tooltip } from '@mui/material';
+import { useTheme } from "@mui/material/styles";
+import { Avatar, ButtonBase, Link, Tooltip } from "@mui/material";
+import { makeStyles } from "@/themes/hooks";
 
 // ==============================|| CARD - SECONDARY ACTION ||============================== //
 
@@ -12,23 +13,25 @@ interface Props {
   icon?: ReactNode | string;
 }
 
+const useStyles = makeStyles()((theme) => ({
+  avatar: { width: 28, height: 28, bgcolor: "transparent", border: `2px solid ${theme.palette.primary.light}` }
+}));
+
 const CardSecondaryAction = ({ title, link, icon }: Props) => {
   const theme = useTheme();
+  const { classes } = useStyles();
 
   return (
-    <Tooltip title={title || 'Reference'} placement="left">
+    <Tooltip title={title || "Reference"} placement="left">
       <ButtonBase disableRipple>
         {!icon && (
-          <Avatar
-            component={Link}
-            href={link}
-            target="_blank"
-            alt="MUI Logo"
-            sx={{ width: 28, height: 28, bgcolor: 'transparent', border: `2px solid ${theme.palette.primary.light}` }}
-          >
+          <Avatar component={Link} className={classes.avatar} href={link} target="_blank" alt="MUI Logo">
             <svg width="500" height="500" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
               <g clipPath="url(#clip0)">
-                <path d="M100 260.9V131L212.5 195.95V239.25L137.5 195.95V282.55L100 260.9Z" fill={theme.palette.primary.dark} />
+                <path
+                  d="M100 260.9V131L212.5 195.95V239.25L137.5 195.95V282.55L100 260.9Z"
+                  fill={theme.palette.primary.dark}
+                />
                 <path
                   d="M212.5 195.95L325 131V260.9L250 304.2L212.5 282.55L287.5 239.25V195.95L212.5 239.25V195.95Z"
                   fill={theme.palette.primary.main}
@@ -48,12 +51,7 @@ const CardSecondaryAction = ({ title, link, icon }: Props) => {
           </Avatar>
         )}
         {icon && (
-          <Avatar
-            component={Link}
-            href={link}
-            target="_blank"
-            sx={{ width: 28, height: 28, bgcolor: 'transparent', border: `2px solid ${theme.palette.primary.light}` }}
-          >
+          <Avatar component={Link} href={link} target="_blank" className={classes.avatar}>
             {icon}
           </Avatar>
         )}

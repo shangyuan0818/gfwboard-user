@@ -15,9 +15,8 @@ import imgfooterlogo from "@/assets/images/landing/codedthemes-logo.svg";
 import imgfootersoc1 from "@/assets/images/landing/img-soc1.svg";
 import imgfootersoc2 from "@/assets/images/landing/img-soc2.svg";
 import imgfootersoc3 from "@/assets/images/landing/img-soc3.svg";
+import footerImage from "@/assets/images/landing/img-footer.png";
 import AnimateButton from "@/components/@extended/AnimateButton";
-
-const dashImage = require.context("assets/images/landing", true);
 
 // ==============================|| LANDING - FOOTER PAGE ||============================== //
 
@@ -63,7 +62,7 @@ const FooterBlock = ({ isFull }: showProps) => {
         >
           <CardMedia
             component="img"
-            image={dashImage(`./img-footer-${presetColor}.png`)}
+            image={footerImage}
             sx={{
               display: { xs: "none", md: "block" },
               width: "55%",

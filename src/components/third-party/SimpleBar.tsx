@@ -1,58 +1,64 @@
-import { ReactNode } from 'react';
+import React from "react";
 
 // material-ui
-import { alpha, styled } from '@mui/material/styles';
-import { Box, Theme } from '@mui/material';
+import { alpha, Theme } from "@mui/material/styles";
+import { Box } from "@mui/material";
 
 // third-party
-import SimpleBar, { Props } from 'simplebar-react';
-import { BrowserView, MobileView } from 'react-device-detect';
-import { MUIStyledCommonProps } from '@mui/system';
+import SimpleBar, { Props } from "simplebar-react";
+import { BrowserView, MobileView } from "react-device-detect";
+import { MUIStyledCommonProps } from "@mui/system";
+import { makeStyles } from "@/themes/hooks";
 
-// root style
-const RootStyle = styled(BrowserView)({
-  flexGrow: 1,
-  height: '100%',
-  overflow: 'hidden'
-});
-
-// scroll bar wrapper
-const SimpleBarStyle = styled(SimpleBar)(({ theme }) => ({
-  maxHeight: '100%',
-  '& .simplebar-scrollbar': {
-    '&:before': {
-      backgroundColor: alpha(theme.palette.grey[500], 0.48)
+const useStyles = makeStyles()((theme) => ({
+  root: {
+    flexGrow: 1,
+    height: "100%",
+    overflow: "hidden"
+  },
+  simpleBar: {
+    maxHeight: "100%",
+    "& .simplebar-scrollbar": {
+      "&:before": {
+        backgroundColor: alpha(theme.palette.grey[500], 0.48)
+      },
+      "&.simplebar-visible:before": {
+        opacity: 1
+      }
     },
-    '&.simplebar-visible:before': {
-      opacity: 1
+    "& .simplebar-track.simplebar-vertical": {
+      width: 10
+    },
+    "& .simplebar-track.simplebar-horizontal .simplebar-scrollbar": {
+      height: 6
+    },
+    "& .simplebar-mask": {
+      zIndex: "inherit"
     }
-  },
-  '& .simplebar-track.simplebar-vertical': {
-    width: 10
-  },
-  '& .simplebar-track.simplebar-horizontal .simplebar-scrollbar': {
-    height: 6
-  },
-  '& .simplebar-mask': {
-    zIndex: 'inherit'
   }
 }));
 
 // ==============================|| SIMPLE SCROLL BAR  ||============================== //
 
-export default function SimpleBarScroll({ children, sx, ...other }: MUIStyledCommonProps<Theme> & Props) {
+type SimpleScrollBarProps = MUIStyledCommonProps<Theme> & Props & { children?: React.ReactNode };
+
+const SimpleBarScroll: React.FC<SimpleScrollBarProps> = ({ sx, children, ...other }) => {
+  const { classes } = useStyles();
+
   return (
     <>
-      <RootStyle>
-        <SimpleBarStyle timeout={500} clickOnTrack={false} sx={sx} {...other}>
-          {children as ReactNode}
-        </SimpleBarStyle>
-      </RootStyle>
+      <Box component={BrowserView} className={classes.root}>
+        <Box component={SimpleBar} className={classes.simpleBar} timeout={500} clickOnTrack={false} sx={sx} {...other}>
+          {children}
+        </Box>
+      </Box>
       <MobileView>
-        <Box sx={{ overflowX: 'auto', ...sx }} {...other}>
-          {children as ReactNode}
+        <Box sx={{ overflowX: "auto", ...sx }} {...other}>
+          {children}
         </Box>
       </MobileView>
     </>
   );
-}
+};
+
+export default SimpleBarScroll;

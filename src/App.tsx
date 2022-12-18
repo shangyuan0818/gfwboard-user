@@ -7,27 +7,26 @@ import Locales from "@/components/Locales";
 // import RTLLayout from '@/components/RTLLayout';
 import ScrollTop from "@/components/ScrollTop";
 import Snackbar from "@/components/@extended/Snackbar";
-
-// auth provider
-import { FirebaseProvider as AuthProvider } from "@/contexts/FirebaseContext";
+import { CacheProvider } from "@emotion/react";
+import cache from "@/themes/cache";
 
 // ==============================|| APP - THEME, ROUTER, LOCAL  ||============================== //
 
 const App = () => (
-  <ThemeCustomization>
-    {/* <RTLLayout> */}
-    <Locales>
-      <ScrollTop>
-        <AuthProvider>
+  <CacheProvider value={cache}>
+    <ThemeCustomization>
+      {/* <RTLLayout> */}
+      <Locales>
+        <ScrollTop>
           <>
             <Routes />
             <Snackbar />
           </>
-        </AuthProvider>
-      </ScrollTop>
-    </Locales>
-    {/* </RTLLayout> */}
-  </ThemeCustomization>
+        </ScrollTop>
+      </Locales>
+      {/* </RTLLayout> */}
+    </ThemeCustomization>
+  </CacheProvider>
 );
 
 export default App;

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
 
 // material-ui
 import {
@@ -22,9 +22,9 @@ import * as Yup from "yup";
 import { Formik } from "formik";
 
 // project import
-import useAuth from "@/hooks/useAuth";
+import { useSelector } from "@/store";
+import { useLoginMutation } from "@/store/services/api";
 import useScriptRef from "@/hooks/useScriptRef";
-import FirebaseSocial from "./FirebaseSocial";
 import IconButton from "@/components/@extended/IconButton";
 import AnimateButton from "@/components/@extended/AnimateButton";
 
@@ -37,7 +37,8 @@ const AuthLogin = () => {
   const [checked, setChecked] = React.useState(false);
   const [capsWarning, setCapsWarning] = React.useState(false);
 
-  const { isLoggedIn, firebaseEmailPasswordSignIn } = useAuth();
+  const { isLoggedIn } = useSelector((state) => state.auth);
+  const [login] = useLoginMutation();
   const scriptedRef = useScriptRef();
 
   const [showPassword, setShowPassword] = React.useState(false);
@@ -57,33 +58,37 @@ const AuthLogin = () => {
     }
   };
 
+  const navigate = useNavigate();
+
   return (
     <>
       <Formik
         initialValues={{
-          email: "info@codedthemes.com",
-          password: "123456",
+          email: "",
+          password: "",
           submit: null
         }}
         validationSchema={Yup.object().shape({
-          email: Yup.string().email("Must be a valid email").max(255).required("Email is required"),
+          email: Yup.string().email("Must be a valid email").max(255).required("Email is required"), // TODO: translate
           password: Yup.string().max(255).required("Password is required")
         })}
         onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
           try {
-            await firebaseEmailPasswordSignIn(values.email, values.password).then(
-              () => {
-                // WARNING: do not set any formik state here as formik might be already destroyed here. You may get following error by doing so.
-                // Warning: Can't perform a React state update on an unmounted component. This is a no-op, but it indicates a memory leak in your application.
-                // To fix, cancel all subscriptions and asynchronous tasks in a useEffect cleanup function.
-                // github issue: https://github.com/formium/formik/issues/2430
-              },
-              (err: any) => {
+            setSubmitting(true);
+
+            await login(values)
+              .unwrap()
+              .then(() => {
+                setStatus({ success: true });
+                navigate("/dashboard", { replace: true });
+              })
+              .catch((err: any) => {
                 setStatus({ success: false });
                 setErrors({ submit: err.message });
+              })
+              .finally(() => {
                 setSubmitting(false);
-              }
-            );
+              });
           } catch (err: any) {
             console.error(err);
             if (scriptedRef.current) {
@@ -210,14 +215,6 @@ const AuthLogin = () => {
                     Login
                   </Button>
                 </AnimateButton>
-              </Grid>
-              <Grid item xs={12}>
-                <Divider>
-                  <Typography variant="caption"> Login with</Typography>
-                </Divider>
-              </Grid>
-              <Grid item xs={12}>
-                <FirebaseSocial />
               </Grid>
             </Grid>
           </form>

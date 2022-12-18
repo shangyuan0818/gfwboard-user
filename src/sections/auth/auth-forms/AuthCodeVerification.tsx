@@ -1,8 +1,8 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
 // material-ui
 import { useTheme } from "@mui/material/styles";
-import { Button, Grid, Stack, Typography } from "@mui/material";
+import { Box, Button, Grid, Stack, Typography } from "@mui/material";
 
 // third-party
 import OtpInput from "react18-input-otp";
@@ -21,7 +21,8 @@ const AuthCodeVerification = () => {
   return (
     <Grid container spacing={3}>
       <Grid item xs={12}>
-        <OtpInput
+        <Box
+          component={OtpInput}
           value={otp}
           onChange={(otp: string) => setOtp(otp)}
           numInputs={4}

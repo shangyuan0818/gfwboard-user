@@ -2,8 +2,8 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 // project import
+import { useSelector } from "@/store";
 import config from "@/config";
-import useAuth from "@/hooks/useAuth";
 
 // types
 import { GuardProps } from "@/types/auth";
@@ -11,7 +11,7 @@ import { GuardProps } from "@/types/auth";
 // ==============================|| GUEST GUARD ||============================== //
 
 const GuestGuard = ({ children }: GuardProps) => {
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn } = useSelector((state) => state.auth);
   const navigate = useNavigate();
 
   useEffect(() => {

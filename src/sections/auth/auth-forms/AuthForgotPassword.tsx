@@ -9,10 +9,11 @@ import * as Yup from "yup";
 import { Formik } from "formik";
 
 // project import
-import useAuth from "@/hooks/useAuth";
 import useScriptRef from "@/hooks/useScriptRef";
 import AnimateButton from "@/components/@extended/AnimateButton";
 import { openSnackbar } from "@/store/reducers/snackbar";
+import { useSelector } from "@/store";
+import { useResetPasswordMutation } from "@/store/services/api";
 
 // ============================|| FIREBASE - FORGOT PASSWORD ||============================ //
 
@@ -21,13 +22,16 @@ const AuthForgotPassword = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { isLoggedIn, resetPassword } = useAuth();
+  const { isLoggedIn } = useSelector((state) => state.auth);
+  const [resetPassword, {}] = useResetPasswordMutation();
 
   return (
     <>
       <Formik
         initialValues={{
           email: "",
+          password: "",
+          email_code: "",
           submit: null
         }}
         validationSchema={Yup.object().shape({
@@ -35,36 +39,38 @@ const AuthForgotPassword = () => {
         })}
         onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
           try {
-            await resetPassword(values.email).then(
-              () => {
-                setStatus({ success: true });
-                setSubmitting(false);
-                dispatch(
-                  openSnackbar({
-                    open: true,
-                    message: "Check mail for reset password link",
-                    variant: "alert",
-                    alert: {
-                      color: "success"
-                    },
-                    close: false
-                  })
-                );
-                setTimeout(() => {
-                  navigate(isLoggedIn ? "/auth/check-mail" : "/check-mail", { replace: true });
-                }, 1500);
+            await resetPassword(values)
+              .unwrap()
+              .then(
+                () => {
+                  setStatus({ success: true });
+                  setSubmitting(false);
+                  dispatch(
+                    openSnackbar({
+                      open: true,
+                      message: "Check mail for reset password link", // TODO: translate
+                      variant: "alert",
+                      alert: {
+                        color: "success"
+                      },
+                      close: false
+                    })
+                  );
+                  setTimeout(() => {
+                    navigate(isLoggedIn ? "/auth/check-mail" : "/check-mail", { replace: true });
+                  }, 1500);
 
-                // WARNING: do not set any formik state here as formik might be already destroyed here. You may get following error by doing so.
-                // Warning: Can't perform a React state update on an unmounted component. This is a no-op, but it indicates a memory leak in your application.
-                // To fix, cancel all subscriptions and asynchronous tasks in a useEffect cleanup function.
-                // github issue: https://github.com/formium/formik/issues/2430
-              },
-              (err: any) => {
-                setStatus({ success: false });
-                setErrors({ submit: err.message });
-                setSubmitting(false);
-              }
-            );
+                  // WARNING: do not set any formik state here as formik might be already destroyed here. You may get following error by doing so.
+                  // Warning: Can't perform a React state update on an unmounted component. This is a no-op, but it indicates a memory leak in your application.
+                  // To fix, cancel all subscriptions and asynchronous tasks in a useEffect cleanup function.
+                  // github issue: https://github.com/formium/formik/issues/2430
+                },
+                (err: any) => {
+                  setStatus({ success: false });
+                  setErrors({ submit: err.message });
+                  setSubmitting(false);
+                }
+              );
           } catch (err: any) {
             console.error(err);
             if (scriptedRef.current) {

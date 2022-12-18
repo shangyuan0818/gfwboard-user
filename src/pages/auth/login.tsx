@@ -8,6 +8,7 @@ import { Grid, Stack, Typography } from "@mui/material";
 import AuthWrapper from "@/sections/auth/AuthWrapper";
 import AuthLogin from "@/sections/auth/auth-forms/AuthLogin";
 import { useSelector } from "@/store";
+import { Trans } from "react-i18next";
 
 // ================================|| LOGIN ||================================ //
 
@@ -24,7 +25,9 @@ const Login: React.FC = () => {
             alignItems="baseline"
             sx={{ mb: { xs: -0.5, sm: 0.5 } }}
           >
-            <Typography variant="h3">Login</Typography>
+            <Typography variant="h3">
+              <Trans>{"login.title"}</Trans>
+            </Typography>
             <Typography
               component={Link}
               to={isLoggedIn ? "/auth/register" : "/register"}
@@ -32,7 +35,7 @@ const Login: React.FC = () => {
               sx={{ textDecoration: "none" }}
               color="primary"
             >
-              Don&apos;t have an account?
+              <Trans>{"login.register"}</Trans>
             </Typography>
           </Stack>
         </Grid>

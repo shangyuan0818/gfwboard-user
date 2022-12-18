@@ -10,7 +10,8 @@ const i18n = i18next.createInstance({
   fallbackNS: "common",
   interpolation: {
     escapeValue: false
-  }
+  },
+  debug: import.meta.env.DEV
 });
 
 i18n.use(initReactI18next);

@@ -14,12 +14,14 @@ import {
   InputLabel,
   OutlinedInput,
   Stack,
-  Typography
+  Typography,
+  Box
 } from "@mui/material";
 
 // third party
 import * as Yup from "yup";
 import { Formik } from "formik";
+import { Trans, useTranslation } from "react-i18next";
 
 // project import
 import { useSelector } from "@/store";
@@ -40,6 +42,10 @@ const AuthLogin = () => {
   const { isLoggedIn } = useSelector((state) => state.auth);
   const [login] = useLoginMutation();
   const scriptedRef = useScriptRef();
+
+  const { t } = useTranslation("common", {
+    keyPrefix: "login"
+  });
 
   const [showPassword, setShowPassword] = React.useState(false);
   const handleClickShowPassword = () => {
@@ -69,8 +75,8 @@ const AuthLogin = () => {
           submit: null
         }}
         validationSchema={Yup.object().shape({
-          email: Yup.string().email("Must be a valid email").max(255).required("Email is required"), // TODO: translate
-          password: Yup.string().max(255).required("Password is required")
+          email: Yup.string().email("Must be a valid email").max(255).required(t("email_required").toString()),
+          password: Yup.string().max(255).required(t("password_required").toString())
         })}
         onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
           try {
@@ -104,7 +110,9 @@ const AuthLogin = () => {
             <Grid container spacing={3}>
               <Grid item xs={12}>
                 <Stack spacing={1}>
-                  <InputLabel htmlFor="email-login">Email Address</InputLabel>
+                  <InputLabel htmlFor="email-login">
+                    <Trans>{"login.email"}</Trans>
+                  </InputLabel>
                   <OutlinedInput
                     id="email-login"
                     type="email"
@@ -112,7 +120,7 @@ const AuthLogin = () => {
                     name="email"
                     onBlur={handleBlur}
                     onChange={handleChange}
-                    placeholder="Enter email address"
+                    placeholder={t("email_placeholder").toString()}
                     fullWidth
                     error={Boolean(touched.email && errors.email)}
                   />
@@ -125,7 +133,9 @@ const AuthLogin = () => {
               </Grid>
               <Grid item xs={12}>
                 <Stack spacing={1}>
-                  <InputLabel htmlFor="password-login">Password</InputLabel>
+                  <InputLabel htmlFor="password-login">
+                    <Trans>{"login.password"}</Trans>
+                  </InputLabel>
                   <OutlinedInput
                     fullWidth
                     color={capsWarning ? "warning" : "primary"}
@@ -153,7 +163,7 @@ const AuthLogin = () => {
                         </IconButton>
                       </InputAdornment>
                     }
-                    placeholder="Enter password"
+                    placeholder={t("password_placeholder").toString()}
                   />
                   {capsWarning && (
                     <Typography
@@ -161,7 +171,7 @@ const AuthLogin = () => {
                       sx={{ color: "warning.main" }}
                       id="warning-helper-text-password-login"
                     >
-                      Caps lock on!
+                      <Trans ns={"notice"}>{"capslock_on"}</Trans>
                     </Typography>
                   )}
                   {touched.password && errors.password && (
@@ -174,25 +184,14 @@ const AuthLogin = () => {
 
               <Grid item xs={12} sx={{ mt: -1 }}>
                 <Stack direction="row" justifyContent="space-between" alignItems="center" spacing={2}>
-                  <FormControlLabel
-                    control={
-                      <Checkbox
-                        checked={checked}
-                        onChange={(event) => setChecked(event.target.checked)}
-                        name="checked"
-                        color="primary"
-                        size="small"
-                      />
-                    }
-                    label={<Typography variant="h6">Keep me sign in</Typography>}
-                  />
+                  <Box />
                   <Link
                     variant="h6"
                     component={RouterLink}
                     to={isLoggedIn ? "/auth/forgot-password" : "/forgot-password"}
                     color="text.primary"
                   >
-                    Forgot Password?
+                    {t("forgot_password").toString()}
                   </Link>
                 </Stack>
               </Grid>
@@ -212,7 +211,7 @@ const AuthLogin = () => {
                     variant="contained"
                     color="primary"
                   >
-                    Login
+                    {t("submit").toString()}
                   </Button>
                 </AnimateButton>
               </Grid>

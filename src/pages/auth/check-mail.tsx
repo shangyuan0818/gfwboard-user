@@ -5,10 +5,9 @@ import { useTheme } from "@mui/material/styles";
 import { Box, Button, Grid, Divider, Typography, useMediaQuery } from "@mui/material";
 
 // project import
-import useAuth from "@/hooks/useAuth";
 import AnimateButton from "@/components/@extended/AnimateButton";
 import AuthWrapper from "@/sections/auth/AuthWrapper";
-import FirebaseSocial from "@/sections/auth/auth-forms/FirebaseSocial";
+import { useSelector } from "@/store";
 
 // ================================|| CHECK MAIL ||================================ //
 
@@ -16,7 +15,7 @@ const CheckMail = () => {
   const theme = useTheme();
   const matchDownSM = useMediaQuery(theme.breakpoints.down("sm"));
 
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn } = useSelector((state) => state.auth);
 
   return (
     <AuthWrapper>
@@ -44,14 +43,6 @@ const CheckMail = () => {
               Sign in
             </Button>
           </AnimateButton>
-        </Grid>
-        <Grid item xs={12}>
-          <Divider>
-            <Typography variant={matchDownSM ? "subtitle1" : "h5"}>Sign up with</Typography>
-          </Divider>
-        </Grid>
-        <Grid item xs={12}>
-          <FirebaseSocial />
         </Grid>
       </Grid>
     </AuthWrapper>

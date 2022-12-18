@@ -1,48 +1,40 @@
+import lo from "lodash-es";
+
 // action - state management
 import { REGISTER, LOGIN, LOGOUT } from "./actions";
 
 // types
 import { AuthProps, AuthActionProps } from "@/types/auth";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 // initial state
 export const initialState: AuthProps = {
-  isLoggedIn: false,
-  isInitialized: false,
-  user: null
+  isLoggedIn: !lo.isEmpty(localStorage.getItem("gfw_token")),
+  isAdmin: localStorage.getItem("gfw_is_admin") === "true"
 };
 
 // ==============================|| AUTH REDUCER ||============================== //
 
-const auth = (state = initialState, action: AuthActionProps) => {
-  switch (action.type) {
-    case REGISTER: {
-      const { user } = action.payload!;
-      return {
-        ...state,
-        user
-      };
-    }
-    case LOGIN: {
-      const { user } = action.payload!;
-      return {
-        ...state,
-        isLoggedIn: true,
-        isInitialized: true,
-        user
-      };
-    }
-    case LOGOUT: {
-      return {
-        ...state,
-        isInitialized: true,
-        isLoggedIn: false,
-        user: null
-      };
-    }
-    default: {
-      return { ...state };
+const auth = createSlice({
+  name: "auth",
+  initialState,
+  reducers: {
+    login: (
+      state,
+      action: PayloadAction<{
+        isAdmin: boolean;
+      }>
+    ) => {
+      state.isLoggedIn = true;
+      state.isAdmin = action.payload.isAdmin;
+    },
+    logout: (state) => {
+      state.isLoggedIn = false;
+      localStorage.removeItem("gfw_token");
+      localStorage.removeItem("gfw_is_admin");
     }
   }
-};
+});
 
-export default auth;
+export const { login, logout } = auth.actions;
+export default auth.reducer;

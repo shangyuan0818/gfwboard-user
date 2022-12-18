@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 // project import
-import useAuth from "@/hooks/useAuth";
+import { useSelector } from "@/store";
 
 // types
 import { GuardProps } from "@/types/auth";
@@ -10,7 +10,7 @@ import { GuardProps } from "@/types/auth";
 // ==============================|| AUTH GUARD ||============================== //
 
 const AuthGuard = ({ children }: GuardProps) => {
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn } = useSelector((state) => state.auth);
   const navigate = useNavigate();
 
   useEffect(() => {

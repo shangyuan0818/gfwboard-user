@@ -4,14 +4,14 @@ import { Link } from "react-router-dom";
 import { Grid, Stack, Typography } from "@mui/material";
 
 // project import
-import useAuth from "@/hooks/useAuth";
 import AuthWrapper from "@/sections/auth/AuthWrapper";
 import FirebaseRegister from "@/sections/auth/auth-forms/AuthRegister";
+import { useSelector } from "@/store";
 
 // ================================|| REGISTER ||================================ //
 
 const Register = () => {
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn } = useSelector((state) => state.auth);
 
   return (
     <AuthWrapper>

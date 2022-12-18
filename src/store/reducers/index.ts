@@ -1,15 +1,17 @@
 // third-party
-import { combineReducers } from 'redux';
+import { combineReducers } from "@reduxjs/toolkit";
 
 // project import
-import menu from './menu';
-import snackbar from './snackbar';
+import menu from "./menu";
+import snackbar from "./snackbar";
+import auth from "./auth";
 
 // ==============================|| COMBINE REDUCERS ||============================== //
 
-const reducers = combineReducers({
+const reducers = {
   menu,
-  snackbar
-});
+  snackbar,
+  auth
+};
 
 export default reducers;

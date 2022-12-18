@@ -21,7 +21,6 @@ import * as Yup from "yup";
 import { Formik } from "formik";
 
 // project import
-import useAuth from "@/hooks/useAuth";
 import useScriptRef from "@/hooks/useScriptRef";
 import IconButton from "@/components/@extended/IconButton";
 import AnimateButton from "@/components/@extended/AnimateButton";
@@ -33,6 +32,7 @@ import { StringColorProps } from "@/types/password";
 
 // assets
 import { EyeOutlined, EyeInvisibleOutlined } from "@ant-design/icons";
+import { useSelector } from "@/store";
 
 // ============================|| STATIC - RESET PASSWORD ||============================ //
 
@@ -41,7 +41,7 @@ const AuthResetPassword = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn } = useSelector((state) => state.auth);
 
   const [level, setLevel] = useState<StringColorProps>();
   const [showPassword, setShowPassword] = useState(false);

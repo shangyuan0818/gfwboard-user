@@ -1,17 +1,18 @@
+import React from "react";
 import { Link } from "react-router-dom";
 
 // material-ui
 import { Grid, Stack, Typography } from "@mui/material";
 
 // project import
-import useAuth from "@/hooks/useAuth";
 import AuthWrapper from "@/sections/auth/AuthWrapper";
 import AuthLogin from "@/sections/auth/auth-forms/AuthLogin";
+import { useSelector } from "@/store";
 
 // ================================|| LOGIN ||================================ //
 
-const Login = () => {
-  const { isLoggedIn } = useAuth();
+const Login: React.FC = () => {
+  const { isLoggedIn } = useSelector((state) => state.auth);
 
   return (
     <AuthWrapper>

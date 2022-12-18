@@ -17,7 +17,7 @@ import ResizeObserver from "resize-observer-polyfill";
 
 // project import
 import App from "@/App";
-import { store } from "@/store";
+import store from "@/store";
 import { ConfigProvider } from "@/contexts/ConfigContext";
 import reportWebVitals from "@/reportWebVitals";
 

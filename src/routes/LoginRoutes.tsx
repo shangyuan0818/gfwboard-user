@@ -1,4 +1,5 @@
 import { lazy } from "react";
+import type { RouteObject } from "react-router";
 
 // project import
 import GuestGuard from "@/utils/route-guard/GuestGuard";
@@ -15,7 +16,7 @@ const AuthCodeVerification = Loadable(lazy(() => import("@/pages/auth/code-verif
 
 // ==============================|| AUTH ROUTING ||============================== //
 
-const LoginRoutes = {
+const LoginRoutes: RouteObject = {
   path: "/",
   children: [
     {

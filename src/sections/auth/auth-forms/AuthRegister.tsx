@@ -1,5 +1,5 @@
 import { useEffect, useState, SyntheticEvent } from "react";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
 
 // material-ui
 import {
@@ -22,11 +22,10 @@ import * as Yup from "yup";
 import { Formik } from "formik";
 
 // project import
-import useAuth from "@/hooks/useAuth";
 import useScriptRef from "@/hooks/useScriptRef";
 import IconButton from "@/components/@extended/IconButton";
 import AnimateButton from "@/components/@extended/AnimateButton";
-import FirebaseSocial from "./FirebaseSocial";
+import { useRegisterMutation } from "@/store/services/api";
 import { strengthColor, strengthIndicator } from "@/utils/password-strength";
 
 // types
@@ -38,8 +37,9 @@ import { EyeOutlined, EyeInvisibleOutlined } from "@ant-design/icons";
 // ============================|| FIREBASE - REGISTER ||============================ //
 
 const AuthRegister = () => {
-  const { firebaseRegister } = useAuth();
   const scriptedRef = useScriptRef();
+  const [register] = useRegisterMutation();
+  const navigate = useNavigate();
 
   const [level, setLevel] = useState<StringColorProps>();
   const [showPassword, setShowPassword] = useState(false);
@@ -64,34 +64,32 @@ const AuthRegister = () => {
     <>
       <Formik
         initialValues={{
-          firstname: "",
-          lastname: "",
           email: "",
-          company: "",
           password: "",
+          invite_code: "",
+          email_code: "",
           submit: null
         }}
         validationSchema={Yup.object().shape({
-          firstname: Yup.string().max(255).required("First Name is required"),
-          lastname: Yup.string().max(255).required("Last Name is required"),
           email: Yup.string().email("Must be a valid email").max(255).required("Email is required"),
-          password: Yup.string().max(255).required("Password is required")
+          password: Yup.string().max(255).required("Password is required"),
+          invite_code: Yup.string().max(8),
+          email_code: Yup.number().max(6)
         })}
         onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
           try {
-            await firebaseRegister(values.email, values.password).then(
-              () => {
-                // WARNING: do not set any formik state here as formik might be already destroyed here. You may get following error by doing so.
-                // Warning: Can't perform a React state update on an unmounted component. This is a no-op, but it indicates a memory leak in your application.
-                // To fix, cancel all subscriptions and asynchronous tasks in a useEffect cleanup function.
-                // github issue: https://github.com/formium/formik/issues/2430
-              },
-              (err: any) => {
-                setStatus({ success: false });
-                setErrors({ submit: err.message });
-                setSubmitting(false);
-              }
-            );
+            await register(values)
+              .unwrap()
+              .then(
+                () => {
+                  setStatus({ success: true });
+                  navigate("/dashboard", { replace: true });
+                },
+                (error) => {
+                  setStatus({ success: false });
+                  setErrors({ submit: error.message });
+                }
+              );
           } catch (err: any) {
             console.error(err);
             if (scriptedRef.current) {
@@ -99,76 +97,14 @@ const AuthRegister = () => {
               setErrors({ submit: err.message });
               setSubmitting(false);
             }
+          } finally {
+            setSubmitting(false);
           }
         }}
       >
         {({ errors, handleBlur, handleChange, handleSubmit, isSubmitting, touched, values }) => (
           <form noValidate onSubmit={handleSubmit}>
             <Grid container spacing={3}>
-              <Grid item xs={12} md={6}>
-                <Stack spacing={1}>
-                  <InputLabel htmlFor="firstname-signup">First Name*</InputLabel>
-                  <OutlinedInput
-                    id="firstname-login"
-                    type="firstname"
-                    value={values.firstname}
-                    name="firstname"
-                    onBlur={handleBlur}
-                    onChange={handleChange}
-                    placeholder="John"
-                    fullWidth
-                    error={Boolean(touched.firstname && errors.firstname)}
-                  />
-                  {touched.firstname && errors.firstname && (
-                    <FormHelperText error id="helper-text-firstname-signup">
-                      {errors.firstname}
-                    </FormHelperText>
-                  )}
-                </Stack>
-              </Grid>
-              <Grid item xs={12} md={6}>
-                <Stack spacing={1}>
-                  <InputLabel htmlFor="lastname-signup">Last Name*</InputLabel>
-                  <OutlinedInput
-                    fullWidth
-                    error={Boolean(touched.lastname && errors.lastname)}
-                    id="lastname-signup"
-                    type="lastname"
-                    value={values.lastname}
-                    name="lastname"
-                    onBlur={handleBlur}
-                    onChange={handleChange}
-                    placeholder="Doe"
-                    inputProps={{}}
-                  />
-                  {touched.lastname && errors.lastname && (
-                    <FormHelperText error id="helper-text-lastname-signup">
-                      {errors.lastname}
-                    </FormHelperText>
-                  )}
-                </Stack>
-              </Grid>
-              <Grid item xs={12}>
-                <Stack spacing={1}>
-                  <InputLabel htmlFor="company-signup">Company</InputLabel>
-                  <OutlinedInput
-                    fullWidth
-                    error={Boolean(touched.company && errors.company)}
-                    id="company-signup"
-                    value={values.company}
-                    name="company"
-                    onBlur={handleBlur}
-                    onChange={handleChange}
-                    placeholder="Demo Inc."
-                    inputProps={{}}
-                  />
-                  {touched.company && errors.company && (
-                    <FormHelperText error id="helper-text-company-signup">
-                      {errors.company}
-                    </FormHelperText>
-                  )}
-                </Stack>
-              </Grid>
               <Grid item xs={12}>
                 <Stack spacing={1}>
                   <InputLabel htmlFor="email-signup">Email Address*</InputLabel>
@@ -181,7 +117,7 @@ const AuthRegister = () => {
                     name="email"
                     onBlur={handleBlur}
                     onChange={handleChange}
-                    placeholder="demo@company.com"
+                    placeholder="user@example.com"
                     inputProps={{}}
                   />
                   {touched.email && errors.email && (
@@ -272,14 +208,6 @@ const AuthRegister = () => {
                     Create Account
                   </Button>
                 </AnimateButton>
-              </Grid>
-              <Grid item xs={12}>
-                <Divider>
-                  <Typography variant="caption">Sign up with</Typography>
-                </Divider>
-              </Grid>
-              <Grid item xs={12}>
-                <FirebaseSocial />
               </Grid>
             </Grid>
           </form>

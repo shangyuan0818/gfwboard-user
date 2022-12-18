@@ -8,9 +8,6 @@ import Locales from "@/components/Locales";
 import ScrollTop from "@/components/ScrollTop";
 import Snackbar from "@/components/@extended/Snackbar";
 
-// auth provider
-import { FirebaseProvider as AuthProvider } from "@/contexts/FirebaseContext";
-
 // ==============================|| APP - THEME, ROUTER, LOCAL  ||============================== //
 
 const App = () => (
@@ -18,12 +15,10 @@ const App = () => (
     {/* <RTLLayout> */}
     <Locales>
       <ScrollTop>
-        <AuthProvider>
-          <>
-            <Routes />
-            <Snackbar />
-          </>
-        </AuthProvider>
+        <>
+          <Routes />
+          <Snackbar />
+        </>
       </ScrollTop>
     </Locales>
     {/* </RTLLayout> */}

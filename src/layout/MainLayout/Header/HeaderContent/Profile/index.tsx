@@ -22,13 +22,17 @@ import Avatar from "@/components/@extended/Avatar";
 import MainCard from "@/components/MainCard";
 import Transitions from "@/components/@extended/Transitions";
 import IconButton from "@/components/@extended/IconButton";
-import useAuth from "@/hooks/useAuth";
 import ProfileTab from "./ProfileTab";
 import SettingTab from "./SettingTab";
 
 // assets
 import avatar1 from "@/assets/images/users/avatar-1.png";
 import { LogoutOutlined, SettingOutlined, UserOutlined } from "@ant-design/icons";
+import { useDispatch } from "@/store";
+import { logout } from "@/store/reducers/auth";
+import { useNavigate } from "react-router-dom";
+import config from "@/config";
+import { useGetUserInfoQuery } from "@/store/services/api";
 
 // types
 interface TabPanelProps {
@@ -67,14 +71,14 @@ function a11yProps(index: number) {
 const Profile = () => {
   const theme = useTheme();
 
-  const { logout, user } = useAuth();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const handleLogout = async () => {
-    try {
-      await logout();
-    } catch (err) {
-      console.error(err);
-    }
+    dispatch(logout());
+    navigate(config.defaultPath, { replace: true });
   };
+
+  const { data: user } = useGetUserInfoQuery();
 
   const anchorRef = useRef<any>(null);
   const [open, setOpen] = useState(false);
@@ -118,7 +122,7 @@ const Profile = () => {
       >
         <Stack direction="row" spacing={2} alignItems="center" sx={{ p: 0.5 }}>
           <Avatar alt="profile user" src={avatar1} size="xs" />
-          <Typography variant="subtitle1">{user?.name}</Typography>
+          <Typography variant="subtitle1">{user?.email}</Typography>
         </Stack>
       </ButtonBase>
       <Popper
@@ -161,7 +165,7 @@ const Profile = () => {
                           <Stack direction="row" spacing={1.25} alignItems="center">
                             <Avatar alt="profile user" src={avatar1} sx={{ width: 32, height: 32 }} />
                             <Stack>
-                              <Typography variant="h6">{user?.name}</Typography>
+                              <Typography variant="h6">{user?.email}</Typography>
                               <Typography variant="body2" color="textSecondary">
                                 UI/UX Designer
                               </Typography>

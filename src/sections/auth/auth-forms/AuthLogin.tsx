@@ -75,7 +75,7 @@ const AuthLogin = () => {
           submit: null
         }}
         validationSchema={Yup.object().shape({
-          email: Yup.string().email("Must be a valid email").max(255).required(t("email_required").toString()),
+          email: Yup.string().email(t("email_invalid").toString()).max(255).required(t("email_required").toString()),
           password: Yup.string().max(255).required(t("password_required").toString())
         })}
         onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
@@ -106,7 +106,7 @@ const AuthLogin = () => {
         }}
       >
         {({ errors, handleBlur, handleChange, handleSubmit, isSubmitting, touched, values }) => (
-          <form noValidate onSubmit={handleSubmit}>
+          <Box component={"form"} noValidate onSubmit={handleSubmit}>
             <Grid container spacing={3}>
               <Grid item xs={12}>
                 <Stack spacing={1}>
@@ -216,7 +216,7 @@ const AuthLogin = () => {
                 </AnimateButton>
               </Grid>
             </Grid>
-          </form>
+          </Box>
         )}
       </Formik>
     </>

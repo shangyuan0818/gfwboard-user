@@ -4,6 +4,7 @@
     "email": "邮箱",
     "email_placeholder": "请输入邮箱",
     "email_required": "您必须输入邮箱",
+    "email_invalid": "您输入的邮箱无效",
     "password": "密码",
     "password_placeholder": "请输入密码",
     "password_required": "您必须输入密码",

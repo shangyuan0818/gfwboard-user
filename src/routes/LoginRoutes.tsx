@@ -1,5 +1,5 @@
-import { lazy } from "react";
-import type { RouteObject } from "react-router";
+import React, { lazy } from "react";
+import { Navigate, RouteObject } from "react-router";
 
 // project import
 import GuestGuard from "@/utils/route-guard/GuestGuard";
@@ -29,7 +29,7 @@ const LoginRoutes: RouteObject = {
       children: [
         {
           path: "/",
-          element: <AuthLogin />
+          element: <Navigate to={"/login"} replace={true} />
         },
         {
           path: "login",
@@ -44,17 +44,17 @@ const LoginRoutes: RouteObject = {
           element: <AuthForgotPassword />
         },
         {
-          path: "check-mail",
-          element: <AuthCheckMail />
-        },
-        {
           path: "reset-password",
           element: <AuthResetPassword />
-        },
-        {
-          path: "code-verification",
-          element: <AuthCodeVerification />
         }
+        // {
+        //   path: "check-mail",
+        //   element: <AuthCheckMail />
+        // },
+        // {
+        //   path: "code-verification",
+        //   element: <AuthCodeVerification />
+        // }
       ]
     }
   ]

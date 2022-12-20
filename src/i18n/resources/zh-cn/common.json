@@ -27,6 +27,7 @@
     "password_placeholder": "请输入密码",
     "password_required": "您必须输入密码",
     "password_min": "密码长度不能少于 {{count}} 个字符",
+    "password_max": "密码长度不能超过 {{count}} 个字符",
     "password_confirmation": "确认密码",
     "password_confirmation_placeholder": "请再次输入密码",
     "password_confirmation_required": "您必须再次输入密码",

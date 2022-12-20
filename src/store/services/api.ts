@@ -36,7 +36,8 @@ const axiosBaseQuery: () => BaseQueryFn =
       return {
         error: {
           status: err.response?.status || 500,
-          message: err.response?.data?.message || err.message
+          message: err.response?.data?.message || err.message,
+          errors: err.response?.data?.errors || null
         }
       };
     }

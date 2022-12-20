@@ -32,6 +32,7 @@ import AnimateButton from "@/components/@extended/AnimateButton";
 
 // assets
 import { EyeOutlined, EyeInvisibleOutlined } from "@ant-design/icons";
+import lo from "lodash-es";
 
 // ============================|| FIREBASE - LOGIN ||============================ //
 
@@ -90,7 +91,7 @@ const AuthLogin = () => {
               })
               .catch((err: any) => {
                 setStatus({ success: false });
-                setErrors({ submit: err.message });
+                setErrors(lo.isEmpty(err.errors) ? { submit: err.message } : err.errors);
               })
               .finally(() => {
                 setSubmitting(false);
@@ -99,7 +100,7 @@ const AuthLogin = () => {
             console.error(err);
             if (scriptedRef.current) {
               setStatus({ success: false });
-              setErrors({ submit: err.message });
+              setErrors(lo.isEmpty(err.errors) ? { submit: err.message } : err.errors);
               setSubmitting(false);
             }
           }

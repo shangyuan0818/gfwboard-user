@@ -18,7 +18,8 @@ import {
   Typography,
   FormControlLabel,
   Radio,
-  Checkbox
+  Checkbox,
+  CircularProgress
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
@@ -104,10 +105,11 @@ const AuthRegister = () => {
     return Yup.object().shape({
       email: Yup.string()
         .email(t("register.email_invalid").toString())
-        .max(255, t("register.email_max").toString())
+        .max(255, t("register.email_max", { count: 255 }).toString())
         .required(t("register.email_required").toString()),
       password: Yup.string()
-        .max(255, t("register.password_max").toString())
+        .min(8, t("register.password_min", { count: 8 }).toString())
+        .max(255, t("register.password_max", { count: 255 }).toString())
         .required(t("register.password_required").toString()),
       password_confirm: Yup.string()
         .oneOf([Yup.ref("password"), null], t("register.password_confirm_invalid").toString())
@@ -154,15 +156,14 @@ const AuthRegister = () => {
                 },
                 (error) => {
                   setStatus({ success: false });
-                  setErrors({ submit: error.message });
+                  setErrors(lo.isEmpty(error.errors) ? { submit: error.message } : error.errors);
                 }
               );
           } catch (err: any) {
             console.error(err);
             if (scriptedRef.current) {
               setStatus({ success: false });
-              setErrors({ submit: err.message });
-              setSubmitting(false);
+              setErrors(lo.isEmpty(err.errors) ? { submit: err.message } : err.errors);
             }
           } finally {
             setSubmitting(false);
@@ -409,7 +410,7 @@ const AuthRegister = () => {
                     variant="contained"
                     color="primary"
                   >
-                    Create Account
+                    {isSubmitting ? <CircularProgress size={24} color="inherit" /> : <Trans>{"register.submit"}</Trans>}
                   </Button>
                 </AnimateButton>
               </Grid>

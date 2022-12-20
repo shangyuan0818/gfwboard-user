@@ -1,3 +1,5 @@
+import React from "react";
+
 // material-ui
 import { useTheme } from "@mui/material/styles";
 import { Box, Button, Container, CardMedia, Divider, Grid, Link, Typography } from "@mui/material";
@@ -7,6 +9,7 @@ import { motion } from "framer-motion";
 
 // project import
 import useConfig from "@/hooks/useConfig";
+import AnimateButton from "@/components/@extended/AnimateButton";
 
 // assets
 import { SendOutlined } from "@ant-design/icons";
@@ -16,17 +19,57 @@ import imgfootersoc1 from "@/assets/images/landing/img-soc1.svg";
 import imgfootersoc2 from "@/assets/images/landing/img-soc2.svg";
 import imgfootersoc3 from "@/assets/images/landing/img-soc3.svg";
 import footerImage from "@/assets/images/landing/img-footer.png";
-import AnimateButton from "@/components/@extended/AnimateButton";
+import { makeStyles } from "@/themes/hooks";
+
+const useStyles = makeStyles()((theme) => ({
+  footer: {
+    position: "relative",
+    bgcolor: theme.palette.grey.A700,
+    zIndex: 1,
+    mt: 0,
+    pt: theme.spacing(8),
+    pb: theme.spacing(2.5),
+    [theme.breakpoints.up("sm")]: {
+      pt: theme.spacing(7.5)
+    },
+    [theme.breakpoints.up("md")]: {
+      mt: theme.spacing(13.75),
+      pt: theme.spacing(18.75),
+      pb: theme.spacing(10)
+    },
+    "&:after": {
+      content: '""',
+      position: "absolute",
+      width: "100%",
+      height: "80%",
+      bottom: 0,
+      left: 0,
+      background: `linear-gradient(180deg, transparent 0%, ${theme.palette.grey.A700} 70%)`
+    }
+  },
+  cardMedia: {
+    display: "none",
+    [theme.breakpoints.up("md")]: {
+      display: "block"
+    },
+    width: "55%",
+    maxWidth: 700,
+    position: "absolute",
+    top: "-28%",
+    right: 0
+  }
+}));
 
 // ==============================|| LANDING - FOOTER PAGE ||============================== //
 
-type showProps = {
+type FooterBlockProps = {
   isFull?: boolean;
 };
 
-const FooterBlock = ({ isFull }: showProps) => {
+const FooterBlock: React.FC<FooterBlockProps> = ({ isFull }) => {
   const theme = useTheme();
   const { presetColor } = useConfig();
+  const { classes } = useStyles();
 
   const linkSX = {
     color: theme.palette.common.white,
@@ -41,37 +84,8 @@ const FooterBlock = ({ isFull }: showProps) => {
   return (
     <>
       {isFull && (
-        <Box
-          sx={{
-            position: "relative",
-            bgcolor: theme.palette.grey.A700,
-            zIndex: 1,
-            mt: { xs: 0, md: 13.75 },
-            pt: { xs: 8, sm: 7.5, md: 18.75 },
-            pb: { xs: 2.5, md: 10 },
-            "&:after": {
-              content: '""',
-              position: "absolute",
-              width: "100%",
-              height: "80%",
-              bottom: 0,
-              left: 0,
-              background: `linear-gradient(180deg, transparent 0%, ${theme.palette.grey.A700} 70%)`
-            }
-          }}
-        >
-          <CardMedia
-            component="img"
-            image={footerImage}
-            sx={{
-              display: { xs: "none", md: "block" },
-              width: "55%",
-              maxWidth: 700,
-              position: "absolute",
-              top: "-28%",
-              right: 0
-            }}
-          />
+        <Box className={classes.footer}>
+          <CardMedia component="img" image={footerImage} className={classes.cardMedia} />
           <Container>
             <Grid container alignItems="center" justifyContent="space-between" spacing={2}>
               <Grid item xs={12} md={6} sx={{ position: "relative", zIndex: 1 }}>

@@ -45,5 +45,14 @@
     "invite_code_placeholder_optional": "请输入邀请码，如果没有请留空",
     "invite_code_placeholder_required": "请输入邀请码",
     "submit": "注册"
+  },
+  "auth": {
+    "footer": {
+      "privacy": "<2>隐私政策</2> 指定我们如何收集、使用和保护您的信息。",
+      "links": {
+        "terms": "服务协议",
+        "privacy": "隐私政策"
+      }
+    }
   }
 }

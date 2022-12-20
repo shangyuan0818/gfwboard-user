@@ -1,46 +1,60 @@
-import { lazy, Suspense } from 'react';
-import { Outlet } from 'react-router-dom';
+import React, { lazy, Suspense } from "react";
+import { Outlet } from "react-router-dom";
 
 // material-ui
-import { styled } from '@mui/material/styles';
-import LinearProgress, { LinearProgressProps } from '@mui/material/LinearProgress';
+import { Box } from "@mui/material";
+import LinearProgress, { LinearProgressProps } from "@mui/material/LinearProgress";
 
-const Header = lazy(() => import('./Header'));
-const FooterBlock = lazy(() => import('./FooterBlock'));
+// project import
+import Loadable from "@/components/Loadable";
+import { makeStyles } from "@/themes/hooks";
+
+const Header = lazy(() => import("./Header"));
+const FooterBlock = Loadable(lazy(() => import("./FooterBlock")));
 
 // ==============================|| Loader ||============================== //
 
-const LoaderWrapper = styled('div')(({ theme }) => ({
-  position: 'fixed',
-  top: 0,
-  left: 0,
-  zIndex: 2001,
-  width: '100%',
-  '& > * + *': {
-    marginTop: theme.spacing(2)
+const useStyles = makeStyles()((theme) => ({
+  loaderWrapper: {
+    position: "fixed",
+    top: 0,
+    left: 0,
+    zIndex: 2001,
+    width: "100%",
+    "& > * + *": {
+      marginTop: theme.spacing(2)
+    }
   }
 }));
 
 export interface LoaderProps extends LinearProgressProps {}
 
-const Loader = () => (
-  <LoaderWrapper>
-    <LinearProgress color="primary" />
-  </LoaderWrapper>
-);
+const Loader: React.FC<LoaderProps> = (props) => {
+  const { classes } = useStyles();
+
+  return (
+    <Box className={classes.loaderWrapper}>
+      <LinearProgress color="primary" {...props} />
+    </Box>
+  );
+};
 
 // ==============================|| MINIMAL LAYOUT ||============================== //
 
-const CommonLayout = ({ layout = 'blank' }: { layout?: string }) => (
+export interface CommonLayoutProps {
+  layout?: string;
+}
+
+const CommonLayout: React.FC<CommonLayoutProps> = ({ layout = "blank" }) => (
   <>
-    {(layout === 'landing' || layout === 'simple') && (
+    {(layout === "landing" || layout === "simple") && (
       <Suspense fallback={<Loader />}>
         <Header layout={layout} />
         <Outlet />
-        <FooterBlock isFull={layout === 'landing'} />
+        <FooterBlock isFull={layout === "landing"} />
       </Suspense>
     )}
-    {layout === 'blank' && <Outlet />}
+    {layout === "blank" && <Outlet />}
   </>
 );
 

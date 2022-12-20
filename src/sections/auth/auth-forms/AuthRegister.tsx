@@ -109,6 +109,9 @@ const AuthRegister = () => {
       password: Yup.string()
         .max(255, t("register.password_max").toString())
         .required(t("register.password_required").toString()),
+      password_confirm: Yup.string()
+        .oneOf([Yup.ref("password"), null], t("register.password_confirm_invalid").toString())
+        .required(t("register.password_confirm_required").toString()),
       invite_code: invite_code,
       email_code: email_code
     });
@@ -120,6 +123,7 @@ const AuthRegister = () => {
         initialValues={{
           email: "",
           password: "",
+          password_confirm: "",
           invite_code: "",
           email_code: "",
           agree: false,
@@ -270,6 +274,7 @@ const AuthRegister = () => {
                       handleChange(e);
                       handlePasswordChange(e.target.value);
                     }}
+                    autoComplete={"new-password"}
                     endAdornment={
                       <InputAdornment position="end">
                         <IconButton
@@ -306,6 +311,35 @@ const AuthRegister = () => {
                     </Grid>
                   </Grid>
                 </FormControl>
+              </Grid>
+              {/* Password Confirm */}
+              <Grid item xs={12}>
+                <Stack spacing={1}>
+                  <InputLabel htmlFor="password-confirm">
+                    <Trans>{"register.password_confirm"}</Trans>
+                  </InputLabel>
+                  <OutlinedInput
+                    fullWidth
+                    error={Boolean(touched.password_confirm && errors.password_confirm)}
+                    id="password-confirm"
+                    type={showPassword ? "text" : "password"}
+                    value={values.password_confirm}
+                    name="password_confirm"
+                    onBlur={handleBlur}
+                    onChange={(e) => {
+                      handleChange(e);
+                      handlePasswordChange(e.target.value);
+                    }}
+                    autoComplete={"new-password"}
+                    placeholder="******"
+                    inputProps={{}}
+                  />
+                  {touched.password_confirm && errors.password_confirm && (
+                    <FormHelperText error id="helper-text-password-confirm">
+                      {errors.password_confirm}
+                    </FormHelperText>
+                  )}
+                </Stack>
               </Grid>
               {/* Invite Code */}
               <Grid item xs={12}>

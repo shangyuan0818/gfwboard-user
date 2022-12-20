@@ -1,6 +1,5 @@
 import { useEffect, useState, SyntheticEvent } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
 
 // material-ui
 import {
@@ -15,6 +14,7 @@ import {
   Stack,
   Typography
 } from "@mui/material";
+import { useSnackbar } from "notistack";
 
 // third party
 import * as Yup from "yup";
@@ -25,23 +25,19 @@ import useScriptRef from "@/hooks/useScriptRef";
 import IconButton from "@/components/@extended/IconButton";
 import AnimateButton from "@/components/@extended/AnimateButton";
 import { strengthColor, strengthIndicator } from "@/utils/password-strength";
-import { openSnackbar } from "@/store/reducers/snackbar";
 
 // types
 import { StringColorProps } from "@/types/password";
 
 // assets
 import { EyeOutlined, EyeInvisibleOutlined } from "@ant-design/icons";
-import { useSelector } from "@/store";
 
 // ============================|| STATIC - RESET PASSWORD ||============================ //
 
 const AuthResetPassword = () => {
   const scriptedRef = useScriptRef();
-  const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const { isLoggedIn } = useSelector((state) => state.auth);
+  const { enqueueSnackbar } = useSnackbar();
 
   const [level, setLevel] = useState<StringColorProps>();
   const [showPassword, setShowPassword] = useState(false);
@@ -85,21 +81,11 @@ const AuthResetPassword = () => {
             if (scriptedRef.current) {
               setStatus({ success: true });
               setSubmitting(false);
-
-              dispatch(
-                openSnackbar({
-                  open: true,
-                  message: "Successfuly reset password.",
-                  variant: "alert",
-                  alert: {
-                    color: "success"
-                  },
-                  close: false
-                })
-              );
-
+              enqueueSnackbar("Successfuly reset password.", {
+                variant: "success"
+              });
               setTimeout(() => {
-                navigate(isLoggedIn ? "/auth/login" : "/login", { replace: true });
+                navigate("/login", { replace: true });
               }, 1500);
             }
           } catch (err: any) {

@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 
 // material-ui
 import { Button, FormHelperText, Grid, InputLabel, OutlinedInput, Stack, Typography } from "@mui/material";
+import { useSnackbar } from "notistack";
 
 // third party
 import * as Yup from "yup";
@@ -11,7 +12,6 @@ import { Formik } from "formik";
 // project import
 import useScriptRef from "@/hooks/useScriptRef";
 import AnimateButton from "@/components/@extended/AnimateButton";
-import { openSnackbar } from "@/store/reducers/snackbar";
 import { useSelector } from "@/store";
 import { useResetPasswordMutation } from "@/store/services/api";
 
@@ -21,6 +21,7 @@ const AuthForgotPassword = () => {
   const scriptedRef = useScriptRef();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { enqueueSnackbar } = useSnackbar();
 
   const { isLoggedIn } = useSelector((state) => state.auth);
   const [resetPassword, {}] = useResetPasswordMutation();
@@ -45,17 +46,10 @@ const AuthForgotPassword = () => {
                 () => {
                   setStatus({ success: true });
                   setSubmitting(false);
-                  dispatch(
-                    openSnackbar({
-                      open: true,
-                      message: "Check mail for reset password link", // TODO: translate
-                      variant: "alert",
-                      alert: {
-                        color: "success"
-                      },
-                      close: false
-                    })
-                  );
+                  // TODO: translate
+                  enqueueSnackbar("Check mail for reset password link", {
+                    variant: "success"
+                  });
                   setTimeout(() => {
                     navigate(isLoggedIn ? "/auth/check-mail" : "/check-mail", { replace: true });
                   }, 1500);

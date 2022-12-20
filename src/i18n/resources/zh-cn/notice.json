@@ -1,3 +1,7 @@
 {
-  "capslock_on": ""
+  "capslock_on": "大写锁定已打开",
+  "capslock_off": "大写锁定已关闭",
+  "send_email_code_success": "验证码已发送至您的邮箱，请注意查收",
+  "send_email_code_fail": "验证码发送失败，请稍后重试",
+  "remind_check_trash_box": "请注意垃圾箱邮件"
 }

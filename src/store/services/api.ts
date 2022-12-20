@@ -13,9 +13,9 @@ import type { LoginPayload, LoginResponse } from "@/model/login";
 import type User from "@/model/user";
 import type Subscription from "@/model/subscription";
 import type Notice from "@/model/notice";
-import type Config from "@/model/config";
-import { ResetPasswordPayload } from "@/model/reset_password";
-import { RegisterPayload } from "@/model/register";
+import type { UserConfig, GuestConfig } from "@/model/config";
+import type { ResetPasswordPayload } from "@/model/reset_password";
+import type { RegisterPayload } from "@/model/register";
 
 const axiosBaseQuery: () => BaseQueryFn =
   () =>
@@ -105,9 +105,15 @@ const api = createApi({
         { type: "Notice" as const, id: "LIST" }
       ]
     }),
-    getConfig: builder.query<Config, void>({
+    getUserConfig: builder.query<UserConfig, void>({
       query: () => ({
         url: "/user/comm/config",
+        method: "GET"
+      })
+    }),
+    getGuestConfig: builder.query<GuestConfig, void>({
+      query: () => ({
+        url: "/guest/comm/config",
         method: "GET"
       })
     }),
@@ -141,7 +147,7 @@ const api = createApi({
         }
       }),
       transformResponse: (response: LoginResponse) => {
-        localStorage.setItem("gfw_token", response.token);
+        localStorage.setItem("gfw_token", response.auth_data);
         dispatch(
           login({
             isAdmin: response.is_admin
@@ -158,7 +164,8 @@ export const {
   useLoginMutation,
   useGetUserInfoQuery,
   useGetUserSubscriptionQuery,
-  useGetConfigQuery,
+  useGetUserConfigQuery,
+  useGetGuestConfigQuery,
   useGetNoticesQuery,
   useGetUserStatQuery,
   useSendEmailVerifyMutation,

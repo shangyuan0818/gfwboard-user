@@ -5,8 +5,9 @@ import { Grid, Stack, Typography } from "@mui/material";
 
 // project import
 import AuthWrapper from "@/sections/auth/AuthWrapper";
-import FirebaseRegister from "@/sections/auth/auth-forms/AuthRegister";
+import AuthRegister from "@/sections/auth/auth-forms/AuthRegister";
 import { useSelector } from "@/store";
+import { Trans } from "react-i18next";
 
 // ================================|| REGISTER ||================================ //
 
@@ -23,20 +24,16 @@ const Register = () => {
             alignItems="baseline"
             sx={{ mb: { xs: -0.5, sm: 0.5 } }}
           >
-            <Typography variant="h3">Sign up</Typography>
-            <Typography
-              component={Link}
-              to={isLoggedIn ? "/auth/login" : "/login"}
-              variant="body1"
-              sx={{ textDecoration: "none" }}
-              color="primary"
-            >
-              Already have an account?
+            <Typography variant="h3">
+              <Trans>{"register.title"}</Trans>
+            </Typography>
+            <Typography component={Link} to={"/login"} variant="body1" sx={{ textDecoration: "none" }} color="primary">
+              <Trans>{"register.go-login"}</Trans>
             </Typography>
           </Stack>
         </Grid>
         <Grid item xs={12}>
-          <FirebaseRegister />
+          <AuthRegister />
         </Grid>
       </Grid>
     </AuthWrapper>

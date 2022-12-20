@@ -8,6 +8,7 @@ const i18n = i18next.createInstance({
   fallbackLng: "zh-CN",
   resources,
   fallbackNS: "common",
+  nsSeparator: "::",
   interpolation: {
     escapeValue: false
   },

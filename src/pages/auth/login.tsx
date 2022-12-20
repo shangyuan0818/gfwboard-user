@@ -30,12 +30,12 @@ const Login: React.FC = () => {
             </Typography>
             <Typography
               component={Link}
-              to={isLoggedIn ? "/auth/register" : "/register"}
+              to={"/register"}
               variant="body1"
               sx={{ textDecoration: "none" }}
               color="primary"
             >
-              <Trans>{"login.register"}</Trans>
+              <Trans>{"login.go-register"}</Trans>
             </Typography>
           </Stack>
         </Grid>

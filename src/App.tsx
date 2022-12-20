@@ -2,14 +2,14 @@ import React from "react";
 
 // third-party
 import { I18nextProvider } from "react-i18next";
+import { SnackbarProvider } from "notistack";
+import { CacheProvider } from "@emotion/react";
 
 // project import
 import Routes from "@/routes";
 import ThemeCustomization from "@/themes";
 // import RTLLayout from '@/components/RTLLayout';
 import ScrollTop from "@/components/ScrollTop";
-import Snackbar from "@/components/@extended/Snackbar";
-import { CacheProvider } from "@emotion/react";
 import cache from "@/themes/cache";
 import i18n from "@/i18n";
 
@@ -21,10 +21,17 @@ const App = () => (
       {/* <RTLLayout> */}
       <I18nextProvider i18n={i18n}>
         <ScrollTop>
-          <>
+          <SnackbarProvider
+            maxSnack={3}
+            anchorOrigin={{
+              vertical: "top",
+              horizontal: "center"
+            }}
+            autoHideDuration={4000}
+            dense
+          >
             <Routes />
-            <Snackbar />
-          </>
+          </SnackbarProvider>
         </ScrollTop>
       </I18nextProvider>
       {/* </RTLLayout> */}

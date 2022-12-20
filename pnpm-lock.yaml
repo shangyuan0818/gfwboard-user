@@ -58,6 +58,7 @@ specifiers:
   identity-obj-proxy: ^3.0.0
   immutable: ^4.1.0
   lodash-es: ^4.17.21
+  notistack: ^2.0.8
   postcss: ^8.4.4
   postcss-flexbugs-fixes: ^5.0.2
   postcss-normalize: ^10.0.1
@@ -131,6 +132,7 @@ dependencies:
   i18next-browser-languagedetector: 7.0.1
   identity-obj-proxy: 3.0.0
   lodash-es: 4.17.21
+  notistack: 2.0.8_yeai4wnw6hhsr6opvemqpgdfkm
   postcss: 8.4.20
   postcss-flexbugs-fixes: 5.0.2_postcss@8.4.20
   postcss-normalize: 10.0.1_tqzbzbchejvvju4uyfx57d2jda
@@ -5900,6 +5902,29 @@ packages:
   /normalize-range/0.1.2:
     resolution: {integrity: sha512-bdok/XvKII3nUpklnV6P2hxtMNrCboOjAcyBuQnWEhO665FwrSNRxU+AqpsyvO6LgGYPspN+lu5CLtw4jPRKNA==}
     engines: {node: '>=0.10.0'}
+    dev: false
+
+  /notistack/2.0.8_yeai4wnw6hhsr6opvemqpgdfkm:
+    resolution: {integrity: sha512-/IY14wkFp5qjPgKNvAdfL5Jp6q90+MjgKTPh4c81r/lW70KeuX6b9pE/4f8L4FG31cNudbN9siiFS5ql1aSLRw==}
+    peerDependencies:
+      '@emotion/react': ^11.4.1
+      '@emotion/styled': ^11.3.0
+      '@mui/material': ^5.0.0
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+    peerDependenciesMeta:
+      '@emotion/react':
+        optional: true
+      '@emotion/styled':
+        optional: true
+    dependencies:
+      '@emotion/react': 11.10.5_weohr3svf6vrfbybzz2cheulci
+      '@emotion/styled': 11.10.5_u3btsfesflhlskmx36hju4sgdu
+      '@mui/material': 5.10.9_lskpmcsdi7ipu6qpuapyu56ihm
+      clsx: 1.2.1
+      hoist-non-react-statics: 3.3.2
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
     dev: false
 
   /object-assign/4.1.1:

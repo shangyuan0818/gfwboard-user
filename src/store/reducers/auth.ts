@@ -1,8 +1,5 @@
 import lo from "lodash-es";
 
-// action - state management
-import { REGISTER, LOGIN, LOGOUT } from "./actions";
-
 // types
 import { AuthProps, AuthActionProps } from "@/types/auth";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";

@@ -110,7 +110,6 @@
     "start": "vite",
     "build": "pnpm run type-check && vite build",
     "format": "prettier --write src/**/*.{js,jsx,ts,tsx,css}",
-    "preinstall": "npx only-allow pnpm",
     "type-check": "tsc --noEmit"
   },
   "eslintConfig": {

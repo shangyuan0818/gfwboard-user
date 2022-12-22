@@ -3,19 +3,17 @@ import { Link as RouterLink, useNavigate } from "react-router-dom";
 
 // material-ui
 import {
+  Box,
   Button,
-  Checkbox,
-  Divider,
-  FormControlLabel,
+  CircularProgress,
   FormHelperText,
   Grid,
-  Link,
   InputAdornment,
   InputLabel,
+  Link,
   OutlinedInput,
   Stack,
-  Typography,
-  Box
+  Typography
 } from "@mui/material";
 
 // third party
@@ -31,13 +29,12 @@ import IconButton from "@/components/@extended/IconButton";
 import AnimateButton from "@/components/@extended/AnimateButton";
 
 // assets
-import { EyeOutlined, EyeInvisibleOutlined } from "@ant-design/icons";
+import { EyeInvisibleOutlined, EyeOutlined } from "@ant-design/icons";
 import lo from "lodash-es";
 
 // ============================|| FIREBASE - LOGIN ||============================ //
 
 const AuthLogin = () => {
-  const [checked, setChecked] = React.useState(false);
   const [capsWarning, setCapsWarning] = React.useState(false);
 
   const { isLoggedIn } = useSelector((state) => state.auth);
@@ -212,7 +209,7 @@ const AuthLogin = () => {
                     variant="contained"
                     color="primary"
                   >
-                    {t("submit").toString()}
+                    {isSubmitting ? <CircularProgress size={24} /> : <Trans i18nKey={"login.submit"}>Submit</Trans>}
                   </Button>
                 </AnimateButton>
               </Grid>

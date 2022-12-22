@@ -1,4 +1,4 @@
-import React, { useEffect, useState, SyntheticEvent, useMemo } from "react";
+import React, { SyntheticEvent, useEffect, useMemo, useState } from "react";
 import lo from "lodash-es";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 
@@ -6,20 +6,18 @@ import { Link as RouterLink, useNavigate } from "react-router-dom";
 import {
   Box,
   Button,
-  Divider,
+  Checkbox,
+  CircularProgress,
   FormControl,
+  FormControlLabel,
   FormHelperText,
   Grid,
-  Link,
   InputAdornment,
   InputLabel,
+  Link,
   OutlinedInput,
   Stack,
-  Typography,
-  FormControlLabel,
-  Radio,
-  Checkbox,
-  CircularProgress
+  Typography
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
@@ -33,7 +31,8 @@ import OtpInput from "react18-input-otp";
 import useScriptRef from "@/hooks/useScriptRef";
 import IconButton from "@/components/@extended/IconButton";
 import AnimateButton from "@/components/@extended/AnimateButton";
-import { useGetGuestConfigQuery, useRegisterMutation, useSendEmailVerifyMutation } from "@/store/services/api";
+import SendMailButton from "@/sections/auth/auth-forms/SendMailButton";
+import { useGetGuestConfigQuery, useRegisterMutation } from "@/store/services/api";
 import { strengthColor, strengthIndicator } from "@/utils/password-strength";
 
 // types
@@ -41,7 +40,7 @@ import { StringColorProps } from "@/types/password";
 import { RegisterPayload } from "@/model/register";
 
 // assets
-import { EyeOutlined, EyeInvisibleOutlined, SendOutlined } from "@ant-design/icons";
+import { EyeInvisibleOutlined, EyeOutlined } from "@ant-design/icons";
 import { useSnackbar } from "notistack";
 
 // ============================|| FIREBASE - REGISTER ||============================ //
@@ -54,7 +53,6 @@ const AuthRegister = () => {
   const { enqueueSnackbar } = useSnackbar();
 
   const [register] = useRegisterMutation();
-  const [sendEmailCode] = useSendEmailVerifyMutation();
   const { data: siteConfig } = useGetGuestConfigQuery();
 
   const [level, setLevel] = useState<StringColorProps>();
@@ -70,20 +68,6 @@ const AuthRegister = () => {
   const handlePasswordChange = (value: string) => {
     const temp = strengthIndicator(value);
     setLevel(strengthColor(temp));
-  };
-
-  const handleSendEmailCode = (email: string) => () => {
-    console.log(`send email code to ${email}`);
-    sendEmailCode(email)
-      .unwrap()
-      .then((res) => {
-        console.log(res);
-        enqueueSnackbar(t("notice::send_email_code_success"), { variant: "success" });
-      })
-      .catch((err) => {
-        console.error("send email code error", err);
-        enqueueSnackbar(t("notice::send_email_code_fail"), { variant: "error" });
-      });
   };
 
   useEffect(() => {
@@ -191,18 +175,7 @@ const AuthRegister = () => {
                     placeholder="user@example.com"
                     inputProps={{}}
                     endAdornment={
-                      siteConfig?.is_email_verify === 1 ? (
-                        <InputAdornment position="end">
-                          <IconButton
-                            aria-label="send email code"
-                            onClick={handleSendEmailCode(values.email)}
-                            edge="end"
-                            color="secondary"
-                          >
-                            <SendOutlined />
-                          </IconButton>
-                        </InputAdornment>
-                      ) : undefined
+                      siteConfig?.is_email_verify === 1 ? <SendMailButton email={values.email} /> : undefined
                     }
                   />
                   {touched.email && errors.email && (

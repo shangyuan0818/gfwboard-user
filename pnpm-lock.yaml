@@ -22,6 +22,7 @@ specifiers:
   '@types/qs': ^6.9.7
   '@types/react': ^18.0.26
   '@types/react-dom': ^18.0.6
+  '@types/react-google-recaptcha': ^2.1.5
   '@types/uuid': ^8.3.4
   '@types/webpack-env': ^1.18.0
   '@typescript-eslint/eslint-plugin': 5.40.0
@@ -73,6 +74,7 @@ specifiers:
   react-device-detect: ^2.2.2
   react-dom: ^18.2.0
   react-error-overlay: 6.0.9
+  react-google-recaptcha: ^2.1.0
   react-i18next: ^12.1.1
   react-redux: ^8.0.5
   react-refresh: ^0.11.0
@@ -144,6 +146,7 @@ dependencies:
   react-app-polyfill: 3.0.0
   react-device-detect: 2.2.2_biqbaboplfbrettd7655fr4n2y
   react-dom: 18.2.0_react@18.2.0
+  react-google-recaptcha: 2.1.0_react@18.2.0
   react-i18next: 12.1.1_ewanii43wbrufvukcu3uzq3hsy
   react-redux: 8.0.5_fzvwyuupj4d6el7pqkxm6fygb4
   react-refresh: 0.11.0
@@ -179,6 +182,7 @@ devDependencies:
   '@types/qs': 6.9.7
   '@types/react': 18.0.26
   '@types/react-dom': 18.0.6
+  '@types/react-google-recaptcha': 2.1.5
   '@types/uuid': 8.3.4
   '@types/webpack-env': 1.18.0
   '@typescript-eslint/eslint-plugin': 5.40.0_25sstg4uu2sk4pm7xcyzuov7xq
@@ -3303,6 +3307,12 @@ packages:
     resolution: {integrity: sha512-/5OFZgfIPSwy+YuIBP/FgJnQnsxhZhjjrnxudMddeblOouIodEQ75X14Rr4wGSG/bknL+Omy9iWlLo1u/9GzAA==}
     dependencies:
       '@types/react': 18.0.26
+
+  /@types/react-google-recaptcha/2.1.5:
+    resolution: {integrity: sha512-iWTjmVttlNgp0teyh7eBXqNOQzVq2RWNiFROWjraOptRnb1OcHJehQnji0sjqIRAk9K0z8stjyhU+OLpPb0N6w==}
+    dependencies:
+      '@types/react': 18.0.26
+    dev: true
 
   /@types/react-is/17.0.3:
     resolution: {integrity: sha512-aBTIWg1emtu95bLTLx0cpkxwGW3ueZv71nE2YFBpL8k/z5czEW8yYpOo8Dp+UUAFAtKwNaOsh/ioSeQnWlZcfw==}
@@ -6824,6 +6834,16 @@ packages:
       whatwg-fetch: 3.6.2
     dev: false
 
+  /react-async-script/1.2.0_react@18.2.0:
+    resolution: {integrity: sha512-bCpkbm9JiAuMGhkqoAiC0lLkb40DJ0HOEJIku+9JDjxX3Rcs+ztEOG13wbrOskt3n2DTrjshhaQ/iay+SnGg5Q==}
+    peerDependencies:
+      react: '>=16.4.1'
+    dependencies:
+      hoist-non-react-statics: 3.3.2
+      prop-types: 15.8.1
+      react: 18.2.0
+    dev: false
+
   /react-device-detect/2.2.2_biqbaboplfbrettd7655fr4n2y:
     resolution: {integrity: sha512-zSN1gIAztUekp5qUT/ybHwQ9fmOqVT1psxpSlTn1pe0CO+fnJHKRLOWWac5nKxOxvOpD/w84hk1I+EydrJp7SA==}
     peerDependencies:
@@ -6851,6 +6871,16 @@ packages:
 
   /react-fast-compare/2.0.4:
     resolution: {integrity: sha512-suNP+J1VU1MWFKcyt7RtjiSWUjvidmQSlqu+eHslq+342xCbGTYmC0mEhPCOHxlW0CywylOC1u2DFAT+bv4dBw==}
+    dev: false
+
+  /react-google-recaptcha/2.1.0_react@18.2.0:
+    resolution: {integrity: sha512-K9jr7e0CWFigi8KxC3WPvNqZZ47df2RrMAta6KmRoE4RUi7Ys6NmNjytpXpg4HI/svmQJLKR+PncEPaNJ98DqQ==}
+    peerDependencies:
+      react: '>=16.4.1'
+    dependencies:
+      prop-types: 15.8.1
+      react: 18.2.0
+      react-async-script: 1.2.0_react@18.2.0
     dev: false
 
   /react-i18next/12.1.1_ewanii43wbrufvukcu3uzq3hsy:

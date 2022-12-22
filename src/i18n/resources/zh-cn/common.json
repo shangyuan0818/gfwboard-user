@@ -50,7 +50,48 @@
     "invite_code_placeholder_required": "请输入邀请码",
     "submit": "注册"
   },
+  "forgot_password": {
+    "title": "忘记密码",
+    "back_to_login": "返回登录",
+    "email": "邮箱",
+    "email_placeholder": "请输入邮箱",
+    "email_required": "您必须输入邮箱",
+    "email_invalid": "您输入的邮箱无效",
+    "email_code": "邮箱验证码",
+    "email_code_placeholder": "请输入邮箱验证码",
+    "email_code_required": "您必须输入邮箱验证码",
+    "email_code_min": "邮箱验证码长度不能少于 {{count}} 个字符",
+    "email_code_max": "邮箱验证码长度不能超过 {{count}} 个字符",
+    "send_email_code": "验证",
+    "password": "密码",
+    "password_placeholder": "请输入密码",
+    "password_required": "您必须输入密码",
+    "password_min": "密码长度不能少于 {{count}} 个字符",
+    "password_max": "密码长度不能超过 {{count}} 个字符",
+    "password_confirmation": "确认密码",
+    "password_confirmation_placeholder": "请再次输入密码",
+    "password_confirmation_required": "您必须再次输入密码",
+    "password_confirmation_invalid": "您两次输入的密码不一致",
+    "password_strength": "密码强度",
+    "password_strength_poor": "弱",
+    "password_strength_weak": "中",
+    "password_strength_normal": "正常",
+    "password_strength_good": "好",
+    "password_strength_strong": "强",
+    "password_confirm": "确认密码",
+    "password_confirm_invalid": "您两次输入的密码不一致",
+    "password_confirm_required": "您必须再次输入密码",
+    "submit": "重置密码"
+  },
   "auth": {
+    "captcha": {
+      "title": "人机验证",
+      "description": "请完成下面的验证",
+      "submit": "提交",
+      "success": "邮件已发送，请注意查收",
+      "error": "验证失败，请重试",
+      "error_null_token": "出现错误，Token 为空，请重试"
+    },
     "footer": {
       "privacy": "<2>隐私政策</2> 指定我们如何收集、使用和保护您的信息。",
       "links": {

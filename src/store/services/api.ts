@@ -16,6 +16,7 @@ import type Notice from "@/model/notice";
 import type { UserConfig, GuestConfig } from "@/model/config";
 import type { ResetPasswordPayload } from "@/model/reset_password";
 import type { RegisterPayload } from "@/model/register";
+import SendMailPayload from "@/model/send_mail";
 
 const axiosBaseQuery: () => BaseQueryFn =
   () =>
@@ -118,11 +119,11 @@ const api = createApi({
         method: "GET"
       })
     }),
-    sendEmailVerify: builder.mutation<boolean, string>({
-      query: (email) => ({
+    sendEmailVerify: builder.mutation<boolean, SendMailPayload>({
+      query: (body) => ({
         url: "/passport/comm/sendEmailVerify",
         method: "POST",
-        body: qs.stringify({ email }),
+        body: qs.stringify(body),
         headers: {
           "Content-Type": "application/x-www-form-urlencoded"
         }

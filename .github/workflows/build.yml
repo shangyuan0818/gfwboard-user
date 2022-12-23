@@ -33,4 +33,4 @@ jobs:
         cache: 'pnpm'
     
     - run: pnpm install --no-frozen-lockfile
-    - run: pnpm run build --if-present
+    - run: pnpm run build

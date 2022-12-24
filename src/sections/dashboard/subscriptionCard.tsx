@@ -49,8 +49,8 @@ const SubscriptionCard: React.FC = () => {
           <LinearProgress variant={"determinate"} value={trafficUsed * 100} />
           <Typography variant={"body1"}>
             {t("dashboard.subscription-card.traffic", {
-              used: lo.round((subscriptionInfo.u + subscriptionInfo.d) / 1024 / 1024 / 1024, 2),
-              total: lo.round(subscriptionInfo.transfer_enable / 1024 / 1024 / 1024, 2)
+              used: lo.round((subscriptionInfo.u + subscriptionInfo.d) / 1073741824, 2),
+              total: lo.round(subscriptionInfo.transfer_enable / 1073741824, 2)
             })}
           </Typography>
         </Stack>

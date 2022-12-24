@@ -99,5 +99,11 @@
         "privacy": "隐私政策"
       }
     }
+  },
+  "dashboard": {
+    "announcement": {
+      "chip": "公告",
+      "title": "公告"
+    }
   }
 }

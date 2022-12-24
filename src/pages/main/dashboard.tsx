@@ -1,6 +1,9 @@
 import React, { useEffect } from "react";
+
+// project import
 import { useDispatch } from "@/store";
 import { setTitle } from "@/store/reducers/view";
+import DashboardSection from "@/sections/dashboard";
 
 const Dashboard: React.FC = () => {
   // set title
@@ -9,7 +12,7 @@ const Dashboard: React.FC = () => {
     dispatch(setTitle("dashboard"));
   }, [dispatch]);
 
-  return <div></div>;
+  return <DashboardSection />;
 };
 
 export default Dashboard;

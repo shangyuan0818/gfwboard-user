@@ -17,10 +17,7 @@ const config: DefaultConfigProps = {
   container: true,
   mode: "light",
   presetColor: "default",
-  themeDirection: "ltr",
-  api: {
-    baseURL: "https://direct.gfwservice.xyz/api/v1/"
-  }
+  themeDirection: "ltr"
 };
 
 export default config;

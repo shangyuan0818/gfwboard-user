@@ -3,10 +3,10 @@ import { ResourceLanguage } from "i18next";
 // translations
 import common from "./common.json";
 import notice from "./notice.json";
+import title from "./title.json";
 
-const zhCn: ResourceLanguage = {
+export default <ResourceLanguage>{
   common,
-  notice
+  notice,
+  title
 };
-
-export default zhCn;

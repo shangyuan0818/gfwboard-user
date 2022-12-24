@@ -1,3 +1,5 @@
+import React, { useEffect } from "react";
+import { Trans } from "react-i18next";
 import { Link } from "react-router-dom";
 
 // material-ui
@@ -6,28 +8,42 @@ import { Grid, Stack, Typography } from "@mui/material";
 // project import
 import AuthWrapper from "@/sections/auth/AuthWrapper";
 import AuthForgotPassword from "@/sections/auth/auth-forms/AuthForgotPassword";
-import { Trans } from "react-i18next";
+import { useDispatch } from "@/store";
+import { setTitle } from "@/store/reducers/view";
 
 // ================================|| FORGOT PASSWORD ||================================ //
 
-const ForgotPassword = () => (
-  <AuthWrapper>
-    <Grid container spacing={3}>
-      <Grid item xs={12}>
-        <Stack direction="row" justifyContent="space-between" alignItems="baseline" sx={{ mb: { xs: -0.5, sm: 0.5 } }}>
-          <Typography variant="h3">
-            <Trans i18nKey={"forgot_password.title"}>Forgot password</Trans>
-          </Typography>
-          <Typography component={Link} to={"/login"} variant="body1" sx={{ textDecoration: "none" }} color="primary">
-            <Trans i18nKey={"forgot_password.back_to_login"}>Back to login</Trans>
-          </Typography>
-        </Stack>
+const ForgotPassword: React.FC = () => {
+  // set title
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(setTitle("forgot-password"));
+  }, [dispatch]);
+
+  return (
+    <AuthWrapper>
+      <Grid container spacing={3}>
+        <Grid item xs={12}>
+          <Stack
+            direction="row"
+            justifyContent="space-between"
+            alignItems="baseline"
+            sx={{ mb: { xs: -0.5, sm: 0.5 } }}
+          >
+            <Typography variant="h3">
+              <Trans i18nKey={"forgot_password.title"}>Forgot password</Trans>
+            </Typography>
+            <Typography component={Link} to={"/login"} variant="body1" sx={{ textDecoration: "none" }} color="primary">
+              <Trans i18nKey={"forgot_password.back_to_login"}>Back to login</Trans>
+            </Typography>
+          </Stack>
+        </Grid>
+        <Grid item xs={12}>
+          <AuthForgotPassword />
+        </Grid>
       </Grid>
-      <Grid item xs={12}>
-        <AuthForgotPassword />
-      </Grid>
-    </Grid>
-  </AuthWrapper>
-);
+    </AuthWrapper>
+  );
+};
 
 export default ForgotPassword;

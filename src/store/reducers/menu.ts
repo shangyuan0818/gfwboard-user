@@ -6,7 +6,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState: MenuProps = {
   openItem: ["dashboard"],
   openComponent: "buttons",
-  drawerOpen: false,
+  drawerOpen: localStorage.getItem("menu_drawerOpen") === "true",
   componentDrawerOpen: true
 };
 
@@ -26,6 +26,7 @@ const menu = createSlice({
 
     openDrawer(state, action) {
       state.drawerOpen = action.payload.drawerOpen;
+      localStorage.setItem("menu_drawerOpen", state.drawerOpen.toString());
     },
 
     openComponentDrawer(state, action) {

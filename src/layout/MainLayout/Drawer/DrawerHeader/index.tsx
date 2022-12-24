@@ -1,3 +1,5 @@
+import React from "react";
+
 // material-ui
 import { useTheme } from "@mui/material/styles";
 
@@ -11,7 +13,7 @@ interface Props {
   open: boolean;
 }
 
-const DrawerHeader = ({ open }: Props) => {
+const DrawerHeader: React.FC<Props> = ({ open }) => {
   const theme = useTheme();
 
   return (

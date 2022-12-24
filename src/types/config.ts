@@ -33,12 +33,6 @@ export type DefaultConfigProps = {
   mode: ThemeMode;
   presetColor: PresetColor;
   themeDirection: ThemeDirection;
-
-  api: ApiConfigurations;
-};
-
-export type ApiConfigurations = {
-  baseURL: string;
 };
 
 export type CustomizationProps = {

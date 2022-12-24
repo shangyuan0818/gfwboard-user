@@ -49,7 +49,6 @@ const api = createApi({
   baseQuery: axiosBaseQuery(),
   tagTypes: ["User", "Subscription", "Plan", "Notice"],
   refetchOnReconnect: true,
-  refetchOnMountOrArgChange: true,
   endpoints: (builder) => ({
     login: builder.mutation<LoginResponse, LoginPayload>({
       query: (body) => ({
@@ -87,6 +86,7 @@ const api = createApi({
         method: "GET"
       }),
       providesTags: (result) => [
+        "Subscription",
         { type: "Subscription", id: result?.uuid },
         { type: "Plan", id: result?.plan.id }
       ]

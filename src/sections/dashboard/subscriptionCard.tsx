@@ -1,5 +1,9 @@
 import React, { useMemo } from "react";
-import MainCard from "@/components/MainCard";
+import dayjs from "dayjs";
+import lo from "lodash-es";
+import { Trans, useTranslation } from "react-i18next";
+
+// material-ui
 import {
   Box,
   CardContent,
@@ -10,10 +14,10 @@ import {
   Stack,
   Typography
 } from "@mui/material";
-import { Trans, useTranslation } from "react-i18next";
+
+// project imports
+import MainCard from "@/components/MainCard";
 import { useGetUserSubscriptionQuery } from "@/store/services/api";
-import dayjs from "dayjs";
-import lo from "lodash-es";
 
 const SubscriptionCard: React.FC = () => {
   const { data: subscriptionInfo } = useGetUserSubscriptionQuery();
@@ -25,13 +29,9 @@ const SubscriptionCard: React.FC = () => {
   );
 
   return (
-    <MainCard>
-      <Typography variant={"h5"} mb={2}>
-        <Trans i18nKey={"dashboard.subscription-card.title"}>My Subscription</Trans>
-      </Typography>
-      <Divider />
+    <MainCard title={<Trans i18nKey={"dashboard.subscription-card.title"}>My Subscription</Trans>}>
       {subscriptionInfo ? (
-        <Stack mt={2} spacing={2}>
+        <Stack spacing={2}>
           <Typography component={"h6"} variant={"h4"}>
             {subscriptionInfo.plan.name}
           </Typography>

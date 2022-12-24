@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 
 // third-party
-import { I18nextProvider } from "react-i18next";
+import { I18nextProvider, useTranslation } from "react-i18next";
 import { SnackbarProvider } from "notistack";
 import { CacheProvider } from "@emotion/react";
 
@@ -17,10 +17,11 @@ import { useSelector } from "@/store";
 // ==============================|| APP - THEME, ROUTER, LOCAL  ||============================== //
 
 const App = () => {
+  const { t } = useTranslation();
   const title = useSelector((state) => state.view.title);
   useEffect(() => {
     document.title = title
-      ? `${title}${window.settings.title_split}${window.settings.title}`
+      ? `${t(title, { ns: "title" })}${window.settings.title_split}${window.settings.title}`
       : `${window.settings.title}`;
   }, [title]);
 

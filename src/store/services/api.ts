@@ -83,7 +83,7 @@ const api = createApi({
     }),
     getUserSubscription: builder.query<Subscription, void>({
       query: () => ({
-        url: "/user/subscription",
+        url: "/user/getSubscribe",
         method: "GET"
       }),
       providesTags: (result) => [

@@ -12,7 +12,8 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
-  Typography
+  Typography,
+  useMediaQuery
 } from "@mui/material";
 import Carousel from "react-material-ui-carousel";
 
@@ -25,6 +26,7 @@ import { makeStyles } from "@/themes/hooks";
 import defaultBackgroundImage from "@/assets/images/announcement_background.svg";
 import Notice from "@/model/notice";
 import MuiMarkdown from "mui-markdown";
+import { useTheme } from "@mui/material/styles";
 
 const useStyles = makeStyles()((theme) => ({
   carousel: {
@@ -110,9 +112,13 @@ const NoticeCarousel: React.FC = () => {
 
   const { classes } = useStyles();
 
+  const theme = useTheme();
+  const isMobileSize = useMediaQuery(theme.breakpoints.down("xs"));
+
   return (
     <Carousel
       autoPlay
+      swipe={isMobileSize}
       stopAutoPlayOnHover
       interval={5000}
       animation={"slide"}

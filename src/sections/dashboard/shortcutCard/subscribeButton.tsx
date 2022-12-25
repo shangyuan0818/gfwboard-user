@@ -1,4 +1,6 @@
 import React, { useMemo, useState } from "react";
+
+// material-ui
 import {
   Dialog,
   DialogContent,
@@ -12,16 +14,29 @@ import {
   Typography,
   useMediaQuery
 } from "@mui/material";
-import MantisAvatar from "@/components/@extended/Avatar";
-import { useTranslation } from "react-i18next";
 import { CloudDownloadOutlined, CopyOutlined, QrcodeOutlined } from "@ant-design/icons";
 import { useTheme } from "@mui/material/styles";
-import { useGetUserSubscriptionQuery } from "@/store/services/api";
 import { useSnackbar } from "notistack";
+
+// third-party
+import { useTranslation } from "react-i18next";
 import { useQRCode } from "next-qrcode";
 import UAParser from "ua-parser-js";
+import CryptoJS from "crypto-js";
+
+// project imports
+import MantisAvatar from "@/components/@extended/Avatar";
+import { useGetUserSubscriptionQuery } from "@/store/services/api";
+
+// assets
 import clashIcon from "@/assets/images/software/clash.png";
+import clashxIcon from "@/assets/images/software/clashx.png";
 import surfboardIcon from "@/assets/images/software/surfboard.png";
+import shadowrocketIcon from "@/assets/images/software/shadowrocket.png";
+import surgeIcon from "@/assets/images/software/surge.png";
+import quantumultxIcon from "@/assets/images/software/quantumultx.png";
+import stashIcon from "@/assets/images/software/stash.png";
+import { Base64Encode } from "@/utils/crypto";
 
 const CopyLinkButton: React.FC = () => {
   const { t } = useTranslation();
@@ -116,9 +131,32 @@ const ClashButton: React.FC = () => {
     <ListItem disablePadding divider>
       <ListItemButton onClick={handleClick}>
         <ListItemAvatar>
-          <MantisAvatar alt="Copy" type="combined" color="secondary" src={clashIcon} />
+          <MantisAvatar alt="Clash" type="combined" color="secondary" src={clashIcon} />
         </ListItemAvatar>
         <ListItemText primary={t("dashboard.shortcut.subscribe.clash")} />
+      </ListItemButton>
+    </ListItem>
+  );
+};
+const ClashXButton: React.FC = () => {
+  const { t } = useTranslation();
+  const { data: subscribeInfo } = useGetUserSubscriptionQuery();
+
+  const handleClick = () => {
+    if (subscribeInfo) {
+      const url = new URL(subscribeInfo.subscribe_url);
+      url.searchParams.set("flag", "clash");
+      window.open(`clash://install-config?url=${encodeURIComponent(url.toString())}`, "_self");
+    }
+  };
+
+  return (
+    <ListItem disablePadding divider>
+      <ListItemButton onClick={handleClick}>
+        <ListItemAvatar>
+          <MantisAvatar alt="Clash X" type="combined" color="secondary" src={clashxIcon} />
+        </ListItemAvatar>
+        <ListItemText primary={t("dashboard.shortcut.subscribe.clashx")} />
       </ListItemButton>
     </ListItem>
   );
@@ -133,7 +171,9 @@ const SurfboardButton: React.FC = () => {
       const url = new URL(subscribeInfo.subscribe_url);
       url.searchParams.set("flag", "surfboard");
       window.open(
-        `surge:///install-config?url=${encodeURIComponent(url.toString())}&name=${window.settings.title}`,
+        `surge:///install-config?url=${encodeURIComponent(url.toString())}&name=${encodeURIComponent(
+          window.settings.title
+        )}`,
         "_self"
       );
     }
@@ -143,9 +183,125 @@ const SurfboardButton: React.FC = () => {
     <ListItem disablePadding divider>
       <ListItemButton onClick={handleClick}>
         <ListItemAvatar>
-          <MantisAvatar alt="Copy" type="combined" color="secondary" src={surfboardIcon} />
+          <MantisAvatar alt="Surfboard" type="combined" color="secondary" src={surfboardIcon} />
         </ListItemAvatar>
         <ListItemText primary={t("dashboard.shortcut.subscribe.surfboard")} />
+      </ListItemButton>
+    </ListItem>
+  );
+};
+
+const ShadowrocketButton: React.FC = () => {
+  const { t } = useTranslation();
+  const { data: subscribeInfo } = useGetUserSubscriptionQuery();
+
+  const handleClick = () => {
+    if (subscribeInfo) {
+      const url = new URL(subscribeInfo.subscribe_url);
+      url.searchParams.set("flag", "shadowrocket");
+      window.open(
+        `shadowrocket://add/sub://${Base64Encode(url.toString())}?remark=${encodeURIComponent(window.settings.title)}`,
+        "_self"
+      );
+    }
+  };
+
+  return (
+    <ListItem disablePadding divider>
+      <ListItemButton onClick={handleClick}>
+        <ListItemAvatar>
+          <MantisAvatar alt="Shadowrocket" type="combined" color="secondary" src={shadowrocketIcon} />
+        </ListItemAvatar>
+        <ListItemText primary={t("dashboard.shortcut.subscribe.shadowrocket")} />
+      </ListItemButton>
+    </ListItem>
+  );
+};
+
+const QuantumultXButton: React.FC = () => {
+  const { t } = useTranslation();
+  const { data: subscribeInfo } = useGetUserSubscriptionQuery();
+
+  const handleClick = () => {
+    if (subscribeInfo) {
+      const url = new URL(subscribeInfo.subscribe_url);
+      url.searchParams.set("flag", "quantumult x");
+      window.open(
+        `quantumult-x:///update-configuration?remote-resource=${encodeURI(
+          JSON.stringify({
+            server_remote: `"${url.toString()}, tag=${window.settings.title}"`
+          })
+        )}`,
+        "_self"
+      );
+    }
+  };
+
+  return (
+    <ListItem disablePadding divider>
+      <ListItemButton onClick={handleClick}>
+        <ListItemAvatar>
+          <MantisAvatar alt="Quantumult X" type="combined" color="secondary" src={quantumultxIcon} />
+        </ListItemAvatar>
+        <ListItemText primary={t("dashboard.shortcut.subscribe.quantumultx")} />
+      </ListItemButton>
+    </ListItem>
+  );
+};
+
+const SurgeButton: React.FC = () => {
+  const { t } = useTranslation();
+  const { data: subscribeInfo } = useGetUserSubscriptionQuery();
+
+  const handleClick = () => {
+    if (subscribeInfo) {
+      const url = new URL(subscribeInfo.subscribe_url);
+      url.searchParams.set("flag", "surge");
+      window.open(
+        `surge:///install-config?url=${encodeURIComponent(url.toString())}&name=${encodeURIComponent(
+          window.settings.title
+        )}`,
+        "_self"
+      );
+    }
+  };
+
+  return (
+    <ListItem disablePadding divider>
+      <ListItemButton onClick={handleClick}>
+        <ListItemAvatar>
+          <MantisAvatar alt="Surge" type="combined" color="secondary" src={surgeIcon} />
+        </ListItemAvatar>
+        <ListItemText primary={t("dashboard.shortcut.subscribe.surge")} />
+      </ListItemButton>
+    </ListItem>
+  );
+};
+
+const StashButton: React.FC = () => {
+  const { t } = useTranslation();
+  const { data: subscribeInfo } = useGetUserSubscriptionQuery();
+
+  const handleClick = () => {
+    if (subscribeInfo) {
+      const url = new URL(subscribeInfo.subscribe_url);
+      url.searchParams.set("flag", "stash");
+      window.open(
+        `stash:///install-config?url=${encodeURIComponent(url.toString())}&name=${encodeURIComponent(
+          window.settings.title
+        )}`,
+        "_self"
+      );
+    }
+  };
+
+  return (
+    <ListItem disablePadding divider>
+      <ListItemButton onClick={handleClick}>
+        <ListItemAvatar>
+          <MantisAvatar alt="Stash" type="combined" color="secondary" src={stashIcon} />
+        </ListItemAvatar>
+        <ListItemText primary={t("dashboard.shortcut.subscribe.stash")} />
       </ListItemButton>
     </ListItem>
   );
@@ -198,10 +354,16 @@ const SubscribeButton: React.FC = () => {
         >
           <CopyLinkButton />
           <ScanQRCodeButton />
-          {UserAgentData.os.name === "Windows" && <ClashButton /> /* Clash For Windows */}
-          {UserAgentData.os.name === "Mac OS" && <ClashButton /> /* ClashX */}
-          {UserAgentData.os.name === "Android" && <ClashButton /> /* Clash For Android */}
-          {UserAgentData.os.name === "Android" && <SurfboardButton /> /* Surfboard */}
+          {UserAgentData.os.name === "Windows" && [<ClashButton />]}
+          {UserAgentData.os.name === "Android" && [<ClashButton />, <SurfboardButton />]}
+          {UserAgentData.os.name === "Mac OS" && [<ClashXButton />, <SurgeButton />]}
+          {UserAgentData.os.name === "iOS" && [
+            <ShadowrocketButton />,
+            <QuantumultXButton />,
+            <SurgeButton />,
+            <StashButton />
+          ]}
+          {UserAgentData.os.name === "Linux" && [<ClashButton />]}
         </List>
       </Modal>
     </>

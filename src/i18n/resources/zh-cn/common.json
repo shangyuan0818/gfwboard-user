@@ -128,7 +128,12 @@
         "scan": "扫描二维码",
         "scan_tips": "使用支持扫码的客户端进行订阅",
         "clash": "导入至 Clash",
-        "surfboard": "导入至 Surfboard"
+        "clashx": "导入至 ClashX",
+        "surfboard": "导入至 Surfboard",
+        "shadowrocket": "导入至 Shadowrocket",
+        "quantumultx": "导入至 Quantumult X",
+        "surge": "导入至 Surge",
+        "stash": "导入至 Stash"
       }
     }
   }

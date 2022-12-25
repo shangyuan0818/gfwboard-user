@@ -6,6 +6,7 @@ import { QuestionOutlined } from "@ant-design/icons";
 import MainCard from "@/components/MainCard";
 import TutorialButton from "@/sections/dashboard/shortcutCard/tutorialButton";
 import SubscribeButton from "@/sections/dashboard/shortcutCard/subscribeButton";
+import PurchaseButton from "@/sections/dashboard/shortcutCard/purchaseButton";
 
 const ShortcutCard: React.FC = () => {
   const { t } = useTranslation();
@@ -19,6 +20,7 @@ const ShortcutCard: React.FC = () => {
       >
         <TutorialButton />
         <SubscribeButton />
+        <PurchaseButton />
       </List>
     </MainCard>
   );

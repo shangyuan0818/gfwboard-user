@@ -116,7 +116,7 @@
     },
     "shortcut": {
       "title": "捷径",
-        "description": "您的常用操作",
+      "description": "您的常用操作",
       "tutorial": {
         "primary": "使用教程",
         "secondary": "查看使用教程以了解如何使用本站服务"
@@ -134,6 +134,12 @@
         "quantumultx": "导入至 Quantumult X",
         "surge": "导入至 Surge",
         "stash": "导入至 Stash"
+      },
+      "purchase": {
+        "primary_purchased": "续费订阅",
+        "secondary_purchased": "续费订阅以继续使用服务",
+        "primary_not_purchased": "购买订阅",
+        "secondary_not_purchased": "购买订阅以使用服务"
       }
     }
   }

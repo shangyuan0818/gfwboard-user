@@ -127,7 +127,8 @@
         "copy": "复制订阅链接",
         "scan": "扫描二维码",
         "scan_tips": "使用支持扫码的客户端进行订阅",
-        "clash": "导入 Clash 配置文件"
+        "clash": "导入至 Clash",
+        "surfboard": "导入至 Surfboard"
       }
     }
   }

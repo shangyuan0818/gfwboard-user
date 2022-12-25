@@ -21,6 +21,7 @@ import { useSnackbar } from "notistack";
 import { useQRCode } from "next-qrcode";
 import UAParser from "ua-parser-js";
 import clashIcon from "@/assets/images/software/clash.png";
+import surfboardIcon from "@/assets/images/software/surfboard.png";
 
 const CopyLinkButton: React.FC = () => {
   const { t } = useTranslation();
@@ -105,7 +106,9 @@ const ClashButton: React.FC = () => {
 
   const handleClick = () => {
     if (subscribeInfo) {
-      window.open(`clash://install-config?url=${encodeURIComponent(subscribeInfo.subscribe_url)}`);
+      const url = new URL(subscribeInfo.subscribe_url);
+      url.searchParams.set("flag", "clash");
+      window.open(`clash://install-config?url=${encodeURIComponent(url.toString())}`, "_self");
     }
   };
 
@@ -116,6 +119,33 @@ const ClashButton: React.FC = () => {
           <MantisAvatar alt="Copy" type="combined" color="secondary" src={clashIcon} />
         </ListItemAvatar>
         <ListItemText primary={t("dashboard.shortcut.subscribe.clash")} />
+      </ListItemButton>
+    </ListItem>
+  );
+};
+
+const SurfboardButton: React.FC = () => {
+  const { t } = useTranslation();
+  const { data: subscribeInfo } = useGetUserSubscriptionQuery();
+
+  const handleClick = () => {
+    if (subscribeInfo) {
+      const url = new URL(subscribeInfo.subscribe_url);
+      url.searchParams.set("flag", "surfboard");
+      window.open(
+        `surge:///install-config?url=${encodeURIComponent(url.toString())}&name=${window.settings.title}`,
+        "_self"
+      );
+    }
+  };
+
+  return (
+    <ListItem disablePadding divider>
+      <ListItemButton onClick={handleClick}>
+        <ListItemAvatar>
+          <MantisAvatar alt="Copy" type="combined" color="secondary" src={surfboardIcon} />
+        </ListItemAvatar>
+        <ListItemText primary={t("dashboard.shortcut.subscribe.surfboard")} />
       </ListItemButton>
     </ListItem>
   );
@@ -168,9 +198,10 @@ const SubscribeButton: React.FC = () => {
         >
           <CopyLinkButton />
           <ScanQRCodeButton />
-          {UserAgentData.os.name === "Windows" && <ClashButton />}
-          {UserAgentData.os.name === "Mac OS" && <ClashButton />}
-          {UserAgentData.os.name === "Android" && <ClashButton />}
+          {UserAgentData.os.name === "Windows" && <ClashButton /> /* Clash For Windows */}
+          {UserAgentData.os.name === "Mac OS" && <ClashButton /> /* ClashX */}
+          {UserAgentData.os.name === "Android" && <ClashButton /> /* Clash For Android */}
+          {UserAgentData.os.name === "Android" && <SurfboardButton /> /* Surfboard */}
         </List>
       </Modal>
     </>

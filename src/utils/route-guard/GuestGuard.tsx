@@ -16,9 +16,9 @@ const GuestGuard = ({ children }: GuardProps) => {
 
   useEffect(() => {
     if (isLoggedIn) {
-      navigate(config.defaultPath, { replace: true });
+      navigate(config.defaultPath);
     }
-  }, [isLoggedIn, navigate]);
+  }, [isLoggedIn]);
 
   return children;
 };

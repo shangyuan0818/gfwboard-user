@@ -8,7 +8,7 @@ import AuthGuard from "@/utils/route-guard/AuthGuard";
 import { Navigate, RouteObject } from "react-router";
 
 // pages routing
-// const MaintenanceError = Loadable(lazy(() => import("@/pages/maintenance/404")));
+const MaintenanceError = Loadable(lazy(() => import("@/pages/maintenance/404")));
 // const MaintenanceError500 = Loadable(lazy(() => import("@/pages/maintenance/500")));
 // const MaintenanceUnderConstruction = Loadable(lazy(() => import("@/pages/maintenance/under-construction")));
 // const MaintenanceComingSoon = Loadable(lazy(() => import("@/pages/maintenance/coming-soon")));
@@ -32,7 +32,7 @@ const MainRoutes: RouteObject = {
       children: [
         {
           path: "/",
-          element: <Navigate to={"/dashboard"} replace={true} />
+          element: <Navigate to={"/dashboard"} />
         },
         {
           path: "sample-page",
@@ -43,6 +43,10 @@ const MainRoutes: RouteObject = {
           element: <Dashboard />
         }
       ]
+    },
+    {
+      path: "*",
+      element: <MaintenanceError />
     }
     // {
     //   path: "/maintenance",

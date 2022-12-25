@@ -22,7 +22,7 @@ const PurchaseButton: React.FC = () => {
     <ListItem disablePadding divider>
       <ListItemButton onClick={handleClick}>
         <ListItemAvatar>
-          <Avatar alt="Basic" type="combined" color="success">
+          <Avatar alt="Basic" type="combined" color="warning">
             <ShoppingOutlined />
           </Avatar>
         </ListItemAvatar>

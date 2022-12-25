@@ -140,6 +140,10 @@
         "secondary_purchased": "续费订阅以继续使用服务",
         "primary_not_purchased": "购买订阅",
         "secondary_not_purchased": "购买订阅以使用服务"
+      },
+      "ticket": {
+        "primary": "提交工单",
+        "secondary": "遇到问题？提交工单寻求帮助"
       }
     }
   }

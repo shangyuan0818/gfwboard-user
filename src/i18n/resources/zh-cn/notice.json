@@ -6,5 +6,7 @@
   "remind_check_trash_box": "请注意垃圾箱邮件",
   "forgot_password": {
     "reset_success": "密码重置成功"
-  }
+  },
+  "copy_success": "复制成功",
+  "copy_fail": "复制失败"
 }

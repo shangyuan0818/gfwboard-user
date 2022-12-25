@@ -9,7 +9,7 @@ export default interface User {
   expired_at: null | number;
   balance: number;
   commission_balance: number;
-  plan_id: number;
+  plan_id: number | null;
   discount: null | number;
   commission_rate: null | number;
   telegram_id: null | number;

@@ -99,5 +99,59 @@
         "privacy": "隐私政策"
       }
     }
+  },
+  "dashboard": {
+    "announcement": {
+      "chip": "公告",
+      "title": "公告"
+    },
+    "subscription-card": {
+      "title": "订阅",
+      "description": "您的订阅信息",
+      "plan": "计划",
+      "expire_forever": "此订阅长期有效",
+      "expire_limited_zero": "此订阅已到期，请及时续费",
+      "expire_limited_other": "于 {{date}} 到期，距离到期还有 {{count}} 天，将于 {{reset_date}} 天后重置流量",
+      "traffic": "已用流量 {{used}} GB / 总计流量 {{total}} GB"
+    },
+    "shortcut": {
+      "title": "捷径",
+      "description": "您的常用操作",
+      "tutorial": {
+        "primary": "使用教程",
+        "secondary": "查看使用教程以了解如何使用本站服务"
+      },
+      "subscribe": {
+        "primary": "一键订阅",
+        "secondary": "快速将节点导入对应客户端进行使用",
+        "copy": "复制订阅链接",
+        "scan": "扫描二维码",
+        "scan_tips": "使用支持扫码的客户端进行订阅",
+        "clash": "导入至 Clash",
+        "clashx": "导入至 ClashX",
+        "surfboard": "导入至 Surfboard",
+        "shadowrocket": "导入至 Shadowrocket",
+        "quantumultx": "导入至 Quantumult X",
+        "surge": "导入至 Surge",
+        "stash": "导入至 Stash"
+      },
+      "purchase": {
+        "primary_purchased": "续费订阅",
+        "secondary_purchased": "续费订阅以继续使用服务",
+        "primary_not_purchased": "购买订阅",
+        "secondary_not_purchased": "购买订阅以使用服务"
+      },
+      "ticket": {
+        "primary": "提交工单",
+        "secondary": "遇到问题？提交工单寻求帮助"
+      }
+    }
+  },
+  "maintenance": {
+    "404": {
+      "title": "页面未找到",
+      "description": "您访问的页面不存在或已被删除",
+      "button": "返回首页"
+    }
   }
 }

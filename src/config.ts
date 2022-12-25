@@ -10,17 +10,14 @@ export const linkedInColor = "#0e76a8";
 // ==============================|| THEME CONFIG  ||============================== //
 
 const config: DefaultConfigProps = {
-  defaultPath: "/sample-page",
+  defaultPath: "/",
   fontFamily: `'Public Sans', sans-serif`,
   i18n: "en",
   miniDrawer: false,
   container: true,
   mode: "light",
   presetColor: "default",
-  themeDirection: "ltr",
-  api: {
-    baseURL: "https://direct.gfwservice.xyz/api/v1/"
-  }
+  themeDirection: "ltr"
 };
 
 export default config;

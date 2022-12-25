@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { Trans } from "react-i18next";
 
 // material-ui
 import { Grid, Stack, Typography } from "@mui/material";
@@ -7,13 +8,17 @@ import { Grid, Stack, Typography } from "@mui/material";
 // project import
 import AuthWrapper from "@/sections/auth/AuthWrapper";
 import AuthLogin from "@/sections/auth/auth-forms/AuthLogin";
-import { useSelector } from "@/store";
-import { Trans } from "react-i18next";
+import { useDispatch } from "@/store";
+import { setTitle } from "@/store/reducers/view";
 
 // ================================|| LOGIN ||================================ //
 
 const Login: React.FC = () => {
-  const { isLoggedIn } = useSelector((state) => state.auth);
+  // set title
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(setTitle("login"));
+  }, [dispatch]);
 
   return (
     <AuthWrapper>

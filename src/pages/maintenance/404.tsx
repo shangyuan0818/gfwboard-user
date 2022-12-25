@@ -1,4 +1,6 @@
+import React from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 // material-ui
 import { Box, Button, Grid, Stack, Typography } from "@mui/material";
@@ -12,7 +14,9 @@ import TwoCone from "@/assets/images/maintenance/TwoCone.png";
 
 // ==============================|| ERROR 404 - MAIN ||============================== //
 
-function Error404() {
+const Error404: React.FC = () => {
+  const { t } = useTranslation();
+
   return (
     <>
       <Grid
@@ -47,18 +51,18 @@ function Error404() {
         </Grid>
         <Grid item xs={12}>
           <Stack spacing={2} justifyContent="center" alignItems="center">
-            <Typography variant="h1">Page Not Found</Typography>
-            <Typography color="textSecondary" align="center" sx={{ width: { xs: "73%", sm: "61%" } }}>
-              The page you are looking was moved, removed, renamed, or might never exist!
+            <Typography variant="h1">{t("maintenance.404.title")}</Typography>
+            <Typography color="textSecondary" align="center" noWrap>
+              {t("maintenance.404.description")}
             </Typography>
             <Button component={Link} to={config.defaultPath} variant="contained">
-              Back To Home
+              {t("maintenance.404.button")}
             </Button>
           </Stack>
         </Grid>
       </Grid>
     </>
   );
-}
+};
 
 export default Error404;

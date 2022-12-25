@@ -5,20 +5,21 @@ import MainLayout from "@/layout/MainLayout";
 // import CommonLayout from "@/layout/CommonLayout";
 import Loadable from "@/components/Loadable";
 import AuthGuard from "@/utils/route-guard/AuthGuard";
-import { Navigate } from "react-router";
+import { Navigate, RouteObject } from "react-router";
 
 // pages routing
-// const MaintenanceError = Loadable(lazy(() => import("@/pages/maintenance/404")));
+const MaintenanceError = Loadable(lazy(() => import("@/pages/maintenance/404")));
 // const MaintenanceError500 = Loadable(lazy(() => import("@/pages/maintenance/500")));
 // const MaintenanceUnderConstruction = Loadable(lazy(() => import("@/pages/maintenance/under-construction")));
 // const MaintenanceComingSoon = Loadable(lazy(() => import("@/pages/maintenance/coming-soon")));
 
-// render - sample page
+// render
 const SamplePage = Loadable(lazy(() => import("@/pages/extra-pages/sample-page")));
+const Dashboard = Loadable(lazy(() => import("@/pages/main/dashboard")));
 
 // ==============================|| MAIN ROUTING ||============================== //
 
-const MainRoutes = {
+const MainRoutes: RouteObject = {
   path: "/",
   children: [
     {
@@ -31,13 +32,21 @@ const MainRoutes = {
       children: [
         {
           path: "/",
-          element: <Navigate to={"/dashboard"} replace={true} />
+          element: <Navigate to={"/dashboard"} />
         },
         {
           path: "sample-page",
           element: <SamplePage />
+        },
+        {
+          path: "dashboard",
+          element: <Dashboard />
         }
       ]
+    },
+    {
+      path: "*",
+      element: <MaintenanceError />
     }
     // {
     //   path: "/maintenance",

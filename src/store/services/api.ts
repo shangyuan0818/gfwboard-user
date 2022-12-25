@@ -1,6 +1,6 @@
 import { BaseQueryFn, createApi } from "@reduxjs/toolkit/query/react";
 import qs from "qs";
-import type { AxiosError } from "axios";
+import type { AxiosError, AxiosRequestConfig } from "axios";
 
 // project imports
 import instance from "@/middleware/api";
@@ -16,9 +16,27 @@ import type Notice from "@/model/notice";
 import type { UserConfig, GuestConfig } from "@/model/config";
 import type { ResetPasswordPayload } from "@/model/reset_password";
 import type { RegisterPayload } from "@/model/register";
-import SendMailPayload from "@/model/send_mail";
+import type SendMailPayload from "@/model/send_mail";
+import type Ticket from "@/model/ticket";
+import type { TicketPayload, ReplyTicketPayload } from "@/model/ticket";
 
-const axiosBaseQuery: () => BaseQueryFn =
+type AxiosBaseQueryFn = BaseQueryFn<
+  {
+    url: string;
+    method: AxiosRequestConfig["method"];
+    body?: AxiosRequestConfig["data"];
+    params?: AxiosRequestConfig["params"];
+    headers?: AxiosRequestConfig["headers"];
+  },
+  any,
+  {
+    status: number;
+    message: string;
+    errors: Record<string | number | symbol, string[]> | null;
+  }
+>;
+
+const axiosBaseQuery: () => AxiosBaseQueryFn =
   () =>
   async ({ url, method, body, headers, params }) => {
     try {
@@ -47,9 +65,8 @@ const axiosBaseQuery: () => BaseQueryFn =
 const api = createApi({
   reducerPath: "api",
   baseQuery: axiosBaseQuery(),
-  tagTypes: ["User", "Subscription", "Plan", "Notice"],
+  tagTypes: ["User", "Subscription", "Plan", "Notice", "Ticket"],
   refetchOnReconnect: true,
-  refetchOnMountOrArgChange: true,
   endpoints: (builder) => ({
     login: builder.mutation<LoginResponse, LoginPayload>({
       query: (body) => ({
@@ -83,7 +100,7 @@ const api = createApi({
     }),
     getUserSubscription: builder.query<Subscription, void>({
       query: () => ({
-        url: "/user/subscription",
+        url: "/user/getSubscribe",
         method: "GET"
       }),
       providesTags: (result) => [
@@ -158,6 +175,47 @@ const api = createApi({
         return response;
       },
       invalidatesTags: ["User", "Subscription"]
+    }),
+    getTickets: builder.query<Omit<Ticket, "message">[], void>({
+      query: () => ({
+        url: "/user/ticket/fetch",
+        method: "GET"
+      }),
+      providesTags: (result) => [
+        ...(result?.map((ticket) => ({ type: "Ticket" as const, id: ticket.id })) || []),
+        { type: "Ticket" as const, id: "LIST" }
+      ]
+    }),
+    getTicket: builder.query<Ticket, number>({
+      query: (id) => ({
+        url: "/user/ticket/fetch",
+        method: "GET",
+        params: {
+          id
+        }
+      }),
+      providesTags: (result) => [{ type: "Ticket" as const, id: result?.id }]
+    }),
+    saveTicket: builder.mutation<boolean, TicketPayload>({
+      query: (body) => ({
+        url: "/user/ticket/save",
+        method: "POST",
+        body: qs.stringify(body),
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        }
+      }),
+      invalidatesTags: [{ type: "Ticket", id: "LIST" }]
+    }),
+    replyTicket: builder.mutation<boolean, ReplyTicketPayload>({
+      query: (body) => ({
+        url: "/user/ticket/reply",
+        method: "POST",
+        body: qs.stringify(body),
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        }
+      })
     })
   })
 });
@@ -172,6 +230,10 @@ export const {
   useGetUserStatQuery,
   useSendEmailVerifyMutation,
   useResetPasswordMutation,
-  useRegisterMutation
+  useRegisterMutation,
+  useGetTicketsQuery,
+  useGetTicketQuery,
+  useSaveTicketMutation,
+  useReplyTicketMutation
 } = api;
 export default api;

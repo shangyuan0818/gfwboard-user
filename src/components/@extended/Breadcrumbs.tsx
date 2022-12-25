@@ -1,5 +1,6 @@
 import { CSSProperties, ReactElement, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { Trans } from "react-i18next";
 
 // material-ui
 import MuiBreadcrumbs from "@mui/material/Breadcrumbs";
@@ -75,15 +76,6 @@ const Breadcrumbs = ({
 
   let customLocation = location.pathname;
 
-  // only used for component demo breadcrumbs
-  if (customLocation === "/components-overview/breadcrumbs") {
-    customLocation = "/dashboard/analytics";
-  }
-
-  if (customLocation === "/apps/kanban/backlogs") {
-    customLocation = "/apps/kanban/board";
-  }
-
   // set active item state
   const getCollapse = (menu: NavItemType) => {
     if (menu.children) {
@@ -124,7 +116,7 @@ const Breadcrumbs = ({
         color="textSecondary"
       >
         {icons && <CollapseIcon style={iconSX} />}
-        {main.title}
+        <Trans>{main.title}</Trans>
       </Typography>
     );
   }
@@ -137,7 +129,7 @@ const Breadcrumbs = ({
     itemContent = (
       <Typography variant="subtitle1" color="textPrimary">
         {icons && <ItemIcon style={iconSX} />}
-        {itemTitle}
+        <Trans>{itemTitle}</Trans>
       </Typography>
     );
 
@@ -160,7 +152,9 @@ const Breadcrumbs = ({
           >
             {title && !titleBottom && (
               <Grid item>
-                <Typography variant="h2">{item.title}</Typography>
+                <Typography variant="h2">
+                  <Trans>{item.title}</Trans>
+                </Typography>
               </Grid>
             )}
             <Grid item>
@@ -176,7 +170,9 @@ const Breadcrumbs = ({
             </Grid>
             {title && titleBottom && (
               <Grid item sx={{ mt: card === false ? 0.25 : 1 }}>
-                <Typography variant="h2">{item.title}</Typography>
+                <Typography variant="h2">
+                  <Trans>{item.title}</Trans>
+                </Typography>
               </Grid>
             )}
           </Grid>

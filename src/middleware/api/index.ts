@@ -1,5 +1,4 @@
 import axios from "axios";
-import config from "@/config";
 import lo from "lodash-es";
 
 const getBaseUrl = () => {
@@ -7,7 +6,7 @@ const getBaseUrl = () => {
     return import.meta.env.API_BASE_URL;
   }
 
-  return config.api.baseURL;
+  return new URL("/api/v1/", window.settings.api).toString();
 };
 
 const instance = axios.create({
@@ -45,7 +44,7 @@ if (import.meta.env.DEV) {
 // Add authorization header to every request
 instance.interceptors.request.use((config) => {
   const token = localStorage.getItem("gfw_token");
-  if (lo.isNull(token)) {
+  if (!lo.isNull(token)) {
     config.headers = {
       ...config.headers,
       Authorization: token

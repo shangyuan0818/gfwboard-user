@@ -1,26 +1,18 @@
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React from "react";
+import { Navigate } from "react-router";
 
 // project import
 import { useSelector } from "@/store";
-import config from "@/config";
 
 // types
 import { GuardProps } from "@/types/auth";
 
 // ==============================|| GUEST GUARD ||============================== //
 
-const GuestGuard = ({ children }: GuardProps) => {
+const GuestGuard: React.FC<GuardProps> = ({ children }: GuardProps) => {
   const { isLoggedIn } = useSelector((state) => state.auth);
-  const navigate = useNavigate();
 
-  useEffect(() => {
-    if (isLoggedIn) {
-      navigate(config.defaultPath);
-    }
-  }, [isLoggedIn]);
-
-  return children;
+  return isLoggedIn ? <Navigate to={"/dashboard"} /> : children;
 };
 
 export default GuestGuard;

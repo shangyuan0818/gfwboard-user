@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React from "react";
+import { Navigate } from "react-router";
 
 // project import
 import { useSelector } from "@/store";
@@ -9,17 +9,10 @@ import { GuardProps } from "@/types/auth";
 
 // ==============================|| AUTH GUARD ||============================== //
 
-const AuthGuard = ({ children }: GuardProps) => {
+const AuthGuard: React.FC<GuardProps> = ({ children }) => {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
-  const navigate = useNavigate();
 
-  useEffect(() => {
-    if (!isLoggedIn) {
-      navigate("login", { replace: true });
-    }
-  }, [isLoggedIn, navigate]);
-
-  return children;
+  return isLoggedIn ? children : <Navigate to={"/login"} />;
 };
 
 export default AuthGuard;

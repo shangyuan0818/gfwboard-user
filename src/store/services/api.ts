@@ -19,6 +19,8 @@ import type { RegisterPayload } from "@/model/register";
 import type SendMailPayload from "@/model/send_mail";
 import type Ticket from "@/model/ticket";
 import type { TicketPayload, ReplyTicketPayload } from "@/model/ticket";
+import type Knowledge from "@/model/knowledge";
+import type { KnowledgeListResponse, KnowledgePayload } from "@/model/knowledge";
 
 type AxiosBaseQueryFn = BaseQueryFn<
   {
@@ -65,7 +67,7 @@ const axiosBaseQuery: () => AxiosBaseQueryFn =
 const api = createApi({
   reducerPath: "api",
   baseQuery: axiosBaseQuery(),
-  tagTypes: ["User", "Subscription", "Plan", "Notice", "Ticket"],
+  tagTypes: ["User", "Subscription", "Plan", "Notice", "Ticket", "Knowledge"],
   refetchOnReconnect: true,
   endpoints: (builder) => ({
     login: builder.mutation<LoginResponse, LoginPayload>({
@@ -216,6 +218,33 @@ const api = createApi({
           "Content-Type": "application/x-www-form-urlencoded"
         }
       })
+    }),
+    getKnowledgeList: builder.query<Record<string, KnowledgeListResponse[]>, Omit<KnowledgePayload, "id">>({
+      query: ({ language }) => ({
+        url: "/user/knowledge/fetch",
+        method: "GET",
+        params: {
+          language
+        }
+      }),
+      providesTags: (result, error, arg) => [
+        { type: "Knowledge", id: "LIST" },
+        { type: "Knowledge", id: "LIST_" + arg.language }
+      ]
+    }),
+    getKnowledge: builder.query<Knowledge, Omit<KnowledgePayload, "keyword">>({
+      query: ({ id, language }) => ({
+        url: "/user/knowledge/fetch",
+        method: "GET",
+        params: {
+          id,
+          language
+        }
+      }),
+      providesTags: (result, error, arg) => [
+        { type: "Knowledge", id: arg.id },
+        { type: "Knowledge", id: arg.id + "_" + arg.language }
+      ]
     })
   })
 });
@@ -234,6 +263,8 @@ export const {
   useGetTicketsQuery,
   useGetTicketQuery,
   useSaveTicketMutation,
-  useReplyTicketMutation
+  useReplyTicketMutation,
+  useGetKnowledgeListQuery,
+  useGetKnowledgeQuery
 } = api;
 export default api;

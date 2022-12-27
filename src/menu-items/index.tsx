@@ -1,7 +1,7 @@
 // project import
 import { NavItemType } from "@/types/menu";
 import { Trans } from "react-i18next";
-import { BookOutlined, DashboardOutlined } from "@ant-design/icons";
+import { DashboardOutlined, ReadOutlined } from "@ant-design/icons";
 
 // ==============================|| MENU ITEMS ||============================== //
 
@@ -24,7 +24,7 @@ const menuItems: { items: NavItemType[] } = {
           title: <Trans>title::knowledge</Trans>,
           type: "item",
           url: "/knowledge",
-          icon: BookOutlined
+          icon: ReadOutlined
         }
       ]
     }

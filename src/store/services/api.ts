@@ -98,7 +98,8 @@ const api = createApi({
       providesTags: (result) => [
         { type: "User", id: result?.uuid },
         { type: "User", id: "LIST" }
-      ]
+      ],
+      keepUnusedDataFor: 3600
     }),
     getUserSubscription: builder.query<Subscription, void>({
       query: () => ({
@@ -221,11 +222,12 @@ const api = createApi({
       })
     }),
     getKnowledgeList: builder.query<Record<string, KnowledgeListResponse[]>, Omit<KnowledgePayload, "id">>({
-      query: ({ language }) => ({
+      query: ({ language, keyword }) => ({
         url: "/user/knowledge/fetch",
         method: "GET",
         params: {
-          language
+          language,
+          keyword
         }
       }),
       providesTags: (result, error, arg) => [

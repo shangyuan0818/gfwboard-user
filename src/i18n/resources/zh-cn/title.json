@@ -3,5 +3,6 @@
   "dashboard": "仪表盘",
   "login": "登录",
   "register": "注册",
-  "forgot-password": "忘记密码"
+  "forgot-password": "忘记密码",
+  "knowledge": "使用文档"
 }

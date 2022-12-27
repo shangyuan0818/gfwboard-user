@@ -14,8 +14,9 @@ const MaintenanceError = Loadable(lazy(() => import("@/pages/maintenance/404")))
 // const MaintenanceComingSoon = Loadable(lazy(() => import("@/pages/maintenance/coming-soon")));
 
 // render
-const SamplePage = Loadable(lazy(() => import("@/pages/extra-pages/sample-page")));
+// const SamplePage = Loadable(lazy(() => import("@/pages/extra-pages/sample-page")));
 const Dashboard = Loadable(lazy(() => import("@/pages/main/dashboard")));
+const Knowledge = Loadable(lazy(() => import("@/pages/main/knowledge")));
 
 // ==============================|| MAIN ROUTING ||============================== //
 
@@ -35,12 +36,12 @@ const MainRoutes: RouteObject = {
           element: <Navigate to={"/dashboard"} />
         },
         {
-          path: "sample-page",
-          element: <SamplePage />
-        },
-        {
           path: "dashboard",
           element: <Dashboard />
+        },
+        {
+          path: "knowledge",
+          element: <Knowledge />
         }
       ]
     },

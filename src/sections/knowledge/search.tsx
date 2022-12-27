@@ -1,11 +1,14 @@
 import React from "react";
-import lo from "lodash-es";
-import { Box, IconButton, InputAdornment, OutlinedInput, TextField } from "@mui/material";
-import useUrlState from "@ahooksjs/use-url-state";
 import { useTranslation } from "react-i18next";
+
+// hooks
+import useUrlState from "@ahooksjs/use-url-state";
+
+// material-ui
+import { Box, OutlinedInput } from "@mui/material";
+
+// project imports
 import { makeStyles } from "@/themes/hooks";
-import { SearchOutlined } from "@ant-design/icons";
-import { useSafeState } from "ahooks";
 
 const useStyles = makeStyles()((theme) => ({
   root: {
@@ -24,7 +27,6 @@ const Search: React.FC = () => {
       navigateMode: "push"
     }
   );
-  const [flag, setFlag] = useSafeState<NodeJS.Timer | null>(null);
 
   const { classes } = useStyles();
 

@@ -1,12 +1,18 @@
-import React, { useEffect, useState } from "react";
-import useUrlState from "@ahooksjs/use-url-state";
-import { useGetKnowledgeListQuery } from "@/store/services/api";
-import { useTranslation } from "react-i18next";
-import { Grid, List, ListItem, ListItemButton, Typography } from "@mui/material";
-import MainCard from "@/components/MainCard";
+import React from "react";
 import dayjs from "dayjs";
+import { useTranslation } from "react-i18next";
+
+// hooks
+import { useDebounce } from "ahooks";
+import useUrlState from "@ahooksjs/use-url-state";
+
+// material-ui
+import { Grid, List, ListItem, ListItemButton, Typography } from "@mui/material";
+
+// project imports
+import MainCard from "@/components/MainCard";
+import { useGetKnowledgeListQuery } from "@/store/services/api";
 import { makeStyles } from "@/themes/hooks";
-import { useSafeState } from "ahooks";
 
 const useStyles = makeStyles()((theme) => ({
   root: {},
@@ -22,21 +28,7 @@ const PostList: React.FC = () => {
   const { t, i18n } = useTranslation();
 
   const [state] = useUrlState<{ s: string }>({ s: "" });
-  const [search, setSearch] = useSafeState(state.s);
-  const [flag, setFlag] = useSafeState<NodeJS.Timer | null>(null);
-
-  useEffect(() => {
-    // 延迟 500 毫秒后再更新搜索关键词，防止频繁更新
-    if (flag !== null) {
-      clearTimeout(flag);
-    }
-
-    setFlag(
-      setTimeout(() => {
-        setSearch(state.s);
-      }, 500)
-    );
-  }, [state.s]);
+  const search = useDebounce(state.s);
 
   const { data } = useGetKnowledgeListQuery({
     keyword: search,
@@ -49,7 +41,7 @@ const PostList: React.FC = () => {
     <>
       {Object.keys(data || {}).map((key) => (
         <Grid item xs={12} key={key}>
-          <MainCard title={t(key, { ns: "knowledge" })} content={false}>
+          <MainCard title={key} content={false}>
             <List sx={{ p: 0 }}>
               {(data || {})[key].map((post) => (
                 <ListItem disablePadding divider key={post.id}>

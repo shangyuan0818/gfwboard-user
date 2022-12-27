@@ -110,6 +110,7 @@ const api = createApi({
         { type: "Plan", id: result?.plan.id }
       ]
     }),
+    // 0: 未支付的订单数 1: 未处理的工单数 2: 邀请的用户数
     getUserStat: builder.query<number[], void>({
       query: () => ({
         url: "/user/getStat",

@@ -13,6 +13,7 @@ import { Grid, List, ListItem, ListItemButton, Typography } from "@mui/material"
 import MainCard from "@/components/MainCard";
 import { useGetKnowledgeListQuery } from "@/store/services/api";
 import { makeStyles } from "@/themes/hooks";
+import { useNavigate } from "react-router-dom";
 
 const useStyles = makeStyles()((theme) => ({
   root: {},
@@ -26,6 +27,7 @@ const useStyles = makeStyles()((theme) => ({
 
 const PostList: React.FC = () => {
   const { t, i18n } = useTranslation();
+  const navigate = useNavigate();
 
   const [state] = useUrlState<{ s: string }>({ s: "" });
   const search = useDebounce(state.s);
@@ -45,7 +47,14 @@ const PostList: React.FC = () => {
             <List sx={{ p: 0 }}>
               {(data || {})[key].map((post) => (
                 <ListItem disablePadding divider key={post.id}>
-                  <ListItemButton className={classes.listItemButton}>
+                  <ListItemButton
+                    className={classes.listItemButton}
+                    href={`/knowledge/${post.id}`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      navigate(`/knowledge/${post.id}`);
+                    }}
+                  >
                     <Typography variant={"body1"} fontWeight={400} noWrap mb={0.5}>
                       {post.title}
                     </Typography>

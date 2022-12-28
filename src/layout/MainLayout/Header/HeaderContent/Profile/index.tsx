@@ -96,7 +96,7 @@ const Profile = () => {
 
   const { data: user } = useGetUserInfoQuery();
 
-  const anchorRef = useRef<any>(null);
+  const anchorRef = useRef<HTMLButtonElement>(null);
   const [open, setOpen] = useState(false);
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
@@ -107,7 +107,7 @@ const Profile = () => {
   });
 
   const handleClose = (event: MouseEvent | TouchEvent) => {
-    if (anchorRef.current && anchorRef.current.contains(event.target)) {
+    if (anchorRef.current && anchorRef.current.contains(event.target as HTMLElement)) {
       return;
     }
     setOpen(false);

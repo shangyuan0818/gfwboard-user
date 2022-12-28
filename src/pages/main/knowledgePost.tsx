@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "@/store";
 import { setTitle } from "@/store/reducers/view";
 import useKnowledge from "@/hooks/useKnowledge";

@@ -1,4 +1,12 @@
 {
+  "layout": {
+    "footer": {
+      "copyright": "© 版权所有",
+      "contact-us": "联系我们",
+      "privacy-policy": "隐私政策",
+      "terms-of-service": "服务条款"
+    }
+  },
   "login": {
     "title": "登录",
     "email": "邮箱",

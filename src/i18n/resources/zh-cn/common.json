@@ -1,5 +1,16 @@
 {
   "layout": {
+    "header": {
+      "profile": {
+        "user_secondary": "高级客户",
+        "profile_center": "个人中心",
+        "transaction_list": "订单列表",
+        "traffic_statistics": "流量统计",
+        "invitations": "我的邀请",
+        "logout": "退出登录",
+        "logout_tooltip": "登出"
+      }
+    },
     "footer": {
       "copyright": "© 版权所有",
       "contact-us": "联系我们",

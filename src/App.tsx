@@ -19,35 +19,33 @@ import TitleSelector from "@/middleware/view/titleSelector";
 
 // ==============================|| APP - THEME, ROUTER, LOCAL  ||============================== //
 
-const App = () => {
-  return (
-    <CacheProvider value={cache}>
-      <ThemeCustomization>
-        {/* <RTLLayout> */}
-        <I18nextProvider i18n={i18n}>
-          <ScrollTop>
-            <SnackbarProvider
-              maxSnack={3}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "center"
-              }}
-              autoHideDuration={4000}
-              dense
-            >
-              {/* BEGIN Middlewares */}
-              <TitleSelector />
-              <AccountStateDetector />
-              {/* END Middlewares */}
+const App = () => (
+  <CacheProvider value={cache}>
+    <ThemeCustomization>
+      {/* <RTLLayout> */}
+      <I18nextProvider i18n={i18n}>
+        <ScrollTop>
+          <SnackbarProvider
+            maxSnack={3}
+            anchorOrigin={{
+              vertical: "top",
+              horizontal: "center"
+            }}
+            autoHideDuration={4000}
+            dense
+          >
+            {/* BEGIN Middlewares */}
+            <TitleSelector />
+            <AccountStateDetector />
+            {/* END Middlewares */}
 
-              <Routes />
-            </SnackbarProvider>
-          </ScrollTop>
-        </I18nextProvider>
-        {/* </RTLLayout> */}
-      </ThemeCustomization>
-    </CacheProvider>
-  );
-};
+            <Routes />
+          </SnackbarProvider>
+        </ScrollTop>
+      </I18nextProvider>
+      {/* </RTLLayout> */}
+    </ThemeCustomization>
+  </CacheProvider>
+);
 
 export default App;

@@ -50,6 +50,16 @@ const axiosBaseQuery: () => AxiosBaseQueryFn =
         params
       });
 
+      if (response.status !== 200) {
+        return {
+          error: {
+            status: response.status,
+            message: response.data.message || response.statusText,
+            errors: response.data.errors || null
+          }
+        };
+      }
+
       return { data: response.data.data };
     } catch (error) {
       const err: AxiosError<ApiResponse> = error as AxiosError<ApiResponse>;

@@ -8,5 +8,8 @@
     "reset_success": "密码重置成功"
   },
   "copy_success": "复制成功",
-  "copy_fail": "复制失败"
+  "copy_fail": "复制失败",
+  "knowledge_post": {
+    "loading_error": "加载文章失败，请联系客服"
+  }
 }

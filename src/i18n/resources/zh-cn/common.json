@@ -153,5 +153,14 @@
       "description": "您访问的页面不存在或已被删除",
       "button": "返回首页"
     }
+  },
+  "knowledge": {
+    "title": "常见问题",
+    "description": "您可能会遇到的问题",
+    "search": "搜索问题",
+    "search_placeholder": "输入关键词搜索",
+    "post": {
+      "update": "更新于 {{date}}"
+    }
   }
 }

@@ -21,24 +21,14 @@ const instance = axios.create({
 
 // monitor middleware
 if (import.meta.env.DEV) {
-  instance.interceptors.request.use(
-    (config) => {
-      console.log("Request", config);
-      return config;
-    },
-    (error) => {
-      return Promise.reject(error);
-    }
-  );
-  instance.interceptors.response.use(
-    (response) => {
-      console.log("Response", response);
-      return response;
-    },
-    (error) => {
-      return Promise.reject(error);
-    }
-  );
+  instance.interceptors.request.use((config) => {
+    console.log("Request", config);
+    return config;
+  });
+  instance.interceptors.response.use((response) => {
+    console.log("Response", response);
+    return response;
+  });
 }
 
 // Add authorization header to every request

@@ -26,9 +26,10 @@ import * as Yup from "yup";
 import { Formik } from "formik";
 import { Trans, useTranslation } from "react-i18next";
 import OtpInput from "react18-input-otp";
+import { useSnackbar } from "notistack";
+import { useUnmountedRef } from "ahooks";
 
 // project import
-import useScriptRef from "@/hooks/useScriptRef";
 import IconButton from "@/components/@extended/IconButton";
 import AnimateButton from "@/components/@extended/AnimateButton";
 import SendMailButton from "@/sections/auth/auth-forms/SendMailButton";
@@ -41,13 +42,12 @@ import { RegisterPayload } from "@/model/register";
 
 // assets
 import { EyeInvisibleOutlined, EyeOutlined } from "@ant-design/icons";
-import { useSnackbar } from "notistack";
 
 // ============================|| FIREBASE - REGISTER ||============================ //
 
 const AuthRegister = () => {
   const theme = useTheme();
-  const scriptedRef = useScriptRef();
+  const scriptedRef = useUnmountedRef();
   const navigate = useNavigate();
   const { t } = useTranslation("common");
   const { enqueueSnackbar } = useSnackbar();

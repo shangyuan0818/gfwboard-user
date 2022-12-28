@@ -15,13 +15,14 @@ import {
   Typography
 } from "@mui/material";
 import { useSnackbar } from "notistack";
+import { EyeOutlined, EyeInvisibleOutlined } from "@ant-design/icons";
 
 // third party
 import * as Yup from "yup";
 import { Formik } from "formik";
+import { useUnmountedRef } from "ahooks";
 
 // project import
-import useScriptRef from "@/hooks/useScriptRef";
 import IconButton from "@/components/@extended/IconButton";
 import AnimateButton from "@/components/@extended/AnimateButton";
 import { strengthColor, strengthIndicator } from "@/utils/password-strength";
@@ -29,13 +30,10 @@ import { strengthColor, strengthIndicator } from "@/utils/password-strength";
 // types
 import { StringColorProps } from "@/types/password";
 
-// assets
-import { EyeOutlined, EyeInvisibleOutlined } from "@ant-design/icons";
-
 // ============================|| STATIC - RESET PASSWORD ||============================ //
 
 const AuthResetPassword = () => {
-  const scriptedRef = useScriptRef();
+  const scriptedRef = useUnmountedRef();
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
 

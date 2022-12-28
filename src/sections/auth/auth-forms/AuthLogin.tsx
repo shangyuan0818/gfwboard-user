@@ -20,17 +20,17 @@ import {
 import * as Yup from "yup";
 import { Formik } from "formik";
 import { Trans, useTranslation } from "react-i18next";
+import lo from "lodash-es";
+import { useUnmountedRef } from "ahooks";
 
 // project import
 import { useSelector } from "@/store";
 import { useLoginMutation } from "@/store/services/api";
-import useScriptRef from "@/hooks/useScriptRef";
 import IconButton from "@/components/@extended/IconButton";
 import AnimateButton from "@/components/@extended/AnimateButton";
 
 // assets
 import { EyeInvisibleOutlined, EyeOutlined } from "@ant-design/icons";
-import lo from "lodash-es";
 
 // ============================|| FIREBASE - LOGIN ||============================ //
 
@@ -39,7 +39,7 @@ const AuthLogin = () => {
 
   const { isLoggedIn } = useSelector((state) => state.auth);
   const [login] = useLoginMutation();
-  const scriptedRef = useScriptRef();
+  const scriptedRef = useUnmountedRef();
 
   const { t } = useTranslation("common", {
     keyPrefix: "login"

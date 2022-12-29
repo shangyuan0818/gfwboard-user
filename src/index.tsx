@@ -4,6 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 
 // third-party
 import { Provider as ReduxProvider } from "react-redux";
+import "react-app-polyfill/ie11";
 
 // scroll bar
 import "simplebar/src/simplebar.css";

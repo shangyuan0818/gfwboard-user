@@ -1,4 +1,4 @@
-import { useEffect, useState, SyntheticEvent } from "react";
+import { SyntheticEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 // material-ui
@@ -15,7 +15,7 @@ import {
   Typography
 } from "@mui/material";
 import { useSnackbar } from "notistack";
-import { EyeOutlined, EyeInvisibleOutlined } from "@ant-design/icons";
+import { EyeInvisibleOutlined, EyeOutlined } from "@ant-design/icons";
 
 // third party
 import * as Yup from "yup";

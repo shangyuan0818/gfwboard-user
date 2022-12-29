@@ -1,5 +1,4 @@
 import React from "react";
-import lo from "lodash-es";
 
 // material-ui
 import { Grid } from "@mui/material";

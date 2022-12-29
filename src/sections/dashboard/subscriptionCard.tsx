@@ -4,16 +4,7 @@ import lo from "lodash-es";
 import { Trans, useTranslation } from "react-i18next";
 
 // material-ui
-import {
-  Box,
-  CardContent,
-  CardHeader,
-  CircularProgress,
-  Divider,
-  LinearProgress,
-  Stack,
-  Typography
-} from "@mui/material";
+import { CircularProgress, LinearProgress, Stack, Typography } from "@mui/material";
 
 // project imports
 import MainCard from "@/components/MainCard";

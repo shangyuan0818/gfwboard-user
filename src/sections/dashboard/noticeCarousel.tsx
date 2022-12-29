@@ -1,24 +1,12 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Trans } from "react-i18next";
 import dayjs from "dayjs";
 
 // material-ui
-import {
-  Badge,
-  Box,
-  ButtonBase,
-  Chip,
-  Dialog,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  Typography,
-  useMediaQuery
-} from "@mui/material";
+import { Box, ButtonBase, Chip, Dialog, DialogContent, DialogTitle, Typography, useMediaQuery } from "@mui/material";
 import Carousel from "react-material-ui-carousel";
 
 // project imports
-import { useSelector } from "@/store";
 import { useGetNoticesQuery } from "@/store/services/api";
 import { makeStyles } from "@/themes/hooks";
 

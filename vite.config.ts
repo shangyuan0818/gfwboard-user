@@ -23,6 +23,7 @@ export default defineConfig({
     outDir: "dist",
     assetsDir: "static",
     cssCodeSplit: true,
+    chunkSizeWarningLimit: 300,
     rollupOptions: {
       output: {
         manualChunks: {

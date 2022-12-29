@@ -22,9 +22,11 @@ const HeaderContent: React.FC = () => {
         <Title />
       </Stack>
 
-      <WorkflowMenu />
-      <Message />
-      <Profile />
+      <Stack direction={"row"} alignItems={"center"} spacing={1}>
+        <WorkflowMenu />
+        <Message />
+        <Profile />
+      </Stack>
     </>
   );
 };

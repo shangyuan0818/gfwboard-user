@@ -1,4 +1,4 @@
-import { useRef, useState, ReactNode, SyntheticEvent, useMemo } from "react";
+import { useRef, useState } from "react";
 
 // material-ui
 import { useTheme } from "@mui/material/styles";
@@ -12,8 +12,6 @@ import {
   Paper,
   Popper,
   Stack,
-  Tab,
-  Tabs,
   Tooltip,
   Typography,
   useMediaQuery
@@ -25,11 +23,9 @@ import MainCard from "@/components/MainCard";
 import Transitions from "@/components/@extended/Transitions";
 import IconButton from "@/components/@extended/IconButton";
 import MenuList from "./MenuList";
-import SettingTab from "./SettingTab";
 
 // assets
-import avatar1 from "@/assets/images/users/avatar-1.png";
-import { LogoutOutlined, SettingOutlined, UserOutlined } from "@ant-design/icons";
+import { LogoutOutlined } from "@ant-design/icons";
 import { useDispatch } from "@/store";
 import { logout } from "@/store/reducers/auth";
 import { useNavigate } from "react-router-dom";
@@ -44,14 +40,13 @@ import { makeStyles } from "@/themes/hooks";
 const useStyles = makeStyles<{ open: boolean }>({
   name: "profile"
 })((theme, { open }) => ({
-  root: { flexShrink: 0, marginLeft: theme.spacing(1) },
+  root: { flexShrink: 0 },
   button: {
     padding: theme.spacing(0.25),
-    backgroundColor: open
-      ? theme.palette.mode === "dark"
-        ? theme.palette.grey[200]
-        : theme.palette.grey[300]
-      : "transparent",
+    backgroundColor: open ? theme.palette.grey[300] : "transparent",
+    ["@media (prefers-color-scheme: dark)"]: {
+      backgroundColor: open ? theme.palette.grey[200] : "transparent"
+    },
     borderRadius: theme.shape.borderRadius,
     "&:hover": {
       backgroundColor: theme.palette.mode === "dark" ? theme.palette.secondary.light : theme.palette.secondary.lighter
@@ -77,7 +72,7 @@ const useStyles = makeStyles<{ open: boolean }>({
   cardContent: {
     padding: theme.spacing(1.5, 2, 2)
   },
-  userAvatar: { width: 32, height: 32 }
+  userAvatar: { width: theme.spacing(4), height: theme.spacing(4) }
 }));
 
 const Profile = () => {

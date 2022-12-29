@@ -29,7 +29,7 @@ import { makeStyles } from "@/themes/hooks";
 import { BellOutlined, GiftOutlined } from "@ant-design/icons";
 
 const useStyles = makeStyles<{ open: boolean }>()((theme, { open }) => ({
-  root: { flexShrink: 0, marginLeft: theme.spacing(0.75) },
+  root: { flexShrink: 0 },
   icon: {
     color: theme.palette.text.primary,
     backgroundColor: open ? theme.palette.grey[300] : theme.palette.grey[100],
@@ -78,8 +78,8 @@ const useStyles = makeStyles<{ open: boolean }>()((theme, { open }) => ({
     alignItems: "center"
   },
   iconAvatar: {
-    width: 36,
-    height: 36,
+    width: theme.spacing(4.5),
+    height: theme.spacing(4.5),
     fontSize: "1rem",
     color: theme.palette.success.main,
     backgroundColor: theme.palette.success.lighter

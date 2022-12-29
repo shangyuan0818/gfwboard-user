@@ -13,5 +13,7 @@
   "copy_fail": "复制失败",
   "knowledge_post": {
     "loading_error": "加载文章失败，请联系客服"
-  }
+  },
+  "refresh_success": "刷新成功",
+  "refresh_fail": "刷新失败"
 }

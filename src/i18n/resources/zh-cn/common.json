@@ -9,6 +9,18 @@
         "invitations": "我的邀请",
         "logout": "退出登录",
         "logout_tooltip": "登出"
+      },
+      "ticket": {
+        "title": "工单",
+        "no_ticket": "暂无未完成的工单",
+        "view_all": "查看全部",
+        "start_at": "创建于 {{time}}",
+        "updated_at_seconds": "更新于 {{count}} 秒前",
+        "updated_at_minutes": "更新于 {{count}} 分钟前",
+        "updated_at_hours": "更新于 {{count}} 小时前",
+        "updated_at_days": "更新于 {{count}} 天前",
+        "reply_status_replied": "已回复",
+        "reply_status_noreply": "待回复"
       }
     },
     "footer": {

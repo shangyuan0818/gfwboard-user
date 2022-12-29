@@ -7,7 +7,7 @@ import { Stack } from "@mui/material";
 /* import Search from "./Search"; */
 import Message from "./Message";
 import Profile from "./Profile";
-import WorkflowMenu from "./WorkflowMenu";
+import TicketMenu from "./TicketMenu";
 import Title from "./Title";
 
 // ==============================|| HEADER - CONTENT ||============================== //
@@ -23,7 +23,7 @@ const HeaderContent: React.FC = () => {
       </Stack>
 
       <Stack direction={"row"} alignItems={"center"} spacing={1}>
-        <WorkflowMenu />
+        <TicketMenu />
         <Message />
         <Profile />
       </Stack>

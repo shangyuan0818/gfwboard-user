@@ -41,7 +41,6 @@ export type CustomizationProps = {
   i18n: I18n;
   miniDrawer: boolean;
   container: boolean;
-  mode: ThemeMode;
   presetColor: PresetColor;
   themeDirection: ThemeDirection;
   onChangeContainer: VoidFunction;

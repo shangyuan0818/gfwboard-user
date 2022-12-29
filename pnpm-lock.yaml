@@ -12,6 +12,7 @@ specifiers:
   '@emotion/react': ^11.10.5
   '@emotion/styled': ^11.10.5
   '@mui/base': ^5.0.0-alpha.101
+  '@mui/icons-material': ^5.11.0
   '@mui/lab': ^5.0.0-alpha.103
   '@mui/material': ^5.10.9
   '@mui/system': ^5.10.9
@@ -97,6 +98,7 @@ specifiers:
   resize-observer-polyfill: ^1.5.1
   resolve: ^1.20.0
   rollup-plugin-visualizer: ^5.8.3
+  sass: ^1.57.1
   semver: ^7.3.5
   simplebar: ^5.3.8
   simplebar-react: ^2.4.1
@@ -122,6 +124,7 @@ dependencies:
   '@emotion/react': 11.10.5_weohr3svf6vrfbybzz2cheulci
   '@emotion/styled': 11.10.5_u3btsfesflhlskmx36hju4sgdu
   '@mui/base': 5.0.0-alpha.101_ib3m5ricvtkl2cll7qpr2f6lvq
+  '@mui/icons-material': 5.11.0_s4ejss4gd5xehjalri2ylmgijm
   '@mui/lab': 5.0.0-alpha.103_yb7l66gpz4moarcxhasp7iirka
   '@mui/material': 5.10.9_lskpmcsdi7ipu6qpuapyu56ihm
   '@mui/system': 5.10.9_ogriz7mfahdh34qnfautfro5yu
@@ -167,7 +170,7 @@ dependencies:
   react-dom: 18.2.0_react@18.2.0
   react-google-recaptcha: 2.1.0_react@18.2.0
   react-i18next: 12.1.1_ewanii43wbrufvukcu3uzq3hsy
-  react-material-ui-carousel: 3.4.2_ologcjvsvablvluvsf3bgoj72m
+  react-material-ui-carousel: 3.4.2_pbruqbc3jj2luf6fjrcewtbtte
   react-redux: 8.0.5_fzvwyuupj4d6el7pqkxm6fygb4
   react-refresh: 0.14.0
   react-router: 6.4.2_react@18.2.0
@@ -177,6 +180,7 @@ dependencies:
   redux: 4.2.0
   resize-observer-polyfill: 1.5.1
   resolve: 1.22.1
+  sass: 1.57.1
   semver: 7.3.8
   simplebar: 5.3.8
   simplebar-react: 2.4.1_biqbaboplfbrettd7655fr4n2y
@@ -189,7 +193,7 @@ dependencies:
   ua-parser-js: 1.0.32
   util: 0.12.5
   uuid: 9.0.0
-  vite: 4.0.1_u4qtfkm32ppnvboczhv56utkqi
+  vite: 4.0.1_amyfslv6hdwxqbf7f4ldebbtce
   web-vitals: 3.1.0
   yup: 0.32.11
 
@@ -3132,7 +3136,7 @@ packages:
       regenerator-runtime: 0.13.11
       systemjs: 6.13.0
       terser: 5.16.1
-      vite: 4.0.1_u4qtfkm32ppnvboczhv56utkqi
+      vite: 4.0.1_amyfslv6hdwxqbf7f4ldebbtce
     dev: true
 
   /@vitejs/plugin-react/3.0.0_vite@4.0.1:
@@ -3146,7 +3150,7 @@ packages:
       '@babel/plugin-transform-react-jsx-source': 7.19.6_@babel+core@7.20.5
       magic-string: 0.27.0
       react-refresh: 0.14.0
-      vite: 4.0.1_u4qtfkm32ppnvboczhv56utkqi
+      vite: 4.0.1_amyfslv6hdwxqbf7f4ldebbtce
     transitivePeerDependencies:
       - supports-color
     dev: false
@@ -3258,7 +3262,6 @@ packages:
     dependencies:
       normalize-path: 3.0.0
       picomatch: 2.3.1
-    dev: false
 
   /arg/5.0.2:
     resolution: {integrity: sha512-PYjyFOLKQ9y57JvQ6QLo8dAgNqswh8M1RMJYdQduT6xbWSgK36P/Z/v+p888pM69jMMfS8Xd8F6I1kQ/I9HUGg==}
@@ -3478,7 +3481,6 @@ packages:
   /binary-extensions/2.2.0:
     resolution: {integrity: sha512-jDctJ/IVQbZoJykoeHbhXpOlNBqGNcwXJKJog42E5HDPUwQTSdjCHdihjj0DlnheQ7blbT6dHOafNAiS8ooQKA==}
     engines: {node: '>=8'}
-    dev: false
 
   /bluebird/3.7.2:
     resolution: {integrity: sha512-XpNj6GDQzdfW+r2Wnn7xiSAd7TM3jzkxGXBGTtWKuSXv1xUV+azxAm8jdWZN06QTQk+2N2XB9jRDkvbmQmcRtg==}
@@ -3676,7 +3678,6 @@ packages:
       readdirp: 3.6.0
     optionalDependencies:
       fsevents: 2.3.2
-    dev: false
 
   /cipher-base/1.0.4:
     resolution: {integrity: sha512-Kkht5ye6ZGmwv40uUDZztayT2ThLQGfnj/T71N/XzeZeo3nf8foyW7zGTsPYkEya3m5f3cAypH+qe7YOrM1U2Q==}
@@ -4955,7 +4956,6 @@ packages:
 
   /immutable/4.1.0:
     resolution: {integrity: sha512-oNkuqVTA8jqG1Q6c+UglTOD1xhC1BtjKI7XkCXRkZHrN5m18/XsnUp8Q89GkQO/z+0WjonSvl0FLhDYftp46nQ==}
-    dev: true
 
   /import-fresh/3.3.0:
     resolution: {integrity: sha512-veYYhQa+D1QBKznvhUHxb8faxlrwUnxseDAbAp457E0wLNio2bOSKnjYDhMj+YiAq61xrMGhQk9iXVk5FzgQMw==}
@@ -5017,7 +5017,6 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       binary-extensions: 2.2.0
-    dev: false
 
   /is-boolean-object/1.1.2:
     resolution: {integrity: sha512-gDYaKHJmnj4aWxyj6YHyXVpdQawtVLHU5cb+eztPGczf6cjuTdwve5ZIEfgXqH4e57An1D1AKf8CZ3kYrQRqYA==}
@@ -5476,7 +5475,6 @@ packages:
   /normalize-path/3.0.0:
     resolution: {integrity: sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA==}
     engines: {node: '>=0.10.0'}
-    dev: false
 
   /normalize-range/0.1.2:
     resolution: {integrity: sha512-bdok/XvKII3nUpklnV6P2hxtMNrCboOjAcyBuQnWEhO665FwrSNRxU+AqpsyvO6LgGYPspN+lu5CLtw4jPRKNA==}
@@ -6475,11 +6473,12 @@ packages:
     resolution: {integrity: sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==}
     dev: false
 
-  /react-material-ui-carousel/3.4.2_ologcjvsvablvluvsf3bgoj72m:
+  /react-material-ui-carousel/3.4.2_pbruqbc3jj2luf6fjrcewtbtte:
     resolution: {integrity: sha512-jUbC5aBWqbbbUOOdUe3zTVf4kMiZFwKJqwhxzHgBfklaXQbSopis4iWAHvEOLcZtSIJk4JAGxKE0CmxDoxvUuw==}
     peerDependencies:
       '@emotion/react': ^11.4.1
       '@emotion/styled': ^11.3.0
+      '@mui/icons-material': ^5.0.0
       '@mui/material': ^5.0.0
       '@mui/system': ^5.0.0
       react: ^17.0.1 || ^18.0.0
@@ -6493,8 +6492,6 @@ packages:
       framer-motion: 4.1.17_biqbaboplfbrettd7655fr4n2y
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-    transitivePeerDependencies:
-      - '@types/react'
     dev: false
 
   /react-redux/8.0.5_fzvwyuupj4d6el7pqkxm6fygb4:
@@ -6620,7 +6617,6 @@ packages:
     engines: {node: '>=8.10.0'}
     dependencies:
       picomatch: 2.3.1
-    dev: false
 
   /redux-thunk/2.4.1_redux@4.2.0:
     resolution: {integrity: sha512-OOYGNY5Jy2TWvTL1KgAlVy6dcx3siPJ1wTq741EPyUKfn6W6nChdICjZwCd0p8AZBs5kWpZlbkXW2nE/zjUa+Q==}
@@ -6806,6 +6802,15 @@ packages:
   /sanitize.css/13.0.0:
     resolution: {integrity: sha512-ZRwKbh/eQ6w9vmTjkuG0Ioi3HBwPFce0O+v//ve+aOq1oeCy7jMV2qzzAlpsNuqpqCBjjriM1lbtZbF/Q8jVyA==}
     dev: false
+
+  /sass/1.57.1:
+    resolution: {integrity: sha512-O2+LwLS79op7GI0xZ8fqzF7X2m/m8WFfI02dHOdsK5R2ECeS5F62zrwg/relM1rjSLy7Vd/DiMNIvPrQGsA0jw==}
+    engines: {node: '>=12.0.0'}
+    hasBin: true
+    dependencies:
+      chokidar: 3.5.3
+      immutable: 4.1.0
+      source-map-js: 1.0.2
 
   /scheduler/0.23.0:
     resolution: {integrity: sha512-CtuThmgHNg7zIZWAXi3AsyIzA3n4xx7aNyjwC2VJldO2LMVDhFK+63xGqq6CsJH4rTAt6/M+N4GhZiDYPx9eUw==}
@@ -7294,7 +7299,7 @@ packages:
     hasBin: true
     dev: false
 
-  /vite/4.0.1_u4qtfkm32ppnvboczhv56utkqi:
+  /vite/4.0.1_amyfslv6hdwxqbf7f4ldebbtce:
     resolution: {integrity: sha512-kZQPzbDau35iWOhy3CpkrRC7It+HIHtulAzBhMqzGHKRf/4+vmh8rPDDdv98SWQrFWo6//3ozwsRmwQIPZsK9g==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
@@ -7324,6 +7329,7 @@ packages:
       postcss: 8.4.20
       resolve: 1.22.1
       rollup: 3.9.0
+      sass: 1.57.1
       terser: 5.16.1
     optionalDependencies:
       fsevents: 2.3.2

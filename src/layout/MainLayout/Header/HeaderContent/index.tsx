@@ -9,6 +9,7 @@ import Message from "./Message";
 import Profile from "./Profile";
 import TicketMenu from "./TicketMenu";
 import Title from "./Title";
+import DarkModeSwitchButton from "@/layout/MainLayout/Header/HeaderContent/DarkModeSwitchButton";
 
 // ==============================|| HEADER - CONTENT ||============================== //
 
@@ -24,7 +25,7 @@ const HeaderContent: React.FC = () => {
 
       <Stack direction={"row"} alignItems={"center"} spacing={1}>
         <TicketMenu />
-        <Message />
+        <DarkModeSwitchButton />
         <Profile />
       </Stack>
     </>

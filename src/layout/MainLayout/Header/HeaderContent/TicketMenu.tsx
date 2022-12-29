@@ -48,10 +48,13 @@ const useStyles = makeStyles<{ open: boolean }>()((theme, { open }) => ({
   root: { flexShrink: 0 },
   icon: {
     color: theme.palette.text.primary,
-    backgroundColor: open ? theme.palette.grey[300] : theme.palette.grey[100],
-    ["@media (prefers-color-scheme: dark)"]: {
-      backgroundColor: open ? theme.palette.grey[200] : theme.palette.background.default
-    }
+    ...(theme.palette.mode === "dark"
+      ? {
+          backgroundColor: open ? theme.palette.grey[300] : theme.palette.background.default
+        }
+      : {
+          backgroundColor: open ? theme.palette.grey[300] : theme.palette.grey[100]
+        })
   },
   paper: {
     boxShadow: theme.customShadows.z1,
@@ -256,7 +259,6 @@ const TicketMenu = () => {
   const theme = useTheme();
   const matchesXs = useMediaQuery(theme.breakpoints.down("md"));
   const navigate = useNavigate();
-  const { t } = useTranslation();
 
   const anchorRef = useRef<HTMLButtonElement>(null);
   const [open, { toggle: toggleOpen, set: setOpen }] = useToggle(false);

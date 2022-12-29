@@ -22,6 +22,8 @@ import store from "@/store";
 import { ConfigProvider } from "@/contexts/ConfigContext";
 import reportWebVitals from "@/reportWebVitals";
 
+import "@/global.scss";
+
 // hash router change to browser router
 if (window.location.hash) {
   window.location.href = window.location.hash;

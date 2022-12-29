@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useQRCode } from "next-qrcode";
+import { QRCodeCanvas } from "qrcode.react";
 
 // material-ui
 import {
@@ -23,7 +23,6 @@ const ScanQRCodeButton: React.FC = () => {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   const { data: subscribeInfo } = useGetUserSubscriptionQuery();
-  const { Canvas } = useQRCode();
 
   return (
     <>
@@ -46,14 +45,7 @@ const ScanQRCodeButton: React.FC = () => {
             alignItems: "center"
           }}
         >
-          {subscribeInfo && (
-            <Canvas
-              text={subscribeInfo.subscribe_url}
-              options={{
-                level: "H"
-              }}
-            />
-          )}
+          {subscribeInfo && <QRCodeCanvas value={subscribeInfo.subscribe_url} level={"Q"} includeMargin size={256} />}
           <Typography variant="body2" color="textSecondary">
             {t("dashboard.shortcut.subscribe.scan_tips")}
           </Typography>

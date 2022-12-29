@@ -1,25 +1,19 @@
-import { useMemo } from "react";
+import React from "react";
 
 // material-ui
-import { Theme } from "@mui/material/styles";
-import { Box, Stack, useMediaQuery } from "@mui/material";
+import { Stack } from "@mui/material";
 
 // project import
 /* import Search from "./Search"; */
 import Message from "./Message";
 import Profile from "./Profile";
-import Notification from "./Notification";
-import MobileSection from "./MobileSection";
-import MegaMenuSection from "./MegaMenuSection";
+import WorkflowMenu from "./WorkflowMenu";
 import Title from "./Title";
 
 // ==============================|| HEADER - CONTENT ||============================== //
 
-const HeaderContent = () => {
-  const matchesXs = useMediaQuery((theme: Theme) => theme.breakpoints.down("md"));
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const megaMenu = useMemo(() => <MegaMenuSection />, []);
+const HeaderContent: React.FC = () => {
+  // const matchesXs = useMediaQuery((theme: Theme) => theme.breakpoints.down("md"));
 
   return (
     <>
@@ -27,10 +21,8 @@ const HeaderContent = () => {
         {/*{!matchesXs && <Search />}*/}
         <Title />
       </Stack>
-      {!matchesXs && megaMenu}
-      {matchesXs && <Box sx={{ width: "100%", ml: 1 }} />}
 
-      <Notification />
+      <WorkflowMenu />
       <Message />
       <Profile />
     </>

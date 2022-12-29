@@ -40,7 +40,7 @@ import { useGetTicketsQuery, useGetUserStatQuery } from "@/store/services/api";
 import Ticket from "@/model/ticket";
 import { Trans, useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
-import { useSafeState, useToggle } from "ahooks";
+import { useCountDown, useSafeState, useToggle } from "ahooks";
 import dayjs from "dayjs";
 import { useNavigate } from "react-router-dom";
 
@@ -221,12 +221,42 @@ const TicketItem: React.FC<TickerItemProps> = ({ ticket }) => {
   );
 };
 
+const RefreshButton: React.FC = () => {
+  const { enqueueSnackbar } = useSnackbar();
+  const { t } = useTranslation();
+  const { classes } = useStyles({
+    open: true
+  });
+  const { refetch: refetchTickets } = useGetTicketsQuery();
+
+  const [targetTime, setTargetTime] = useState(dayjs());
+  const [countdown, { seconds }] = useCountDown({
+    targetDate: targetTime
+  });
+
+  const handleRefresh = (e: React.MouseEvent | React.TouchEvent) => {
+    e.preventDefault();
+    enqueueSnackbar(t("notice::refresh_success"), {
+      variant: "success"
+    });
+    refetchTickets();
+    setTargetTime(dayjs().add(10, "seconds"));
+  };
+
+  return (
+    <Tooltip placement={"right"} title={t("layout.header.ticket.refresh_tooltip")}>
+      <IconButton size="small" className={classes.refreshButton} onClick={handleRefresh} disabled={countdown > 0}>
+        {countdown <= 0 ? <RedoOutlined /> : seconds}
+      </IconButton>
+    </Tooltip>
+  );
+};
+
 const TicketMenu = () => {
   const theme = useTheme();
   const matchesXs = useMediaQuery(theme.breakpoints.down("md"));
-  const { enqueueSnackbar } = useSnackbar();
-  const { t } = useTranslation();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const anchorRef = useRef<HTMLButtonElement>(null);
   const [open, { toggle: toggleOpen, set: setOpen }] = useToggle(false);
@@ -244,8 +274,7 @@ const TicketMenu = () => {
   const {
     data: ticketData,
     isSuccess,
-    isLoading,
-    refetch: refetchTickets
+    isLoading
   } = useGetTicketsQuery(undefined, {
     skip: !opened
   });
@@ -253,14 +282,6 @@ const TicketMenu = () => {
     () => (isSuccess && ticketData && ticketData.filter((ticket) => ticket.status === 0).slice(0, 5)) || [],
     [isSuccess, ticketData]
   );
-
-  const handleRefresh = (e: React.MouseEvent | React.TouchEvent) => {
-    e.preventDefault();
-    enqueueSnackbar(t("notice::refresh_success"), {
-      variant: "success"
-    });
-    refetchTickets();
-  };
 
   const { classes, cx } = useStyles({ open });
 
@@ -310,13 +331,7 @@ const TicketMenu = () => {
                   elevation={0}
                   border={false}
                   content={false}
-                  secondary={
-                    <Tooltip placement={"right"} title={t("layout.header.ticket.refresh_tooltip")}>
-                      <IconButton size="small" className={classes.refreshButton} onClick={handleRefresh}>
-                        <RedoOutlined />
-                      </IconButton>
-                    </Tooltip>
-                  }
+                  secondary={<RefreshButton />}
                 >
                   <List component="nav" className={classes.nav}>
                     {tickets.map((ticket, index) => (

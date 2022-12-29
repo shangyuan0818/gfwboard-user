@@ -311,7 +311,7 @@ const TicketMenu = () => {
                   border={false}
                   content={false}
                   secondary={
-                    <Tooltip placement={"right"} title={"Refresh"}>
+                    <Tooltip placement={"right"} title={t("layout.header.ticket.refresh_tooltip")}>
                       <IconButton size="small" className={classes.refreshButton} onClick={handleRefresh}>
                         <RedoOutlined />
                       </IconButton>

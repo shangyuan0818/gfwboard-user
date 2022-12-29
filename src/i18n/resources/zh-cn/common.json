@@ -20,7 +20,8 @@
         "updated_at_hours": "更新于 {{count}} 小时前",
         "updated_at_days": "更新于 {{count}} 天前",
         "reply_status_replied": "已回复",
-        "reply_status_noreply": "待回复"
+        "reply_status_noreply": "待回复",
+        "refresh_tooltip": "刷新"
       }
     },
     "footer": {

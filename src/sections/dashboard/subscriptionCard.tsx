@@ -4,14 +4,14 @@ import lo from "lodash-es";
 import { Trans, useTranslation } from "react-i18next";
 
 // material-ui
-import { CircularProgress, LinearProgress, Stack, Typography } from "@mui/material";
+import { Box, CircularProgress, LinearProgress, Skeleton, Stack, Typography } from "@mui/material";
 
 // project imports
 import MainCard from "@/components/MainCard";
 import { useGetUserSubscriptionQuery } from "@/store/services/api";
 
 const SubscriptionCard: React.FC = () => {
-  const { data: subscriptionInfo } = useGetUserSubscriptionQuery();
+  const { data: subscriptionInfo, isLoading } = useGetUserSubscriptionQuery();
   const { t } = useTranslation();
 
   const trafficUsed = useMemo(
@@ -21,7 +21,7 @@ const SubscriptionCard: React.FC = () => {
 
   return (
     <MainCard title={<Trans i18nKey={"dashboard.subscription-card.title"}>My Subscription</Trans>}>
-      {subscriptionInfo ? (
+      {subscriptionInfo && subscriptionInfo.plan_id !== null && (
         <Stack spacing={2}>
           <Typography component={"h6"} variant={"h4"}>
             {subscriptionInfo.plan.name}
@@ -45,8 +45,16 @@ const SubscriptionCard: React.FC = () => {
             })}
           </Typography>
         </Stack>
-      ) : (
-        <CircularProgress />
+      )}
+      {subscriptionInfo && subscriptionInfo.plan_id === null && (
+        <Box display={"flex"} flexDirection={"column"} alignItems={"center"} justifyContent={"center"} minHeight={160}>
+          <Typography variant={"body1"}>{t("dashboard.subscription-card.no-subscription")}</Typography>
+        </Box>
+      )}
+      {isLoading && (
+        <Box display={"flex"} flexDirection={"column"} alignItems={"center"} justifyContent={"center"} minHeight={160}>
+          <Skeleton variant={"rectangular"} width={"100%"} height={120} />
+        </Box>
       )}
     </MainCard>
   );

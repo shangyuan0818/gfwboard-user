@@ -30,6 +30,7 @@
     "dayjs": "^1.11.7",
     "dotenv": "^16.0.3",
     "dotenv-expand": "^10.0.0",
+    "flag-icons": "^6.6.6",
     "formik": "^2.2.9",
     "framer-motion": "^7.5.3",
     "fs-extra": "^11.1.0",

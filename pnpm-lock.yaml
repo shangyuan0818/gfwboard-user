@@ -56,6 +56,7 @@ specifiers:
   eslint-plugin-prettier: ^4.2.1
   eslint-plugin-react: ^7.31.10
   eslint-plugin-react-hooks: ^4.6.0
+  flag-icons: ^6.6.6
   formik: ^2.2.9
   framer-motion: ^7.5.3
   fs-extra: ^11.1.0
@@ -144,6 +145,7 @@ dependencies:
   dayjs: 1.11.7
   dotenv: 16.0.3
   dotenv-expand: 10.0.0
+  flag-icons: 6.6.6
   formik: 2.2.9_react@18.2.0
   framer-motion: 7.5.3_biqbaboplfbrettd7655fr4n2y
   fs-extra: 11.1.0
@@ -4606,6 +4608,10 @@ packages:
       locate-path: 6.0.0
       path-exists: 4.0.0
     dev: true
+
+  /flag-icons/6.6.6:
+    resolution: {integrity: sha512-4lHDKxldnQ7q617pf9Dx9nAetT+9zcMpUexbRrc9kjLw9KJgZ83zA5Dky3Vv7ZDzUjAiZ46x/cy5P0HnEnqA2A==}
+    dev: false
 
   /flat-cache/3.0.4:
     resolution: {integrity: sha512-dm9s5Pw7Jc0GvMYbshN6zchCA9RgQlzzEZX3vylR9IqFfS8XciblUXOKfW6SiuJ0e13eDYZoZV5wdrev7P3Nwg==}

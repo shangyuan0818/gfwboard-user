@@ -5,11 +5,11 @@ import { Stack } from "@mui/material";
 
 // project import
 /* import Search from "./Search"; */
-import Message from "./Message";
 import Profile from "./Profile";
 import TicketMenu from "./TicketMenu";
 import Title from "./Title";
 import DarkModeSwitchButton from "@/layout/MainLayout/Header/HeaderContent/DarkModeSwitchButton";
+import I18nSwitchButton from "@/layout/MainLayout/Header/HeaderContent/I18nSwitchButton";
 
 // ==============================|| HEADER - CONTENT ||============================== //
 
@@ -26,6 +26,7 @@ const HeaderContent: React.FC = () => {
       <Stack direction={"row"} alignItems={"center"} spacing={1}>
         <TicketMenu />
         <DarkModeSwitchButton />
+        <I18nSwitchButton />
         <Profile />
       </Stack>
     </>

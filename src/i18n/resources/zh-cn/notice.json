@@ -15,5 +15,7 @@
     "loading_error": "加载文章失败，请联系客服"
   },
   "refresh_success": "刷新成功",
-  "refresh_fail": "刷新失败"
+  "refresh_fail": "刷新失败",
+  "language-change_success": "成功切换语言为 $t(language::{{lng}}_name)",
+  "language-change_fail": "语言切换失败"
 }

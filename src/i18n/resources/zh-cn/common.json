@@ -29,6 +29,9 @@
         "follow-times": "跟随时间",
         "always-light": "始终亮色",
         "always-dark": "始终暗色"
+      },
+      "i18n-switch": {
+        "title": "切换语言"
       }
     },
     "footer": {

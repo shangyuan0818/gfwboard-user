@@ -205,5 +205,17 @@
     "post": {
       "update": "更新于 {{date}}"
     }
+  },
+  "subscription": {
+    "filter-card": {
+      "title": "筛选",
+      "search": "搜索节点",
+      "plan-type": {
+        "title": "计划类型",
+        "all": "全部",
+        "period": "按周期",
+        "traffic": "按流量"
+      }
+    }
   }
 }

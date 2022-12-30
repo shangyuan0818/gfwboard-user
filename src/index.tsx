@@ -4,6 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 
 // third-party
 import { Provider as ReduxProvider } from "react-redux";
+import "react-app-polyfill/ie11";
 
 // scroll bar
 import "simplebar/src/simplebar.css";
@@ -20,6 +21,8 @@ import App from "@/App";
 import store from "@/store";
 import { ConfigProvider } from "@/contexts/ConfigContext";
 import reportWebVitals from "@/reportWebVitals";
+
+import "@/global.scss";
 
 // hash router change to browser router
 if (window.location.hash) {

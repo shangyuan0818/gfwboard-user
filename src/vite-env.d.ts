@@ -19,4 +19,5 @@ interface WindowSettings {
   description: string;
   logo: string | null;
   api: string;
+  languages: string[];
 }

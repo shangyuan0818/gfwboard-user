@@ -41,11 +41,9 @@ export type CustomizationProps = {
   i18n: I18n;
   miniDrawer: boolean;
   container: boolean;
-  mode: ThemeMode;
   presetColor: PresetColor;
   themeDirection: ThemeDirection;
   onChangeContainer: VoidFunction;
-  onChangeMode: (mode: ThemeMode) => void;
   onChangePresetColor: (theme: PresetColor) => void;
   onChangeDirection: (direction: ThemeDirection) => void;
   onChangeMiniDrawer: (miniDrawer: boolean) => void;

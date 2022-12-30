@@ -1,9 +1,9 @@
-import { ReactNode } from 'react';
+import { ReactNode } from "react";
 
 // material-ui
-import { ChipProps } from '@mui/material';
+import { ChipProps } from "@mui/material";
 
-import { GenericCardProps } from './root';
+import { GenericCardProps } from "./root";
 
 // ==============================|| MENU TYPES  ||============================== //
 
@@ -12,19 +12,19 @@ export type NavItemType = {
   caption?: ReactNode | string;
   children?: NavItemType[];
   chip?: ChipProps;
-  color?: 'primary' | 'secondary' | 'default' | undefined;
+  color?: "primary" | "secondary" | "default" | undefined;
   disabled?: boolean;
   external?: boolean;
-  icon?: GenericCardProps['iconPrimary'];
+  icon?: GenericCardProps["iconPrimary"];
   id?: string;
   search?: string;
   target?: boolean;
-  title?: ReactNode | string;
+  title?: string;
   type?: string;
   url?: string | undefined;
 };
 
-export type LinkTarget = '_blank' | '_self' | '_parent' | '_top';
+export type LinkTarget = "_blank" | "_self" | "_parent" | "_top";
 
 export type MenuProps = {
   openItem: string[];

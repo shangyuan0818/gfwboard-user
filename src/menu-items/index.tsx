@@ -9,19 +9,19 @@ const menuItems: { items: NavItemType[] } = {
   items: [
     {
       id: "app",
-      title: <Trans>title::app</Trans>,
+      title: "app",
       type: "group",
       children: [
         {
           id: "dashboard",
-          title: <Trans>title::dashboard</Trans>,
+          title: "dashboard",
           type: "item",
           url: "/dashboard",
           icon: DashboardOutlined
         },
         {
           id: "knowledge",
-          title: <Trans>title::knowledge</Trans>,
+          title: "knowledge",
           type: "item",
           url: "/knowledge",
           icon: ReadOutlined

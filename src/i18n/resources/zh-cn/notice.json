@@ -7,9 +7,15 @@
   "forgot_password": {
     "reset_success": "密码重置成功"
   },
+  "logout_success": "登出成功",
+  "login_success": "登录成功",
   "copy_success": "复制成功",
   "copy_fail": "复制失败",
   "knowledge_post": {
     "loading_error": "加载文章失败，请联系客服"
-  }
+  },
+  "refresh_success": "刷新成功",
+  "refresh_fail": "刷新失败",
+  "language-change_success": "成功切换语言为 $t(language::{{lng}}_name)",
+  "language-change_fail": "语言切换失败"
 }

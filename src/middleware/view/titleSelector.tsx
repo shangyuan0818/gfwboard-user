@@ -1,20 +1,26 @@
-import React, { useEffect } from "react";
+import React from "react";
+
+// third-party
 import lo from "lodash-es";
+
+// hooks
 import { useTranslation } from "react-i18next";
+import { useTitle } from "ahooks";
+
+// project import
 import { useSelector } from "@/store";
 
 const TitleSelector: React.FC = () => {
   const { t } = useTranslation();
   const title = useSelector((state) => state.view.title);
-  useEffect(() => {
-    console.log("title changed");
-
-    if (lo.isNull(title)) {
-      document.title = `${window.settings.title}`;
-    } else {
-      document.title = `${t(title, { ns: "title" })}${window.settings.title_split}${window.settings.title}`;
+  useTitle(
+    lo.isNull(title)
+      ? `${window.settings.title}`
+      : `${t(title, { ns: "title" })}${window.settings.title_split}${window.settings.title}`,
+    {
+      restoreOnUnmount: true
     }
-  }, [title]);
+  );
 
   return null;
 };

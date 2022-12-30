@@ -1,4 +1,46 @@
 {
+  "layout": {
+    "header": {
+      "profile": {
+        "user_secondary": "高级客户",
+        "profile_center": "个人中心",
+        "transaction_list": "订单列表",
+        "traffic_statistics": "流量统计",
+        "invitations": "我的邀请",
+        "logout": "退出登录",
+        "logout_tooltip": "登出"
+      },
+      "ticket": {
+        "title": "工单",
+        "no_ticket": "暂无未完成的工单",
+        "view_all": "查看全部",
+        "start_at": "创建于 {{time}}",
+        "updated_at_seconds": "更新于 {{count}} 秒前",
+        "updated_at_minutes": "更新于 {{count}} 分钟前",
+        "updated_at_hours": "更新于 {{count}} 小时前",
+        "updated_at_days": "更新于 {{count}} 天前",
+        "reply_status_replied": "已回复",
+        "reply_status_noreply": "待回复",
+        "refresh_tooltip": "刷新"
+      },
+      "dark-mode-switch": {
+        "title": "切换色彩模式",
+        "follow-system": "跟随系统",
+        "follow-times": "跟随时间",
+        "always-light": "始终亮色",
+        "always-dark": "始终暗色"
+      },
+      "i18n-switch": {
+        "title": "切换语言"
+      }
+    },
+    "footer": {
+      "copyright": "© 版权所有",
+      "contact-us": "联系我们",
+      "privacy-policy": "隐私政策",
+      "terms-of-service": "服务条款"
+    }
+  },
   "login": {
     "title": "登录",
     "email": "邮箱",

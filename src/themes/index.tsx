@@ -1,7 +1,8 @@
 import { ReactNode, useMemo } from "react";
+import dayjs from "dayjs";
 
 // material-ui
-import { CssBaseline, StyledEngineProvider } from "@mui/material";
+import { CssBaseline, StyledEngineProvider, useMediaQuery } from "@mui/material";
 import { createTheme, ThemeOptions, ThemeProvider, Theme, TypographyVariantsOptions } from "@mui/material/styles";
 
 // project import
@@ -10,6 +11,7 @@ import Palette from "./palette";
 import Typography from "./typography";
 import CustomShadows from "./shadows";
 import componentsOverride from "./overrides";
+import { useSelector } from "@/store";
 
 // types
 import { CustomShadowProps } from "@/types/theme";
@@ -22,7 +24,22 @@ type ThemeCustomizationProps = {
 // ==============================|| DEFAULT THEME - MAIN  ||============================== //
 
 export default function ThemeCustomization({ children }: ThemeCustomizationProps) {
-  const { themeDirection, mode, presetColor, fontFamily } = useConfig();
+  const { themeDirection, presetColor, fontFamily } = useConfig();
+  const modeSelect = useSelector((state) => state.view.theme.mode);
+  const isSystemDark = useMediaQuery("(prefers-color-scheme: dark)");
+  const mode = useMemo(() => {
+    switch (modeSelect) {
+      case "system":
+      default:
+        return isSystemDark ? "dark" : "light";
+      case "dark":
+        return "dark";
+      case "light":
+        return "light";
+      case "time":
+        return dayjs().isAfter(dayjs().hour(18)) || dayjs().isBefore(dayjs().hour(6)) ? "dark" : "light";
+    }
+  }, [modeSelect, isSystemDark, dayjs]);
 
   const theme: Theme = useMemo<Theme>(() => Palette(mode, presetColor), [mode, presetColor]);
 

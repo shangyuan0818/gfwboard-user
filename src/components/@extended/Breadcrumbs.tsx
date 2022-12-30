@@ -1,6 +1,6 @@
 import { CSSProperties, ReactElement, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Trans } from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 // material-ui
 import MuiBreadcrumbs from "@mui/material/Breadcrumbs";
@@ -56,6 +56,7 @@ const Breadcrumbs = ({
   const location = useLocation();
   const [main, setMain] = useState<NavItemType | undefined>();
   const [item, setItem] = useState<NavItemType>();
+  const { t } = useTranslation();
 
   const iconSX = {
     marginRight: theme.spacing(0.75),
@@ -66,13 +67,14 @@ const Breadcrumbs = ({
   };
 
   useEffect(() => {
-    navigation?.items?.map((menu: NavItemType, index: number) => {
+    navigation?.items?.map((menu: NavItemType) => {
       if (menu.type && menu.type === "group") {
         getCollapse(menu as { children: NavItemType[]; type?: string });
       }
+
       return false;
     });
-  });
+  }, [navigation, location]);
 
   let customLocation = location.pathname;
 
@@ -116,7 +118,7 @@ const Breadcrumbs = ({
         color="textSecondary"
       >
         {icons && <CollapseIcon style={iconSX} />}
-        <Trans>{main.title}</Trans>
+        {main.title && t(main.title, { ns: "title" })}
       </Typography>
     );
   }
@@ -129,7 +131,7 @@ const Breadcrumbs = ({
     itemContent = (
       <Typography variant="subtitle1" color="textPrimary">
         {icons && <ItemIcon style={iconSX} />}
-        <Trans>{itemTitle}</Trans>
+        {itemTitle && t(itemTitle, { ns: "title" })}
       </Typography>
     );
 
@@ -152,9 +154,7 @@ const Breadcrumbs = ({
           >
             {title && !titleBottom && (
               <Grid item>
-                <Typography variant="h2">
-                  <Trans>{item.title}</Trans>
-                </Typography>
+                <Typography variant="h2">{item.title && t(item.title, { ns: "title" })}</Typography>
               </Grid>
             )}
             <Grid item>
@@ -170,9 +170,7 @@ const Breadcrumbs = ({
             </Grid>
             {title && titleBottom && (
               <Grid item sx={{ mt: card === false ? 0.25 : 1 }}>
-                <Typography variant="h2">
-                  <Trans>{item.title}</Trans>
-                </Typography>
+                <Typography variant="h2">{item.title && t(item.title, { ns: "title" })}</Typography>
               </Grid>
             )}
           </Grid>

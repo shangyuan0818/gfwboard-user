@@ -12,6 +12,7 @@ import { activeItem } from "@/store/reducers/menu";
 // types
 import { LinkTarget, NavItemType } from "@/types/menu";
 import { RootStateProps } from "@/types/root";
+import { useTranslation } from "react-i18next";
 
 // ==============================|| NAVIGATION - LIST ITEM ||============================== //
 
@@ -23,6 +24,7 @@ interface Props {
 const NavItem = ({ item, level }: Props) => {
   const theme = useTheme();
   const dispatch = useDispatch();
+  const { t } = useTranslation();
   const menu = useSelector((state: RootStateProps) => state.menu);
   const { drawerOpen, openItem } = menu;
 
@@ -35,7 +37,7 @@ const NavItem = ({ item, level }: Props) => {
     component: ForwardRefExoticComponent<RefAttributes<HTMLAnchorElement>> | string;
     href?: string;
     target?: LinkTarget;
-  } = { component: forwardRef((props, ref) => <Link {...props} to={item.url!} target={itemTarget} />) };
+  } = { component: forwardRef((props, ref) => <Link {...props} ref={ref} to={item.url!} target={itemTarget} />) };
   if (item?.external) {
     listItemProps = { component: "a", href: item.url, target: itemTarget };
   }
@@ -137,7 +139,7 @@ const NavItem = ({ item, level }: Props) => {
         <ListItemText
           primary={
             <Typography variant="h6" sx={{ color: isSelected ? iconSelectedColor : textColor }}>
-              {item.title}
+              {item.title && t(item.title, { ns: "title" })}
             </Typography>
           }
         />

@@ -1,54 +1,49 @@
-import { Link as RouterLink, useNavigate } from "react-router-dom";
+import React, { SyntheticEvent, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 // material-ui
 import {
   Box,
   Button,
-  Checkbox,
   CircularProgress,
   FormControl,
-  FormControlLabel,
   FormHelperText,
   Grid,
   InputAdornment,
   InputLabel,
-  Link,
   OutlinedInput,
   Stack,
   Typography
 } from "@mui/material";
 import { useSnackbar } from "notistack";
+import { useTheme } from "@mui/material/styles";
+import { EyeInvisibleOutlined, EyeOutlined } from "@ant-design/icons";
 
 // third party
 import * as Yup from "yup";
 import { Formik } from "formik";
+import { useUnmountedRef } from "ahooks";
+import lo from "lodash-es";
+import OtpInput from "react18-input-otp";
+import { Trans, useTranslation } from "react-i18next";
 
 // project import
-import useScriptRef from "@/hooks/useScriptRef";
 import AnimateButton from "@/components/@extended/AnimateButton";
-import { useSelector } from "@/store";
 import { useResetPasswordMutation } from "@/store/services/api";
-import { Trans, useTranslation } from "react-i18next";
 import SendMailButton from "@/sections/auth/auth-forms/SendMailButton";
-import OtpInput from "react18-input-otp";
 import IconButton from "@/components/@extended/IconButton";
-import { EyeInvisibleOutlined, EyeOutlined } from "@ant-design/icons";
-import lo from "lodash-es";
-import React, { SyntheticEvent, useEffect, useState } from "react";
 import { StringColorProps } from "@/types/password";
 import { strengthColor, strengthIndicator } from "@/utils/password-strength";
-import { useTheme } from "@mui/material/styles";
 
 // ============================|| FIREBASE - FORGOT PASSWORD ||============================ //
 
 const AuthForgotPassword = () => {
   const theme = useTheme();
   const { t } = useTranslation("common");
-  const scriptedRef = useScriptRef();
+  const scriptedRef = useUnmountedRef();
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
 
-  const { isLoggedIn } = useSelector((state) => state.auth);
   const [resetPassword] = useResetPasswordMutation();
 
   const [level, setLevel] = useState<StringColorProps>();

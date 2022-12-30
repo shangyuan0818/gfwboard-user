@@ -1,24 +1,12 @@
-import React, { useEffect } from "react";
-import { Trans } from "react-i18next";
+import React from "react";
+import { Trans, useTranslation } from "react-i18next";
 import dayjs from "dayjs";
 
 // material-ui
-import {
-  Badge,
-  Box,
-  ButtonBase,
-  Chip,
-  Dialog,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  Typography,
-  useMediaQuery
-} from "@mui/material";
+import { Box, ButtonBase, Chip, Dialog, DialogContent, DialogTitle, Typography, useMediaQuery } from "@mui/material";
 import Carousel from "react-material-ui-carousel";
 
 // project imports
-import { useSelector } from "@/store";
 import { useGetNoticesQuery } from "@/store/services/api";
 import { makeStyles } from "@/themes/hooks";
 
@@ -66,6 +54,7 @@ const NoticeBlock: React.FC<{
   notice: Notice;
 }> = ({ notice }) => {
   const [open, setOpen] = React.useState(false);
+  const { t } = useTranslation();
 
   const { classes } = useStyles();
 
@@ -81,11 +70,7 @@ const NoticeBlock: React.FC<{
         onClick={() => setOpen(true)}
       >
         <Box className={classes.mask} />
-        <Chip
-          className={classes.chip}
-          label={<Trans i18nKey={"dashboard.announcement.chip"}>Announcement</Trans>}
-          color="secondary"
-        />
+        <Chip className={classes.chip} label={t("dashboard.announcement.chip")} color="secondary" />
         <Box className={classes.textArea}>
           <Typography variant={"h4"} mb={0.5}>
             {notice.title}

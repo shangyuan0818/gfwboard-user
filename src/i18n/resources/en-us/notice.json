@@ -1,0 +1,21 @@
+{
+  "capslock_on": "Caps Lock is ON",
+  "capslock_off": "Caps Lock is OFF",
+  "send_email_code_success": "Email verification code sent successfully",
+  "send_email_code_fail": "Failed to send email verification code",
+  "remind_check_trash_box": "Please check your trash box",
+  "forgot_password": {
+    "reset_success": "Password reset successfully"
+  },
+  "logout_success": "Logout successfully",
+  "login_success": "Login successfully",
+  "copy_success": "Copy successfully",
+  "copy_fail": "Copy failed",
+  "knowledge_post": {
+    "loading_error": "Failed to load knowledge post"
+  },
+  "refresh_success": "Refresh successfully",
+  "refresh_fail": "Refresh failed",
+  "language-change_success": "Language switched to $t(language::{{lng}}_name)",
+  "language-change_fail": "Failed to switch language"
+}

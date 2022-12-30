@@ -1,0 +1,208 @@
+{
+  "layout": {
+    "header": {
+      "profile": {
+        "user_secondary": "Premium Customer",
+        "profile_center": "User Profile",
+        "transaction_list": "Transactions",
+        "traffic_statistics": "Traffic Stat",
+        "invitations": "My Invitations",
+        "logout": "Logout",
+        "logout_tooltip": "Logout"
+      },
+      "ticket": {
+        "title": "Ticket",
+        "no_ticket": "No Ticket",
+        "view_all": "View All",
+        "start_at": "Start at {{time}}",
+        "updated_at_seconds": "Updated {{count}} seconds ago",
+        "updated_at_minutes": "Updated {{count}} minutes ago",
+        "updated_at_hours": "Updated {{count}} hours ago",
+        "updated_at_days": "Updated {{count}} days ago",
+        "reply_status_replied": "Replied",
+        "reply_status_noreply": "Handling",
+        "refresh_tooltip": "Refresh"
+      },
+      "dark-mode-switch": {
+        "title": "Light / Dark Mode",
+        "follow-system": "Follow System",
+        "follow-times": "Follow Times",
+        "always-light": "Always Light",
+        "always-dark": "Always Dark"
+      },
+      "i18n-switch": {
+        "title": "Languages"
+      }
+    },
+    "footer": {
+      "copyright": "© All Rights Reserved",
+      "contact-us": "Contact Us",
+      "privacy-policy": "Privacy",
+      "terms-of-service": "Terms"
+    }
+  },
+  "login": {
+    "title": "Login",
+    "email": "Email",
+    "email_placeholder": "Please enter your email",
+    "email_required": "Email is required",
+    "email_invalid": "Email is invalid",
+    "password": "Password",
+    "password_placeholder": "Please enter your password",
+    "password_required": "Password is required",
+    "submit": "Login",
+    "go-register": "Don't have an account?",
+    "forgot_password": "Forgot Password?"
+  },
+  "register": {
+    "title": "Register",
+    "email": "Email",
+    "email_placeholder": "Please enter your email",
+    "email_required": "Email is required",
+    "email_invalid": "Email is invalid",
+    "email_max": "Email cannot be longer than {{count}} characters",
+    "email_code": "Verification Code",
+    "email_code_placeholder": "Please enter your verification code",
+    "email_code_required": "Verification code is required",
+    "send_email_code": "Send",
+    "password": "Password",
+    "password_placeholder": "Please enter your password",
+    "password_required": "Password is required",
+    "password_min": "Password must be at least {{count}} characters",
+    "password_max": "Password cannot be longer than {{count}} characters",
+    "password_confirmation": "Password Confirm",
+    "password_confirmation_placeholder": "Please enter your password again",
+    "password_confirmation_required": "Password confirm is required",
+    "password_confirmation_invalid": "Password confirm is invalid",
+    "password_strength": "Password Strength",
+    "password_strength_poor": "Poor",
+    "password_strength_weak": "Weak",
+    "password_strength_normal": "Normal",
+    "password_strength_good": "Good",
+    "password_strength_strong": "Strong",
+    "password_confirm": "Password Confirm",
+    "password_confirm_invalid": "Password confirm is invalid",
+    "password_confirm_required": "Password confirm is required",
+    "go-login": "Already have an account?",
+    "license_agree": "I have read and agree to the <0> Terms of Service </0> and <1> Privacy Policy </1>",
+    "agree_required": "You must agree to the terms and conditions",
+    "invite_code": "Invite Code",
+    "invite_code_max": "Invite code cannot be longer than {{count}} characters",
+    "invite_code_placeholder_optional": "Optional",
+    "invite_code_placeholder_required": "Required",
+    "submit": "Register"
+  },
+  "forgot_password": {
+    "title": "Forgot Password",
+    "back_to_login": "Back to Login",
+    "email": "Email",
+    "email_placeholder": "Please enter your email",
+    "email_required": "Email is required",
+    "email_invalid": "Email is invalid",
+    "email_code": "Verification Code",
+    "email_code_placeholder": "Please enter your verification code",
+    "email_code_required": "Verification code is required",
+    "email_code_min": "Verification code must be at least {{count}} characters",
+    "email_code_max": "Verification code cannot be longer than {{count}} characters",
+    "send_email_code": "Send",
+    "password": "Password",
+    "password_placeholder": "Please enter your password",
+    "password_required": "Password is required",
+    "password_min": "Password must be at least {{count}} characters",
+    "password_max": "Password cannot be longer than {{count}} characters",
+    "password_confirmation": "Password Confirm",
+    "password_confirmation_placeholder": "Please enter your password again",
+    "password_confirmation_required": "Password confirm is required",
+    "password_confirmation_invalid": "Password confirm is invalid",
+    "password_strength": "Password Strength",
+    "password_strength_poor": "Poor",
+    "password_strength_weak": "Weak",
+    "password_strength_normal": "Normal",
+    "password_strength_good": "Good",
+    "password_strength_strong": "Strong",
+    "password_confirm": "Password Confirm",
+    "password_confirm_invalid": "Password confirm is invalid",
+    "password_confirm_required": "Password confirm is required",
+    "submit": "Reset Password"
+  },
+  "auth": {
+    "captcha": {
+      "title": "Captcha",
+      "description": "Please complete the verification below",
+      "submit": "Submit",
+      "success": "Verification successful",
+      "error": "Verification failed",
+      "error_null_token": "Verification token cannot be empty"
+    },
+    "footer": {
+      "privacy": "<2>Privacy Policy</2> specifies how we collect, use and protect your information.",
+      "links": {
+        "terms": "Terms of Service",
+        "privacy": "Privacy Policy"
+      }
+    }
+  },
+  "dashboard": {
+    "announcement": {
+      "chip": "Announcement",
+      "title": "Announcement"
+    },
+    "subscription-card": {
+      "title": "Subscription",
+      "description": "You can view the subscription information here",
+      "plan": "Plan",
+      "expire_forever": "Never Expire",
+      "expire_limited_zero": "Expired",
+      "expire_limited_other": "Expired on {{date}}, {{count}} days until expiration, will reset traffic in {{reset_date}} days",
+      "traffic": "Used {{used}} GB / Total {{total}} GB"
+    },
+    "shortcut": {
+      "title": "Shortcut",
+      "description": "You can quickly access the commonly used functions here",
+      "tutorial": {
+        "primary": "Tutorial",
+        "secondary": "View the tutorial to learn how to use the service of us"
+      },
+      "subscribe": {
+        "primary": "Subscribe",
+        "secondary": "Quickly import nodes to the corresponding client for use",
+        "copy": "Copy Link",
+        "scan": "Scan QR code",
+        "scan_tips": "Use a client which supports scanning QR codes to subscribe",
+        "clash": "Import into Clash",
+        "clashx": "Import into ClashX",
+        "surfboard": "Import into Surfboard",
+        "shadowrocket": "Import into Shadowrocket",
+        "quantumultx": "Import into Quantumult X",
+        "surge": "Import into Surge",
+        "stash": "Import into Stash"
+      },
+      "purchase": {
+        "primary_purchased": "Renew",
+        "secondary_purchased": "Renew your subscription",
+        "primary_not_purchased": "Purchase",
+        "secondary_not_purchased": "Purchase a subscription"
+      },
+      "ticket": {
+        "primary": "Ticket",
+        "secondary": "Submit a ticket to get help"
+      }
+    }
+  },
+  "maintenance": {
+    "404": {
+      "title": "Page Not Found",
+      "description": "The page you are looking for does not exist.",
+      "button": "Back to Home"
+    }
+  },
+  "knowledge": {
+    "title": "Knowledge",
+    "description": "You can view the knowledge here",
+    "search": "Search",
+    "search_placeholder": "Search",
+    "post": {
+      "update": "Updated on {{date}}"
+    }
+  }
+}

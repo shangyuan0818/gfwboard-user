@@ -13,6 +13,7 @@ export default interface Ticket {
   status: 0 | 1;
   user_id: number;
   message: Message[];
+  subject: string;
 }
 
 export interface Message {

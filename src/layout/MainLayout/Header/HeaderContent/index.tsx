@@ -1,35 +1,34 @@
-import { useMemo } from 'react';
+import React from "react";
 
 // material-ui
-import { Theme } from '@mui/material/styles';
-import { Box, useMediaQuery } from '@mui/material';
+import { Stack } from "@mui/material";
 
 // project import
-import Search from './Search';
-import Message from './Message';
-import Profile from './Profile';
-import Notification from './Notification';
-import MobileSection from './MobileSection';
-import MegaMenuSection from './MegaMenuSection';
+/* import Search from "./Search"; */
+import Profile from "./Profile";
+import TicketMenu from "./TicketMenu";
+import Title from "./Title";
+import DarkModeSwitchButton from "@/layout/MainLayout/Header/HeaderContent/DarkModeSwitchButton";
+import I18nSwitchButton from "@/layout/MainLayout/Header/HeaderContent/I18nSwitchButton";
 
 // ==============================|| HEADER - CONTENT ||============================== //
 
-const HeaderContent = () => {
-  const matchesXs = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const megaMenu = useMemo(() => <MegaMenuSection />, []);
+const HeaderContent: React.FC = () => {
+  // const matchesXs = useMediaQuery((theme: Theme) => theme.breakpoints.down("md"));
 
   return (
     <>
-      {!matchesXs && <Search />}
-      {!matchesXs && megaMenu}
-      {matchesXs && <Box sx={{ width: '100%', ml: 1 }} />}
+      <Stack direction={"row"} sx={{ flexGrow: 1, mx: 2 }}>
+        {/*{!matchesXs && <Search />}*/}
+        <Title />
+      </Stack>
 
-      <Notification />
-      <Message />
-      {!matchesXs && <Profile />}
-      {matchesXs && <MobileSection />}
+      <Stack direction={"row"} alignItems={"center"} spacing={1}>
+        <TicketMenu />
+        <DarkModeSwitchButton />
+        <I18nSwitchButton />
+        <Profile />
+      </Stack>
     </>
   );
 };

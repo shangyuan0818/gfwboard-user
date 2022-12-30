@@ -1,5 +1,5 @@
 import React from "react";
-import { Trans, useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import dayjs from "dayjs";
 
 // material-ui
@@ -21,7 +21,7 @@ const useStyles = makeStyles()((theme) => ({
     borderRadius: theme.shape.borderRadius
   },
   item: {
-    height: theme.spacing(28),
+    height: theme.spacing(24),
     width: "100%",
     boxShadow: "0 1px 3px rgb(219 226 239 / 50%), 0 1px 2px rgb(219 226 239 / 50%)",
     textAlign: "left"
@@ -108,7 +108,8 @@ const NoticeCarousel: React.FC = () => {
       interval={5000}
       animation={"slide"}
       duration={500}
-      navButtonsAlwaysInvisible
+      fullHeightHover={false}
+      navButtonsAlwaysInvisible={isMobileSize}
       className={classes.carousel}
     >
       {notices?.map((notice) => (

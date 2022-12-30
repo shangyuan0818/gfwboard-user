@@ -30,6 +30,10 @@ if (window.location.hash) {
 }
 
 const container = document.getElementById("root");
+if (!container) {
+  throw new Error("root element not found");
+}
+
 const root = createRoot(container!);
 
 const ro = new ResizeObserver((entries, observer) =>
@@ -49,7 +53,7 @@ const ro = new ResizeObserver((entries, observer) =>
   })
 );
 
-ro.observe(container!);
+ro.observe(container);
 
 // ==============================|| MAIN - REACT DOM RENDER  ||============================== //
 

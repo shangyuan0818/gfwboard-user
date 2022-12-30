@@ -24,7 +24,7 @@ const SubscriptionCard: React.FC = () => {
       {subscriptionInfo && subscriptionInfo.plan_id !== null && (
         <Stack spacing={2}>
           <Typography component={"h6"} variant={"h4"}>
-            {subscriptionInfo.plan.name}
+            {subscriptionInfo.plan!.name}
           </Typography>
           <Typography variant={"body1"}>
             {t("dashboard.subscription-card.expire", {

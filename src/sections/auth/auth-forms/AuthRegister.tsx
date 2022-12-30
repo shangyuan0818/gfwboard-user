@@ -352,8 +352,11 @@ const AuthRegister = () => {
                   onBlur={handleBlur}
                   onChange={handleChange}
                   aria-required={true}
+                  sx={{
+                    alignItems: "flex-start"
+                  }}
                   label={
-                    <Typography variant={"body2"} noWrap>
+                    <Typography variant={"body2"}>
                       <Trans i18nKey={"register.license_agree"}>
                         <Link
                           id={"terms-of-service"}

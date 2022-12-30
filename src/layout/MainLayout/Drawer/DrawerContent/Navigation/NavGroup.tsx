@@ -11,6 +11,7 @@ import NavCollapse from "./NavCollapse";
 // types
 import { NavItemType } from "@/types/menu";
 import { RootStateProps } from "@/types/root";
+import { useTranslation } from "react-i18next";
 
 // ==============================|| NAVIGATION - LIST GROUP ||============================== //
 
@@ -21,6 +22,7 @@ interface Props {
 const NavGroup = ({ item }: Props) => {
   const theme = useTheme();
   const menu = useSelector((state: RootStateProps) => state.menu);
+  const { t } = useTranslation();
   const { drawerOpen } = menu;
 
   const navCollapse = item.children?.map((menuItem) => {
@@ -45,7 +47,7 @@ const NavGroup = ({ item }: Props) => {
         drawerOpen && (
           <Box sx={{ pl: 3, mb: 1.5 }}>
             <Typography variant="subtitle2" color={theme.palette.mode === "dark" ? "textSecondary" : "text.secondary"}>
-              {item.title}
+              {t(item.title, { ns: "title" })}
             </Typography>
             {item.caption && (
               <Typography variant="caption" color="secondary">

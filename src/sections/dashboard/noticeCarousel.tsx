@@ -1,5 +1,5 @@
 import React from "react";
-import { Trans } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 import dayjs from "dayjs";
 
 // material-ui
@@ -54,6 +54,7 @@ const NoticeBlock: React.FC<{
   notice: Notice;
 }> = ({ notice }) => {
   const [open, setOpen] = React.useState(false);
+  const { t } = useTranslation();
 
   const { classes } = useStyles();
 
@@ -69,11 +70,7 @@ const NoticeBlock: React.FC<{
         onClick={() => setOpen(true)}
       >
         <Box className={classes.mask} />
-        <Chip
-          className={classes.chip}
-          label={<Trans i18nKey={"dashboard.announcement.chip"}>Announcement</Trans>}
-          color="secondary"
-        />
+        <Chip className={classes.chip} label={t("dashboard.announcement.chip")} color="secondary" />
         <Box className={classes.textArea}>
           <Typography variant={"h4"} mb={0.5}>
             {notice.title}

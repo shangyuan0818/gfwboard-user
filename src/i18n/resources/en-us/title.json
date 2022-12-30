@@ -1,0 +1,8 @@
+{
+  "app": "App",
+  "dashboard": "Dashboard",
+  "login": "Login",
+  "register": "Register",
+  "forgot-password": "Forgot Password",
+  "knowledge": "Knowledge"
+}

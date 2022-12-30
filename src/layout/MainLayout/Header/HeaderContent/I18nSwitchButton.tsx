@@ -83,7 +83,7 @@ const I18nSwitchButton: React.FC = () => {
   const { enqueueSnackbar } = useSnackbar();
 
   const handleChangeLanguage = (lang: string) => () => {
-    if (i18n.languages.includes(lang)) {
+    if (i18n.language === lang) {
       return;
     }
 
@@ -174,7 +174,7 @@ const I18nSwitchButton: React.FC = () => {
                         <ListItem disablePadding divider key={lang}>
                           <ListItemButton
                             aria-label={lang}
-                            selected={i18n.languages.includes(lang)}
+                            selected={i18n.language === lang}
                             onClick={handleChangeLanguage(lang)}
                           >
                             <Stack direction={"row"} spacing={2} alignItems={"center"}>

@@ -44,7 +44,6 @@ export type CustomizationProps = {
   presetColor: PresetColor;
   themeDirection: ThemeDirection;
   onChangeContainer: VoidFunction;
-  onChangeMode: (mode: ThemeMode) => void;
   onChangePresetColor: (theme: PresetColor) => void;
   onChangeDirection: (direction: ThemeDirection) => void;
   onChangeMiniDrawer: (miniDrawer: boolean) => void;

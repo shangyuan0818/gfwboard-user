@@ -11,7 +11,6 @@ import { CustomizationProps, FontFamily, PresetColor, ThemeDirection, ThemeMode 
 const initialState: CustomizationProps = {
   ...config,
   onChangeContainer: () => {},
-  onChangeMode: (mode: ThemeMode) => {},
   onChangePresetColor: (theme: PresetColor) => {},
   onChangeDirection: (direction: ThemeDirection) => {},
   onChangeMiniDrawer: (miniDrawer: boolean) => {},
@@ -35,13 +34,6 @@ function ConfigProvider({ children }: ConfigProviderProps) {
     setConfig({
       ...config,
       container: !config.container
-    });
-  };
-
-  const onChangeMode = (mode: ThemeMode) => {
-    setConfig({
-      ...config,
-      mode
     });
   };
 
@@ -78,7 +70,6 @@ function ConfigProvider({ children }: ConfigProviderProps) {
       value={{
         ...config,
         onChangeContainer,
-        onChangeMode,
         onChangePresetColor,
         onChangeDirection,
         onChangeMiniDrawer,

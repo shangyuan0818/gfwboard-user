@@ -21,6 +21,7 @@ import type Ticket from "@/model/ticket";
 import type { TicketPayload, ReplyTicketPayload } from "@/model/ticket";
 import type Knowledge from "@/model/knowledge";
 import type { KnowledgeListResponse, KnowledgePayload } from "@/model/knowledge";
+import Plan from "@/model/plan";
 
 type AxiosBaseQueryFn = BaseQueryFn<
   {
@@ -258,6 +259,26 @@ const api = createApi({
         { type: "Knowledge", id: arg.id },
         { type: "Knowledge", id: arg.id + "_" + arg.language }
       ]
+    }),
+    getPlanList: builder.query<Plan[], void>({
+      query: () => ({
+        url: "/user/plan/fetch",
+        method: "GET"
+      }),
+      providesTags: (result) => [
+        ...(result?.map((plan) => ({ type: "Plan" as const, id: plan.id })) || []),
+        { type: "Plan" as const, id: "LIST" }
+      ]
+    }),
+    getPlan: builder.query<Plan, number>({
+      query: (id) => ({
+        url: "/user/plan/fetch",
+        method: "GET",
+        params: {
+          id
+        }
+      }),
+      providesTags: (result) => [{ type: "Plan" as const, id: result?.id }]
     })
   })
 });

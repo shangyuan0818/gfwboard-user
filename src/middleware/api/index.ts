@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosHeaders } from "axios";
 import lo from "lodash-es";
 
 const getBaseUrl = () => {
@@ -14,7 +14,8 @@ const instance = axios.create({
   withCredentials: true,
   headers: {
     "Content-Type": "application/json, application/x-www-form-urlencoded",
-    Accept: "application/json, application/x-www-form-urlencoded"
+    Accept: "application/json, application/x-www-form-urlencoded",
+    Authorization: localStorage.getItem("gfw_token") || undefined
   },
   timeout: 5000
 });
@@ -35,10 +36,14 @@ if (import.meta.env.DEV) {
 instance.interceptors.request.use((config) => {
   const token = localStorage.getItem("gfw_token");
   if (!lo.isNull(token)) {
-    config.headers = {
-      ...config.headers,
-      Authorization: token
-    };
+    if (config.headers instanceof AxiosHeaders) {
+      config.headers = config.headers.set("Authorization", token);
+    } else {
+      config.headers = {
+        ...config.headers,
+        Authorization: token
+      };
+    }
   }
 
   return config;

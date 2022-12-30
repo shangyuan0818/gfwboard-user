@@ -1,4 +1,5 @@
 import { defineConfig, splitVendorChunkPlugin } from "vite";
+import legacy from "@vitejs/plugin-legacy";
 import { fileURLToPath, URL } from "url";
 import react from "@vitejs/plugin-react";
 import { visualizer } from "rollup-plugin-visualizer";
@@ -9,7 +10,15 @@ import image from "@rollup/plugin-image";
  * @see https://vitejs.dev/config/
  */
 export default defineConfig({
-  plugins: [react(), visualizer(), image(), splitVendorChunkPlugin()],
+  plugins: [
+    react(),
+    visualizer(),
+    image(),
+    splitVendorChunkPlugin(),
+    legacy({
+      targets: ["defaults", "not IE 11"]
+    })
+  ],
   resolve: {
     alias: {
       "@": fileURLToPath(new URL("./src", import.meta.url)),

@@ -1,9 +1,16 @@
 import { useEffect, useState } from "react";
+
+// third party
 import { useSet, useToggle } from "ahooks";
 import constate from "constate";
+
+// material-ui
 import { useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import { PaymentPeriod, paymentPriority, PlanType } from "@/types/plan";
+
+// types and utils
+import { PaymentPeriod, PlanType } from "@/types/plan";
+import { paymentPriority } from "@/utils/plan";
 
 const useShop = () => {
   const [planTypeAllow, { add: addPlanType, remove: removePlanType, reset: resetPlanType }] = useSet([

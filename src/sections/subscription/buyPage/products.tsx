@@ -1,15 +1,24 @@
 import React, { useMemo } from "react";
-import { Box, Button, Grid, Skeleton, Stack, Typography } from "@mui/material";
-import { useShopContext } from "@/sections/subscription/buyPage/context";
-import { useGetPlanListQuery } from "@/store/services/api";
-import MainCard from "@/components/MainCard";
-import Plan from "@/model/plan";
+
+// third-party
 import lo from "lodash-es";
+import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import MuiMarkdown from "mui-markdown";
+
+// material-ui
+import { Box, Button, Skeleton, Stack, Typography } from "@mui/material";
 import { Masonry } from "@mui/lab";
-import { useNavigate } from "react-router-dom";
-import { getFirstPayment, getMode, getPrice, PaymentPeriod, PlanType } from "@/types/plan";
+
+// project imports
+import MainCard from "@/components/MainCard";
+import { useShopContext } from "@/sections/subscription/buyPage/context";
+import { useGetPlanListQuery } from "@/store/services/api";
+
+// types and utils
+import Plan from "@/model/plan";
+import { PaymentPeriod, PlanType } from "@/types/plan";
+import { getFirstPayment, getMode, getPrice } from "@/utils/plan";
 
 const ProductCardSkeleton: React.FC = () => {
   return (

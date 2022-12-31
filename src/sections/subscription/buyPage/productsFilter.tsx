@@ -1,14 +1,20 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
+
+// material-ui
+import { Checkbox, FormControl, FormControlLabel, FormLabel, Stack, useMediaQuery, Drawer } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
+
+// project imports
 import MainCard from "@/components/MainCard";
 import SimpleBar from "@/components/third-party/SimpleBar";
-import { Checkbox, FormControl, FormControlLabel, FormLabel, OutlinedInput, Stack, useMediaQuery } from "@mui/material";
-import { useTranslation } from "react-i18next";
-import Drawer from "@mui/material/Drawer";
-import { useTheme } from "@mui/material/styles";
 import useConfig from "@/hooks/useConfig";
-import { useShopContext } from "./context";
 import { makeStyles } from "@/themes/hooks";
-import { paymentPriority, PlanType } from "@/types/plan";
+import { useShopContext } from "./context";
+
+// types and utils
+import { PlanType } from "@/types/plan";
+import { paymentPriority } from "@/utils/plan";
 
 const useStyles = makeStyles<{ container: boolean; open: boolean }>()((theme, { container, open }) => ({
   drawer: {

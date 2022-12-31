@@ -10,10 +10,10 @@ export enum PaymentPeriod {
   ONETIME = "onetime", // 一次性
   MONTHLY = "monthly", // 每月
   QUARTERLY = "quarterly", // 每季度
-  HALF_YEARLY = "half_yearly", // 每半年
+  HALF_YEARLY = "semiannual", // 每半年
   YEARLY = "yearly", // 每年
-  TWO_YEARLY = "two_yearly", // 每两年
-  THREE_YEARLY = "three_yearly" // 每三年
+  TWO_YEARLY = "biennially", // 每两年
+  THREE_YEARLY = "triennially" // 每三年
 }
 
 export const getMode = (plan: Plan) => {

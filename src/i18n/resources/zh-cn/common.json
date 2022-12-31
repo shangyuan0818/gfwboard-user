@@ -214,6 +214,16 @@
         "all": "全部",
         "period": "按周期",
         "traffic": "按流量"
+      },
+      "payment-type": {
+        "title": "支付周期",
+        "onetime": "一次性",
+        "monthly": "月付",
+        "quarterly": "季付",
+        "semiannual": "半年付",
+        "yearly": "年付",
+        "biennially": "两年付",
+        "triennially": "三年付"
       }
     },
     "products-header": {

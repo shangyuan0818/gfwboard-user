@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react";
-import { useToggle } from "ahooks";
+import { useSet, useToggle } from "ahooks";
 import constate from "constate";
 import { useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import { PlanType } from "@/types/plan";
+import { PaymentPeriod, paymentPriority, PlanType } from "@/types/plan";
 
 const useShop = () => {
-  const [planType, setPlanType] = useState<PlanType[]>([PlanType.PERIOD, PlanType.TRAFFIC]);
+  const [planTypeAllow, { add: addPlanType, remove: removePlanType, reset: resetPlanType }] = useSet([
+    PlanType.PERIOD,
+    PlanType.TRAFFIC
+  ]);
+  const [paymentAllow, { add: addPayment, remove: removePayment, reset: resetPayment }] = useSet(paymentPriority);
   const [keyword, setKeyword] = useState("");
 
   const theme = useTheme();
@@ -14,26 +18,41 @@ const useShop = () => {
   const [drawerOpen, { set: setDrawerOpen, toggle: toggleDrawer }] = useToggle(!isMobile);
 
   const togglePlanType = (type: PlanType) => {
-    if (planType.includes(type)) {
-      setPlanType(planType.filter((item) => item !== type));
+    if (planTypeAllow.has(type)) {
+      removePlanType(type);
     } else {
-      setPlanType([...planType, type]);
+      addPlanType(type);
+    }
+  };
+
+  const togglePayment = (key: PaymentPeriod) => {
+    if (paymentAllow.has(key)) {
+      removePayment(key);
+    } else {
+      addPayment(key);
     }
   };
 
   useEffect(() => {
-    console.log(planType);
-  }, [planType]);
+    console.log(planTypeAllow);
+  }, [planTypeAllow]);
 
   return {
-    planType,
-    setPlanType,
+    planType: planTypeAllow,
+    addPlanType,
+    removePlanType,
+    resetPlanType,
     togglePlanType,
     keyword,
     setKeyword,
     drawerOpen,
     setDrawerOpen,
-    toggleDrawer
+    toggleDrawer,
+    paymentAllow,
+    addPayment,
+    removePayment,
+    resetPayment,
+    togglePayment
   };
 };
 

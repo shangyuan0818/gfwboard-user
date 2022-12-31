@@ -8,7 +8,7 @@ import { useTheme } from "@mui/material/styles";
 import useConfig from "@/hooks/useConfig";
 import { useShopContext } from "./context";
 import { makeStyles } from "@/themes/hooks";
-import { PlanType } from "@/types/plan";
+import { paymentPriority, PlanType } from "@/types/plan";
 
 const useStyles = makeStyles<{ container: boolean; open: boolean }>()((theme, { container, open }) => ({
   drawer: {
@@ -56,7 +56,7 @@ const ProductsFilter: React.FC = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const { container } = useConfig();
-  const { drawerOpen, setDrawerOpen, planType, togglePlanType } = useShopContext();
+  const { drawerOpen, setDrawerOpen, planType, togglePlanType, togglePayment, paymentAllow } = useShopContext();
   const { classes } = useStyles({ container, open: drawerOpen });
 
   return (
@@ -89,8 +89,23 @@ const ProductsFilter: React.FC = () => {
                 <FormControlLabel
                   key={type}
                   value="end"
-                  control={<Checkbox checked={planType.includes(type)} onClick={() => togglePlanType(type)} />}
+                  control={<Checkbox checked={planType.has(type)} onClick={() => togglePlanType(type)} />}
                   label={t(`subscription.filter-card.plan-type.${type}`).toString()}
+                  labelPlacement="end"
+                  sx={{ ml: 1 }}
+                />
+              ))}
+            </FormControl>
+            <FormControl component="fieldset">
+              <FormLabel component="legend" sx={{ mb: 1 }} focused={false}>
+                {t("subscription.filter-card.payment-type.title")}
+              </FormLabel>
+              {paymentPriority.map((type) => (
+                <FormControlLabel
+                  key={type}
+                  value="end"
+                  control={<Checkbox checked={paymentAllow.has(type)} onClick={() => togglePayment(type)} />}
+                  label={t(`subscription.filter-card.payment-type.${type}`).toString()}
                   labelPlacement="end"
                   sx={{ ml: 1 }}
                 />

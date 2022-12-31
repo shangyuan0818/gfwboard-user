@@ -9,7 +9,7 @@ import { useTranslation } from "react-i18next";
 import MuiMarkdown from "mui-markdown";
 import { Masonry } from "@mui/lab";
 import { useNavigate } from "react-router-dom";
-import { getFirstPayment, getPrice, PlanType } from "@/types/plan";
+import { getFirstPayment, getMode, getPrice, PaymentPeriod, PlanType } from "@/types/plan";
 
 const ProductCardSkeleton: React.FC = () => {
   return (
@@ -86,7 +86,7 @@ const ProductCard: React.FC<{
 };
 
 const Products: React.FC = () => {
-  const { drawerOpen, keyword, planType } = useShopContext();
+  const { drawerOpen, keyword, planType, paymentAllow } = useShopContext();
   const { data, isLoading } = useGetPlanListQuery();
 
   const products = useMemo(
@@ -95,13 +95,14 @@ const Products: React.FC = () => {
         ?.filter((datum) => datum.show === 1)
         .filter((datum) => datum.name.includes(keyword) || datum.content.includes(keyword))
         .filter((datum) => {
-          if (planType.includes(PlanType.PERIOD)) {
+          if (planType.has(PlanType.PERIOD)) {
             if (
               lo.isNumber(
                 datum.month_price ||
                   datum.year_price ||
                   datum.quarter_price ||
                   datum.half_year_price ||
+                  datum.two_year_price ||
                   datum.three_year_price
               )
             ) {
@@ -109,15 +110,23 @@ const Products: React.FC = () => {
             }
           }
 
-          if (planType.includes(PlanType.TRAFFIC)) {
+          if (planType.has(PlanType.TRAFFIC)) {
             if (lo.isNumber(datum.onetime_price)) {
               return true;
             }
           }
 
           return false;
-        }) || [],
-    [data, keyword, planType]
+        })
+        .filter(
+          (datum) =>
+            new Set(
+              Array.from<PaymentPeriod>(Object.keys(getMode(datum)) as PaymentPeriod[]).filter((x) =>
+                paymentAllow.has(x)
+              )
+            ).size > 0
+        ) || [],
+    [data, keyword, planType, paymentAllow]
   );
 
   return (

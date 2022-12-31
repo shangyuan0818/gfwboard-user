@@ -1,25 +1,14 @@
 import React from "react";
 import MainCard from "@/components/MainCard";
 import SimpleBar from "@/components/third-party/SimpleBar";
-import {
-  Checkbox,
-  FormControl,
-  FormControlLabel,
-  FormLabel,
-  Grid,
-  IconButton,
-  InputAdornment,
-  OutlinedInput,
-  Stack,
-  useMediaQuery
-} from "@mui/material";
+import { Checkbox, FormControl, FormControlLabel, FormLabel, OutlinedInput, Stack, useMediaQuery } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import Drawer from "@mui/material/Drawer";
 import { useTheme } from "@mui/material/styles";
 import useConfig from "@/hooks/useConfig";
 import { PlanType, useShopContext } from "./context";
 import { makeStyles } from "@/themes/hooks";
-import { EyeInvisibleOutlined, SearchOutlined } from "@ant-design/icons";
+import { SearchOutlined } from "@ant-design/icons";
 
 const useStyles = makeStyles<{ container: boolean; open: boolean }>()((theme, { container, open }) => ({
   drawer: {
@@ -35,18 +24,21 @@ const useStyles = makeStyles<{ container: boolean; open: boolean }>()((theme, { 
     },
     marginRight: open ? theme.spacing(2.5) : 0,
     [theme.breakpoints.down("sm")]: {
-      marginRight: theme.spacing(2.5)
+      marginRight: theme.spacing(2.5),
+      width: 240
     },
-    [theme.breakpoints.up("md")]: {
-      position: "sticky"
+    [theme.breakpoints.up("sm")]: {
+      position: "sticky",
+      zIndex: 0
     }
   },
   drawerPaper: {
     height: "auto",
-    [theme.breakpoints.down("sm")]: {
-      height: "100%"
-    },
     width: 280,
+    [theme.breakpoints.down("sm")]: {
+      height: "100%",
+      width: 240
+    },
     [theme.breakpoints.only("lg")]: {
       width: container ? 240 : undefined
     },
@@ -59,13 +51,12 @@ const useStyles = makeStyles<{ container: boolean; open: boolean }>()((theme, { 
   }
 }));
 
-const FilterCard: React.FC = () => {
+const ProductsFilter: React.FC = () => {
   const { t } = useTranslation();
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-  const matchLG = useMediaQuery(theme.breakpoints.only("lg"));
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const { container } = useConfig();
-  const { drawerOpen, setDrawerOpen, setKeyword, keyword, planType, togglePlanType } = useShopContext();
+  const { drawerOpen, setDrawerOpen, planType, togglePlanType } = useShopContext();
   const { classes } = useStyles({ container, open: drawerOpen });
 
   return (
@@ -90,16 +81,6 @@ const FilterCard: React.FC = () => {
               md: 3
             }}
           >
-            <FormControl fullWidth variant={"standard"}>
-              <OutlinedInput
-                placeholder={t("subscription.filter-card.search").toString()}
-                startAdornment={<SearchOutlined />}
-                value={keyword}
-                onChange={(e) => {
-                  setKeyword(e.target.value);
-                }}
-              />
-            </FormControl>
             <FormControl component="fieldset">
               <FormLabel component="legend" sx={{ mb: 1 }} focused={false}>
                 {t("subscription.filter-card.plan-type.title")}
@@ -122,4 +103,4 @@ const FilterCard: React.FC = () => {
   );
 };
 
-export default FilterCard;
+export default ProductsFilter;

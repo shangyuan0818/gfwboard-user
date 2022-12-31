@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { usePagination, useToggle } from "ahooks";
+import { useToggle } from "ahooks";
 import constate from "constate";
 import { useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
@@ -14,7 +14,7 @@ const useShop = () => {
   const [keyword, setKeyword] = useState("");
 
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const [drawerOpen, { set: setDrawerOpen, toggle: toggleDrawer }] = useToggle(!isMobile);
 
   const togglePlanType = (type: PlanType) => {

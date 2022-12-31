@@ -1,13 +1,13 @@
 import React from "react";
-import { ShopProvider } from "@/sections/subscription/buyPage/context";
-import FilterCard from "@/sections/subscription/buyPage/filterCard";
 
-const PlanPage: React.FC = () => {
-  return (
-    <ShopProvider>
-      <FilterCard />
-    </ShopProvider>
-  );
-};
+// project imports
+import { ShopProvider } from "@/sections/subscription/buyPage/context";
+import ProductsSection from "@/sections/subscription/buyPage/productsSection";
+
+const PlanPage: React.FC = () => (
+  <ShopProvider>
+    <ProductsSection />
+  </ShopProvider>
+);
 
 export default PlanPage;

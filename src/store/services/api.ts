@@ -13,15 +13,15 @@ import type { LoginPayload, LoginResponse } from "@/model/login";
 import type User from "@/model/user";
 import type Subscription from "@/model/subscription";
 import type Notice from "@/model/notice";
-import type { UserConfig, GuestConfig } from "@/model/config";
+import type { GuestConfig, UserConfig } from "@/model/config";
 import type { ResetPasswordPayload } from "@/model/reset_password";
 import type { RegisterPayload } from "@/model/register";
 import type SendMailPayload from "@/model/send_mail";
 import type Ticket from "@/model/ticket";
-import type { TicketPayload, ReplyTicketPayload } from "@/model/ticket";
+import type { ReplyTicketPayload, TicketPayload } from "@/model/ticket";
 import type Knowledge from "@/model/knowledge";
 import type { KnowledgeListResponse, KnowledgePayload } from "@/model/knowledge";
-import Plan from "@/model/plan";
+import type Plan from "@/model/plan";
 
 type AxiosBaseQueryFn = BaseQueryFn<
   {
@@ -299,6 +299,8 @@ export const {
   useSaveTicketMutation,
   useReplyTicketMutation,
   useGetKnowledgeListQuery,
-  useGetKnowledgeQuery
+  useGetKnowledgeQuery,
+  useGetPlanListQuery,
+  useGetPlanQuery
 } = api;
 export default api;

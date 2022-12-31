@@ -3,11 +3,7 @@ import { useToggle } from "ahooks";
 import constate from "constate";
 import { useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-
-export enum PlanType {
-  PERIOD = "period",
-  TRAFFIC = "traffic"
-}
+import { PlanType } from "@/types/plan";
 
 const useShop = () => {
   const [planType, setPlanType] = useState<PlanType[]>([PlanType.PERIOD, PlanType.TRAFFIC]);

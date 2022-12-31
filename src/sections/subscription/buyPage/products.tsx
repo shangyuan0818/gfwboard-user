@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { Box, Button, Grid, Skeleton, Stack, Typography } from "@mui/material";
-import { PlanType, useShopContext } from "@/sections/subscription/buyPage/context";
+import { useShopContext } from "@/sections/subscription/buyPage/context";
 import { useGetPlanListQuery } from "@/store/services/api";
 import MainCard from "@/components/MainCard";
 import Plan from "@/model/plan";
@@ -9,6 +9,7 @@ import { useTranslation } from "react-i18next";
 import MuiMarkdown from "mui-markdown";
 import { Masonry } from "@mui/lab";
 import { useNavigate } from "react-router-dom";
+import { getFirstPayment, getPrice, PlanType } from "@/types/plan";
 
 const ProductCardSkeleton: React.FC = () => {
   return (
@@ -32,58 +33,22 @@ const ProductCard: React.FC<{
     price: number;
     mode: string;
   }>(() => {
-    if (lo.isNumber(product.onetime_price)) {
+    const payment = getFirstPayment(product);
+    if (!payment) {
       return {
-        price: product.onetime_price,
-        mode: "onetime"
+        price: 0,
+        mode: "null"
       };
     }
 
-    if (lo.isNumber(product.month_price)) {
-      return {
-        price: product.month_price,
-        mode: "monthly"
-      };
-    }
-
-    if (lo.isNumber(product.year_price)) {
-      return {
-        price: product.year_price,
-        mode: "yearly"
-      };
-    }
-
-    if (lo.isNumber(product.quarter_price)) {
-      return {
-        price: product.quarter_price,
-        mode: "quarterly"
-      };
-    }
-
-    if (lo.isNumber(product.half_year_price)) {
-      return {
-        price: product.half_year_price,
-        mode: "half_yearly"
-      };
-    }
-
-    if (lo.isNumber(product.two_year_price)) {
-      return {
-        price: product.two_year_price,
-        mode: "two_yearly"
-      };
-    }
-
-    if (lo.isNumber(product.three_year_price)) {
-      return {
-        price: product.three_year_price,
-        mode: "three_yearly"
-      };
-    }
+    const mode = t("subscription.product-card.price-mode", {
+      context: payment
+    }).toString();
+    const price = getPrice(product, payment);
 
     return {
-      price: 0,
-      mode: "onetime"
+      price,
+      mode
     };
   }, []);
 
@@ -107,9 +72,10 @@ const ProductCard: React.FC<{
         <Button
           variant={"contained"}
           color={"primary"}
+          href={`/subscription/buy/${product.id}`}
           onClick={(e) => {
             e.preventDefault();
-            navigate("/subscription/buy/" + product.id);
+            navigate(`/subscription/buy/${product.id}`);
           }}
         >
           {t("subscription.product-card.buy-button").toString()}

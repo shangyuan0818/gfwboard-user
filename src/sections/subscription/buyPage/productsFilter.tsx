@@ -6,9 +6,9 @@ import { useTranslation } from "react-i18next";
 import Drawer from "@mui/material/Drawer";
 import { useTheme } from "@mui/material/styles";
 import useConfig from "@/hooks/useConfig";
-import { PlanType, useShopContext } from "./context";
+import { useShopContext } from "./context";
 import { makeStyles } from "@/themes/hooks";
-import { SearchOutlined } from "@ant-design/icons";
+import { PlanType } from "@/types/plan";
 
 const useStyles = makeStyles<{ container: boolean; open: boolean }>()((theme, { container, open }) => ({
   drawer: {

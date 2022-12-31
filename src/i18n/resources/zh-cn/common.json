@@ -205,5 +205,40 @@
     "post": {
       "update": "更新于 {{date}}"
     }
+  },
+  "subscription": {
+    "filter-card": {
+      "title": "筛选",
+      "plan-type": {
+        "title": "计划类型",
+        "all": "全部",
+        "period": "按周期",
+        "traffic": "按流量"
+      },
+      "payment-type": {
+        "title": "支付周期",
+        "onetime": "一次性",
+        "monthly": "月付",
+        "quarterly": "季付",
+        "semiannual": "半年付",
+        "yearly": "年付",
+        "biennially": "两年付",
+        "triennially": "三年付"
+      }
+    },
+    "products-header": {
+      "search": "搜索节点",
+      "filter-button": "筛选"
+    },
+    "product-card": {
+      "price-mode_onetime": "一次性",
+      "price-mode_monthly": "月付",
+      "price-mode_quarterly": "季付",
+      "price-mode_half_yearly": "半年付",
+      "price-mode_yearly": "年付",
+      "price-mode_two_yearly": "两年付",
+      "price-mode_three_yearly": "三年付",
+      "buy-button": "购买"
+    }
   }
 }

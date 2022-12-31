@@ -22,7 +22,7 @@ const QuantumultXButton: React.FC = () => {
       window.open(
         `quantumult-x:///update-configuration?remote-resource=${encodeURI(
           JSON.stringify({
-            server_remote: `"${url.toString()}, tag=${window.settings.title}"`
+            server_remote: [`"${url.toString()}, tag=${window.settings.title}"`]
           })
         )}`,
         "_self"

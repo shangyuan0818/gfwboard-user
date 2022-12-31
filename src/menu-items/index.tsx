@@ -1,7 +1,6 @@
 // project import
 import { NavItemType } from "@/types/menu";
-import { Trans } from "react-i18next";
-import { DashboardOutlined, ReadOutlined } from "@ant-design/icons";
+import { DashboardOutlined, MonitorOutlined, ReadOutlined, ShoppingOutlined } from "@ant-design/icons";
 
 // ==============================|| MENU ITEMS ||============================== //
 
@@ -25,6 +24,27 @@ const menuItems: { items: NavItemType[] } = {
           type: "item",
           url: "/knowledge",
           icon: ReadOutlined
+        }
+      ]
+    },
+    {
+      id: "subscription",
+      title: "subscription",
+      type: "group",
+      children: [
+        {
+          id: "buy-plan",
+          title: "buy-plan",
+          type: "item",
+          url: "/subscription/buy",
+          icon: ShoppingOutlined
+        },
+        {
+          id: "status",
+          title: "status",
+          type: "item",
+          url: "/subscription/status",
+          icon: MonitorOutlined
         }
       ]
     }

@@ -40,6 +40,7 @@ specifiers:
   browserslist: ^4.21.4
   buffer: ^6.0.3
   camelcase: ^7.0.1
+  constate: ^3.3.2
   crypto-browserify: ^3.12.0
   crypto-js: ^4.1.1
   dayjs: ^1.11.7
@@ -132,6 +133,7 @@ dependencies:
   browserslist: 4.21.4
   buffer: 6.0.3
   camelcase: 7.0.1
+  constate: 3.3.2_react@18.2.0
   crypto-browserify: 3.12.0
   crypto-js: 4.1.1
   dayjs: 1.11.7
@@ -3525,6 +3527,14 @@ packages:
   /confusing-browser-globals/1.0.11:
     resolution: {integrity: sha512-JsPKdmh8ZkmnHxDk55FZ1TqVLvEQTvoByJZRN9jzI0UjxK/QgAmsphz7PGtqgPieQZ/CQcHWXCR7ATDNhGe+YA==}
     dev: true
+
+  /constate/3.3.2_react@18.2.0:
+    resolution: {integrity: sha512-ZnEWiwU6QUTil41D5EGpA7pbqAPGvnR9kBjko8DzVIxpC60mdNKrP568tT5WLJPAxAOtJqJw60+h79ot/Uz1+Q==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      react: 18.2.0
+    dev: false
 
   /convert-source-map/1.9.0:
     resolution: {integrity: sha512-ASFBup0Mz1uyiIjANan1jzLQami9z1PoYSZCiiYW2FczPbenXc45FZdBZLzOT+r6+iciuEModtmCti+hjaAk0A==}

@@ -18,6 +18,7 @@ const MaintenanceError = Loadable(lazy(() => import("@/pages/maintenance/404")))
 const Dashboard = Loadable(lazy(() => import("@/pages/main/dashboard")));
 const Knowledge = Loadable(lazy(() => import("@/pages/main/knowledge")));
 const KnowledgePost = Loadable(lazy(() => import("@/pages/main/knowledgePost")));
+const PlanPage = Loadable(lazy(() => import("@/pages/subscription/planPage")));
 
 // ==============================|| MAIN ROUTING ||============================== //
 
@@ -47,6 +48,10 @@ const MainRoutes: RouteObject = {
         {
           path: "knowledge/:id",
           element: <KnowledgePost />
+        },
+        {
+          path: "subscription/buy",
+          element: <PlanPage />
         }
       ]
     },

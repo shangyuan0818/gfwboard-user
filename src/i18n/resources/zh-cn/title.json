@@ -4,5 +4,8 @@
   "login": "登录",
   "register": "注册",
   "forgot-password": "忘记密码",
-  "knowledge": "使用文档"
+  "knowledge": "使用文档",
+  "subscription": "订阅",
+  "buy-plan": "购买订阅",
+  "status": "服务状态"
 }

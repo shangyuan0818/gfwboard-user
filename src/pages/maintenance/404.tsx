@@ -7,6 +7,7 @@ import { Box, Button, Grid, Stack, Typography } from "@mui/material";
 
 // project import
 import config from "@/config";
+import useTitle from "@/hooks/useTitle";
 
 // assets
 import error404 from "@/assets/images/maintenance/Error404.png";
@@ -16,6 +17,7 @@ import TwoCone from "@/assets/images/maintenance/TwoCone.png";
 
 const Error404: React.FC = () => {
   const { t } = useTranslation();
+  useTitle("not_found");
 
   return (
     <>

@@ -6,6 +6,7 @@ import { Box, Button, Grid, Stack, Typography, useMediaQuery } from "@mui/materi
 
 // project import
 import config from "@/config";
+import useTitle from "@/hooks/useTitle";
 
 // assets
 import error500 from "@/assets/images/maintenance/Error500.png";
@@ -15,6 +16,7 @@ import error500 from "@/assets/images/maintenance/Error500.png";
 function Error500() {
   const theme = useTheme();
   const matchDownSM = useMediaQuery(theme.breakpoints.down("sm"));
+  useTitle("server_error");
 
   return (
     <>

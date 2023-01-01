@@ -3,11 +3,16 @@ import React from "react";
 // project imports
 import { ShopProvider } from "@/sections/subscription/buyPage/context";
 import ProductsSection from "@/sections/subscription/buyPage/productsSection";
+import useTitle from "@/hooks/useTitle";
 
-const PlanPage: React.FC = () => (
-  <ShopProvider>
-    <ProductsSection />
-  </ShopProvider>
-);
+const PlanPage: React.FC = () => {
+  useTitle("buy-plan");
+
+  return (
+    <ShopProvider>
+      <ProductsSection />
+    </ShopProvider>
+  );
+};
 
 export default PlanPage;

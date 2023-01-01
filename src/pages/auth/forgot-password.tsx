@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Trans } from "react-i18next";
 import { Link } from "react-router-dom";
 
@@ -8,17 +8,12 @@ import { Grid, Stack, Typography } from "@mui/material";
 // project import
 import AuthWrapper from "@/sections/auth/AuthWrapper";
 import AuthForgotPassword from "@/sections/auth/auth-forms/AuthForgotPassword";
-import { useDispatch } from "@/store";
-import { setTitle } from "@/store/reducers/view";
+import useTitle from "@/hooks/useTitle";
 
 // ================================|| FORGOT PASSWORD ||================================ //
 
 const ForgotPassword: React.FC = () => {
-  // set title
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(setTitle("forgot-password"));
-  }, [dispatch]);
+  useTitle("forgot-password");
 
   return (
     <AuthWrapper>

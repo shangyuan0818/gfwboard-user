@@ -23,6 +23,7 @@ import type Knowledge from "@/model/knowledge";
 import type { KnowledgeListResponse, KnowledgePayload } from "@/model/knowledge";
 import type Plan from "@/model/plan";
 import type { OrderPayload } from "@/model/order";
+import Coupon, { CouponPayload } from "@/model/coupon";
 
 type AxiosBaseQueryFn = BaseQueryFn<
   {
@@ -291,6 +292,13 @@ const api = createApi({
         { type: "Order", id: result },
         { type: "Order", id: "LIST" }
       ]
+    }),
+    checkCoupon: builder.mutation<Coupon, CouponPayload>({
+      query: (body) => ({
+        url: "/user/coupon/check",
+        method: "POST",
+        body: qs.stringify(body)
+      })
     })
   })
 });
@@ -314,6 +322,7 @@ export const {
   useGetKnowledgeQuery,
   useGetPlanListQuery,
   useGetPlanQuery,
-  useSaveOrderMutation
+  useSaveOrderMutation,
+  useCheckCouponMutation
 } = api;
 export default api;

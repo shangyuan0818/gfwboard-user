@@ -286,7 +286,10 @@ const api = createApi({
       query: (body) => ({
         url: "/user/order/save",
         method: "POST",
-        body: qs.stringify(body)
+        body: qs.stringify(body),
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        }
       }),
       invalidatesTags: (result) => [
         { type: "Order", id: result },
@@ -297,7 +300,10 @@ const api = createApi({
       query: (body) => ({
         url: "/user/coupon/check",
         method: "POST",
-        body: qs.stringify(body)
+        body: qs.stringify(body),
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        }
       })
     })
   })

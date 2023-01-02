@@ -6,6 +6,7 @@ import { Grid } from "@mui/material";
 // project imports
 import PlanInfoCard from "@/sections/subscription/planDetailsPage/planInfoCard";
 import PeriodSelectCard from "@/sections/subscription/planDetailsPage/periodSelectCard";
+import CouponCard from "@/sections/subscription/planDetailsPage/couponCard";
 
 const PlanDetailsSection: React.FC = () => (
   <Grid container spacing={2}>
@@ -20,7 +21,14 @@ const PlanDetailsSection: React.FC = () => (
       </Grid>
     </Grid>
     <Grid item xs={12} md={4}>
-      <p>coupon</p>
+      <Grid container spacing={2}>
+        <Grid item xs={12}>
+          <CouponCard />
+        </Grid>
+        <Grid item xs={12}>
+          <div>payment</div>
+        </Grid>
+      </Grid>
     </Grid>
   </Grid>
 );

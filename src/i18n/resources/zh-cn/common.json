@@ -253,6 +253,13 @@
       "period_year_price": "每年付款",
       "period_two_year_price": "每两年付款",
       "period_three_year_price": "每三年付款"
+    },
+    "coupon-card": {
+      "title": "优惠券",
+      "placeholder": "输入优惠券码，若无可不填",
+      "button": "使用",
+      "tooltip_add": "使用优惠券",
+      "tooltip_reset": "重置优惠券"
     }
   }
 }

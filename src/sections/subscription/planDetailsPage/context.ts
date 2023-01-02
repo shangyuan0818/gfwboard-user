@@ -1,9 +1,11 @@
 import { useState } from "react";
 import constate from "constate";
+import { useSet } from "ahooks";
 
 // project imports
 import { useGetPlanQuery } from "@/store/services/api";
 import { PaymentPeriod } from "@/types/plan";
+import Coupon from "@/model/coupon";
 
 export interface PlanDetailContextProps {
   id: number;
@@ -15,6 +17,7 @@ const usePlanDetail = ({ id }: PlanDetailContextProps) => {
   });
   const [period, setPeriod] = useState<PaymentPeriod | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [couponCode, setCouponCode] = useState<Coupon | null>(null);
 
   return {
     id,
@@ -22,7 +25,9 @@ const usePlanDetail = ({ id }: PlanDetailContextProps) => {
     period,
     setPeriod,
     isSubmitting,
-    setIsSubmitting
+    setIsSubmitting,
+    couponCode,
+    setCouponCode
   };
 };
 

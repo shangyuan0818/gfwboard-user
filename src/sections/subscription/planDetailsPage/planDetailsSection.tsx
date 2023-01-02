@@ -1,6 +1,11 @@
 import React from "react";
+
+// material-ui
 import { Grid } from "@mui/material";
+
+// project imports
 import PlanInfoCard from "@/sections/subscription/planDetailsPage/planInfoCard";
+import PeriodSelectCard from "@/sections/subscription/planDetailsPage/periodSelectCard";
 
 const PlanDetailsSection: React.FC = () => (
   <Grid container spacing={2}>
@@ -10,7 +15,7 @@ const PlanDetailsSection: React.FC = () => (
           <PlanInfoCard />
         </Grid>
         <Grid item xs={12}>
-          <p>select-price</p>
+          <PeriodSelectCard />
         </Grid>
       </Grid>
     </Grid>

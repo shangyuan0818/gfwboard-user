@@ -239,6 +239,9 @@
       "price-mode_two_yearly": "两年付",
       "price-mode_three_yearly": "三年付",
       "buy-button": "购买"
+    },
+    "plan-info-card": {
+      "title": "购买订阅：{{name}}"
     }
   }
 }

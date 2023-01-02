@@ -5,7 +5,7 @@ import { ShopProvider } from "@/sections/subscription/buyPage/context";
 import ProductsSection from "@/sections/subscription/buyPage/productsSection";
 import useTitle from "@/hooks/useTitle";
 
-const PlanPage: React.FC = () => {
+const PlanList: React.FC = () => {
   useTitle("buy-plan");
 
   return (
@@ -15,4 +15,4 @@ const PlanPage: React.FC = () => {
   );
 };
 
-export default PlanPage;
+export default PlanList;

@@ -217,13 +217,13 @@
       },
       "payment-type": {
         "title": "支付周期",
-        "onetime": "一次性",
-        "monthly": "月付",
-        "quarterly": "季付",
-        "semiannual": "半年付",
-        "yearly": "年付",
-        "biennially": "两年付",
-        "triennially": "三年付"
+        "onetime_price": "一次性",
+        "month_price": "月付",
+        "quarter_price": "季付",
+        "half_year_price": "半年付",
+        "year_price": "年付",
+        "two_year_price": "两年付",
+        "three_year_price": "三年付"
       }
     },
     "products-header": {
@@ -231,13 +231,13 @@
       "filter-button": "筛选"
     },
     "product-card": {
-      "price-mode_onetime": "一次性",
-      "price-mode_monthly": "月付",
-      "price-mode_quarterly": "季付",
-      "price-mode_half_yearly": "半年付",
-      "price-mode_yearly": "年付",
-      "price-mode_two_yearly": "两年付",
-      "price-mode_three_yearly": "三年付",
+      "price-mode_onetime_price": "一次性",
+      "price-mode_month_price": "月付",
+      "price-mode_quarter_price": "季付",
+      "price-mode_half_year_price": "半年付",
+      "price-mode_year_price": "年付",
+      "price-mode_two_year_price": "两年付",
+      "price-mode_three_year_price": "三年付",
       "buy-button": "购买"
     },
     "plan-info-card": {

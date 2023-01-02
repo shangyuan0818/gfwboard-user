@@ -1,10 +1,10 @@
 import React, { useMemo } from "react";
+import { useParams } from "react-router-dom";
 
 // project imports
 import useTitle from "@/hooks/useTitle";
-import { Grid } from "@mui/material";
-import PlanInfoCard from "@/sections/subscription/planDetailsPage/planInfoCard";
-import { useParams } from "react-router-dom";
+import { PlanDetailProvider } from "@/sections/subscription/planDetailsPage/context";
+import PlanDetailsSection from "@/sections/subscription/planDetailsPage/planDetailsSection";
 
 const PlanDetails: React.FC = () => {
   useTitle("buy-plan");
@@ -13,21 +13,9 @@ const PlanDetails: React.FC = () => {
   const id = useMemo(() => (idRaw ? parseInt(idRaw) || 0 : 0), [idRaw]);
 
   return (
-    <Grid container spacing={2}>
-      <Grid item xs={12} md={8}>
-        <Grid container spacing={2}>
-          <Grid item xs={12}>
-            <PlanInfoCard id={id} />
-          </Grid>
-          <Grid item xs={12}>
-            <p>select-price</p>
-          </Grid>
-        </Grid>
-      </Grid>
-      <Grid item xs={12} md={4}>
-        <p>coupon</p>
-      </Grid>
-    </Grid>
+    <PlanDetailProvider id={id}>
+      <PlanDetailsSection />
+    </PlanDetailProvider>
   );
 };
 

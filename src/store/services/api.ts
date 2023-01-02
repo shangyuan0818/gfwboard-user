@@ -22,6 +22,7 @@ import type { ReplyTicketPayload, TicketPayload } from "@/model/ticket";
 import type Knowledge from "@/model/knowledge";
 import type { KnowledgeListResponse, KnowledgePayload } from "@/model/knowledge";
 import type Plan from "@/model/plan";
+import type { OrderPayload } from "@/model/order";
 
 type AxiosBaseQueryFn = BaseQueryFn<
   {
@@ -78,7 +79,7 @@ const axiosBaseQuery: () => AxiosBaseQueryFn =
 const api = createApi({
   reducerPath: "api",
   baseQuery: axiosBaseQuery(),
-  tagTypes: ["User", "Subscription", "Plan", "Notice", "Ticket", "Knowledge"],
+  tagTypes: ["User", "Subscription", "Plan", "Notice", "Ticket", "Knowledge", "Order"],
   refetchOnReconnect: true,
   endpoints: (builder) => ({
     login: builder.mutation<LoginResponse, LoginPayload>({
@@ -279,6 +280,17 @@ const api = createApi({
         }
       }),
       providesTags: (result) => [{ type: "Plan" as const, id: result?.id }]
+    }),
+    saveOrder: builder.mutation<string, OrderPayload>({
+      query: (body) => ({
+        url: "/user/order/save",
+        method: "POST",
+        body: qs.stringify(body)
+      }),
+      invalidatesTags: (result) => [
+        { type: "Order", id: result },
+        { type: "Order", id: "LIST" }
+      ]
     })
   })
 });
@@ -301,6 +313,7 @@ export const {
   useGetKnowledgeListQuery,
   useGetKnowledgeQuery,
   useGetPlanListQuery,
-  useGetPlanQuery
+  useGetPlanQuery,
+  useSaveOrderMutation
 } = api;
 export default api;

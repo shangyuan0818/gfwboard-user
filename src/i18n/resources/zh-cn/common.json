@@ -245,7 +245,7 @@
     },
     "period-select-card": {
       "title": "付款周期",
-      "price": "{{price}} 元",
+      "price": "￥ {{price}}",
       "period_onetime_price": "一次性付款",
       "period_month_price": "每月付款",
       "period_quarter_price": "每季付款",
@@ -260,6 +260,13 @@
       "button": "使用",
       "tooltip_add": "使用优惠券",
       "tooltip_reset": "重置优惠券"
+    },
+    "order-info-card": {
+      "title": "订单信息",
+      "price": "￥ {{price}}",
+      "coupon": "优惠券：{{name}}",
+      "total": "总计",
+      "button": "创建订单"
     }
   }
 }

@@ -15,7 +15,8 @@ const PeriodSelectCard: React.FC = () => {
   const {
     planQuery: { data },
     setPeriod,
-    period: periodState
+    period: periodState,
+    isSubmitting
   } = usePlanDetailContext();
   const periods = useMemo(() => (data ? Object.keys(getMode(data)) : []), [data]);
 
@@ -31,6 +32,7 @@ const PeriodSelectCard: React.FC = () => {
                   setPeriod(period as PaymentPeriod);
                 }}
                 selected={period === periodState}
+                disabled={isSubmitting}
               >
                 <Stack
                   direction={"row"}

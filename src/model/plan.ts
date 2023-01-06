@@ -1,7 +1,7 @@
 export default interface Plan {
   id: number;
   group_id: number;
-  transfer_enable: number;
+  transfer_enable: null | number;
   name: string;
   speed_limit: null | number;
   show: number;

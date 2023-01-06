@@ -14,12 +14,12 @@ const MaintenanceError = Loadable(lazy(() => import("@/pages/maintenance/404")))
 // const MaintenanceComingSoon = Loadable(lazy(() => import("@/pages/maintenance/coming-soon")));
 
 // render
-// const SamplePage = Loadable(lazy(() => import("@/pages/extra-pages/sample-page")));
 const Dashboard = Loadable(lazy(() => import("@/pages/main/dashboard")));
 const Knowledge = Loadable(lazy(() => import("@/pages/main/knowledge")));
 const KnowledgePost = Loadable(lazy(() => import("@/pages/main/knowledgePost")));
 const PlanList = Loadable(lazy(() => import("@/pages/subscription/planList")));
 const PlanDetails = Loadable(lazy(() => import("@/pages/subscription/planDetails")));
+const Checkout = Loadable(lazy(() => import("@/pages/subscription/checkout")));
 
 // ==============================|| MAIN ROUTING ||============================== //
 
@@ -57,6 +57,10 @@ const MainRoutes: RouteObject = {
         {
           path: "subscription/buy/:id",
           element: <PlanDetails />
+        },
+        {
+          path: "subscription/checkout/:id",
+          element: <Checkout />
         }
       ]
     },

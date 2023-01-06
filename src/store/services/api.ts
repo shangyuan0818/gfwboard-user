@@ -22,8 +22,11 @@ import type { ReplyTicketPayload, TicketPayload } from "@/model/ticket";
 import type Knowledge from "@/model/knowledge";
 import type { KnowledgeListResponse, KnowledgePayload } from "@/model/knowledge";
 import type Plan from "@/model/plan";
+import type Order from "@/model/order";
 import type { OrderPayload } from "@/model/order";
-import Coupon, { CouponPayload } from "@/model/coupon";
+import type Coupon from "@/model/coupon";
+import type { CouponPayload } from "@/model/coupon";
+import type { OrderStatus } from "@/model/order";
 
 type AxiosBaseQueryFn = BaseQueryFn<
   {
@@ -305,6 +308,25 @@ const api = createApi({
           "Content-Type": "application/x-www-form-urlencoded"
         }
       })
+    }),
+    getOrderDetail: builder.query<Order, string>({
+      query: (id) => ({
+        url: "/user/order/detail",
+        method: "GET",
+        params: {
+          trade_no: id
+        }
+      })
+    }),
+    checkOrder: builder.query<OrderStatus, string>({
+      query: (id) => ({
+        url: "/user/order/check",
+        method: "GET",
+        params: {
+          trade_no: id
+        }
+      }),
+      keepUnusedDataFor: 1
     })
   })
 });
@@ -329,6 +351,8 @@ export const {
   useGetPlanListQuery,
   useGetPlanQuery,
   useSaveOrderMutation,
-  useCheckCouponMutation
+  useCheckCouponMutation,
+  useGetOrderDetailQuery,
+  useCheckOrderQuery
 } = api;
 export default api;

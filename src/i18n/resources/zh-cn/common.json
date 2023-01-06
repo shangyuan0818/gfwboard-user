@@ -267,6 +267,23 @@
       "coupon": "优惠券：{{name}}",
       "total": "总计",
       "button": "创建订单"
+    },
+    "product-info-card": {
+      "title": "产品信息",
+      "product-name": "产品名称",
+      "product-type": "订单类型",
+      "product-period_onetime_price": "一次性付款",
+      "product-period_month_price": "每月付款",
+      "product-period_quarter_price": "每季付款",
+      "product-period_half_year_price": "每半年付款",
+      "product-period_year_price": "每年付款",
+      "product-period_two_year_price": "每两年付款",
+      "product-period_three_year_price": "每三年付款",
+      "traffic": "流量",
+      "traffic_limited": "{{count}} GB",
+      "traffic_unlimited": "不限",
+      "product-price": "价格",
+      "next-billing-date": "下次续费"
     }
   }
 }

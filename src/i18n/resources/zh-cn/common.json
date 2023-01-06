@@ -207,91 +207,99 @@
     }
   },
   "subscription": {
-    "filter-card": {
-      "title": "筛选",
-      "plan-type": {
-        "title": "计划类型",
-        "all": "全部",
-        "period": "按周期",
-        "traffic": "按流量"
+    "buy" : {
+      "filter-card": {
+        "title": "筛选",
+        "plan-type": {
+          "title": "计划类型",
+          "all": "全部",
+          "period": "按周期",
+          "traffic": "按流量"
+        },
+        "payment-type": {
+          "title": "支付周期",
+          "onetime_price": "一次性",
+          "month_price": "月付",
+          "quarter_price": "季付",
+          "half_year_price": "半年付",
+          "year_price": "年付",
+          "two_year_price": "两年付",
+          "three_year_price": "三年付"
+        }
       },
-      "payment-type": {
-        "title": "支付周期",
-        "onetime_price": "一次性",
-        "month_price": "月付",
-        "quarter_price": "季付",
-        "half_year_price": "半年付",
-        "year_price": "年付",
-        "two_year_price": "两年付",
-        "three_year_price": "三年付"
+      "products-header": {
+        "search": "搜索节点",
+        "filter-button": "筛选"
+      },
+      "product-card": {
+        "price-mode_onetime_price": "一次性",
+        "price-mode_month_price": "月付",
+        "price-mode_quarter_price": "季付",
+        "price-mode_half_year_price": "半年付",
+        "price-mode_year_price": "年付",
+        "price-mode_two_year_price": "两年付",
+        "price-mode_three_year_price": "三年付",
+        "buy-button": "购买"
       }
     },
-    "products-header": {
-      "search": "搜索节点",
-      "filter-button": "筛选"
+    "plan": {
+      "plan-info-card": {
+        "title": "购买订阅：{{name}}"
+      },
+      "period-select-card": {
+        "title": "付款周期",
+        "price": "￥ {{price}}",
+        "period_onetime_price": "一次性付款",
+        "period_month_price": "每月付款",
+        "period_quarter_price": "每季付款",
+        "period_half_year_price": "每半年付款",
+        "period_year_price": "每年付款",
+        "period_two_year_price": "每两年付款",
+        "period_three_year_price": "每三年付款"
+      },
+      "coupon-card": {
+        "title": "优惠券",
+        "placeholder": "输入优惠券码，若无可不填",
+        "button": "使用",
+        "tooltip_add": "使用优惠券",
+        "tooltip_reset": "重置优惠券"
+      },
+      "order-info-card": {
+        "title": "订单信息",
+        "price": "￥ {{price}}",
+        "coupon": "优惠券：{{name}}",
+        "total": "总计",
+        "button": "创建订单"
+      }
     },
-    "product-card": {
-      "price-mode_onetime_price": "一次性",
-      "price-mode_month_price": "月付",
-      "price-mode_quarter_price": "季付",
-      "price-mode_half_year_price": "半年付",
-      "price-mode_year_price": "年付",
-      "price-mode_two_year_price": "两年付",
-      "price-mode_three_year_price": "三年付",
-      "buy-button": "购买"
-    },
-    "plan-info-card": {
-      "title": "购买订阅：{{name}}"
-    },
-    "period-select-card": {
-      "title": "付款周期",
-      "price": "￥ {{price}}",
-      "period_onetime_price": "一次性付款",
-      "period_month_price": "每月付款",
-      "period_quarter_price": "每季付款",
-      "period_half_year_price": "每半年付款",
-      "period_year_price": "每年付款",
-      "period_two_year_price": "每两年付款",
-      "period_three_year_price": "每三年付款"
-    },
-    "coupon-card": {
-      "title": "优惠券",
-      "placeholder": "输入优惠券码，若无可不填",
-      "button": "使用",
-      "tooltip_add": "使用优惠券",
-      "tooltip_reset": "重置优惠券"
-    },
-    "order-info-card": {
-      "title": "订单信息",
-      "price": "￥ {{price}}",
-      "coupon": "优惠券：{{name}}",
-      "total": "总计",
-      "button": "创建订单"
-    },
-    "product-info-card": {
-      "title": "产品信息",
-      "product-name": "产品名称",
-      "product-type": "订单类型",
-      "product-period_onetime_price": "一次性付款",
-      "product-period_month_price": "每月付款",
-      "product-period_quarter_price": "每季付款",
-      "product-period_half_year_price": "每半年付款",
-      "product-period_year_price": "每年付款",
-      "product-period_two_year_price": "每两年付款",
-      "product-period_three_year_price": "每三年付款",
-      "traffic": "流量",
-      "traffic_limited": "{{count}} GB",
-      "traffic_unlimited": "不限",
-      "product-price": "价格",
-      "next-billing-date": "下次续费"
-    },
-    "status-card": {
-      "status_pending": "待支付",
-      "status_paid": "已支付",
-      "status_cancelled": "已取消",
-      "description_pending": "您的订单已创建，但尚未支付。请尽快支付以免订单过期。",
-      "description_paid": "您的订单已支付成功，您可以在下方查看订单信息。",
-      "description_cancelled": "您的订单已被取消，您可以在下方查看订单信息。"
+    "checkout": {
+
+      "product-info-card": {
+        "title": "产品信息",
+        "product-name": "产品名称",
+        "product-type": "订单类型",
+        "product-period_onetime_price": "一次性付款",
+        "product-period_month_price": "每月付款",
+        "product-period_quarter_price": "每季付款",
+        "product-period_half_year_price": "每半年付款",
+        "product-period_year_price": "每年付款",
+        "product-period_two_year_price": "每两年付款",
+        "product-period_three_year_price": "每三年付款",
+        "traffic": "流量",
+        "traffic_limited": "{{count}} GB",
+        "traffic_unlimited": "不限",
+        "product-price": "价格",
+        "next-billing-date": "下次续费"
+      },
+      "status-card": {
+        "status_pending": "待支付",
+        "status_paid": "已支付",
+        "status_cancelled": "已取消",
+        "description_pending": "您的订单已创建，但尚未支付。请尽快支付以免订单过期。",
+        "description_paid": "您的订单已支付成功，您可以在下方查看订单信息。",
+        "description_cancelled": "您的订单已被取消，您可以在下方查看订单信息。"
+      }
     }
+
   }
 }

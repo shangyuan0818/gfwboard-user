@@ -26,7 +26,7 @@ const CouponCard: React.FC = () => {
   }, [isLoading, setIsSubmitting]);
 
   return (
-    <MainCard title={t("subscription.coupon-card.title")}>
+    <MainCard title={t("subscription.plan.coupon-card.title")}>
       <Formik
         initialValues={{
           coupon: couponCode?.code || ""
@@ -58,7 +58,7 @@ const CouponCard: React.FC = () => {
             <OutlinedInput
               fullWidth
               name={"coupon"}
-              placeholder={t("subscription.coupon-card.placeholder").toString()}
+              placeholder={t("subscription.plan.coupon-card.placeholder").toString()}
               disabled={isSubmitting || couponCode !== null}
               onChange={handleChange}
               onBlur={handleBlur}
@@ -66,7 +66,7 @@ const CouponCard: React.FC = () => {
               endAdornment={
                 <InputAdornment position={"end"}>
                   <Tooltip
-                    title={t("subscription.coupon-card.tooltip", {
+                    title={t("subscription.plan.coupon-card.tooltip", {
                       context: couponCode !== null ? "reset" : "add"
                     }).toString()}
                     placement={"bottom"}

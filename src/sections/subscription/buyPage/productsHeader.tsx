@@ -29,7 +29,7 @@ const ProductsHeader: React.FC = () => {
         <Stack direction={"row"} alignItems={"center"}>
           <FormControl variant={"standard"}>
             <OutlinedInput
-              placeholder={t("subscription.products-header.search").toString()}
+              placeholder={t("subscription.buy.products-header.search").toString()}
               startAdornment={<SearchOutlined />}
               value={keyword}
               onChange={(e) => {
@@ -46,7 +46,7 @@ const ProductsHeader: React.FC = () => {
             startIcon={<FilterOutlined style={{ color: "secondary.200" }} />}
           >
             <Typography variant={"h6"} color={"textPrimary"}>
-              {t("subscription.products-header.filter-button").toString()}
+              {t("subscription.buy.products-header.filter-button").toString()}
             </Typography>
           </Button>
         </Stack>

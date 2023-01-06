@@ -17,7 +17,7 @@ const PlanInfoCard: React.FC = () => {
 
   return (
     <MainCard
-      title={t("subscription.plan-info-card.title", {
+      title={t("subscription.plan.plan-info-card.title", {
         name: data?.name
       })}
       content={false}

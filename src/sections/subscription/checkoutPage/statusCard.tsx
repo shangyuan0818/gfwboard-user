@@ -57,9 +57,9 @@ const StatusCard: React.FC = () => {
       <Stack direction={"column"} spacing={3}>
         {icon}
         <Stack direction={"column"} spacing={1} alignItems={"center"}>
-          <Typography variant={"h3"}>{t("subscription.status-card.status", { context })}</Typography>
+          <Typography variant={"h3"}>{t("subscription.checkout.status-card.status", { context })}</Typography>
           <Typography variant={"body1"} color={"textSecondary"}>
-            {t("subscription.status-card.description", { context })}
+            {t("subscription.checkout.status-card.description", { context })}
           </Typography>
         </Stack>
       </Stack>

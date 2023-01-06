@@ -42,7 +42,7 @@ const ProductInfoCard: React.FC = () => {
     () => [
       <Grid container spacing={2}>
         <Grid item xs={4}>
-          {t("subscription.product-info-card.product-name")}
+          {t("subscription.checkout.product-info-card.product-name")}
         </Grid>
         <Grid item xs={8}>
           <Typography variant="body1" noWrap>
@@ -52,11 +52,11 @@ const ProductInfoCard: React.FC = () => {
       </Grid>,
       <Grid container spacing={2}>
         <Grid item xs={4}>
-          {t("subscription.product-info-card.product-type")}
+          {t("subscription.checkout.product-info-card.product-type")}
         </Grid>
         <Grid item xs={8}>
           <Typography variant="body1" noWrap>
-            {t("subscription.product-info-card.product-period", {
+            {t("subscription.checkout.product-info-card.product-period", {
               context: data?.period
             })}
           </Typography>
@@ -64,11 +64,11 @@ const ProductInfoCard: React.FC = () => {
       </Grid>,
       <Grid container spacing={2}>
         <Grid item xs={4}>
-          {t("subscription.product-info-card.traffic")}
+          {t("subscription.checkout.product-info-card.traffic")}
         </Grid>
         <Grid item xs={8}>
           <Typography variant="body1" noWrap>
-            {t("subscription.product-info-card.traffic", {
+            {t("subscription.checkout.product-info-card.traffic", {
               count: data?.plan.transfer_enable || 0,
               context: data?.plan.transfer_enable === null ? "unlimited" : "limited"
             })}
@@ -80,7 +80,7 @@ const ProductInfoCard: React.FC = () => {
         : [
             <Grid container spacing={2}>
               <Grid item xs={4}>
-                {t("subscription.product-info-card.next-billing-date")}
+                {t("subscription.checkout.product-info-card.next-billing-date")}
               </Grid>
               <Grid item xs={8}>
                 <Typography variant="body1" noWrap>
@@ -94,7 +94,7 @@ const ProductInfoCard: React.FC = () => {
   );
 
   return (
-    <MainCard title={t("subscription.product-info-card.title")}>
+    <MainCard title={t("subscription.checkout.product-info-card.title")}>
       <Grid container spacing={1}>
         {lines.map((line, index) => (
           <Grid item xs={12} key={index}>

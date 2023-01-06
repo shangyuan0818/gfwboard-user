@@ -21,7 +21,7 @@ const PeriodSelectCard: React.FC = () => {
   const periods = useMemo(() => (data ? Object.keys(getMode(data)) : []), [data]);
 
   return (
-    <MainCard title={t("subscription.period-select-card.title")} content={false}>
+    <MainCard title={t("subscription.plan.period-select-card.title")} content={false}>
       <List sx={{ p: 0 }}>
         {data &&
           periods.map((period) => (
@@ -43,12 +43,12 @@ const PeriodSelectCard: React.FC = () => {
                   py={1.5}
                 >
                   <Typography variant={"subtitle1"}>
-                    {t(`subscription.period-select-card.period`, {
+                    {t(`subscription.plan.period-select-card.period`, {
                       context: period as PaymentPeriod
                     })}
                   </Typography>
                   <Typography variant={"subtitle1"}>
-                    {t("subscription.period-select-card.price", {
+                    {t("subscription.plan.period-select-card.price", {
                       price: ((getMode(data)[period as PaymentPeriod] || 0) / 100).toFixed(2)
                     })}
                   </Typography>

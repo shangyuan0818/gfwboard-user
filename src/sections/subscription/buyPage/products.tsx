@@ -20,17 +20,15 @@ import Plan from "@/model/plan";
 import { PaymentPeriod, PlanType } from "@/types/plan";
 import { getFirstPayment, getMode, getPrice } from "@/utils/plan";
 
-const ProductCardSkeleton: React.FC = () => {
-  return (
-    <MainCard title={<Skeleton variant={"text"} width={200} />}>
-      <Skeleton variant={"rectangular"} width={"100%"} height={100} />
-      <Skeleton variant={"text"} width={200} />
-      <Skeleton variant={"text"} width={160} />
-      <Skeleton variant={"text"} width={160} />
-      <Skeleton variant={"text"} width={200} />
-    </MainCard>
-  );
-};
+const ProductCardSkeleton: React.FC = () => (
+  <MainCard title={<Skeleton variant={"text"} width={200} />}>
+    <Skeleton variant={"rectangular"} width={"100%"} height={100} />
+    <Skeleton variant={"text"} width={200} />
+    <Skeleton variant={"text"} width={160} />
+    <Skeleton variant={"text"} width={160} />
+    <Skeleton variant={"text"} width={200} />
+  </MainCard>
+);
 
 const ProductCard: React.FC<{
   product: Plan;
@@ -50,7 +48,7 @@ const ProductCard: React.FC<{
       };
     }
 
-    const mode = t("subscription.product-card.price-mode", {
+    const mode = t("subscription.buy.product-card.price-mode", {
       context: payment
     }).toString();
     const price = getPrice(product, payment);
@@ -66,7 +64,7 @@ const ProductCard: React.FC<{
       title={product.name}
       secondary={
         <Typography variant={"caption"} color={"textSecondary"}>
-          {t("subscription.product-card.price-mode", {
+          {t("subscription.buy.product-card.price-mode", {
             context: price.mode,
             defaultValue: price.mode
           }).toString()}
@@ -87,7 +85,7 @@ const ProductCard: React.FC<{
             navigate(`/subscription/buy/${product.id}`);
           }}
         >
-          {t("subscription.product-card.buy-button").toString()}
+          {t("subscription.buy.product-card.buy-button").toString()}
         </Button>
       </Stack>
     </MainCard>

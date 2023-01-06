@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 // project imports
 import useTitle from "@/hooks/useTitle";
 import { PlanDetailProvider } from "@/sections/subscription/planDetailsPage/context";
-import PlanDetailsSection from "@/sections/subscription/planDetailsPage/planDetailsSection";
+import PlanDetailsPage from "@/sections/subscription/planDetailsPage";
 
 const PlanDetails: React.FC = () => {
   useTitle("buy-plan");
@@ -14,7 +14,7 @@ const PlanDetails: React.FC = () => {
 
   return (
     <PlanDetailProvider id={id}>
-      <PlanDetailsSection />
+      <PlanDetailsPage />
     </PlanDetailProvider>
   );
 };

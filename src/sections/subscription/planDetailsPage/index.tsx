@@ -9,7 +9,7 @@ import PeriodSelectCard from "@/sections/subscription/planDetailsPage/periodSele
 import CouponCard from "@/sections/subscription/planDetailsPage/couponCard";
 import OrderInfoCard from "@/sections/subscription/planDetailsPage/orderInfoCard";
 
-const PlanDetailsSection: React.FC = () => (
+const PlanDetailsPage: React.FC = () => (
   <Grid container spacing={2}>
     <Grid item xs={12} md={8}>
       <Grid container spacing={2}>
@@ -34,4 +34,4 @@ const PlanDetailsSection: React.FC = () => (
   </Grid>
 );
 
-export default PlanDetailsSection;
+export default PlanDetailsPage;

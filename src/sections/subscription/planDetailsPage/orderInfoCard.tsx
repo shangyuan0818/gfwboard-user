@@ -84,14 +84,16 @@ const OrderInfoCard: React.FC = () => {
   return (
     <MainCard title={t("subscription.order-info-card.title")}>
       <Stack spacing={2} divider={<Divider />}>
-        <Stack direction={"row"} justifyContent={"space-between"} spacing={1}>
-          <Typography variant={"body1"}>{planData?.name}</Typography>
-          <Typography variant={"body1"}>
-            {t("subscription.order-info-card.price", {
-              price: Number(originPrice).toFixed(2)
-            })}
-          </Typography>
-        </Stack>
+        {planData && (
+          <Stack direction={"row"} justifyContent={"space-between"} spacing={1}>
+            <Typography variant={"body1"}>{planData?.name}</Typography>
+            <Typography variant={"body1"}>
+              {t("subscription.order-info-card.price", {
+                price: Number(originPrice).toFixed(2)
+              })}
+            </Typography>
+          </Stack>
+        )}
         {couponCode && (
           <Stack direction={"row"} justifyContent={"space-between"} spacing={1}>
             <Typography variant={"body1"}>

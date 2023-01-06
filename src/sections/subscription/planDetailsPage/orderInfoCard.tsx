@@ -110,7 +110,7 @@ const OrderInfoCard: React.FC = () => {
             <Typography variant={"body1"}>
               {t("subscription.plan.order-info-card.price", {
                 price: Number(
-                  couponCode.type === 1 ? couponCode.value * -1 : (couponCode.value / 100) * -1 * originPrice
+                  couponCode.type === 1 ? (couponCode.value / 100) * -1 : (couponCode.value / 100) * -1 * originPrice
                 ).toFixed(2)
               })}
             </Typography>

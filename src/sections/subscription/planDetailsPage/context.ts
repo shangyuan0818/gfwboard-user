@@ -1,13 +1,12 @@
 import { useEffect, useMemo, useState } from "react";
 import constate from "constate";
-import { useSet } from "ahooks";
+import { useSnackbar } from "notistack";
 
 // project imports
 import { useGetPlanQuery } from "@/store/services/api";
 import { PaymentPeriod } from "@/types/plan";
 import Coupon from "@/model/coupon";
 import { getFirstPayment, getMode } from "@/utils/plan";
-import { useSnackbar } from "notistack";
 
 export interface PlanDetailContextProps {
   id: number;
@@ -51,7 +50,7 @@ const usePlanDetail = ({ id }: PlanDetailContextProps) => {
       return originPrice;
     } else if (couponCode.type === 1) {
       // 金额抵扣
-      return originPrice - couponCode.value;
+      return originPrice - couponCode.value / 100;
     } else if (couponCode.type === 2) {
       // 折扣
       return originPrice * (1 - couponCode.value / 100);

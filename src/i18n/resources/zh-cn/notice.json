@@ -20,5 +20,6 @@
   "language-change_fail": "语言切换失败",
   "data-not-loaded": "数据未加载完成，请刷新页面",
   "period-not-selected": "请选择付款周期",
-  "order-created": "订单已创建"
+  "order-created": "订单已创建",
+  "order-detail-error": "订单详情获取失败：{{error}}"
 }

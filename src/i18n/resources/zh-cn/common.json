@@ -273,11 +273,11 @@
       }
     },
     "checkout": {
-
       "product-info-card": {
         "title": "产品信息",
         "product-name": "产品名称",
         "product-type": "订单类型",
+        "product-period": "undefined",
         "product-period_onetime_price": "一次性付款",
         "product-period_month_price": "每月付款",
         "product-period_quarter_price": "每季付款",

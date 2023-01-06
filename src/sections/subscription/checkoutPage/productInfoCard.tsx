@@ -12,6 +12,11 @@ import MainCard from "@/components/MainCard";
 import { useCheckoutContext } from "@/sections/subscription/checkoutPage/context";
 import { PaymentPeriod } from "@/types/plan";
 
+export interface LineProps {
+  label: string;
+  value: React.ReactNode;
+}
+
 const ProductInfoCard: React.FC = () => {
   const { t } = useTranslation();
   const {
@@ -38,59 +43,35 @@ const ProductInfoCard: React.FC = () => {
     }
   }, [data?.created_at, data?.period]);
 
-  const lines = useMemo(
+  const lines = useMemo<LineProps[]>(
     () => [
-      <Grid container spacing={2}>
-        <Grid item xs={4}>
-          {t("subscription.checkout.product-info-card.product-name")}
-        </Grid>
-        <Grid item xs={8}>
-          <Typography variant="body1" noWrap>
-            {data?.plan.name}
-          </Typography>
-        </Grid>
-      </Grid>,
-      <Grid container spacing={2}>
-        <Grid item xs={4}>
-          {t("subscription.checkout.product-info-card.product-type")}
-        </Grid>
-        <Grid item xs={8}>
-          <Typography variant="body1" noWrap>
-            {t("subscription.checkout.product-info-card.product-period", {
-              context: data?.period
-            })}
-          </Typography>
-        </Grid>
-      </Grid>,
-      <Grid container spacing={2}>
-        <Grid item xs={4}>
-          {t("subscription.checkout.product-info-card.traffic")}
-        </Grid>
-        <Grid item xs={8}>
-          <Typography variant="body1" noWrap>
-            {t("subscription.checkout.product-info-card.traffic", {
-              count: data?.plan.transfer_enable || 0,
-              context: data?.plan.transfer_enable === null ? "unlimited" : "limited"
-            })}
-          </Typography>
-        </Grid>
-      </Grid>,
+      {
+        label: t("subscription.checkout.product-info-card.product-name"),
+        value: data?.plan.name
+      },
+      {
+        label: t("subscription.checkout.product-info-card.product-type"),
+        value: t("subscription.checkout.product-info-card.product-period", {
+          context: data?.period
+        })
+      },
+      {
+        label: t("subscription.checkout.product-info-card.traffic"),
+        value: t("subscription.checkout.product-info-card.traffic", {
+          count: data?.plan.transfer_enable || 0,
+          context: data?.plan.transfer_enable === null ? "unlimited" : "limited"
+        })
+      },
       ...(data?.period === PaymentPeriod.ONETIME
         ? []
         : [
-            <Grid container spacing={2}>
-              <Grid item xs={4}>
-                {t("subscription.checkout.product-info-card.next-billing-date")}
-              </Grid>
-              <Grid item xs={8}>
-                <Typography variant="body1" noWrap>
-                  {nextBillingDate.format("YYYY/MM/DD")}
-                </Typography>
-              </Grid>
-            </Grid>
+            {
+              label: t("subscription.checkout.product-info-card.next-billing-date"),
+              value: nextBillingDate.format("YYYY/MM/DD")
+            }
           ])
     ],
-    [data, t]
+    [data, t, nextBillingDate]
   );
 
   return (
@@ -98,17 +79,14 @@ const ProductInfoCard: React.FC = () => {
       <Grid container spacing={1}>
         {lines.map((line, index) => (
           <Grid item xs={12} key={index}>
-            {!isLoading && line}
-            {isLoading && (
-              <Grid container spacing={2}>
-                <Grid item xs={4}>
-                  <Skeleton variant="text" width="100%" />
-                </Grid>
-                <Grid item xs={8}>
-                  <Skeleton variant="text" width="100%" />
-                </Grid>
+            <Grid container spacing={2}>
+              <Grid item xs={4}>
+                {line.label}
               </Grid>
-            )}
+              <Grid item xs={8}>
+                {isLoading ? <Skeleton variant="text" width="100%" /> : line.value}
+              </Grid>
+            </Grid>
           </Grid>
         ))}
       </Grid>

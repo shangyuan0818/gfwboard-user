@@ -6,7 +6,7 @@ import { Stack, Typography } from "@mui/material";
 
 // project imports
 import MainCard from "@/components/MainCard";
-import { useCheckoutContext } from "@/sections/subscription/checkoutPage/context";
+import { useCheckoutContext } from "./context";
 import { OrderStatus } from "@/model/order";
 import { makeStyles } from "@/themes/hooks";
 

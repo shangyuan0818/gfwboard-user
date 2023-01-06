@@ -19,7 +19,7 @@ const Knowledge = Loadable(lazy(() => import("@/pages/main/knowledge")));
 const KnowledgePost = Loadable(lazy(() => import("@/pages/main/knowledgePost")));
 const PlanList = Loadable(lazy(() => import("@/pages/subscription/planList")));
 const PlanDetails = Loadable(lazy(() => import("@/pages/subscription/planDetails")));
-const Checkout = Loadable(lazy(() => import("@/pages/subscription/checkout")));
+const Checkout = Loadable(lazy(() => import("@/pages/order/checkout")));
 
 // ==============================|| MAIN ROUTING ||============================== //
 
@@ -59,7 +59,7 @@ const MainRoutes: RouteObject = {
           element: <PlanDetails />
         },
         {
-          path: "subscription/checkout/:id",
+          path: "order/checkout/:id",
           element: <Checkout />
         }
       ]

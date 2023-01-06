@@ -9,7 +9,7 @@ import { Grid, Skeleton, Typography } from "@mui/material";
 
 // project imports
 import MainCard from "@/components/MainCard";
-import { useCheckoutContext } from "@/sections/subscription/checkoutPage/context";
+import { useCheckoutContext } from "./context";
 import { PaymentPeriod } from "@/types/plan";
 
 export interface LineProps {

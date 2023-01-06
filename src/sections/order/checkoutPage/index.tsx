@@ -5,10 +5,10 @@ import { Grid } from "@mui/material";
 
 // project imports
 import { OrderStatus } from "@/model/order";
-import { useCheckoutContext } from "@/sections/subscription/checkoutPage/context";
-import ProductInfoCard from "@/sections/subscription/checkoutPage/productInfoCard";
-import StatusCard from "@/sections/subscription/checkoutPage/statusCard";
-import OrderInfoCard from "@/sections/subscription/checkoutPage/orderInfoCard";
+import { useCheckoutContext } from "./context";
+import ProductInfoCard from "./productInfoCard";
+import StatusCard from "./statusCard";
+import OrderInfoCard from "./orderInfoCard";
 
 const CheckoutPage: React.FC = () => {
   const { status } = useCheckoutContext();

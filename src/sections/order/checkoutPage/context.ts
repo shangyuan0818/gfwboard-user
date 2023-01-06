@@ -1,8 +1,8 @@
+import { useEffect, useState } from "react";
 import constate from "constate";
 
 // project imports
 import { useCheckOrderQuery, useGetOrderDetailQuery } from "@/store/services/api";
-import { useEffect, useState } from "react";
 import { OrderStatus } from "@/model/order";
 
 export interface CheckoutPageContext {

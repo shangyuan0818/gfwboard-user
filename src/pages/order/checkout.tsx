@@ -3,8 +3,8 @@ import { useParams } from "react-router-dom";
 
 // material-ui
 import useTitle from "@/hooks/useTitle";
-import CheckoutPage from "@/sections/subscription/checkoutPage";
-import { CheckoutProvider } from "@/sections/subscription/checkoutPage/context";
+import { CheckoutProvider } from "@/sections/order/checkoutPage/context";
+import CheckoutPage from "@/sections/order/checkoutPage";
 
 const Checkout: React.FC = () => {
   useTitle("checkout");

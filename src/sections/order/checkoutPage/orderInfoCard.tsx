@@ -1,9 +1,15 @@
 import React, { useMemo } from "react";
-import MainCard from "@/components/MainCard";
-import { useTranslation } from "react-i18next";
-import { Grid, Skeleton, Typography } from "@mui/material";
-import { useCheckoutContext } from "@/sections/subscription/checkoutPage/context";
+
+// third-party
 import dayjs from "dayjs";
+import { useTranslation } from "react-i18next";
+
+// material-ui
+import { Grid, Skeleton, Typography } from "@mui/material";
+
+// project imports
+import MainCard from "@/components/MainCard";
+import { useCheckoutContext } from "./context";
 import { OrderStatus } from "@/model/order";
 
 export interface LineProps {

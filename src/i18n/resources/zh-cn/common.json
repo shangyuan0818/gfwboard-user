@@ -298,8 +298,19 @@
         "description_pending": "您的订单已创建，但尚未支付。请尽快支付以免订单过期。",
         "description_paid": "您的订单已支付成功，您可以在下方查看订单信息。",
         "description_cancelled": "您的订单已被取消，您可以在下方查看订单信息。"
+      },
+      "order-info-card": {
+        "title": "订单信息",
+        "order-number": "订单号",
+        "order-date": "订单日期",
+        "order-status": "订单状态",
+        "order-status-value_pending": "待支付",
+        "order-status-value_paid": "已支付",
+        "order-status-value_cancelled": "已取消",
+        "order-amount": "订单金额",
+        "price": "{{value}} CNY",
+        "coupon-amount": "优惠金额"
       }
     }
-
   }
 }

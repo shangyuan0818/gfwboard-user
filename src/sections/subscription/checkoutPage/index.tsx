@@ -8,6 +8,7 @@ import { OrderStatus } from "@/model/order";
 import { useCheckoutContext } from "@/sections/subscription/checkoutPage/context";
 import ProductInfoCard from "@/sections/subscription/checkoutPage/productInfoCard";
 import StatusCard from "@/sections/subscription/checkoutPage/statusCard";
+import OrderInfoCard from "@/sections/subscription/checkoutPage/orderInfoCard";
 
 const CheckoutPage: React.FC = () => {
   const { status } = useCheckoutContext();
@@ -25,8 +26,10 @@ const CheckoutPage: React.FC = () => {
           <Grid item xs={12}>
             <ProductInfoCard />
           </Grid>
-          <Grid item xs={12}></Grid>
-          <Grid item xs={12}></Grid>
+          <Grid item xs={12}>
+            <OrderInfoCard />
+          </Grid>
+          {typeof status === "undefined" || (status === OrderStatus.PENDING && <Grid item xs={12}></Grid>)}
         </Grid>
       </Grid>
       {typeof status === "undefined" || (status === OrderStatus.PENDING && <Grid item xs={12} md={4}></Grid>)}

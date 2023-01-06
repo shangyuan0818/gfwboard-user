@@ -15,27 +15,27 @@ export interface OrderPayload {
 
 export default interface Order {
   id: number;
-  invite_user_id: null;
+  invite_user_id: null | number;
   user_id: number;
   plan_id: number;
-  coupon_id: null;
-  payment_id: null;
+  coupon_id: null | number;
+  payment_id: null | number;
   type: number;
   period: PaymentPeriod;
   trade_no: string;
-  callback_no: null;
+  callback_no: null | string;
   total_amount: number;
-  handling_amount: null;
-  discount_amount: null;
-  surplus_amount: null;
-  refund_amount: null;
-  balance_amount: null;
-  surplus_order_ids: null;
+  handling_amount: null | number;
+  discount_amount: null | number;
+  surplus_amount: null | number;
+  refund_amount: null | number;
+  balance_amount: null | number;
+  surplus_order_ids: null | number[];
   status: OrderStatus;
   commission_status: number;
   commission_balance: number;
   actual_commission_balance: null;
-  paid_at: null;
+  paid_at: null | number;
   created_at: number;
   updated_at: number;
   plan: Plan;

@@ -284,6 +284,14 @@
       "traffic_unlimited": "不限",
       "product-price": "价格",
       "next-billing-date": "下次续费"
+    },
+    "status-card": {
+      "status_pending": "待支付",
+      "status_paid": "已支付",
+      "status_cancelled": "已取消",
+      "description_pending": "您的订单已创建，但尚未支付。请尽快支付以免订单过期。",
+      "description_paid": "您的订单已支付成功，您可以在下方查看订单信息。",
+      "description_cancelled": "您的订单已被取消，您可以在下方查看订单信息。"
     }
   }
 }

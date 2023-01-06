@@ -7,16 +7,21 @@ import { Grid } from "@mui/material";
 import { OrderStatus } from "@/model/order";
 import { useCheckoutContext } from "@/sections/subscription/checkoutPage/context";
 import ProductInfoCard from "@/sections/subscription/checkoutPage/productInfoCard";
+import StatusCard from "@/sections/subscription/checkoutPage/statusCard";
 
 const CheckoutPage: React.FC = () => {
-  const {
-    callback: { data }
-  } = useCheckoutContext();
+  const { status } = useCheckoutContext();
 
   return (
     <Grid container spacing={2}>
       <Grid item xs>
         <Grid container spacing={2}>
+          {typeof status === "undefined" ||
+            (status !== OrderStatus.PENDING && (
+              <Grid item xs={12}>
+                <StatusCard />
+              </Grid>
+            ))}
           <Grid item xs={12}>
             <ProductInfoCard />
           </Grid>
@@ -24,7 +29,7 @@ const CheckoutPage: React.FC = () => {
           <Grid item xs={12}></Grid>
         </Grid>
       </Grid>
-      {data === OrderStatus.Pending && <Grid item xs={12} md={4}></Grid>}
+      {typeof status === "undefined" || (status === OrderStatus.PENDING && <Grid item xs={12} md={4}></Grid>)}
     </Grid>
   );
 };

@@ -16,6 +16,9 @@ import "@/assets/third-party/react-table.css";
 // resize observer
 import ResizeObserver from "resize-observer-polyfill";
 
+// env
+import "./env";
+
 // project import
 import App from "@/App";
 import store from "@/store";

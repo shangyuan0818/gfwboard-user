@@ -46,18 +46,18 @@ const ProductInfoCard: React.FC = () => {
   const lines = useMemo<LineProps[]>(
     () => [
       {
-        label: t("subscription.checkout.product-info-card.product-name"),
+        label: t("order.checkout.product-info-card.product-name"),
         value: data?.plan.name
       },
       {
-        label: t("subscription.checkout.product-info-card.product-type"),
-        value: t("subscription.checkout.product-info-card.product-period", {
+        label: t("order.checkout.product-info-card.product-type"),
+        value: t("order.checkout.product-info-card.product-period", {
           context: data?.period
         })
       },
       {
-        label: t("subscription.checkout.product-info-card.traffic"),
-        value: t("subscription.checkout.product-info-card.traffic", {
+        label: t("order.checkout.product-info-card.traffic"),
+        value: t("order.checkout.product-info-card.traffic", {
           count: data?.plan.transfer_enable || 0,
           context: data?.plan.transfer_enable === null ? "unlimited" : "limited"
         })
@@ -66,7 +66,7 @@ const ProductInfoCard: React.FC = () => {
         ? []
         : [
             {
-              label: t("subscription.checkout.product-info-card.next-billing-date"),
+              label: t("order.checkout.product-info-card.next-billing-date"),
               value: nextBillingDate.format("YYYY/MM/DD")
             }
           ])
@@ -75,7 +75,7 @@ const ProductInfoCard: React.FC = () => {
   );
 
   return (
-    <MainCard title={t("subscription.checkout.product-info-card.title")}>
+    <MainCard title={t("order.checkout.product-info-card.title")}>
       <Grid container spacing={1}>
         {lines.map((line, index) => (
           <Grid item xs={12} key={index}>

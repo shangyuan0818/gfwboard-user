@@ -271,7 +271,9 @@
         "total": "总计",
         "button": "创建订单"
       }
-    },
+    }
+  },
+  "order": {
     "checkout": {
       "product-info-card": {
         "title": "产品信息",
@@ -310,6 +312,9 @@
         "order-amount": "订单金额",
         "price": "{{value}} CNY",
         "coupon-amount": "优惠金额"
+      },
+      "payment-method-card": {
+        "title": "支付方式"
       }
     }
   }

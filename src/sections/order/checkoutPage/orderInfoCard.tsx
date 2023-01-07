@@ -41,28 +41,28 @@ const OrderInfoCard: React.FC = () => {
   const lines = useMemo<LineProps[]>(
     () => [
       {
-        label: t("subscription.checkout.order-info-card.order-number"),
+        label: t("order.checkout.order-info-card.order-number"),
         value: data?.trade_no
       },
       {
-        label: t("subscription.checkout.order-info-card.order-date"),
+        label: t("order.checkout.order-info-card.order-date"),
         value: dayjs.unix(data?.created_at || 0).format("YYYY-MM-DD HH:mm:ss")
       },
       {
-        label: t("subscription.checkout.order-info-card.order-status"),
-        value: t("subscription.checkout.order-info-card.order-status-value", {
+        label: t("order.checkout.order-info-card.order-status"),
+        value: t("order.checkout.order-info-card.order-status-value", {
           context: statusContext
         })
       },
       {
-        label: t("subscription.checkout.order-info-card.coupon-amount"),
-        value: t("subscription.checkout.order-info-card.price", {
+        label: t("order.checkout.order-info-card.coupon-amount"),
+        value: t("order.checkout.order-info-card.price", {
           value: (Number(data?.discount_amount || 0) / 100).toFixed(2)
         })
       },
       {
-        label: t("subscription.checkout.order-info-card.order-amount"),
-        value: t("subscription.checkout.order-info-card.price", {
+        label: t("order.checkout.order-info-card.order-amount"),
+        value: t("order.checkout.order-info-card.price", {
           value: (Number(data?.total_amount || 0) / 100).toFixed(2)
         })
       }
@@ -71,7 +71,7 @@ const OrderInfoCard: React.FC = () => {
   );
 
   return (
-    <MainCard title={t("subscription.checkout.order-info-card.title")}>
+    <MainCard title={t("order.checkout.order-info-card.title")}>
       <Grid container spacing={2}>
         {lines.map((line, index) => (
           <Grid item xs={12} key={index}>

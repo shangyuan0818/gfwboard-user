@@ -205,5 +205,132 @@
     "post": {
       "update": "Updated on {{date}}"
     }
+  },
+  "subscription": {
+    "buy": {
+      "filter-card": {
+        "title": "Filter",
+        "plan-type": {
+          "title": "Plan Type",
+          "all": "All",
+          "period": "Periodic",
+          "traffic": "Traffic"
+        },
+        "payment-type": {
+          "title": "Payment period",
+          "onetime_price": "Disposable",
+          "month_price": "Monthly",
+          "quarter_price": "Quarterly",
+          "half_year_price": "Semiannually",
+          "year_price": "Annually",
+          "two_year_price": "Biennially",
+          "three_year_price": "Triennially"
+        }
+      },
+      "products-header": {
+        "search": "Search",
+        "filter-button": "Filter"
+      },
+      "product-card": {
+        "price-mode_onetime_price": "Disposable",
+        "price-mode_month_price": "Pay Monthly",
+        "price-mode_quarter_price": "Pay Quarterly",
+        "price-mode_half_year_price": "Pay Semiannually",
+        "price-mode_year_price": "Pay Annually",
+        "price-mode_two_year_price": "Pay Biennially",
+        "price-mode_three_year_price": "Pay Triennially",
+        "buy-button": "Buy"
+      }
+    },
+    "plan": {
+      "plan-info-card": {
+        "title": "Plan: {{name}}"
+      },
+      "period-select-card": {
+        "title": "Payment period",
+        "price": "￥ {{price}}",
+        "period_onetime_price": "Disposable Payment",
+        "period_month_price": "Pay Monthly",
+        "period_quarter_price": "Pay Quarterly",
+        "period_half_year_price": "Pay Semiannually",
+        "period_year_price": "Pay Annually",
+        "period_two_year_price": "Pay Biennially",
+        "period_three_year_price": "Pay Triennially"
+      },
+      "coupon-card": {
+        "title": "Coupon",
+        "placeholder": "Enter the coupon code if you have",
+        "tooltip_add": "Add it",
+        "tooltip_reset": "Reset it"
+      },
+      "order-info-card": {
+        "title": "Order info",
+        "price": "￥ {{price}}",
+        "coupon": "Coupon: {{name}}",
+        "total": "Total price",
+        "button": "Create Order"
+      }
+    }
+  },
+  "order": {
+    "checkout": {
+      "product-info-card": {
+        "title": "Product info",
+        "product-name": "Product name",
+        "product-type": "Product type",
+        "product-period": "undefined",
+        "product-period_onetime_price": "Disposable Payment",
+        "product-period_month_price": "Pay Monthly",
+        "product-period_quarter_price": "Pay Quarterly",
+        "product-period_half_year_price": "Pay Semiannually",
+        "product-period_year_price": "Pay Annually",
+        "product-period_two_year_price": "Pay Biennially",
+        "product-period_three_year_price": "Pay Triennially",
+        "traffic": "Traffic limit",
+        "traffic_limited": "{{count}} GB",
+        "traffic_unlimited": "Unlimited",
+        "product-price": "Price",
+        "next-billing-date": "Next billing date"
+      },
+      "status-card": {
+        "status_pending": "Pending",
+        "status_paid": "Paid",
+        "status_cancelled": "Cancelled",
+        "status_finished": "Finished",
+        "description_pending": "Your order has been created but not yet paid for. Please pay as soon as possible to avoid order expiration.",
+        "description_paid": "Your order has been paid, please wait for the service assignment.",
+        "description_cancelled": "Your order has been cancelled, you can view your order information below.",
+        "description_finished": "Your order has been completed, you can view the order information below."
+      },
+      "order-info-card": {
+        "title": "Order info",
+        "order-number": "Order No.",
+        "order-date": "Order date",
+        "order-status": "Order status",
+        "order-status-value_pending": "pending",
+        "order-status-value_paid": "paid",
+        "order-status-value_cancelled": "cancelled",
+        "order-amount": "Order amount",
+        "price": "{{value}} CNY",
+        "coupon-amount": "Discounted price",
+        "cancel-tooltip": "Cancel order",
+        "cancel-dialog": {
+          "title": "Warning",
+          "content": "If you have already paid, canceling the order may result in payment failure. Are you sure you want to cancel the order?",
+          "cancel-button": "Cancel",
+          "confirm-button": "Confirm"
+        }
+      },
+      "payment-method-card": {
+        "title": "Payment method"
+      },
+      "billing-card": {
+        "title": "Billing info",
+        "price": "{{value}}",
+        "coupon": "Deduction",
+        "button": "Pay",
+        "total-price": "Total price"
+      }
+    }
   }
 }

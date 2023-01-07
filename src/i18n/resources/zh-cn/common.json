@@ -313,6 +313,7 @@
         "order-amount": "订单金额",
         "price": "{{value}} CNY",
         "coupon-amount": "优惠金额",
+        "subscription-deduct-amount": "旧订阅抵扣",
         "cancel-tooltip": "取消订单",
         "cancel-dialog": {
           "title": "注意",
@@ -327,7 +328,8 @@
       "billing-card": {
         "title": "账单信息",
         "price": "{{value}}",
-        "coupon": "抵扣",
+        "deduction": "抵扣",
+        "surplus": "余额",
         "button": "支付",
         "total-price": "总计"
       }

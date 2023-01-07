@@ -313,6 +313,7 @@
         "order-amount": "Order amount",
         "price": "{{value}} CNY",
         "coupon-amount": "Discounted price",
+        "subscription-deduct-amount": "Old subscription deduction",
         "cancel-tooltip": "Cancel order",
         "cancel-dialog": {
           "title": "Warning",
@@ -327,7 +328,7 @@
       "billing-card": {
         "title": "Billing info",
         "price": "{{value}}",
-        "coupon": "Deduction",
+        "deduction": "Deduction",
         "button": "Pay",
         "total-price": "Total price"
       }

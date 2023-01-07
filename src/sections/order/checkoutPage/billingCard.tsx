@@ -36,12 +36,12 @@ const BillingCard: React.FC = () => {
           value: Number((detailData?.plan[detailData?.period] ?? 0) / 100).toFixed(2)
         })
       },
-      ...(detailData?.discount_amount
+      ...(detailData?.discount_amount || detailData?.surplus_amount
         ? [
             {
-              label: t("order.checkout.billing-card.coupon"),
+              label: t("order.checkout.billing-card.deduction"),
               value: t("order.checkout.billing-card.price", {
-                value: Number(detailData.discount_amount / -100).toFixed(2)
+                value: (((detailData?.discount_amount ?? 0) + (detailData?.surplus_amount ?? 0)) / -100).toFixed(2)
               })
             }
           ]

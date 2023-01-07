@@ -132,6 +132,12 @@ const OrderInfoCard: React.FC = () => {
         })
       },
       {
+        label: t("order.checkout.order-info-card.subscription-deduct-amount"),
+        value: t("order.checkout.order-info-card.price", {
+          value: (Number(data?.surplus_amount || 0) / 100).toFixed(2)
+        })
+      },
+      {
         label: t("order.checkout.order-info-card.order-amount"),
         value: t("order.checkout.order-info-card.price", {
           value: (Number(data?.total_amount || 0) / 100).toFixed(2)

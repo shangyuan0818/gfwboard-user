@@ -37,6 +37,7 @@ export default interface Order {
   refund_amount: null | number;
   balance_amount: null | number;
   surplus_order_ids: null | number[];
+  surplus_orders: null | Omit<Order, "plan">[];
   status: OrderStatus;
   commission_status: number;
   commission_balance: number;

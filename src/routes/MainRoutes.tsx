@@ -51,11 +51,11 @@ const MainRoutes: RouteObject = {
           element: <KnowledgePost />
         },
         {
-          path: "subscription/buy",
+          path: "plan/buy",
           element: <PlanList />
         },
         {
-          path: "subscription/buy/:id",
+          path: "plan/buy/:id",
           element: <PlanDetails />
         },
         {

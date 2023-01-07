@@ -5,7 +5,7 @@ import dayjs from "dayjs";
 import { useTranslation } from "react-i18next";
 
 // material-ui
-import { Grid, Skeleton, Typography } from "@mui/material";
+import { Grid, Skeleton } from "@mui/material";
 
 // project imports
 import MainCard from "@/components/MainCard";

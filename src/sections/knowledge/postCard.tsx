@@ -1,10 +1,16 @@
 import React from "react";
+
+// third-party
 import lo from "lodash-es";
-import MainCard from "@/components/MainCard";
-import MuiMarkdown from "mui-markdown";
-import { useGetKnowledgeQuery } from "@/store/services/api";
 import { useTranslation } from "react-i18next";
+
+// material-ui
 import { Skeleton, Stack } from "@mui/material";
+import MuiMarkdown from "mui-markdown";
+
+// project imports
+import MainCard from "@/components/MainCard";
+import { useGetKnowledgeQuery } from "@/store/services/api";
 
 export interface PostCardProps {
   postId: number | null;

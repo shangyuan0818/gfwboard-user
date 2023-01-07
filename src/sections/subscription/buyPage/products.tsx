@@ -79,10 +79,10 @@ const ProductCard: React.FC<{
         <Button
           variant={"contained"}
           color={"primary"}
-          href={`/subscription/buy/${product.id}`}
+          href={`/plan/buy/${product.id}`}
           onClick={(e) => {
             e.preventDefault();
-            navigate(`/subscription/buy/${product.id}`);
+            navigate(`/plan/buy/${product.id}`);
           }}
         >
           {t("subscription.buy.product-card.buy-button").toString()}

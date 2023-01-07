@@ -1,9 +1,17 @@
 import React from "react";
-import { ListItem, ListItemAvatar, ListItemButton, ListItemText, Typography } from "@mui/material";
-import Avatar from "@/components/@extended/Avatar";
-import { QuestionOutlined } from "@ant-design/icons";
+
+// third-party
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+
+// material-ui
+import { ListItem, ListItemAvatar, ListItemButton, ListItemText, Typography } from "@mui/material";
+
+// project imports
+import Avatar from "@/components/@extended/Avatar";
+
+// assets
+import { QuestionOutlined } from "@ant-design/icons";
 
 const TutorialButton: React.FC = () => {
   const { t } = useTranslation();

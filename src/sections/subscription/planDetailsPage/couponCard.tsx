@@ -1,20 +1,17 @@
-import React, { useEffect, useState } from "react";
-import MainCard from "@/components/MainCard";
+import React, { useEffect } from "react";
+import { Formik } from "formik";
 import { useTranslation } from "react-i18next";
-import {
-  Box,
-  Button,
-  FormHelperText,
-  IconButton,
-  InputAdornment,
-  OutlinedInput,
-  Tooltip,
-  Typography
-} from "@mui/material";
-import { CheckCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
+
+// material-ui
+import { Box, FormHelperText, IconButton, InputAdornment, OutlinedInput, Tooltip } from "@mui/material";
+
+// project imports
+import MainCard from "@/components/MainCard";
 import { useCheckCouponMutation } from "@/store/services/api";
 import { usePlanDetailContext } from "@/sections/subscription/planDetailsPage/context";
-import { Formik } from "formik";
+
+// assets
+import { CheckCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
 
 const CouponCard: React.FC = () => {
   const { t } = useTranslation();

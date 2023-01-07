@@ -1,22 +1,17 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 // material-ui
 import { Grid } from "@mui/material";
 
 // project imports
-import { useDispatch } from "@/store";
-import { setTitle } from "@/store/reducers/view";
+import useTitle from "@/hooks/useTitle";
 
 // sections
 import Search from "@/sections/knowledge/search";
 import PostList from "@/sections/knowledge/postList";
 
 const Knowledge: React.FC = () => {
-  // set title
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(setTitle("knowledge"));
-  }, [dispatch]);
+  useTitle("knowledge");
 
   return (
     <Grid container spacing={3}>

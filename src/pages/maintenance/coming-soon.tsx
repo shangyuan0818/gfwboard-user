@@ -7,6 +7,7 @@ import { useTimer } from "react-timer-hook";
 
 // project import
 import MainCard from "@/components/MainCard";
+import useTitle from "@/hooks/useTitle";
 
 // assets
 import coming from "@/assets/images/maintenance/coming-soon.png";
@@ -34,6 +35,8 @@ const TimerBox = ({ count, label }: { count: number; label: string }) => {
 };
 
 function ComingSoon() {
+  useTitle("coming_soon");
+
   const time = new Date();
   time.setSeconds(time.getSeconds() + 3600 * 24 * 2 - 3600 * 15.5);
 

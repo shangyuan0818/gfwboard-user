@@ -7,15 +7,51 @@ import { Box, Button, Grid, Stack, Typography } from "@mui/material";
 
 // project import
 import config from "@/config";
+import useTitle from "@/hooks/useTitle";
 
 // assets
 import error404 from "@/assets/images/maintenance/Error404.png";
 import TwoCone from "@/assets/images/maintenance/TwoCone.png";
+import { makeStyles } from "@/themes/hooks";
+
+const useStyles = makeStyles()((theme) => ({
+  container: {
+    minHeight: "100vh",
+    paddingTop: theme.spacing(1.5),
+    paddingBottom: theme.spacing(1),
+    overflow: "hidden"
+  },
+  box404Image: {
+    width: 250,
+    height: 130,
+    [theme.breakpoints.up("sm")]: {
+      width: 590,
+      height: 300
+    }
+  },
+  image404: { width: "100%", height: "100%" },
+  coneGrid: { position: "relative" },
+  coneBox: {
+    position: "absolute",
+    top: 60,
+    left: -40,
+    width: 130,
+    height: 115,
+    [theme.breakpoints.up("sm")]: {
+      width: 390,
+      height: 330
+    }
+  },
+  cone: { width: "100%", height: "100%" }
+}));
 
 // ==============================|| ERROR 404 - MAIN ||============================== //
 
 const Error404: React.FC = () => {
   const { t } = useTranslation();
+  useTitle("not_found");
+
+  const { classes } = useStyles();
 
   return (
     <>
@@ -25,26 +61,18 @@ const Error404: React.FC = () => {
         direction="column"
         alignItems="center"
         justifyContent="center"
-        sx={{ minHeight: "100vh", pt: 1.5, pb: 1, overflow: "hidden" }}
+        className={classes.container}
       >
         <Grid item xs={12}>
           <Stack direction="row">
             <Grid item>
-              <Box sx={{ width: { xs: 250, sm: 590 }, height: { xs: 130, sm: 300 } }}>
-                <img src={error404} alt="mantis" style={{ width: "100%", height: "100%" }} />
+              <Box className={classes.box404Image}>
+                <Box component={"img"} src={error404} alt="404" className={classes.image404} />
               </Box>
             </Grid>
-            <Grid item sx={{ position: "relative" }}>
-              <Box
-                sx={{
-                  position: "absolute",
-                  top: 60,
-                  left: -40,
-                  width: { xs: 130, sm: 390 },
-                  height: { xs: 115, sm: 330 }
-                }}
-              >
-                <img src={TwoCone} alt="mantis" style={{ width: "100%", height: "100%" }} />
+            <Grid item className={classes.coneGrid}>
+              <Box className={classes.coneBox}>
+                <Box component={"img"} src={TwoCone} alt="cone" className={classes.cone} />
               </Box>
             </Grid>
           </Stack>

@@ -25,7 +25,7 @@ const useStyles = makeStyles<{ open: boolean }>()((theme, { open }) => ({
   }
 }));
 
-const ProductsSection: React.FC = () => {
+const BuyPage: React.FC = () => {
   const { drawerOpen } = useShopContext();
   const { classes } = useStyles({ open: drawerOpen });
 
@@ -40,4 +40,4 @@ const ProductsSection: React.FC = () => {
   );
 };
 
-export default ProductsSection;
+export default BuyPage;

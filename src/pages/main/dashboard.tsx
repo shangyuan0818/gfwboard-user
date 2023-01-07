@@ -1,16 +1,11 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 // project import
-import { useDispatch } from "@/store";
-import { setTitle } from "@/store/reducers/view";
 import DashboardSection from "@/sections/dashboard";
+import useTitle from "@/hooks/useTitle";
 
 const Dashboard: React.FC = () => {
-  // set title
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(setTitle("dashboard"));
-  }, [dispatch]);
+  useTitle("dashboard");
 
   return <DashboardSection />;
 };

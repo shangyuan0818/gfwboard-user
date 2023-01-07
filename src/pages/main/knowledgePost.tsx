@@ -1,18 +1,18 @@
-import React, { useEffect } from "react";
-import { useDispatch } from "@/store";
-import { setTitle } from "@/store/reducers/view";
-import useKnowledge from "@/hooks/useKnowledge";
+import React from "react";
+
+// material-ui
 import { Grid } from "@mui/material";
+
+// project imports
+import useKnowledge from "@/hooks/useKnowledge";
 import PostCard from "@/sections/knowledge/postCard";
+import useTitle from "@/hooks/useTitle";
 
 const KnowledgePost: React.FC = () => {
   const { data } = useKnowledge();
 
   // set title
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(setTitle(data?.title || "Loading..."));
-  }, [dispatch, data]);
+  useTitle(data?.title || "Loading...", [data]);
 
   return (
     <Grid container>

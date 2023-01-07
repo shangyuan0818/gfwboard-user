@@ -17,5 +17,12 @@
   "refresh_success": "Refresh successfully",
   "refresh_fail": "Refresh failed",
   "language-change_success": "Language switched to $t(language::{{lng}}_name)",
-  "language-change_fail": "Failed to switch language"
+  "language-change_fail": "Failed to switch language",
+  "data-not-loaded": "The data has not been loaded, please refresh.",
+  "period-not-selected": "Please select a payment period.",
+  "order-created": "Order created.",
+  "order-detail-error": "Failed to obtain order details: {{error}}",
+  "order-cancel_success": "Order has been canceled.",
+  "order-cancel_fail": "Failed to cancel order.",
+  "checkout-failed": "Failed to call the payment gateway, please contact the manager."
 }

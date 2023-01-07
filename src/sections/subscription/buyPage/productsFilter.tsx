@@ -77,7 +77,7 @@ const ProductsFilter: React.FC = () => {
       ModalProps={{ keepMounted: true }}
       onClose={() => setDrawerOpen(false)}
     >
-      <MainCard title={t("subscription.filter-card.title")} className={classes.card}>
+      <MainCard title={t("subscription.buy.filter-card.title")} className={classes.card}>
         <SimpleBar>
           <Stack
             direction={"column"}
@@ -89,14 +89,14 @@ const ProductsFilter: React.FC = () => {
           >
             <FormControl component="fieldset">
               <FormLabel component="legend" sx={{ mb: 1 }} focused={false}>
-                {t("subscription.filter-card.plan-type.title")}
+                {t("subscription.buy.filter-card.plan-type.title")}
               </FormLabel>
               {[PlanType.PERIOD, PlanType.TRAFFIC].map((type) => (
                 <FormControlLabel
                   key={type}
                   value="end"
                   control={<Checkbox checked={planType.has(type)} onClick={() => togglePlanType(type)} />}
-                  label={t(`subscription.filter-card.plan-type.${type}`).toString()}
+                  label={t(`subscription.buy.filter-card.plan-type.${type}`).toString()}
                   labelPlacement="end"
                   sx={{ ml: 1 }}
                 />
@@ -104,14 +104,14 @@ const ProductsFilter: React.FC = () => {
             </FormControl>
             <FormControl component="fieldset">
               <FormLabel component="legend" sx={{ mb: 1 }} focused={false}>
-                {t("subscription.filter-card.payment-type.title")}
+                {t("subscription.buy.filter-card.payment-type.title")}
               </FormLabel>
               {paymentPriority.map((type) => (
                 <FormControlLabel
                   key={type}
                   value="end"
                   control={<Checkbox checked={paymentAllow.has(type)} onClick={() => togglePayment(type)} />}
-                  label={t(`subscription.filter-card.payment-type.${type}`).toString()}
+                  label={t(`subscription.buy.filter-card.payment-type.${type}`).toString()}
                   labelPlacement="end"
                   sx={{ ml: 1 }}
                 />

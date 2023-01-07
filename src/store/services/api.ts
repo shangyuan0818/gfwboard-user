@@ -22,6 +22,11 @@ import type { ReplyTicketPayload, TicketPayload } from "@/model/ticket";
 import type Knowledge from "@/model/knowledge";
 import type { KnowledgeListResponse, KnowledgePayload } from "@/model/knowledge";
 import type Plan from "@/model/plan";
+import type Order from "@/model/order";
+import type { OrderStatus, CheckoutOrderPayload, OrderPayload } from "@/model/order";
+import type Coupon from "@/model/coupon";
+import type { CouponPayload } from "@/model/coupon";
+import type { PaymentMethod } from "@/model/payment";
 
 type AxiosBaseQueryFn = BaseQueryFn<
   {
@@ -78,7 +83,7 @@ const axiosBaseQuery: () => AxiosBaseQueryFn =
 const api = createApi({
   reducerPath: "api",
   baseQuery: axiosBaseQuery(),
-  tagTypes: ["User", "Subscription", "Plan", "Notice", "Ticket", "Knowledge"],
+  tagTypes: ["User", "Subscription", "Plan", "Notice", "Ticket", "Knowledge", "Order", "PaymentMethod"],
   refetchOnReconnect: true,
   endpoints: (builder) => ({
     login: builder.mutation<LoginResponse, LoginPayload>({
@@ -279,6 +284,84 @@ const api = createApi({
         }
       }),
       providesTags: (result) => [{ type: "Plan" as const, id: result?.id }]
+    }),
+    saveOrder: builder.mutation<string, OrderPayload>({
+      query: (body) => ({
+        url: "/user/order/save",
+        method: "POST",
+        body: qs.stringify(body),
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        }
+      }),
+      invalidatesTags: (result) => [
+        { type: "Order", id: result },
+        { type: "Order", id: "LIST" }
+      ]
+    }),
+    checkCoupon: builder.mutation<Coupon, CouponPayload>({
+      query: (body) => ({
+        url: "/user/coupon/check",
+        method: "POST",
+        body: qs.stringify(body),
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        }
+      })
+    }),
+    getOrderDetail: builder.query<Order, string>({
+      query: (id) => ({
+        url: "/user/order/detail",
+        method: "GET",
+        params: {
+          trade_no: id
+        }
+      }),
+      providesTags: (result) => [{ type: "Order" as const, id: result?.trade_no }]
+    }),
+    checkOrder: builder.query<OrderStatus, string>({
+      query: (id) => ({
+        url: "/user/order/check",
+        method: "GET",
+        params: {
+          trade_no: id
+        }
+      }),
+      keepUnusedDataFor: 1
+    }),
+    getPaymentMethod: builder.query<PaymentMethod[], void>({
+      query: () => ({
+        url: "/user/order/getPaymentMethod",
+        method: "GET"
+      }),
+      providesTags: (result) => [
+        ...(result?.map((method) => ({ type: "PaymentMethod" as const, id: method.id })) || []),
+        { type: "PaymentMethod" as const, id: "LIST" }
+      ]
+    }),
+    cancelOrder: builder.mutation<boolean, string>({
+      query: (id) => ({
+        url: "/user/order/cancel",
+        method: "POST",
+        body: qs.stringify({
+          trade_no: id
+        }),
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        }
+      }),
+      invalidatesTags: (result, error, id) => [{ type: "Order", id }]
+    }),
+    checkoutOrder: builder.mutation<string, CheckoutOrderPayload>({
+      query: (body) => ({
+        url: "/user/order/checkout",
+        method: "POST",
+        body: qs.stringify(body),
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        }
+      }),
+      invalidatesTags: (result, error, arg) => [{ type: "Order", id: arg.trade_no }]
     })
   })
 });
@@ -301,6 +384,13 @@ export const {
   useGetKnowledgeListQuery,
   useGetKnowledgeQuery,
   useGetPlanListQuery,
-  useGetPlanQuery
+  useGetPlanQuery,
+  useSaveOrderMutation,
+  useCheckCouponMutation,
+  useGetOrderDetailQuery,
+  useCheckOrderQuery,
+  useGetPaymentMethodQuery,
+  useCancelOrderMutation,
+  useCheckoutOrderMutation
 } = api;
 export default api;

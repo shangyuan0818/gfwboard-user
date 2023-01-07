@@ -1,10 +1,18 @@
 import React, { useMemo } from "react";
-import { ListItem, ListItemAvatar, ListItemButton, ListItemText, Typography } from "@mui/material";
-import Avatar from "@/components/@extended/Avatar";
-import { ShoppingOutlined } from "@ant-design/icons";
+
+// third-party
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+
+// material-ui
+import { ListItem, ListItemAvatar, ListItemButton, ListItemText, Typography } from "@mui/material";
+
+// project imports
+import Avatar from "@/components/@extended/Avatar";
 import { useGetUserInfoQuery } from "@/store/services/api";
+
+// assets
+import { ShoppingOutlined } from "@ant-design/icons";
 
 const PurchaseButton: React.FC = () => {
   const { t } = useTranslation();
@@ -14,7 +22,7 @@ const PurchaseButton: React.FC = () => {
   const navigate = useNavigate();
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    navigate(hasPurchased ? `/plan/${userInfo?.plan_id}` : "/plan");
+    navigate(hasPurchased ? `/plan/buy/${userInfo?.plan_id}` : "/plan/buy");
   };
 
   return (

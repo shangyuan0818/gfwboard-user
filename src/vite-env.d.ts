@@ -9,7 +9,7 @@ interface ImportMeta {
 }
 
 interface Window {
-  readonly settings: WindowSettings;
+  settings: WindowSettings;
 }
 
 interface WindowSettings {

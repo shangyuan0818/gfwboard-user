@@ -36,14 +36,14 @@ const menuItems: { items: NavItemType[] } = {
           id: "buy-plan",
           title: "buy-plan",
           type: "item",
-          url: "/subscription/buy",
+          url: "/plan/buy",
           icon: ShoppingOutlined
         },
         {
           id: "status",
           title: "status",
           type: "item",
-          url: "/subscription/status",
+          url: "/service/status",
           icon: MonitorOutlined
         }
       ]

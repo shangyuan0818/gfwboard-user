@@ -7,3 +7,5 @@ window.settings = {
   api: "https://sub.crosswalltech.com",
   languages: ["zh-CN", "en-US"]
 };
+
+export default window.settings;

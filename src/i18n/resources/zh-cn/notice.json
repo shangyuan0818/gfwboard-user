@@ -17,5 +17,12 @@
   "refresh_success": "刷新成功",
   "refresh_fail": "刷新失败",
   "language-change_success": "成功切换语言为 $t(language::{{lng}}_name)",
-  "language-change_fail": "语言切换失败"
+  "language-change_fail": "语言切换失败",
+  "data-not-loaded": "数据未加载完成，请刷新页面",
+  "period-not-selected": "请选择付款周期",
+  "order-created": "订单已创建",
+  "order-detail-error": "订单详情获取失败：{{error}}",
+  "order-cancel_success": "订单已取消",
+  "order-cancel_fail": "取消订单失败",
+  "checkout-failed": "调用支付接口失败，请联系管理员"
 }

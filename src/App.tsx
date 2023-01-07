@@ -16,6 +16,7 @@ import i18n from "@/i18n";
 // middlewares
 import AccountStateDetector from "@/middleware/view/accountStateDetector";
 import TitleSelector from "@/middleware/view/titleSelector";
+import HtmlLanguagePropertySelector from "@/middleware/view/htmlLanguagePropertySelector";
 
 // ==============================|| APP - THEME, ROUTER, LOCAL  ||============================== //
 
@@ -37,6 +38,7 @@ const App = () => (
             {/* BEGIN Middlewares */}
             <TitleSelector />
             <AccountStateDetector />
+            <HtmlLanguagePropertySelector />
             {/* END Middlewares */}
 
             <Routes />

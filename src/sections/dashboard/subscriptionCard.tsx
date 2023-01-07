@@ -1,10 +1,12 @@
 import React, { useMemo } from "react";
+
+// third-party
 import dayjs from "dayjs";
 import lo from "lodash-es";
 import { Trans, useTranslation } from "react-i18next";
 
 // material-ui
-import { Box, CircularProgress, LinearProgress, Skeleton, Stack, Typography } from "@mui/material";
+import { Box, LinearProgress, Skeleton, Stack, Typography } from "@mui/material";
 
 // project imports
 import MainCard from "@/components/MainCard";

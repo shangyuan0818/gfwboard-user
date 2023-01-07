@@ -5,6 +5,7 @@ import { BrowserRouter } from "react-router-dom";
 // third-party
 import { Provider as ReduxProvider } from "react-redux";
 import "react-app-polyfill/ie11";
+import "core-js/stable";
 
 // scroll bar
 import "simplebar/src/simplebar.css";
@@ -15,6 +16,9 @@ import "@/assets/third-party/react-table.css";
 
 // resize observer
 import ResizeObserver from "resize-observer-polyfill";
+
+// env
+import "./env";
 
 // project import
 import App from "@/App";

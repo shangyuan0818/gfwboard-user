@@ -1,6 +1,10 @@
 import React from "react";
-import { List } from "@mui/material";
 import { useTranslation } from "react-i18next";
+
+// material-ui
+import { List } from "@mui/material";
+
+// project imports
 import MainCard from "@/components/MainCard";
 import TutorialButton from "@/sections/dashboard/shortcutCard/tutorialButton";
 import SubscribeButton from "@/sections/dashboard/shortcutCard/subscribeButton";

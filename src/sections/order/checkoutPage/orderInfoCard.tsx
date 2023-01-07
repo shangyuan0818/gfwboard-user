@@ -125,18 +125,26 @@ const OrderInfoCard: React.FC = () => {
           context: statusContext
         })
       },
-      {
-        label: t("order.checkout.order-info-card.coupon-amount"),
-        value: t("order.checkout.order-info-card.price", {
-          value: (Number(data?.discount_amount || 0) / 100).toFixed(2)
-        })
-      },
-      {
-        label: t("order.checkout.order-info-card.subscription-deduct-amount"),
-        value: t("order.checkout.order-info-card.price", {
-          value: (Number(data?.surplus_amount || 0) / 100).toFixed(2)
-        })
-      },
+      ...(data?.discount_amount
+        ? [
+            {
+              label: t("order.checkout.order-info-card.coupon-amount"),
+              value: t("order.checkout.order-info-card.price", {
+                value: (Number(data?.discount_amount || 0) / 100).toFixed(2)
+              })
+            }
+          ]
+        : []),
+      ...(data?.surplus_amount
+        ? [
+            {
+              label: t("order.checkout.order-info-card.subscription-deduct-amount"),
+              value: t("order.checkout.order-info-card.price", {
+                value: (Number(data?.surplus_amount || 0) / 100).toFixed(2)
+              })
+            }
+          ]
+        : []),
       {
         label: t("order.checkout.order-info-card.order-amount"),
         value: t("order.checkout.order-info-card.price", {

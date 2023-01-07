@@ -62,7 +62,7 @@ const StatusCard: React.FC = () => {
         {icon}
         <Stack direction={"column"} spacing={1} alignItems={"center"}>
           <Typography variant={"h3"}>{t("order.checkout.status-card.status", { context })}</Typography>
-          <Typography variant={"body1"} color={"textSecondary"}>
+          <Typography variant={"body1"} color={"textSecondary"} align={"center"}>
             {t("order.checkout.status-card.description", { context })}
           </Typography>
         </Stack>

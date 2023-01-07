@@ -4,13 +4,19 @@ import Plan from "@/model/plan";
 export enum OrderStatus {
   PENDING = 0, // 未支付
   PAID = 1, // 已支付
-  CANCELLED = 2 // 已取消
+  CANCELLED = 2, // 已取消
+  FINISHED = 3 // 已完成
 }
 
 export interface OrderPayload {
   plan_id: number;
   period: PaymentPeriod;
   coupon_code?: string;
+}
+
+export interface CheckoutOrderPayload {
+  trade_no: string;
+  method: number;
 }
 
 export default interface Order {

@@ -9,7 +9,8 @@ import { useCheckoutContext } from "./context";
 import ProductInfoCard from "./productInfoCard";
 import StatusCard from "./statusCard";
 import OrderInfoCard from "./orderInfoCard";
-import PaymentMethodCard from "@/sections/order/checkoutPage/paymentMethodCard";
+import PaymentMethodCard from "./paymentMethodCard";
+import BillingCard from "./billingCard";
 
 const CheckoutPage: React.FC = () => {
   const { status } = useCheckoutContext();
@@ -38,7 +39,9 @@ const CheckoutPage: React.FC = () => {
             <Grid item xs={12}>
               <PaymentMethodCard />
             </Grid>
-            <Grid item xs={12}></Grid>
+            <Grid item xs={12}>
+              <BillingCard />
+            </Grid>
           </Grid>
         </Grid>
       )}

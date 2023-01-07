@@ -11,7 +11,7 @@ import { OrderStatus } from "@/model/order";
 import { makeStyles } from "@/themes/hooks";
 
 // assets
-import { CheckCircleFilled, WarningFilled } from "@ant-design/icons";
+import { CheckCircleFilled, InfoCircleFilled, WarningFilled } from "@ant-design/icons";
 
 const useStyles = makeStyles<{
   status: OrderStatus;
@@ -21,7 +21,7 @@ const useStyles = makeStyles<{
   },
   icon: {
     fontSize: theme.spacing(8),
-    color: theme.palette[status === OrderStatus.PAID ? "success" : "warning"].main
+    color: theme.palette[status === OrderStatus.FINISHED ? "success" : "warning"].main
   }
 }));
 
@@ -32,10 +32,12 @@ const StatusCard: React.FC = () => {
 
   const icon = useMemo(() => {
     switch (status) {
-      case OrderStatus.PAID:
+      case OrderStatus.FINISHED:
         return <CheckCircleFilled className={classes.icon} />;
       case OrderStatus.CANCELLED:
         return <WarningFilled className={classes.icon} />;
+      case OrderStatus.PENDING:
+        return <InfoCircleFilled className={classes.icon} />;
       default:
         return null;
     }
@@ -43,10 +45,12 @@ const StatusCard: React.FC = () => {
 
   const context = useMemo(() => {
     switch (status) {
-      case OrderStatus.PAID:
-        return "paid";
+      case OrderStatus.FINISHED:
+        return "finished";
       case OrderStatus.CANCELLED:
         return "cancelled";
+      case OrderStatus.PAID:
+        return "paid";
       default:
         return null;
     }

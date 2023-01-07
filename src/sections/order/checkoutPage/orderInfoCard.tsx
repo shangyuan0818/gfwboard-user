@@ -21,6 +21,7 @@ import {
   Tooltip,
   Typography
 } from "@mui/material";
+import { useSnackbar } from "notistack";
 
 // project imports
 import MainCard from "@/components/MainCard";
@@ -30,7 +31,6 @@ import { OrderStatus } from "@/model/order";
 // assets
 import { CloseOutlined } from "@ant-design/icons";
 import { useCancelOrderMutation } from "@/store/services/api";
-import { useSnackbar } from "notistack";
 
 const CancelButton: React.FC = () => {
   const { t } = useTranslation();
@@ -98,7 +98,7 @@ const OrderInfoCard: React.FC = () => {
 
   const statusContext = useMemo(() => {
     switch (status) {
-      case OrderStatus.PAID:
+      case OrderStatus.FINISHED:
         return "paid";
       case OrderStatus.CANCELLED:
         return "cancelled";

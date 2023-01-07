@@ -23,10 +23,9 @@ import type Knowledge from "@/model/knowledge";
 import type { KnowledgeListResponse, KnowledgePayload } from "@/model/knowledge";
 import type Plan from "@/model/plan";
 import type Order from "@/model/order";
-import type { OrderPayload } from "@/model/order";
+import type { OrderStatus, CheckoutOrderPayload, OrderPayload } from "@/model/order";
 import type Coupon from "@/model/coupon";
 import type { CouponPayload } from "@/model/coupon";
-import type { OrderStatus } from "@/model/order";
 import type { PaymentMethod } from "@/model/payment";
 
 type AxiosBaseQueryFn = BaseQueryFn<
@@ -352,6 +351,17 @@ const api = createApi({
         }
       }),
       invalidatesTags: (result, error, id) => [{ type: "Order", id }]
+    }),
+    checkoutOrder: builder.mutation<string, CheckoutOrderPayload>({
+      query: (body) => ({
+        url: "/user/order/checkout",
+        method: "POST",
+        body: qs.stringify(body),
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        }
+      }),
+      invalidatesTags: (result, error, arg) => [{ type: "Order", id: arg.trade_no }]
     })
   })
 });
@@ -380,6 +390,7 @@ export const {
   useGetOrderDetailQuery,
   useCheckOrderQuery,
   useGetPaymentMethodQuery,
-  useCancelOrderMutation
+  useCancelOrderMutation,
+  useCheckoutOrderMutation
 } = api;
 export default api;

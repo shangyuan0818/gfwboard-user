@@ -59,7 +59,7 @@ const MainRoutes: RouteObject = {
           element: <PlanDetails />
         },
         {
-          path: "order/checkout/:id",
+          path: "order/:id",
           element: <Checkout />
         }
       ]

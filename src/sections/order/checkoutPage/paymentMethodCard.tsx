@@ -1,22 +1,17 @@
 import React, { useCallback, useMemo } from "react";
-import MainCard from "@/components/MainCard";
 import { useTranslation } from "react-i18next";
-import {
-  Dialog,
-  IconButton,
-  List,
-  ListItem,
-  ListItemAvatar,
-  ListItemButton,
-  ListItemText,
-  Skeleton
-} from "@mui/material";
-import { useCheckoutContext } from "@/sections/order/checkoutPage/context";
-import { AlipayCircleOutlined, AlipayOutlined, AlipaySquareFilled } from "@ant-design/icons";
+
+// material-ui
+import { List, ListItem, ListItemAvatar, ListItemButton, ListItemText, Skeleton } from "@mui/material";
+
+// project imports
+import MainCard from "@/components/MainCard";
 import Avatar from "@/components/@extended/Avatar";
+import { useCheckoutContext } from "@/sections/order/checkoutPage/context";
 import { makeStyles } from "@/themes/hooks";
-import { CancelOutlined } from "@mui/icons-material";
-import { useToggle } from "ahooks";
+
+// assets
+import { AlipayOutlined } from "@ant-design/icons";
 
 const useStyles = makeStyles()((theme) => ({
   icon: {
@@ -31,7 +26,8 @@ const PaymentMethodCard: React.FC = () => {
     detail: { isLoading: isDetailLoading },
     paymentMethodIndex,
     paymentMethodState,
-    setPaymentMethodState
+    setPaymentMethodState,
+    isSubmitting
   } = useCheckoutContext();
 
   const data = useMemo(() => Array.from(paymentMethodIndex.values()), [paymentMethodIndex]);
@@ -57,7 +53,7 @@ const PaymentMethodCard: React.FC = () => {
         {isLoading || isDetailLoading
           ? Array.from(new Array(3)).map((_, index) => (
               <ListItem disablePadding divider key={index}>
-                <ListItemButton>
+                <ListItemButton disabled>
                   <ListItemText>
                     <Skeleton variant="text" width={100} />
                   </ListItemText>
@@ -68,6 +64,7 @@ const PaymentMethodCard: React.FC = () => {
               <ListItem disablePadding divider key={method.id}>
                 <ListItemButton
                   selected={paymentMethodState === method.id}
+                  disabled={isSubmitting}
                   onClick={(e) => {
                     e.preventDefault();
                     setPaymentMethodState(method.id);

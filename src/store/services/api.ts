@@ -317,7 +317,8 @@ const api = createApi({
         params: {
           trade_no: id
         }
-      })
+      }),
+      providesTags: (result) => [{ type: "Order" as const, id: result?.trade_no }]
     }),
     checkOrder: builder.query<OrderStatus, string>({
       query: (id) => ({
@@ -338,6 +339,19 @@ const api = createApi({
         ...(result?.map((method) => ({ type: "PaymentMethod" as const, id: method.id })) || []),
         { type: "PaymentMethod" as const, id: "LIST" }
       ]
+    }),
+    cancelOrder: builder.mutation<boolean, string>({
+      query: (id) => ({
+        url: "/user/order/cancel",
+        method: "POST",
+        body: qs.stringify({
+          trade_no: id
+        }),
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        }
+      }),
+      invalidatesTags: (result, error, id) => [{ type: "Order", id }]
     })
   })
 });
@@ -365,6 +379,7 @@ export const {
   useCheckCouponMutation,
   useGetOrderDetailQuery,
   useCheckOrderQuery,
-  useGetPaymentMethodQuery
+  useGetPaymentMethodQuery,
+  useCancelOrderMutation
 } = api;
 export default api;

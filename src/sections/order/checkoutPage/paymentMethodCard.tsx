@@ -1,8 +1,28 @@
-import React, { useMemo } from "react";
+import React, { useCallback, useMemo } from "react";
 import MainCard from "@/components/MainCard";
 import { useTranslation } from "react-i18next";
-import { List, ListItem, ListItemButton, ListItemText, Skeleton } from "@mui/material";
+import {
+  Dialog,
+  IconButton,
+  List,
+  ListItem,
+  ListItemAvatar,
+  ListItemButton,
+  ListItemText,
+  Skeleton
+} from "@mui/material";
 import { useCheckoutContext } from "@/sections/order/checkoutPage/context";
+import { AlipayCircleOutlined, AlipayOutlined, AlipaySquareFilled } from "@ant-design/icons";
+import Avatar from "@/components/@extended/Avatar";
+import { makeStyles } from "@/themes/hooks";
+import { CancelOutlined } from "@mui/icons-material";
+import { useToggle } from "ahooks";
+
+const useStyles = makeStyles()((theme) => ({
+  icon: {
+    fontSize: theme.spacing(2.5)
+  }
+}));
 
 const PaymentMethodCard: React.FC = () => {
   const { t } = useTranslation();
@@ -15,6 +35,21 @@ const PaymentMethodCard: React.FC = () => {
   } = useCheckoutContext();
 
   const data = useMemo(() => Array.from(paymentMethodIndex.values()), [paymentMethodIndex]);
+
+  const { classes } = useStyles();
+
+  const IconComponent = useCallback<React.FC<{ icon: string }>>(({ icon }: { icon: string }) => {
+    switch (true) {
+      case icon.includes("alipay"):
+        return (
+          <Avatar type="combined">
+            <AlipayOutlined className={classes.icon} />
+          </Avatar>
+        );
+      default:
+        return <Avatar type="combined" color="secondary" src={icon} />;
+    }
+  }, []);
 
   return (
     <MainCard title={t("order.checkout.payment-method-card.title")} content={false}>
@@ -37,7 +72,16 @@ const PaymentMethodCard: React.FC = () => {
                     e.preventDefault();
                     setPaymentMethodState(method.id);
                   }}
+                  onTouchEnd={(e) => {
+                    e.preventDefault();
+                    setPaymentMethodState(method.id);
+                  }}
                 >
+                  {method.icon && (
+                    <ListItemAvatar>
+                      <IconComponent icon={method.icon} />
+                    </ListItemAvatar>
+                  )}
                   <ListItemText>{method.name}</ListItemText>
                 </ListItemButton>
               </ListItem>

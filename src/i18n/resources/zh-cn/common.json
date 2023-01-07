@@ -207,7 +207,7 @@
     }
   },
   "subscription": {
-    "buy" : {
+    "buy": {
       "filter-card": {
         "title": "筛选",
         "plan-type": {
@@ -311,7 +311,14 @@
         "order-status-value_cancelled": "已取消",
         "order-amount": "订单金额",
         "price": "{{value}} CNY",
-        "coupon-amount": "优惠金额"
+        "coupon-amount": "优惠金额",
+        "cancel-tooltip": "取消订单",
+        "cancel-dialog": {
+          "title": "注意",
+          "content": "如果您已经付款，取消订单可能会导致支付失败，确定要取消订单吗？",
+          "cancel-button": "取消",
+            "confirm-button": "确定"
+        }
       },
       "payment-method-card": {
         "title": "支付方式"

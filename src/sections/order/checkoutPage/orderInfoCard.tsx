@@ -3,14 +3,85 @@ import React, { useMemo } from "react";
 // third-party
 import dayjs from "dayjs";
 import { useTranslation } from "react-i18next";
+import { useLockFn, useToggle } from "ahooks";
 
 // material-ui
-import { Grid, Skeleton, Typography } from "@mui/material";
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Divider,
+  Grid,
+  IconButton,
+  Skeleton,
+  Stack,
+  Tooltip,
+  Typography
+} from "@mui/material";
 
 // project imports
 import MainCard from "@/components/MainCard";
 import { useCheckoutContext } from "./context";
 import { OrderStatus } from "@/model/order";
+
+// assets
+import { CloseOutlined } from "@ant-design/icons";
+import { useCancelOrderMutation } from "@/store/services/api";
+import { useSnackbar } from "notistack";
+
+const CancelButton: React.FC = () => {
+  const { t } = useTranslation();
+  const [open, { setLeft: setClose, setRight: setOpen }] = useToggle(false);
+  const { tradeNo } = useCheckoutContext();
+  const [cancelOrder] = useCancelOrderMutation();
+  const { enqueueSnackbar } = useSnackbar();
+
+  const handleCancel = useLockFn(async () => {
+    try {
+      const res = await cancelOrder(tradeNo).unwrap();
+      if (res) {
+        enqueueSnackbar(t("notice::order-cancel_success"), { variant: "success" });
+      } else {
+        enqueueSnackbar(t("notice::order-cancel_failed"), { variant: "error" });
+      }
+    } catch (error) {
+      console.error("error when cancel order:", error);
+      enqueueSnackbar(t("notice::order-cancel_failed"), { variant: "error" });
+    }
+
+    setClose();
+  });
+
+  return (
+    <>
+      <Tooltip title={t("order.checkout.order-info-card.cancel-tooltip")} placement={"top"}>
+        <IconButton onClick={setOpen}>
+          <CloseOutlined />
+        </IconButton>
+      </Tooltip>
+      <Dialog open={open} onClose={setClose}>
+        <DialogTitle>
+          <Stack direction={"row"} alignItems={"center"} spacing={1.5}>
+            <Typography variant={"inherit"}>{t("order.checkout.order-info-card.cancel-dialog.title")}</Typography>
+          </Stack>
+        </DialogTitle>
+        <Divider />
+        <DialogContent>
+          <DialogContentText>{t("order.checkout.order-info-card.cancel-dialog.content")}</DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={setClose}>{t("order.checkout.order-info-card.cancel-dialog.cancel-button")}</Button>
+          <Button variant={"contained"} color={"primary"} onClick={handleCancel}>
+            {t("order.checkout.order-info-card.cancel-dialog.confirm-button")}
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </>
+  );
+};
 
 export interface LineProps {
   label: string;
@@ -71,7 +142,10 @@ const OrderInfoCard: React.FC = () => {
   );
 
   return (
-    <MainCard title={t("order.checkout.order-info-card.title")}>
+    <MainCard
+      title={t("order.checkout.order-info-card.title")}
+      secondary={status === OrderStatus.PENDING && <CancelButton />}
+    >
       <Grid container spacing={2}>
         {lines.map((line, index) => (
           <Grid item xs={12} key={index}>

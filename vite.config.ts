@@ -42,7 +42,7 @@ export default defineConfig({
         entryFileNames: "static/js/[name].[hash:12].js",
         assetFileNames: (info) => {
           if (["css", "sass", "scss"].some((ext) => info.name?.endsWith("." + ext))) {
-            return "static/css/[name].[hash:12].css";
+            return "static/css/[name].[hash:12].[ext]";
           }
 
           if (["png", "jpg", "jpeg", "gif", "svg"].some((ext) => info.name?.endsWith("." + ext))) {

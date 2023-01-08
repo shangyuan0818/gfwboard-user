@@ -11,6 +11,7 @@ specifiers:
   '@emotion/cache': ^11.10.5
   '@emotion/react': ^11.10.5
   '@emotion/styled': ^11.10.5
+  '@fontsource/roboto': ^4.5.8
   '@mui/base': ^5.0.0-alpha.112
   '@mui/icons-material': ^5.11.0
   '@mui/lab': ^5.0.0-alpha.114
@@ -121,6 +122,7 @@ dependencies:
   '@emotion/cache': 11.10.5
   '@emotion/react': 11.10.5_3grbeiqrb6djg67fiejiqngkdi
   '@emotion/styled': 11.10.5_pwtpayi7py7ecifctvjbac33ee
+  '@fontsource/roboto': 4.5.8
   '@mui/base': 5.0.0-alpha.112_ib3m5ricvtkl2cll7qpr2f6lvq
   '@mui/icons-material': 5.11.0_iq6n432hogcf75rdfmlkzd4zne
   '@mui/lab': 5.0.0-alpha.114_g2qhqczl4llrdlyw6kdsue26vu
@@ -2159,6 +2161,10 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
+
+  /@fontsource/roboto/4.5.8:
+    resolution: {integrity: sha512-CnD7zLItIzt86q4Sj3kZUiLcBk1dSk81qcqgMGaZe7SQ1P8hFNxhMl5AZthK1zrDM5m74VVhaOpuMGIL4gagaA==}
+    dev: false
 
   /@humanwhocodes/config-array/0.11.8:
     resolution: {integrity: sha512-UybHIJzJnR5Qc/MsD9Kr+RpO2h+/P1GhOwdiLPXK5TWk5sgTdu88bTD9UP+CKbPPh5Rni1u0GjAdYQLemG8g+g==}

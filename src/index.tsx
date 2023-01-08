@@ -27,6 +27,7 @@ import { ConfigProvider } from "@/contexts/ConfigContext";
 import reportWebVitals from "@/reportWebVitals";
 
 import "@/global.scss";
+import "@fontsource/roboto";
 
 // hash router change to browser router
 if (window.location.hash) {

@@ -86,7 +86,7 @@ const MenuList: React.FC = () => {
         sx={{
           display: {
             xs: "block",
-            sm: "none"
+            md: "none"
           }
         }}
       >

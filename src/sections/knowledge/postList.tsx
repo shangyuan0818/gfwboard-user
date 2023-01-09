@@ -4,6 +4,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import dayjs from "dayjs";
+import ReactGA from "react-ga4";
 
 // hooks
 import { useDebounce } from "ahooks";
@@ -16,7 +17,6 @@ import { Grid, List, ListItem, ListItemButton, Typography } from "@mui/material"
 import MainCard from "@/components/MainCard";
 import { useGetKnowledgeListQuery } from "@/store/services/api";
 import { makeStyles } from "@/themes/hooks";
-import ReactGA from "react-ga4";
 
 const useStyles = makeStyles()((theme) => ({
   root: {},

@@ -11,12 +11,14 @@ import { useSnackbar } from "notistack";
 import MainCard from "@/components/MainCard";
 import { useCheckoutOrderMutation } from "@/store/services/api";
 import { useCheckoutContext } from "@/sections/order/checkoutPage/context";
+import ReactGA from "react-ga4";
 
 const BillingCard: React.FC = () => {
   const { t } = useTranslation();
   const {
     detail: { data: detailData, isLoading },
     paymentMethodState,
+    paymentMethodIndex,
     setSubmitting,
     isSubmitting
   } = useCheckoutContext();
@@ -63,6 +65,13 @@ const BillingCard: React.FC = () => {
         try {
           setSubmitting(true);
 
+          ReactGA.event("click", {
+            category: "order",
+            label: "checkout",
+            method: paymentMethodIndex.get(paymentMethodState)?.name,
+            method_id: paymentMethodState
+          });
+
           // redirect to payment page
           window.location.href = await checkoutOrder({
             trade_no: detailData.trade_no,
@@ -71,6 +80,14 @@ const BillingCard: React.FC = () => {
         } catch (err) {
           console.error(err);
           enqueueSnackbar(t("notice::checkout-failed"), { variant: "error" });
+          ReactGA.event("click", {
+            category: "order",
+            label: "checkout",
+            method: paymentMethodIndex.get(paymentMethodState)?.name,
+            method_id: paymentMethodState,
+            success: false,
+            error: err
+          });
         } finally {
           setSubmitting(false);
         }

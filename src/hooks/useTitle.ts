@@ -1,14 +1,18 @@
 import React, { useEffect } from "react";
+import lo from "lodash-es";
+import { useTranslation } from "react-i18next";
+import { useTitle as useTitleHook } from "ahooks";
 
 // project imports
-import { setTitle } from "@/store/reducers/view";
-import { useDispatch } from "@/store";
+import config from "@/config";
 
-const useTitle = (title: string, deps: React.DependencyList = []) => {
-  const dispatch = useDispatch();
+const useTitle = (title: string | null, deps: React.DependencyList = []) => {
+  const { t } = useTranslation();
   useEffect(() => {
-    dispatch(setTitle(title));
-  }, [title, ...deps]);
+    window.document.title = lo.isNull(title)
+      ? `${config.title}`
+      : `${t(title, { ns: "title" })}${config.title_split}${config.title}`;
+  }, [t, title, ...deps]);
 };
 
 export default useTitle;

@@ -1,13 +1,11 @@
 import React from "react";
 import { Typography } from "@mui/material";
-import { useGetGuestConfigQuery } from "@/store/services/api";
+import config from "@/config";
 
-const Title: React.FC = () => {
-  return (
-    <Typography variant="h4" component="span" noWrap>
-      {window.settings.title}
-    </Typography>
-  );
-};
+const Title: React.FC = () => (
+  <Typography variant="h4" component="span" noWrap>
+    {config.title}
+  </Typography>
+);
 
 export default Title;

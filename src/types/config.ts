@@ -33,6 +33,13 @@ export type DefaultConfigProps = {
   mode: ThemeMode;
   presetColor: PresetColor;
   themeDirection: ThemeDirection;
+  title: string;
+  title_split: string;
+  background_url: string;
+  description: string;
+  logo: string | null;
+  api: string;
+  languages: string[];
 };
 
 export type CustomizationProps = {

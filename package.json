@@ -55,6 +55,7 @@
     "react-app-polyfill": "^3.0.0",
     "react-device-detect": "^2.2.2",
     "react-dom": "^18.2.0",
+    "react-ga4": "^1.4.1",
     "react-google-recaptcha": "^2.1.0",
     "react-i18next": "^12.1.1",
     "react-material-ui-carousel": "^3.4.2",

@@ -1,13 +1,13 @@
-import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import { useEffect } from "react";
 
-const HtmlLanguagePropertySelector: React.FC = () => {
+const useHtmlLangSelector = () => {
   const { i18n } = useTranslation();
   useEffect(() => {
     window.document.documentElement.lang = String(i18n.language).toLowerCase();
   }, [i18n.language]);
 
-  return null;
+  return window.document.documentElement.lang;
 };
 
-export default HtmlLanguagePropertySelector;
+export default useHtmlLangSelector;

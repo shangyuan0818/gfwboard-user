@@ -1,10 +1,10 @@
-import React, { ReactNode, useEffect } from "react";
-import lo from "lodash-es";
 import { useDispatch, useSelector } from "@/store";
 import { useGetUserInfoQuery } from "@/store/services/api";
+import { useEffect } from "react";
+import lo from "lodash-es";
 import { logout } from "@/store/reducers/auth";
 
-const AccountStateDetector: React.FC = () => {
+const useAuthStateDetector = () => {
   const dispatch = useDispatch();
   const isLogin = useSelector((state) => state.auth.isLoggedIn);
   const { error } = useGetUserInfoQuery(undefined, {
@@ -24,8 +24,6 @@ const AccountStateDetector: React.FC = () => {
       }
     }
   }, [error]);
-
-  return null;
 };
 
-export default AccountStateDetector;
+export default useAuthStateDetector;

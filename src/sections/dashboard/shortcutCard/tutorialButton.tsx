@@ -12,6 +12,7 @@ import Avatar from "@/components/@extended/Avatar";
 
 // assets
 import { QuestionOutlined } from "@ant-design/icons";
+import config from "@/config";
 
 const TutorialButton: React.FC = () => {
   const { t } = useTranslation();
@@ -33,7 +34,7 @@ const TutorialButton: React.FC = () => {
         <ListItemText
           primary={
             <Typography variant={"body1"} noWrap>
-              {t("dashboard.shortcut.tutorial.primary", { siteName: window.settings.title })}
+              {t("dashboard.shortcut.tutorial.primary", { siteName: config.title })}
             </Typography>
           }
           secondary={

@@ -40,9 +40,9 @@ const useShop = () => {
     }
   };
 
-  useEffect(() => {
-    console.log(planTypeAllow);
-  }, [planTypeAllow]);
+  // useEffect(() => {
+  //   console.log(planTypeAllow);
+  // }, [planTypeAllow]);
 
   return {
     planType: planTypeAllow,

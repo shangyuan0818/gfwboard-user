@@ -29,6 +29,7 @@ import { setThemeMode } from "@/store/reducers/view";
 // assets
 import LanguageOutlinedIcon from "@mui/icons-material/LanguageOutlined";
 import "flag-icons/css/flag-icons.css";
+import config from "@/config";
 
 const useStyles = makeStyles<{ open: boolean }>()((theme, { open }) => ({
   root: { flexShrink: 0 },
@@ -168,7 +169,7 @@ const I18nSwitchButton: React.FC = () => {
                   content={false}
                 >
                   <List component="nav" className={classes.nav}>
-                    {window.settings.languages
+                    {config.languages
                       .filter((lang) => i18n.hasResourceBundle(lang, "common"))
                       .map((lang) => (
                         <ListItem disablePadding divider key={lang}>

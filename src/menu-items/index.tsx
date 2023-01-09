@@ -43,7 +43,7 @@ const menuItems: { items: NavItemType[] } = {
           id: "status",
           title: "status",
           type: "item",
-          url: "/service/status",
+          url: "/node/status",
           icon: MonitorOutlined
         }
       ]

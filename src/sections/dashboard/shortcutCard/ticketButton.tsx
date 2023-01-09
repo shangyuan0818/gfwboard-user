@@ -3,6 +3,7 @@ import React from "react";
 // third-party
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import ReactGA from "react-ga4";
 
 // material-ui
 import { ListItem, ListItemAvatar, ListItemButton, ListItemText, Typography } from "@mui/material";
@@ -18,6 +19,11 @@ const TicketButton: React.FC = () => {
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
     navigate("/ticket");
+
+    ReactGA.event("click", {
+      category: "shortcut",
+      label: "go_ticket"
+    });
   };
 
   return (

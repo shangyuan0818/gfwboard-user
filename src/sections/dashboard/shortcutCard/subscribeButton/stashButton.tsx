@@ -1,5 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
+import ReactGA from "react-ga4";
 
 // material-ui
 import { ListItem, ListItemAvatar, ListItemButton, ListItemText } from "@mui/material";
@@ -24,6 +25,12 @@ const StashButton: React.FC = () => {
         `stash:///install-config?url=${encodeURIComponent(url.toString())}&name=${encodeURIComponent(config.title)}`,
         "_self"
       );
+
+      ReactGA.event("click", {
+        category: "shortcut",
+        label: "quick_subscribe",
+        method: "stash"
+      });
     }
   };
 

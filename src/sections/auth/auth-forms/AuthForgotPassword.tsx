@@ -34,6 +34,7 @@ import SendMailButton from "@/sections/auth/auth-forms/SendMailButton";
 import IconButton from "@/components/@extended/IconButton";
 import { StringColorProps } from "@/types/password";
 import { strengthColor, strengthIndicator } from "@/utils/password-strength";
+import ReactGA from "react-ga4";
 
 // ============================|| FIREBASE - FORGOT PASSWORD ||============================ //
 
@@ -111,6 +112,12 @@ const AuthForgotPassword = () => {
                 enqueueSnackbar(t("notice::forgot_password.reset_success"), {
                   variant: "success"
                 });
+                ReactGA.event("reset_password", {
+                  category: "auth",
+                  label: "reset_password",
+                  email: values.email,
+                  success: true
+                });
                 navigate("/login", { replace: true });
               }
             })
@@ -120,6 +127,13 @@ const AuthForgotPassword = () => {
                 setStatus({ success: false });
                 setErrors(err.errors || { submit: err.message });
                 setSubmitting(false);
+                ReactGA.event("reset_password", {
+                  category: "auth",
+                  label: "reset_password",
+                  email: values.email,
+                  success: false,
+                  error: err.message
+                });
               }
             })
             .finally(() => {

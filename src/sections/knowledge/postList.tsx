@@ -16,6 +16,7 @@ import { Grid, List, ListItem, ListItemButton, Typography } from "@mui/material"
 import MainCard from "@/components/MainCard";
 import { useGetKnowledgeListQuery } from "@/store/services/api";
 import { makeStyles } from "@/themes/hooks";
+import ReactGA from "react-ga4";
 
 const useStyles = makeStyles()((theme) => ({
   root: {},
@@ -55,6 +56,12 @@ const PostList: React.FC = () => {
                     onClick={(e) => {
                       e.preventDefault();
                       navigate(`/knowledge/${post.id}`);
+                      ReactGA.event("click", {
+                        category: "knowledge",
+                        label: "knowledge_open",
+                        id: post.id,
+                        title: post.title
+                      });
                     }}
                   >
                     <Typography variant={"body1"} fontWeight={400} noWrap mb={0.5}>

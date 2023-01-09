@@ -2,7 +2,7 @@ import React, { lazy } from "react";
 import { Navigate, RouteObject } from "react-router";
 
 // project import
-import GuestGuard from "@/utils/route-guard/GuestGuard";
+import GuestGuard from "@/middleware/route-guard/GuestGuard";
 import CommonLayout from "@/layout/CommonLayout";
 import Loadable from "@/components/Loadable";
 

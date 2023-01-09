@@ -24,7 +24,10 @@ const config: DefaultConfigProps = {
   description: "天下武功 唯快不破",
   logo: "",
   api: "https://sub.crosswalltech.com",
-  languages: ["zh-CN", "en-US"]
+  languages: ["zh-CN", "en-US"],
+  googleAnalytics: {
+    measurementId: "G-HSJEER5NF4"
+  }
 };
 
 export default config;

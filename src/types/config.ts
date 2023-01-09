@@ -40,6 +40,9 @@ export type DefaultConfigProps = {
   logo: string | null;
   api: string;
   languages: string[];
+  googleAnalytics?: {
+    measurementId: string;
+  };
 };
 
 export type CustomizationProps = {

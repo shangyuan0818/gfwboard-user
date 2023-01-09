@@ -1,5 +1,6 @@
 import React, { useCallback, useMemo } from "react";
 import { useTranslation } from "react-i18next";
+import ReactGA from "react-ga4";
 
 // material-ui
 import { List, ListItem, ListItemAvatar, ListItemButton, ListItemText, Skeleton } from "@mui/material";
@@ -9,6 +10,7 @@ import MainCard from "@/components/MainCard";
 import Avatar from "@/components/@extended/Avatar";
 import { useCheckoutContext } from "@/sections/order/checkoutPage/context";
 import { makeStyles } from "@/themes/hooks";
+import { PaymentMethod } from "@/model/payment";
 
 // assets
 import { AlipayOutlined } from "@ant-design/icons";
@@ -47,6 +49,17 @@ const PaymentMethodCard: React.FC = () => {
     }
   }, []);
 
+  const handleClick = (method: PaymentMethod) => (e: React.MouseEvent | React.TouchEvent) => {
+    e.preventDefault();
+    setPaymentMethodState(method.id);
+    ReactGA.event("select", {
+      category: "order",
+      label: "payment_method",
+      method: paymentMethodIndex.get(method.id)?.name,
+      method_id: method.id
+    });
+  };
+
   return (
     <MainCard title={t("order.checkout.payment-method-card.title")} content={false}>
       <List sx={{ p: 0 }}>
@@ -65,14 +78,8 @@ const PaymentMethodCard: React.FC = () => {
                 <ListItemButton
                   selected={paymentMethodState === method.id}
                   disabled={isSubmitting}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setPaymentMethodState(method.id);
-                  }}
-                  onTouchEnd={(e) => {
-                    e.preventDefault();
-                    setPaymentMethodState(method.id);
-                  }}
+                  onClick={handleClick(method)}
+                  onTouchEnd={handleClick(method)}
                 >
                   {method.icon && (
                     <ListItemAvatar>

@@ -10,6 +10,7 @@ if (config.googleAnalytics) {
       }
     ],
     {
+      testMode: import.meta.env.DEV,
       legacyDimensionMetric: false,
       gaOptions: {
         siteSpeedSampleRate: 100

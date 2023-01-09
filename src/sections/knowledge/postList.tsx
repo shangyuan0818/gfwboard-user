@@ -4,6 +4,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import dayjs from "dayjs";
+import ReactGA from "react-ga4";
 
 // hooks
 import { useDebounce } from "ahooks";
@@ -55,6 +56,12 @@ const PostList: React.FC = () => {
                     onClick={(e) => {
                       e.preventDefault();
                       navigate(`/knowledge/${post.id}`);
+                      ReactGA.event("click", {
+                        category: "knowledge",
+                        label: "knowledge_open",
+                        id: post.id,
+                        title: post.title
+                      });
                     }}
                   >
                     <Typography variant={"body1"} fontWeight={400} noWrap mb={0.5}>

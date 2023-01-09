@@ -42,6 +42,7 @@ import { RegisterPayload } from "@/model/register";
 
 // assets
 import { EyeInvisibleOutlined, EyeOutlined } from "@ant-design/icons";
+import ReactGA from "react-ga4";
 
 // ============================|| FIREBASE - REGISTER ||============================ //
 
@@ -137,10 +138,28 @@ const AuthRegister = () => {
                   setStatus({ success: true });
                   enqueueSnackbar(t("notice::register_success"), { variant: "success" });
                   navigate("/dashboard", { replace: true });
+                  ReactGA.event("register", {
+                    category: "auth",
+                    label: "register",
+                    method: "email",
+                    success: true,
+                    email: values.email,
+                    password_strength: level?.label,
+                    invite_code: values.invite_code
+                  });
                 },
                 (error) => {
                   setStatus({ success: false });
                   setErrors(lo.isEmpty(error.errors) ? { submit: error.message } : error.errors);
+                  ReactGA.event("register", {
+                    category: "auth",
+                    label: "register",
+                    method: "email",
+                    success: false,
+                    error: error.message,
+                    email: values.email,
+                    values
+                  });
                 }
               );
           } catch (err: any) {

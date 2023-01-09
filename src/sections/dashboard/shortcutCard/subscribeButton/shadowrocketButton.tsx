@@ -1,5 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
+import ReactGA from "react-ga4";
 
 // material-ui
 import { ListItem, ListItemAvatar, ListItemButton, ListItemText } from "@mui/material";
@@ -25,6 +26,12 @@ const ShadowrocketButton: React.FC = () => {
         `shadowrocket://add/sub://${Base64Encode(url.toString())}?remark=${encodeURIComponent(config.title)}`,
         "_self"
       );
+
+      ReactGA.event("click", {
+        category: "shortcut",
+        label: "quick_subscribe",
+        method: "shadowrocket"
+      });
     }
   };
 

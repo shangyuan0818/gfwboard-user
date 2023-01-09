@@ -15,6 +15,7 @@ import defaultBackgroundImage from "@/assets/images/announcement_background.svg"
 import Notice from "@/model/notice";
 import MuiMarkdown from "mui-markdown";
 import { useTheme } from "@mui/material/styles";
+import ReactGA from "react-ga4";
 
 const useStyles = makeStyles()((theme) => ({
   carousel: {
@@ -67,7 +68,16 @@ const NoticeBlock: React.FC<{
         sx={{
           backgroundImage: `url(${notice.img_url || defaultBackgroundImage})`
         }}
-        onClick={() => setOpen(true)}
+        onClick={() => {
+          setOpen(true);
+
+          ReactGA.event("click", {
+            category: "notice",
+            label: "notice_open",
+            id: notice.id,
+            title: notice.title
+          });
+        }}
       >
         <Box className={classes.mask} />
         <Chip className={classes.chip} label={t("dashboard.announcement.chip")} color="secondary" />

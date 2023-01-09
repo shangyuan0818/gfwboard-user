@@ -22,6 +22,7 @@ import { Formik } from "formik";
 import { Trans, useTranslation } from "react-i18next";
 import lo from "lodash-es";
 import { useUnmountedRef } from "ahooks";
+import ReactGA from "react-ga4";
 
 // project import
 import { useSelector } from "@/store";
@@ -84,11 +85,27 @@ const AuthLogin = () => {
               .unwrap()
               .then(() => {
                 setStatus({ success: true });
+                ReactGA.event("login", {
+                  category: "auth",
+                  label: "login",
+                  method: "email",
+                  success: true,
+                  email: values.email
+                });
                 navigate("/dashboard", { replace: true });
               })
               .catch((err: any) => {
                 setStatus({ success: false });
                 setErrors(lo.isEmpty(err.errors) ? { submit: err.message } : err.errors);
+                ReactGA.event("login", {
+                  category: "auth",
+                  label: "login",
+                  method: "email",
+                  success: false,
+                  error: err.message,
+                  email: values.email,
+                  values
+                });
               })
               .finally(() => {
                 setSubmitting(false);

@@ -1,6 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
+import ReactGA from "react-ga4";
 
 // material-ui
 import { ListItem, ListItemAvatar, ListItemButton, ListItemText } from "@mui/material";
@@ -21,6 +22,12 @@ const CopyLinkButton: React.FC = () => {
         enqueueSnackbar(t("notice::copy_success"), {
           variant: "success"
         });
+      });
+
+      ReactGA.event("click", {
+        category: "shortcut",
+        label: "quick_subscribe",
+        method: "copy"
       });
     } else {
       enqueueSnackbar(t("notice::copy_fail"), {

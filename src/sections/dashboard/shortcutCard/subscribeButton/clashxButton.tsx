@@ -1,5 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
+import ReactGA from "react-ga4";
 
 // material-ui
 import { ListItem, ListItemAvatar, ListItemButton, ListItemText } from "@mui/material";
@@ -20,6 +21,12 @@ const ClashXButton: React.FC = () => {
       const url = new URL(subscribeInfo.subscribe_url);
       url.searchParams.set("flag", "clash");
       window.open(`clash://install-config?url=${encodeURIComponent(url.toString())}`, "_self");
+
+      ReactGA.event("click", {
+        category: "shortcut",
+        label: "quick_subscribe",
+        method: "clashX"
+      });
     }
   };
 

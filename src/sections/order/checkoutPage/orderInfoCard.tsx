@@ -4,6 +4,7 @@ import React, { useMemo } from "react";
 import dayjs from "dayjs";
 import { useTranslation } from "react-i18next";
 import { useLockFn, useToggle } from "ahooks";
+import ReactGA from "react-ga4";
 
 // material-ui
 import {
@@ -27,10 +28,10 @@ import { useSnackbar } from "notistack";
 import MainCard from "@/components/MainCard";
 import { useCheckoutContext } from "./context";
 import { OrderStatus } from "@/model/order";
+import { useCancelOrderMutation } from "@/store/services/api";
 
 // assets
 import { CloseOutlined } from "@ant-design/icons";
-import { useCancelOrderMutation } from "@/store/services/api";
 
 const CancelButton: React.FC = () => {
   const { t } = useTranslation();
@@ -44,12 +45,32 @@ const CancelButton: React.FC = () => {
       const res = await cancelOrder(tradeNo).unwrap();
       if (res) {
         enqueueSnackbar(t("notice::order-cancel_success"), { variant: "success" });
+        ReactGA.event("order_cancel", {
+          category: "order",
+          label: "cancel",
+          tradeNo: tradeNo,
+          success: true
+        });
       } else {
         enqueueSnackbar(t("notice::order-cancel_failed"), { variant: "error" });
+        ReactGA.event("order_cancel", {
+          category: "order",
+          label: "cancel",
+          tradeNo: tradeNo,
+          success: false,
+          error: res
+        });
       }
     } catch (error) {
       console.error("error when cancel order:", error);
       enqueueSnackbar(t("notice::order-cancel_failed"), { variant: "error" });
+      ReactGA.event("order_cancel", {
+        category: "order",
+        label: "cancel",
+        tradeNo: tradeNo,
+        success: false,
+        error: error
+      });
     }
 
     setClose();

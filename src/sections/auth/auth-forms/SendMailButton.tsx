@@ -15,6 +15,7 @@ import { useGetGuestConfigQuery, useSendEmailVerifyMutation } from "@/store/serv
 
 // assets
 import { SendOutlined } from "@ant-design/icons";
+import ReactGA from "react-ga4";
 
 // ============================|| AUTH - SEND EMAIL VERIFY ||============================ //
 
@@ -60,10 +61,23 @@ export const SendMailWithCaptchaButton: React.FC<SendMailButtonProps> = ({ email
                 .unwrap()
                 .then(() => {
                   enqueueSnackbar(t("auth.captcha.success"), { variant: "success" });
+                  ReactGA.event("send_email_verify", {
+                    category: "auth",
+                    label: "send_email_verify",
+                    email: email,
+                    success: true
+                  });
                 })
                 .catch((err) => {
                   console.error(err);
                   enqueueSnackbar(t("auth.captcha.error"), { variant: "error" });
+                  ReactGA.event("send_email_verify", {
+                    category: "auth",
+                    label: "send_email_verify",
+                    email: email,
+                    success: false,
+                    error: err
+                  });
                 })
                 .finally(() => {
                   setOpen(false);

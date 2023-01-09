@@ -14,12 +14,12 @@ const MaintenanceError = Loadable(lazy(() => import("@/pages/maintenance/404")))
 // const MaintenanceComingSoon = Loadable(lazy(() => import("@/pages/maintenance/coming-soon")));
 
 // render
-const Dashboard = Loadable(lazy(() => import("@/pages/main/dashboard")));
-const Knowledge = Loadable(lazy(() => import("@/pages/main/knowledge")));
-const KnowledgePost = Loadable(lazy(() => import("@/pages/main/knowledgePost")));
-const PlanList = Loadable(lazy(() => import("@/pages/subscription/planList")));
-const PlanDetails = Loadable(lazy(() => import("@/pages/subscription/planDetails")));
-const Checkout = Loadable(lazy(() => import("@/pages/order/checkout")));
+const Dashboard = Loadable(lazy(() => import("@/pages/dashboard")));
+const Knowledge = Loadable(lazy(() => import("@/pages/knowledge")));
+const KnowledgePost = Loadable(lazy(() => import("@/pages/knowledge/[id]")));
+const PlanList = Loadable(lazy(() => import("@/pages/plan/buy")));
+const PlanDetails = Loadable(lazy(() => import("@/pages/plan/buy/[id]")));
+const Checkout = Loadable(lazy(() => import("@/pages/order/[id]")));
 
 // ==============================|| MAIN ROUTING ||============================== //
 

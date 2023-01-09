@@ -7,8 +7,9 @@ import { ListItem, ListItemAvatar, ListItemButton, ListItemText } from "@mui/mat
 // project imports
 import { useGetUserSubscriptionQuery } from "@/store/services/api";
 import MantisAvatar from "@/components/@extended/Avatar";
+import config from "@/config";
 
-// asset imports
+// asset
 import stashIcon from "@/assets/images/software/stash.png";
 
 const StashButton: React.FC = () => {
@@ -20,9 +21,7 @@ const StashButton: React.FC = () => {
       const url = new URL(subscribeInfo.subscribe_url);
       url.searchParams.set("flag", "stash");
       window.open(
-        `stash:///install-config?url=${encodeURIComponent(url.toString())}&name=${encodeURIComponent(
-          window.settings.title
-        )}`,
+        `stash:///install-config?url=${encodeURIComponent(url.toString())}&name=${encodeURIComponent(config.title)}`,
         "_self"
       );
     }

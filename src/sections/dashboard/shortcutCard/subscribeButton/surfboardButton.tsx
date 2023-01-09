@@ -7,8 +7,9 @@ import { ListItem, ListItemAvatar, ListItemButton, ListItemText } from "@mui/mat
 // project imports
 import { useGetUserSubscriptionQuery } from "@/store/services/api";
 import MantisAvatar from "@/components/@extended/Avatar";
+import config from "@/config";
 
-// asset imports
+// asset
 import surfboardIcon from "@/assets/images/software/surfboard.png";
 
 const SurfboardButton: React.FC = () => {
@@ -20,9 +21,7 @@ const SurfboardButton: React.FC = () => {
       const url = new URL(subscribeInfo.subscribe_url);
       url.searchParams.set("flag", "surfboard");
       window.open(
-        `surge:///install-config?url=${encodeURIComponent(url.toString())}&name=${encodeURIComponent(
-          window.settings.title
-        )}`,
+        `surge:///install-config?url=${encodeURIComponent(url.toString())}&name=${encodeURIComponent(config.title)}`,
         "_self"
       );
     }

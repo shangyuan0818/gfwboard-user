@@ -7,8 +7,9 @@ import { ListItem, ListItemAvatar, ListItemButton, ListItemText } from "@mui/mat
 // project imports
 import { useGetUserSubscriptionQuery } from "@/store/services/api";
 import MantisAvatar from "@/components/@extended/Avatar";
+import config from "@/config";
 
-// material-ui
+// assets
 import quantumultxIcon from "@/assets/images/software/quantumultx.png";
 
 const QuantumultXButton: React.FC = () => {
@@ -22,7 +23,7 @@ const QuantumultXButton: React.FC = () => {
       window.open(
         `quantumult-x:///update-configuration?remote-resource=${encodeURI(
           JSON.stringify({
-            server_remote: [`"${url.toString()}, tag=${window.settings.title}"`]
+            server_remote: [`"${url.toString()}, tag=${config.title}"`]
           })
         )}`,
         "_self"

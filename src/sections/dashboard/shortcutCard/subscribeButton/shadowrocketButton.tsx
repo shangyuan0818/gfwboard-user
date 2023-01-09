@@ -8,8 +8,9 @@ import { ListItem, ListItemAvatar, ListItemButton, ListItemText } from "@mui/mat
 import MantisAvatar from "@/components/@extended/Avatar";
 import { useGetUserSubscriptionQuery } from "@/store/services/api";
 import { Base64Encode } from "@/utils/crypto";
+import config from "@/config";
 
-// asset imports
+// asset
 import shadowrocketIcon from "@/assets/images/software/shadowrocket.png";
 
 const ShadowrocketButton: React.FC = () => {
@@ -21,7 +22,7 @@ const ShadowrocketButton: React.FC = () => {
       const url = new URL(subscribeInfo.subscribe_url);
       url.searchParams.set("flag", "shadowrocket");
       window.open(
-        `shadowrocket://add/sub://${Base64Encode(url.toString())}?remark=${encodeURIComponent(window.settings.title)}`,
+        `shadowrocket://add/sub://${Base64Encode(url.toString())}?remark=${encodeURIComponent(config.title)}`,
         "_self"
       );
     }

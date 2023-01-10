@@ -73,8 +73,8 @@ const StatusTable: React.FC<{
     [data]
   );
 
-  const columns = useMemo<GridColDef<Server>[]>(
-    () => [
+  const columns = useMemo<GridColDef<Server>[]>(() => {
+    return [
       {
         field: "id",
         headerName: t("node.status.table.id_header").toString(),
@@ -95,17 +95,15 @@ const StatusTable: React.FC<{
         type: "boolean",
         valueGetter: (params: GridValueGetterParams<string, Server>) =>
           params.value && Math.abs(dayjs.unix(parseInt(params.value)).diff(dayjs(), "minute")) <= 5,
-        renderCell: (params: GridRenderCellParams<boolean, Server>) => {
-          return (
-            <Box className={classes.icon}>
-              {params.value ? (
-                <CheckCircleFilled className={classes.successIcon} />
-              ) : (
-                <CloseCircleFilled className={classes.errorIcon} />
-              )}
-            </Box>
-          );
-        }
+        renderCell: (params: GridRenderCellParams<boolean, Server>) => (
+          <Box className={classes.icon}>
+            {params.value ? (
+              <CheckCircleFilled className={classes.successIcon} />
+            ) : (
+              <CloseCircleFilled className={classes.errorIcon} />
+            )}
+          </Box>
+        )
       },
       {
         field: "type",
@@ -139,9 +137,8 @@ const StatusTable: React.FC<{
           </Stack>
         )
       }
-    ],
-    [data, t, classes]
-  );
+    ];
+  }, [data, t, classes]);
 
   return (
     <DataGrid

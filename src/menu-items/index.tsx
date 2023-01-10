@@ -40,8 +40,8 @@ const menuItems: { items: NavItemType[] } = {
           icon: ShoppingOutlined
         },
         {
-          id: "status",
-          title: "status",
+          id: "node-status",
+          title: "node-status",
           type: "item",
           url: "/node/status",
           icon: MonitorOutlined

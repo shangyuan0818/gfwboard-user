@@ -7,16 +7,11 @@ import lo from "lodash-es";
 
 // material-ui
 import { Box, Chip, Stack } from "@mui/material";
-import {
-  DataGrid,
-  GridColDef,
-  GridRenderCellParams,
-  GridValueFormatterParams,
-  GridValueGetterParams
-} from "@mui/x-data-grid";
+import { GridColDef, GridRenderCellParams, GridValueFormatterParams, GridValueGetterParams } from "@mui/x-data-grid";
+import DataGrid from "@/components/@extended/DataGrid";
 
 // project imports
-import { useGetServersQuery } from "@/store/services/api";
+import { useGetServersQuery, useGetUserInfoQuery } from "@/store/services/api";
 import type Server from "@/model/server";
 import { makeStyles } from "@/themes/hooks";
 
@@ -54,16 +49,36 @@ const StatusTable: React.FC<{
   className?: string;
 }> = ({ className }) => {
   const { t } = useTranslation();
-  const { data } = useGetServersQuery(undefined, {
+  const { data: userData } = useGetUserInfoQuery();
+  const { data, isLoading } = useGetServersQuery(undefined, {
+    skip: userData?.plan_id === null,
     pollingInterval: 10 * 1000
   });
   const { classes } = useStyles();
+
+  const rows = useMemo(
+    () =>
+      data
+        ?.filter((datum) => datum.show === 1)
+        .sort((a, b) => {
+          switch (true) {
+            case a.sort > b.sort:
+              return 1;
+            case a.sort < b.sort:
+              return -1;
+            default:
+              return 0;
+          }
+        }) ?? [],
+    [data]
+  );
 
   const columns = useMemo<GridColDef<Server>[]>(
     () => [
       {
         field: "id",
-        headerName: t("node.status.table.id_header").toString()
+        headerName: t("node.status.table.id_header").toString(),
+        type: "number"
       },
       {
         field: "name",
@@ -77,6 +92,7 @@ const StatusTable: React.FC<{
         headerName: t("node.status.table.status_header").toString(),
         width: 120,
         sortable: false,
+        type: "boolean",
         valueGetter: (params: GridValueGetterParams<string, Server>) => {
           const { value } = params;
           return value && Math.abs(dayjs.unix(parseInt(value)).diff(dayjs(), "minute")) <= 5;
@@ -131,23 +147,12 @@ const StatusTable: React.FC<{
   return (
     <DataGrid
       columns={columns}
-      rows={data?.filter((datum) => datum.show === 1) ?? []}
+      rows={rows}
       className={className}
-      autoPageSize
-      localeText={{
-        noRowsLabel: t("node.status.table.no_rows").toString(),
-        columnMenuSortAsc: t("node.status.table.sort", { context: "asc" }).toString(),
-        columnMenuSortDesc: t("node.status.table.sort", { context: "desc" }).toString(),
-        columnMenuUnsort: t("node.status.table.unsort").toString(),
-        columnMenuFilter: t("node.status.table.filter").toString(),
-        columnMenuHideColumn: t("node.status.table.hide_column").toString(),
-        columnMenuShowColumns: t("node.status.table.show_column").toString(),
-        MuiTablePagination: {
-          labelDisplayedRows: ({ from, to, count }) =>
-            t("node.status.table.pagination", { from, to, count }).toString(),
-          labelRowsPerPage: t("node.status.table.rows_per_page").toString()
-        }
-      }}
+      loading={isLoading}
+      rowsPerPageOptions={[5, 10, 25, 50]}
+      disableColumnSelector
+      disableSelectionOnClick
     />
   );
 };

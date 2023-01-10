@@ -343,16 +343,7 @@
         "status_header": "状态",
         "type_header": "协议类型",
         "rate_header": "倍率",
-        "tags_header": "标签",
-        "no_rows": "暂无节点",
-        "pagination": "显示 {{from}} 到 {{to}} 项结果，共 {{count}} 项",
-        "rows_per_page": "每页行数：",
-        "sort_asc": "升序排列",
-        "sort_desc": "降序排列",
-        "unsort": "取消排序",
-        "filter": "过滤",
-        "hide_column": "隐藏列",
-        "show_column": "显示列"
+        "tags_header": "标签"
       }
     }
   }

@@ -15,6 +15,7 @@ import i18n from "@/i18n";
 import usePageAnalyticsEffect from "@/hooks/usePageAnalyticsEffect";
 import useAuthStateDetector from "@/hooks/useAuthStateDetector";
 import useHtmlLangSelector from "@/hooks/useHtmlLangSelector";
+import useTitle from "@/hooks/useTitle";
 
 // ==============================|| APP - THEME, ROUTER, LOCAL  ||============================== //
 
@@ -22,6 +23,7 @@ const App = () => {
   usePageAnalyticsEffect();
   useAuthStateDetector();
   useHtmlLangSelector();
+  useTitle(null);
 
   return (
     <CacheProvider value={cache}>

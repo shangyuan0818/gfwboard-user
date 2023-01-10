@@ -71,7 +71,6 @@ specifiers:
   markdown-to-jsx: ^7.1.8
   mui-markdown: ^0.5.6
   notistack: ^2.0.8
-  pnpm: ^7.21.0
   postcss: ^8.4.20
   postcss-flexbugs-fixes: ^5.0.2
   postcss-normalize: ^10.0.1
@@ -229,7 +228,6 @@ devDependencies:
   eslint-plugin-react: 7.31.11_eslint@8.30.0
   eslint-plugin-react-hooks: 4.6.0_eslint@8.30.0
   immutable: 4.2.1
-  pnpm: 7.21.0
   prettier: 2.8.1
   prettier-eslint-cli: 7.1.0
   react-error-overlay: 6.0.11
@@ -5416,12 +5414,6 @@ packages:
   /picomatch/2.3.1:
     resolution: {integrity: sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==}
     engines: {node: '>=8.6'}
-
-  /pnpm/7.21.0:
-    resolution: {integrity: sha512-zDsRciscnXmp8AVD0u9eSoJrGfXywepuwMmFstsd+Vfl/wDZUxgaSaZ/6Nkx3bBftC+oBpWFkAGBRyjy58jvZg==}
-    engines: {node: '>=14.6'}
-    hasBin: true
-    dev: true
 
   /popmotion/9.3.6:
     resolution: {integrity: sha512-ZTbXiu6zIggXzIliMi8LGxXBF5ST+wkpXGEjeTUDUOCdSQ356hij/xjeUdv0F8zCQNeqB1+PR5/BB+gC+QLAPw==}

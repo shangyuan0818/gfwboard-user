@@ -4,7 +4,7 @@ import { lazy } from "react";
 import MainLayout from "@/layout/MainLayout";
 // import CommonLayout from "@/layout/CommonLayout";
 import Loadable from "@/components/Loadable";
-import AuthGuard from "@/utils/route-guard/AuthGuard";
+import AuthGuard from "@/middleware/route-guard/AuthGuard";
 import { Navigate, RouteObject } from "react-router";
 
 // pages routing
@@ -17,9 +17,10 @@ const MaintenanceError = Loadable(lazy(() => import("@/pages/maintenance/404")))
 const Dashboard = Loadable(lazy(() => import("@/pages/dashboard")));
 const Knowledge = Loadable(lazy(() => import("@/pages/knowledge")));
 const KnowledgePost = Loadable(lazy(() => import("@/pages/knowledge/[id]")));
-const PlanList = Loadable(lazy(() => import("@/pages/plan/buy")));
+const PlanBuy = Loadable(lazy(() => import("@/pages/plan/buy")));
 const PlanDetails = Loadable(lazy(() => import("@/pages/plan/buy/[id]")));
 const Checkout = Loadable(lazy(() => import("@/pages/order/[id]")));
+const NodeStatus = Loadable(lazy(() => import("@/pages/node/status")));
 
 // ==============================|| MAIN ROUTING ||============================== //
 
@@ -52,7 +53,7 @@ const MainRoutes: RouteObject = {
         },
         {
           path: "plan/buy",
-          element: <PlanList />
+          element: <PlanBuy />
         },
         {
           path: "plan/buy/:id",
@@ -61,6 +62,10 @@ const MainRoutes: RouteObject = {
         {
           path: "order/:id",
           element: <Checkout />
+        },
+        {
+          path: "node/status",
+          element: <NodeStatus />
         }
       ]
     },

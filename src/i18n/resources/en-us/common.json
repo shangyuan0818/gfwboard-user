@@ -333,5 +333,17 @@
         "total-price": "Total price"
       }
     }
+  },
+  "node": {
+    "status": {
+      "table": {
+        "id_header": "ID",
+        "name_header": "Name",
+        "status_header": "Status",
+        "type_header": "Protocol",
+        "rate_header": "Rate",
+        "tags_header": "Tags"
+      }
+    }
   }
 }

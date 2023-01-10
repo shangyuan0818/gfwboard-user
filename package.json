@@ -15,6 +15,7 @@
     "@mui/lab": "^5.0.0-alpha.114",
     "@mui/material": "^5.11.2",
     "@mui/system": "^5.11.2",
+    "@mui/x-data-grid": "^5.17.18",
     "@mui/x-date-pickers": "^5.0.12",
     "@reduxjs/toolkit": "^1.9.1",
     "ahooks": "^3.7.4",

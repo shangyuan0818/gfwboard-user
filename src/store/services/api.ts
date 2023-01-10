@@ -27,6 +27,7 @@ import type { OrderStatus, CheckoutOrderPayload, OrderPayload } from "@/model/or
 import type Coupon from "@/model/coupon";
 import type { CouponPayload } from "@/model/coupon";
 import type { PaymentMethod } from "@/model/payment";
+import type Server from "@/model/server";
 
 type AxiosBaseQueryFn = BaseQueryFn<
   {
@@ -83,7 +84,7 @@ const axiosBaseQuery: () => AxiosBaseQueryFn =
 const api = createApi({
   reducerPath: "api",
   baseQuery: axiosBaseQuery(),
-  tagTypes: ["User", "Subscription", "Plan", "Notice", "Ticket", "Knowledge", "Order", "PaymentMethod"],
+  tagTypes: ["User", "Subscription", "Plan", "Notice", "Ticket", "Knowledge", "Order", "PaymentMethod", "Server"],
   refetchOnReconnect: true,
   endpoints: (builder) => ({
     login: builder.mutation<LoginResponse, LoginPayload>({
@@ -362,6 +363,16 @@ const api = createApi({
         }
       }),
       invalidatesTags: (result, error, arg) => [{ type: "Order", id: arg.trade_no }]
+    }),
+    getServers: builder.query<Server[], void>({
+      query: () => ({
+        url: "/user/server/fetch",
+        method: "GET"
+      }),
+      providesTags: (result) => [
+        ...(result?.map((server) => ({ type: "Server" as const, id: server.id })) || []),
+        { type: "Server" as const, id: "LIST" }
+      ]
     })
   })
 });
@@ -391,6 +402,7 @@ export const {
   useCheckOrderQuery,
   useGetPaymentMethodQuery,
   useCancelOrderMutation,
-  useCheckoutOrderMutation
+  useCheckoutOrderMutation,
+  useGetServersQuery
 } = api;
 export default api;

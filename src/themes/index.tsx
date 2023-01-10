@@ -4,6 +4,7 @@ import dayjs from "dayjs";
 // material-ui
 import { CssBaseline, StyledEngineProvider, useMediaQuery } from "@mui/material";
 import { createTheme, ThemeOptions, ThemeProvider, Theme, TypographyVariantsOptions } from "@mui/material/styles";
+import "@mui/x-data-grid/themeAugmentation";
 
 // project import
 import useConfig from "@/hooks/useConfig";

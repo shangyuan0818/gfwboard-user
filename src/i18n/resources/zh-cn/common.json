@@ -334,5 +334,17 @@
         "total-price": "总计"
       }
     }
+  },
+  "node": {
+    "status": {
+      "table": {
+        "id_header": "节点 ID",
+        "name_header": "节点名称",
+        "status_header": "状态",
+        "type_header": "协议类型",
+        "rate_header": "倍率",
+        "tags_header": "标签"
+      }
+    }
   }
 }

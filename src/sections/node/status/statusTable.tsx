@@ -93,10 +93,8 @@ const StatusTable: React.FC<{
         width: 120,
         sortable: false,
         type: "boolean",
-        valueGetter: (params: GridValueGetterParams<string, Server>) => {
-          const { value } = params;
-          return value && Math.abs(dayjs.unix(parseInt(value)).diff(dayjs(), "minute")) <= 5;
-        },
+        valueGetter: (params: GridValueGetterParams<string, Server>) =>
+          params.value && Math.abs(dayjs.unix(parseInt(params.value)).diff(dayjs(), "minute")) <= 5,
         renderCell: (params: GridRenderCellParams<boolean, Server>) => {
           return (
             <Box className={classes.icon}>
@@ -132,6 +130,7 @@ const StatusTable: React.FC<{
         headerName: t("node.status.table.tags_header").toString(),
         minWidth: 160,
         sortable: false,
+        type: "singleSelect",
         renderCell: (params: GridRenderCellParams<string[] | null, Server>) => (
           <Stack direction="row" spacing={1}>
             {params.value?.map((tag) => (

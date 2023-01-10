@@ -1,2 +1,6 @@
 # These owners will be the default owners for everything in the repo.
-@star-horizon @AH-dark
+*       @star-horizon
+
+# The following owners will be the default owners for src files in the
+# repo. Unless a later match takes precedence
+/src/   @star-horizon   @AH-dark

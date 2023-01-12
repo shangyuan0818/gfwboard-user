@@ -44,7 +44,9 @@ const Table: React.FC = () => {
         headerName: t("order.list.table.total_amount", { context: "header" }).toString(),
         description: t("order.list.table.total_amount", { context: "description" }).toString(),
         width: 180,
-        type: "number"
+        type: "number",
+        valueGetter: (params) => params.row.total_amount / 100,
+        valueFormatter: (params) => `${params.value.toFixed(2)} CNY`
       },
       {
         field: "period",
@@ -83,7 +85,8 @@ const Table: React.FC = () => {
         description: t("order.list.table.created_at", { context: "description" }).toString(),
         width: 180,
         type: "dateTime",
-        valueFormatter: (params) => dayjs.unix(params.value).format("YYYY-MM-DD HH:mm:ss")
+        valueGetter: (params) => dayjs.unix(params.row.created_at).toDate(),
+        valueFormatter: (params) => dayjs(params.value).format("YYYY-MM-DD HH:mm:ss")
       },
       {
         field: "actions",

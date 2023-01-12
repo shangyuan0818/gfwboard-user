@@ -1,6 +1,14 @@
 import React, { useState } from "react";
-import MainCard from "@/components/MainCard";
+
+// third party
+import { useToggle } from "ahooks";
 import { useTranslation } from "react-i18next";
+import { Formik } from "formik";
+import * as Yup from "yup";
+import lo from "lodash-es";
+import { useNavigate } from "react-router-dom";
+
+// material-ui
 import {
   Alert,
   Box,
@@ -9,16 +17,26 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
+  FormControl,
+  FormHelperText,
+  InputLabel,
+  MenuItem,
+  Select,
   Stack,
   TextField,
   Typography
 } from "@mui/material";
-import { useGetInviteDataQuery, useTransferMoneyMutation } from "@/store/services/api";
-import { useToggle } from "ahooks";
+
+// project import
+import MainCard from "@/components/MainCard";
 import config from "@/config";
-import { Formik } from "formik";
-import * as Yup from "yup";
-import lo from "lodash-es";
+import { WithdrawPayload } from "@/model/withdraw";
+import {
+  useGetInviteDataQuery,
+  useGetUserConfigQuery,
+  useTransferMoneyMutation,
+  useWithdrawMoneyMutation
+} from "@/store/services/api";
 
 const TransferButton: React.FC = () => {
   const { t } = useTranslation();
@@ -57,12 +75,12 @@ const TransferButton: React.FC = () => {
               setSubmitting(true);
               await transfer(values.transfer_amount * 100).unwrap();
               setStatus({ success: true });
+              setClose();
             } catch (err: any) {
-              setErrors(lo.isEmpty(err.errors) ? { submit: err.message } : err.errors);
+              setErrors(lo.isEmpty(err.errors) ? { transfer_amount: err.message } : err.errors);
               setStatus({ success: false });
             } finally {
               setSubmitting(false);
-              setClose();
             }
           }}
         >
@@ -114,6 +132,138 @@ const TransferButton: React.FC = () => {
   );
 };
 
+const WithdrawButton: React.FC = () => {
+  const [skip, setSkip] = useState(true);
+  const [open, { setLeft: setClose, setRight: setOpen }] = useToggle(false);
+
+  const { t } = useTranslation();
+  const { data } = useGetInviteDataQuery();
+  const { data: userConfigData } = useGetUserConfigQuery(undefined, {
+    skip
+  });
+  const [withdrew] = useWithdrawMoneyMutation();
+
+  const navigate = useNavigate();
+
+  return (
+    <>
+      <Button
+        variant={"outlined"}
+        onClick={() => {
+          setOpen();
+          setSkip(false);
+        }}
+      >
+        {t("invite.my-invite.invitation-card.withdraw-button")}
+      </Button>
+      <Dialog open={open} onClose={setClose} fullWidth>
+        <DialogTitle>{t("invite.my-invite.invitation-card.withdraw-dialog.title")}</DialogTitle>
+        <Formik
+          initialValues={
+            {
+              withdraw_method: userConfigData?.withdraw_methods[0] ?? "",
+              withdraw_account: ""
+            } as WithdrawPayload
+          }
+          validationSchema={Yup.object().shape({
+            withdraw_method: Yup.string().required(
+              t("invite.my-invite.invitation-card.withdraw-dialog.validation_required", {
+                name: t("invite.my-invite.invitation-card.withdraw-dialog.withdraw-method", { context: "label" })
+              }).toString()
+            ),
+            withdraw_account: Yup.string().required(
+              t("invite.my-invite.invitation-card.withdraw-dialog.validation_required", {
+                name: t("invite.my-invite.invitation-card.withdraw-dialog.withdraw-account", { context: "label" })
+              }).toString()
+            )
+          })}
+          onSubmit={async (values, { setSubmitting, setErrors, setStatus }) => {
+            try {
+              await withdrew(values).unwrap();
+              setStatus({ success: true });
+              navigate("/ticket");
+              setClose();
+            } catch (err: any) {
+              setErrors(lo.isEmpty(err.errors) ? { withdraw_account: err.message } : err.errors);
+              setStatus({ success: false });
+            } finally {
+              setSubmitting(false);
+            }
+          }}
+        >
+          {({ values, handleChange, handleBlur, handleSubmit, isSubmitting, errors, touched }) => (
+            <Box component={"form"} onSubmit={handleSubmit}>
+              <DialogContent>
+                <Stack spacing={3}>
+                  <Alert severity={"info"}>
+                    {t("invite.my-invite.invitation-card.withdraw-dialog.info", {
+                      siteName: config.title,
+                      amount: (data?.stat[4] ?? 0) / 100
+                    })}
+                  </Alert>
+                  <FormControl fullWidth>
+                    <InputLabel id="select-payment-label">
+                      {t("invite.my-invite.invitation-card.withdraw-dialog.withdraw-method", {
+                        context: "label"
+                      })}
+                    </InputLabel>
+                    <Select
+                      labelId="select-payment-label"
+                      id="select-payment"
+                      name={"withdraw_method"}
+                      value={values.withdraw_method}
+                      label={t("invite.my-invite.invitation-card.withdraw-dialog.withdraw-method", {
+                        context: "label"
+                      })}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      disabled={isSubmitting}
+                    >
+                      {userConfigData?.withdraw_methods.map((method) => (
+                        <MenuItem value={method} key={method}>
+                          {method}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                    {errors.withdraw_method && touched.withdraw_method && (
+                      <FormHelperText error>{errors.withdraw_method}</FormHelperText>
+                    )}
+                  </FormControl>
+                  <TextField
+                    id={"withdraw-account"}
+                    name={"withdraw_account"}
+                    type={"text"}
+                    value={values.withdraw_account}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    label={t("invite.my-invite.invitation-card.withdraw-dialog.withdraw-account", {
+                      context: "label"
+                    })}
+                    fullWidth
+                    disabled={isSubmitting}
+                    helperText={
+                      errors.withdraw_account && touched.withdraw_account ? errors.withdraw_account : undefined
+                    }
+                    error={Boolean(touched.withdraw_account && errors.withdraw_account)}
+                  />
+                </Stack>
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={setClose}>
+                  {t("invite.my-invite.invitation-card.withdraw-dialog.cancel-button")}
+                </Button>
+                <Button type={"submit"} variant={"contained"} disabled={isSubmitting}>
+                  {t("invite.my-invite.invitation-card.withdraw-dialog.confirm-button")}
+                </Button>
+              </DialogActions>
+            </Box>
+          )}
+        </Formik>
+      </Dialog>
+    </>
+  );
+};
+
 const MyInvitationCard: React.FC = () => {
   const { t } = useTranslation();
   const { data } = useGetInviteDataQuery();
@@ -137,7 +287,7 @@ const MyInvitationCard: React.FC = () => {
         </Box>
         <Stack direction={"row"} spacing={2}>
           <TransferButton />
-          <Button variant={"outlined"}>{t("invite.my-invite.invitation-card.withdraw-button")}</Button>
+          <WithdrawButton />
         </Stack>
       </Stack>
     </MainCard>

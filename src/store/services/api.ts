@@ -30,6 +30,7 @@ import type { PaymentMethod } from "@/model/payment";
 import type Server from "@/model/server";
 import type InviteData from "@/model/invite_data";
 import type { CommissionQuery, CommissionResponse } from "@/model/commission";
+import { WithdrawPayload } from "@/model/withdraw";
 
 type AxiosBaseQueryFn = BaseQueryFn<
   {
@@ -436,6 +437,17 @@ const api = createApi({
         }
       }),
       invalidatesTags: ["InviteData"]
+    }),
+    withdrawMoney: builder.mutation<boolean, WithdrawPayload>({
+      query: (body) => ({
+        url: "/user/ticket/withdraw",
+        method: "POST",
+        body: qs.stringify(body),
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        }
+      }),
+      invalidatesTags: ["InviteData"]
     })
   })
 });
@@ -470,6 +482,7 @@ export const {
   useGetServersQuery,
   useGetCommissionsQuery,
   useGetInviteDataQuery,
-  useTransferMoneyMutation
+  useTransferMoneyMutation,
+  useWithdrawMoneyMutation
 } = api;
 export default api;

@@ -388,7 +388,6 @@
         "transfer-button": "划转",
         "transfer-dialog": {
           "title": "推广佣金划转至余额",
-          "content": "您确定要划转 {{value}} CNY 到余额吗？",
           "info": "划转后的余额仅用于{{siteName}}消费使用",
           "total-amount_label": "当前推广佣金余额",
           "transfer-amount_label": "划转金额",
@@ -398,7 +397,17 @@
           "validation_max": "最大提现金额为 {{count}} CNY",
           "validation_required": "请输入提现金额"
         },
-        "withdraw-button": "提现"
+        "withdraw-button": "提现",
+        "withdraw-dialog": {
+          "title": "推广佣金提现",
+          "info": "{{amount}} CNY 可提现，提现后将从推广佣金中扣除",
+          "withdraw-account_label": "提现账户",
+          "withdraw-method_label": "提现方式",
+          "withdraw-amount_label": "提现金额",
+          "cancel-button": "取消",
+          "confirm-button": "确定",
+          "validation_required": "请输入{{name}}"
+        }
       }
     }
   }

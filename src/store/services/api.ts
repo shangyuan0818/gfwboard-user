@@ -310,6 +310,16 @@ const api = createApi({
         }
       })
     }),
+    getOrders: builder.query<Order[], void>({
+      query: () => ({
+        url: "/user/order/fetch",
+        method: "GET"
+      }),
+      providesTags: (result) => [
+        ...(result?.map((order) => ({ type: "Order" as const, id: order.trade_no })) || []),
+        { type: "Order" as const, id: "LIST" }
+      ]
+    }),
     getOrderDetail: builder.query<Order, string>({
       query: (id) => ({
         url: "/user/order/detail",
@@ -398,6 +408,7 @@ export const {
   useGetPlanQuery,
   useSaveOrderMutation,
   useCheckCouponMutation,
+  useGetOrdersQuery,
   useGetOrderDetailQuery,
   useCheckOrderQuery,
   useGetPaymentMethodQuery,

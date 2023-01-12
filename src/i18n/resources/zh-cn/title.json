@@ -11,6 +11,6 @@
   "server_error": "服务器错误",
   "checkout": "收银台",
   "node-status": "节点状态",
-  "finance": "财务",
+  "billing": "财务",
   "order-list": "订单列表"
 }

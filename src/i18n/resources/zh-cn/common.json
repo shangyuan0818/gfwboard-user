@@ -333,6 +333,37 @@
         "button": "支付",
         "total-price": "总计"
       }
+    },
+    "list": {
+      "table": {
+        "trade_no_header": "订单号",
+        "trade_no_description": "订单号是订单的唯一ID，您可以通过订单号查询订单信息。",
+        "plan_name_header": "产品名称",
+        "plan_name_description": "产品名称是您购买的产品的名称。",
+        "total_amount_header": "订单金额",
+        "total_amount_description": "订单金额是您购买的产品的总价。",
+        "status_header": "订单状态",
+        "status_description": "订单状态是订单的当前状态。",
+        "status-value_pending": "待支付",
+        "status-value_paid": "已支付",
+        "status-value_cancelled": "已取消",
+        "status-value_finished": "已完成",
+        "period_header": "服务周期",
+        "period_description": "服务周期是您服务的有效期。",
+        "period-value": "undefined",
+        "period-value_onetime_price": "一次性付款",
+        "period-value_month_price": "月付",
+        "period-value_quarter_price": "季付",
+        "period-value_half_year_price": "半年付",
+        "period-value_year_price": "年付",
+        "period-value_two_year_price": "两年付",
+        "period-value_three_year_price": "三年付",
+        "created_at_header": "创建时间",
+        "created_at_description": "创建时间是订单在系统中生成的时间。",
+        "action_header": "操作",
+        "action-view": "查看详情",
+        "action-cancel": "取消订单"
+      }
     }
   },
   "node": {

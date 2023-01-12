@@ -332,6 +332,37 @@
         "button": "Pay",
         "total-price": "Total price"
       }
+    },
+    "list": {
+      "table": {
+        "trade_no_header": "Order No.",
+        "trade_no_description": "The order number is the unique ID of the order, and you can query the order info through the number.",
+        "plan_name_header": "Product",
+        "plan_name_description": "The product is the name of the product you purchased.",
+        "total_amount_header": "Amount",
+        "total_amount_description": "The order amount is the final price you pay for the product you purchased.",
+        "status_header": "Status",
+        "status_description": "The order status indicates the current status of the order.",
+        "status-value_pending": "Pending",
+        "status-value_paid": "Paid",
+        "status-value_cancelled": "Cancelled",
+        "status-value_finished": "Finished",
+        "period_header": "Payment period",
+        "period_description": "A Service Period is the period during which your Services are valid.",
+        "period-value": "undefined",
+        "period-value_onetime_price": "One-time payment",
+        "period-value_month_price": "Monthly payment",
+        "period-value_quarter_price": "Quarterly payment",
+        "period-value_half_year_price": "Semi-annually payment",
+        "period-value_year_price": "Annually payment",
+        "period-value_two_year_price": "Biennially payment",
+        "period-value_three_year_price": "Triennially payment",
+        "created_at_header": "Order date",
+        "created_at_description": "Order date is the time when the order is generated in the system.",
+        "action_header": "Actions",
+        "action-view": "View order",
+        "action-cancel": "Cancel order"
+      }
     }
   },
   "node": {

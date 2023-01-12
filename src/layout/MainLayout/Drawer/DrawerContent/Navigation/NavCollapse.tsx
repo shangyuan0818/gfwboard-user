@@ -27,6 +27,7 @@ import { BorderOutlined, DownOutlined, UpOutlined } from "@ant-design/icons";
 // types
 import { NavItemType } from "@/types/menu";
 import { RootStateProps } from "@/types/root";
+import { useTranslation } from "react-i18next";
 
 type VirtualElement = {
   getBoundingClientRect: () => ClientRect | DOMRect;
@@ -63,6 +64,7 @@ interface Props {
 
 const NavCollapse = ({ menu, level }: Props) => {
   const theme = useTheme();
+  const { t } = useTranslation();
 
   const menuState = useSelector((state: RootStateProps) => state.menu);
   const { drawerOpen } = menuState;
@@ -197,7 +199,7 @@ const NavCollapse = ({ menu, level }: Props) => {
           <ListItemText
             primary={
               <Typography variant="h6" color={selected === menu.id ? "primary" : textColor}>
-                {menu.title}
+                {t(menu.title ?? "undefined", { ns: "title" })}
               </Typography>
             }
             secondary={

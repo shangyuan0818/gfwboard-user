@@ -13,5 +13,8 @@
   "node-status": "Node Status",
   "order-list": "My Orders",
   "user": "User",
-  "invite": "My Invitations"
+  "invitation": "Promotion",
+  "invite": "Invite",
+  "invite-codes": "Invite Codes",
+  "invite-commissions": "Commissions Log"
 }

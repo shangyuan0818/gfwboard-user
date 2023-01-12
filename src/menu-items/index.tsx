@@ -68,11 +68,30 @@ const menuItems: { items: NavItemType[] } = {
       type: "group",
       children: [
         {
-          id: "invite",
-          title: "invite",
-          type: "item",
-          url: "/invite",
-          icon: TeamOutlined
+          id: "invitation",
+          title: "invitation",
+          type: "collapse",
+          icon: TeamOutlined,
+          children: [
+            {
+              id: "invite",
+              title: "invite",
+              type: "item",
+              url: "/invite"
+            },
+            {
+              id: "invite-codes",
+              title: "invite-codes",
+              type: "item",
+              url: "/invite/codes"
+            },
+            {
+              id: "invite-commissions",
+              title: "invite-commissions",
+              type: "item",
+              url: "/invite/commissions"
+            }
+          ]
         }
       ]
     }

@@ -438,6 +438,16 @@
         "action-copy": "复制",
         "action-delete": "删除"
       }
+    },
+    "commissions": {
+      "id_header": "ID",
+      "order-amount_header": "订单金额",
+      "order-amount_description": "订单金额是用户购买商品时的订单金额。",
+      "get-amount_header": "获得佣金",
+      "get-amount_description": "获得佣金是用户购买商品后你获得的佣金。",
+      "created-at_header": "创建时间",
+      "created-at_description": "创建时间是佣金在系统中生成的时间。",
+      "amount-value": "{{value}} CNY"
     }
   }
 }

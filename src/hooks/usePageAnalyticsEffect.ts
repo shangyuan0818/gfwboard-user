@@ -1,6 +1,10 @@
-import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
+
+// third-party
+import { useLocation } from "react-router-dom";
 import ReactGA from "react-ga4";
+
+// project imports
 import { useSelector } from "@/store";
 import { useGetUserInfoQuery } from "@/store/services/api";
 

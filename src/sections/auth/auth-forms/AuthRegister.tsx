@@ -28,6 +28,7 @@ import { Trans, useTranslation } from "react-i18next";
 import OtpInput from "react18-input-otp";
 import { useSnackbar } from "notistack";
 import { useUnmountedRef } from "ahooks";
+import ReactGA from "react-ga4";
 
 // project import
 import IconButton from "@/components/@extended/IconButton";
@@ -35,6 +36,7 @@ import AnimateButton from "@/components/@extended/AnimateButton";
 import SendMailButton from "@/sections/auth/auth-forms/SendMailButton";
 import { useGetGuestConfigQuery, useRegisterMutation } from "@/store/services/api";
 import { strengthColor, strengthIndicator } from "@/utils/password-strength";
+import useQuery from "@/hooks/useQuery";
 
 // types
 import { StringColorProps } from "@/types/password";
@@ -42,7 +44,6 @@ import { RegisterPayload } from "@/model/register";
 
 // assets
 import { EyeInvisibleOutlined, EyeOutlined } from "@ant-design/icons";
-import ReactGA from "react-ga4";
 
 // ============================|| FIREBASE - REGISTER ||============================ //
 
@@ -52,6 +53,7 @@ const AuthRegister = () => {
   const navigate = useNavigate();
   const { t } = useTranslation("common");
   const { enqueueSnackbar } = useSnackbar();
+  const query = useQuery();
 
   const [register] = useRegisterMutation();
   const { data: siteConfig } = useGetGuestConfigQuery();
@@ -75,34 +77,33 @@ const AuthRegister = () => {
     handlePasswordChange("");
   }, []);
 
-  const validationSchema = useMemo(() => {
-    const invite_code = siteConfig?.is_invite_force
-      ? Yup.string()
-          .max(8, t("register.invite_code_max").toString())
-          .required(t("register.invite_code_required").toString())
-      : Yup.string().max(8, t("register.invite_code_max").toString());
-    const email_code = siteConfig?.is_email_verify
-      ? Yup.number()
-          .max(6, t("register.email_code_max").toString())
-          .required(t("register.email_code_required").toString())
-      : Yup.number().negative();
-
-    return Yup.object().shape({
-      email: Yup.string()
-        .email(t("register.email_invalid").toString())
-        .max(255, t("register.email_max", { count: 255 }).toString())
-        .required(t("register.email_required").toString()),
-      password: Yup.string()
-        .min(8, t("register.password_min", { count: 8 }).toString())
-        .max(255, t("register.password_max", { count: 255 }).toString())
-        .required(t("register.password_required").toString()),
-      password_confirm: Yup.string()
-        .oneOf([Yup.ref("password"), null], t("register.password_confirm_invalid").toString())
-        .required(t("register.password_confirm_required").toString()),
-      invite_code: invite_code,
-      email_code: email_code
-    });
-  }, [t, siteConfig?.is_invite_force]);
+  const validationSchema = useMemo(
+    () =>
+      Yup.object().shape({
+        email: Yup.string()
+          .email(t("register.email_invalid").toString())
+          .max(255, t("register.email_max", { count: 255 }).toString())
+          .required(t("register.email_required").toString()),
+        password: Yup.string()
+          .min(8, t("register.password_min", { count: 8 }).toString())
+          .max(255, t("register.password_max", { count: 255 }).toString())
+          .required(t("register.password_required").toString()),
+        password_confirm: Yup.string()
+          .oneOf([Yup.ref("password"), null], t("register.password_confirm_invalid").toString())
+          .required(t("register.password_confirm_required").toString()),
+        invite_code: siteConfig?.is_invite_force
+          ? Yup.string()
+              .max(8, t("register.invite_code_max").toString())
+              .required(t("register.invite_code_required").toString())
+          : Yup.string().max(8, t("register.invite_code_max").toString()),
+        email_code: siteConfig?.is_email_verify
+          ? Yup.number()
+              .max(6, t("register.email_code_max").toString())
+              .required(t("register.email_code_required").toString())
+          : Yup.number().negative()
+      }),
+    [t, siteConfig?.is_invite_force, siteConfig?.is_email_verify]
+  );
 
   return (
     <>
@@ -111,7 +112,7 @@ const AuthRegister = () => {
           email: "",
           password: "",
           password_confirm: "",
-          invite_code: "",
+          invite_code: query.get("code") ?? "",
           email_code: "",
           agree: false,
           submit: null
@@ -354,6 +355,7 @@ const AuthRegister = () => {
                       context: siteConfig?.is_invite_force === 1 ? "required" : "optional"
                     }).toString()}
                     inputProps={{}}
+                    disabled={query.get("code") !== null}
                   />
                   {touched.invite_code && errors.invite_code && (
                     <FormHelperText error id="helper-text-email-signup">

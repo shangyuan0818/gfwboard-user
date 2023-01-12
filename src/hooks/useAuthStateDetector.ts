@@ -1,7 +1,9 @@
-import { useDispatch, useSelector } from "@/store";
-import { useGetUserInfoQuery } from "@/store/services/api";
 import { useEffect } from "react";
 import lo from "lodash-es";
+
+// project imports
+import { useDispatch, useSelector } from "@/store";
+import { useGetUserInfoQuery } from "@/store/services/api";
 import { logout } from "@/store/reducers/auth";
 
 const useAuthStateDetector = () => {
@@ -24,6 +26,8 @@ const useAuthStateDetector = () => {
       }
     }
   }, [error]);
+
+  return isLogin;
 };
 
 export default useAuthStateDetector;

@@ -1,12 +1,15 @@
 import React, { useEffect } from "react";
 import lo from "lodash-es";
 import { useTranslation } from "react-i18next";
-import { useTitle as useTitleHook } from "ahooks";
 
 // project imports
 import config from "@/config";
 
-const useTitle = (title: string | null, deps: React.DependencyList = []) => {
+export interface useTitleFn {
+  (title: string | null, deps?: React.DependencyList): void;
+}
+
+const useTitle: useTitleFn = (title, deps = []) => {
   const { t } = useTranslation();
   useEffect(() => {
     window.document.title = lo.isNull(title)

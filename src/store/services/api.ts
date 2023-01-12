@@ -105,7 +105,7 @@ const api = createApi({
         );
         return response;
       },
-      invalidatesTags: ["User", "Subscription"]
+      invalidatesTags: ["User", "Subscription", "Ticket", "Order", "Server"]
     }),
     getUserInfo: builder.query<User, void>({
       query: () => ({

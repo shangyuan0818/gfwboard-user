@@ -2,6 +2,25 @@
   "name": "gfwboard-user",
   "version": "1.2.0",
   "private": true,
+  "license": "AGPL-3.0",
+  "readme": "README.md",
+  "packageManager": "pnpm@7.14.1",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/star-horizon/gfwboard-user.git"
+  },
+  "maintainers": [
+    {
+      "name": "AH-dark",
+      "email": "ahdark@outlook.com",
+      "url": "https://www.ahdark.com"
+    }
+  ],
+  "engineStrict": true,
+  "engines": {
+    "node": ">=16.0.0",
+    "pnpm": ">=7.14.1"
+  },
   "dependencies": {
     "@ahooksjs/use-url-state": "^3.5.1",
     "@ant-design/colors": "^7.0.0",

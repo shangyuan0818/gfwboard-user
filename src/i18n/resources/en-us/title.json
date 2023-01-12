@@ -11,6 +11,7 @@
   "server_error": "Server Error",
   "checkout": "Checkout",
   "node-status": "Node Status",
-  "billing": "Billing",
-  "order-list": "My Orders"
+  "order-list": "My Orders",
+  "user": "User",
+  "invite": "My Invitations"
 }

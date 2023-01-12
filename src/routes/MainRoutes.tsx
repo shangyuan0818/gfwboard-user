@@ -22,6 +22,7 @@ const PlanDetails = Loadable(lazy(() => import("@/pages/plan/buy/[id]")));
 const OrderList = Loadable(lazy(() => import("@/pages/order")));
 const Checkout = Loadable(lazy(() => import("@/pages/order/[id]")));
 const NodeStatus = Loadable(lazy(() => import("@/pages/node/status")));
+const Invite = Loadable(lazy(() => import("@/pages/invite")));
 
 // ==============================|| MAIN ROUTING ||============================== //
 
@@ -71,6 +72,10 @@ const MainRoutes: RouteObject = {
         {
           path: "node/status",
           element: <NodeStatus />
+        },
+        {
+          path: "invite",
+          element: <Invite />
         }
       ]
     },

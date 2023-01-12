@@ -56,6 +56,8 @@ const StatusTable: React.FC<{
   });
   const { classes } = useStyles();
 
+  const [pageSize, setPageSize] = React.useState(10);
+
   const rows = useMemo(
     () =>
       data
@@ -147,6 +149,8 @@ const StatusTable: React.FC<{
       className={className}
       loading={isLoading}
       rowsPerPageOptions={[5, 10, 25, 50]}
+      pageSize={pageSize}
+      onPageSizeChange={(pageSize) => setPageSize(pageSize)}
     />
   );
 };

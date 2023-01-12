@@ -408,6 +408,17 @@
           "confirm-button": "确定",
           "validation_required": "请输入{{name}}"
         }
+      },
+      "info-card": {
+        "title": "推广统计",
+        "user-register-count": "用户注册数",
+        "user-register-count-value": "{{count}} 人",
+        "commission-rate": "佣金比例",
+        "commission-rate-value": "{{rate}} %",
+        "commission-confirming": "待确认佣金",
+        "commission-confirming-value": "{{count}} CNY",
+        "commission-total": "累计佣金",
+        "commission-total-value": "{{count}} CNY"
       }
     }
   }

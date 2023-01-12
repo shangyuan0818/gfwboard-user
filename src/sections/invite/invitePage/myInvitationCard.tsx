@@ -269,7 +269,7 @@ const MyInvitationCard: React.FC = () => {
   const { data } = useGetInviteDataQuery();
 
   return (
-    <MainCard title={t("invite.my-invite.invitation-card.title")}>
+    <MainCard title={t("invite.my-invite.invitation-card.title")} sx={{ height: 240 }}>
       <Stack spacing={2}>
         <Stack direction={"row"} spacing={2} alignItems={"flex-end"}>
           <Typography variant={"h2"} component={"span"}>

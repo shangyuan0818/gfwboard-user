@@ -1,6 +1,9 @@
 import React from "react";
 import { Grid } from "@mui/material";
+
+// project imports
 import MyInvitationCard from "@/sections/invite/invitePage/myInvitationCard";
+import InfoCard from "@/sections/invite/invitePage/infoCard";
 
 const InvitePage: React.FC = () => {
   return (
@@ -9,7 +12,7 @@ const InvitePage: React.FC = () => {
         <MyInvitationCard />
       </Grid>
       <Grid item xs={12} md={6}>
-        <h1>Invite</h1>
+        <InfoCard />
       </Grid>
       <Grid item xs={12}>
         <h1>Invite</h1>

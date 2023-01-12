@@ -45,7 +45,7 @@ const useStyles = makeStyles()((theme) => ({
   }
 }));
 
-const StatusTable: React.FC<{
+const Table: React.FC<{
   className?: string;
 }> = ({ className }) => {
   const { t } = useTranslation();
@@ -155,4 +155,4 @@ const StatusTable: React.FC<{
   );
 };
 
-export default StatusTable;
+export default Table;

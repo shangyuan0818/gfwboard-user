@@ -7,6 +7,21 @@ import { Skeleton, Stack, Typography } from "@mui/material";
 // project imports
 import MainCard from "@/components/MainCard";
 import { useGetInviteDataQuery } from "@/store/services/api";
+import { makeStyles } from "@/themes/hooks";
+
+const useStyles = makeStyles()((theme) => ({
+  root: {
+    height: theme.spacing(30),
+    display: "flex",
+    flexDirection: "column",
+    "& .MuiCardContent-root": {
+      flexGrow: 1,
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center"
+    }
+  }
+}));
 
 const InfoCard: React.FC = () => {
   const { t } = useTranslation();
@@ -42,8 +57,10 @@ const InfoCard: React.FC = () => {
     [data, t]
   );
 
+  const { classes } = useStyles();
+
   return (
-    <MainCard title={t("invite.my-invite.info-card.title")} sx={{ height: 240 }}>
+    <MainCard title={t("invite.my-invite.info-card.title")} className={classes.root}>
       <Stack spacing={2}>
         {tableData.map((item, index) =>
           isLoading ? (

@@ -86,6 +86,7 @@ const MainCard = forwardRef<HTMLDivElement, MainCardProps>((props, ref) => {
     border = true,
     boxShadow: _boxShadow,
     children,
+    className,
     subheader,
     content = true,
     contentSX = {},
@@ -100,10 +101,10 @@ const MainCard = forwardRef<HTMLDivElement, MainCardProps>((props, ref) => {
     ...others
   } = props;
 
-  const { classes } = useStyles(props);
+  const { classes, cx } = useStyles(props);
 
   return (
-    <Card className={classes.card} elevation={elevation || 0} ref={ref} {...others} sx={sx}>
+    <Card className={cx(classes.card, className)} elevation={elevation || 0} ref={ref} {...others} sx={sx}>
       {/* card header and action */}
       {!darkTitle && title && (
         <CardHeader

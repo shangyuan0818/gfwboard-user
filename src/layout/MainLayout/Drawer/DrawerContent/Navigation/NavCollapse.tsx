@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
+
+// third-party
 import { useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 // material-ui
-import { styled, useTheme } from "@mui/material/styles";
+import { useTheme } from "@mui/material/styles";
 import {
   Box,
   Collapse,
@@ -20,6 +23,7 @@ import {
 // project import
 import NavItem from "./NavItem";
 import Transitions from "@/components/@extended/Transitions";
+import { makeStyles } from "@/themes/hooks";
 
 // assets
 import { BorderOutlined, DownOutlined, UpOutlined } from "@ant-design/icons";
@@ -29,28 +33,80 @@ import { NavItemType } from "@/types/menu";
 import { RootStateProps } from "@/types/root";
 
 type VirtualElement = {
-  getBoundingClientRect: () => ClientRect | DOMRect;
+  getBoundingClientRect: () => DOMRect;
   contextElement?: Element;
 };
 
-// mini-menu - wrapper
-const PopperStyled = styled(Popper)(({ theme }) => ({
-  overflow: "visible",
-  zIndex: 1202,
-  minWidth: 180,
-  "&:before": {
-    content: '""',
-    display: "block",
-    position: "absolute",
-    top: 38,
-    left: -5,
-    width: 10,
-    height: 10,
-    backgroundColor: theme.palette.background.paper,
-    transform: "translateY(-50%) rotate(45deg)",
-    zIndex: 120,
-    borderLeft: `1px solid ${theme.palette.grey.A800}`,
-    borderBottom: `1px solid ${theme.palette.grey.A800}`
+const useStyles = makeStyles<{
+  drawerOpen: boolean;
+  level: number;
+}>()((theme, { drawerOpen, level }) => ({
+  popper: {
+    overflow: "visible",
+    zIndex: 2001,
+    minWidth: 180,
+    "&:before": {
+      content: '""',
+      display: "block",
+      position: "absolute",
+      top: 38,
+      left: -5,
+      width: 10,
+      height: 10,
+      backgroundColor: theme.palette.background.paper,
+      transform: "translateY(-50%) rotate(45deg)",
+      zIndex: 120,
+      borderLeft: `1px solid ${theme.palette.grey.A800}`,
+      borderBottom: `1px solid ${theme.palette.grey.A800}`
+    }
+  },
+  borderIcon: {
+    fontSize: "1rem"
+  },
+  icon: {
+    fontSize: drawerOpen ? "1rem" : "1.25rem"
+  },
+  listItemButton: {
+    paddingLeft: drawerOpen ? theme.spacing(level * 3.5) : theme.spacing(1.5),
+    paddingTop: !drawerOpen && level === 1 ? theme.spacing(1.25) : theme.spacing(1),
+    paddingBottom: !drawerOpen && level === 1 ? theme.spacing(1.25) : theme.spacing(1),
+    "&:hover": {
+      backgroundColor: drawerOpen
+        ? theme.palette.mode === "dark"
+          ? theme.palette.divider
+          : theme.palette.primary.lighter
+        : "transparent"
+    },
+    "&.Mui-selected": {
+      backgroundColor: "transparent",
+      color: theme.palette.mode === "dark" && drawerOpen ? theme.palette.text.primary : theme.palette.primary.main,
+      "&:hover": {
+        color: theme.palette.mode === "dark" && drawerOpen ? theme.palette.text.primary : theme.palette.primary.main,
+        backgroundColor: drawerOpen && theme.palette.mode === "dark" ? theme.palette.divider : "transparent"
+      }
+    }
+  },
+  listItemIcon: {
+    minWidth: 28,
+    ...(!drawerOpen && {
+      borderRadius: 1.5,
+      width: 36,
+      height: 36,
+      alignItems: "center",
+      justifyContent: "center",
+      "&:hover": {
+        bgcolor: theme.palette.mode === "dark" ? theme.palette.secondary.light : theme.palette.secondary.lighter
+      }
+    })
+  },
+  upIcon: { fontSize: "0.625rem", marginLeft: 1, color: theme.palette.primary.main },
+  downIcon: { fontSize: "0.625rem", marginLeft: 1 },
+  paper: {
+    overflow: "hidden",
+    marginTop: theme.spacing(1.5),
+    boxShadow: theme.customShadows.z1,
+    backgroundImage: "none",
+    border: `1px solid ${theme.palette.divider}`
   }
 }));
 
@@ -63,6 +119,7 @@ interface Props {
 
 const NavCollapse = ({ menu, level }: Props) => {
   const theme = useTheme();
+  const { t } = useTranslation();
 
   const menuState = useSelector((state: RootStateProps) => state.menu);
   const { drawerOpen } = menuState;
@@ -106,6 +163,11 @@ const NavCollapse = ({ menu, level }: Props) => {
     });
   }, [pathname, menu]);
 
+  const { classes, cx, css } = useStyles({
+    drawerOpen,
+    level
+  });
+
   const openMini = Boolean(anchorEl);
 
   const navCollapse = menu.children?.map((item) => {
@@ -123,12 +185,10 @@ const NavCollapse = ({ menu, level }: Props) => {
     }
   });
 
-  const borderIcon = level === 1 ? <BorderOutlined style={{ fontSize: "1rem" }} /> : false;
+  const borderIcon = level === 1 ? <BorderOutlined className={classes.borderIcon} /> : false;
   const Icon = menu.icon!;
-  const menuIcon = menu.icon ? <Icon style={{ fontSize: drawerOpen ? "1rem" : "1.25rem" }} /> : borderIcon;
+  const menuIcon = menu.icon ? <Icon className={classes.icon} /> : borderIcon;
   const textColor = theme.palette.mode === "dark" ? "grey.400" : "text.primary";
-  const iconSelectedColor =
-    theme.palette.mode === "dark" && drawerOpen ? theme.palette.text.primary : theme.palette.primary.main;
 
   return (
     <>
@@ -137,58 +197,24 @@ const NavCollapse = ({ menu, level }: Props) => {
         selected={selected === menu.id}
         {...(!drawerOpen && { onMouseEnter: handleClick, onMouseLeave: handleClose })}
         onClick={handleClick}
-        sx={{
-          pl: drawerOpen ? `${level * 28}px` : 1.5,
-          py: !drawerOpen && level === 1 ? 1.25 : 1,
-          ...(drawerOpen && {
-            "&:hover": {
-              bgcolor: theme.palette.mode === "dark" ? "divider" : "primary.lighter"
-            },
-            "&.Mui-selected": {
-              bgcolor: "transparent",
-              color: iconSelectedColor,
-              "&:hover": {
-                color: iconSelectedColor,
-                bgcolor: theme.palette.mode === "dark" ? "divider" : "transparent"
-              }
-            }
-          }),
-          ...(!drawerOpen && {
-            "&:hover": {
-              bgcolor: "transparent"
-            },
-            "&.Mui-selected": {
-              "&:hover": {
-                bgcolor: "transparent"
-              },
-              bgcolor: "transparent"
-            }
-          })
-        }}
+        className={classes.listItemButton}
       >
         {menuIcon && (
           <ListItemIcon
-            sx={{
-              minWidth: 28,
-              color: selected === menu.id ? "primary.main" : textColor,
-              ...(!drawerOpen && {
-                borderRadius: 1.5,
-                width: 36,
-                height: 36,
-                alignItems: "center",
-                justifyContent: "center",
-                "&:hover": {
-                  bgcolor: theme.palette.mode === "dark" ? "secondary.light" : "secondary.lighter"
-                }
-              }),
-              ...(!drawerOpen &&
-                selected === menu.id && {
-                  bgcolor: theme.palette.mode === "dark" ? "primary.900" : "primary.lighter",
-                  "&:hover": {
-                    bgcolor: theme.palette.mode === "dark" ? "primary.darker" : "primary.lighter"
-                  }
-                })
-            }}
+            className={cx(
+              classes.listItemIcon,
+              css({
+                color: selected === menu.id ? theme.palette.primary.main : textColor,
+                ...(!drawerOpen &&
+                  selected === menu.id && {
+                    bgcolor: theme.palette.mode === "dark" ? theme.palette.primary[900] : theme.palette.primary.lighter,
+                    "&:hover": {
+                      bgcolor:
+                        theme.palette.mode === "dark" ? theme.palette.primary.darker : theme.palette.primary.lighter
+                    }
+                  })
+              })
+            )}
           >
             {menuIcon}
           </ListItemIcon>
@@ -197,7 +223,7 @@ const NavCollapse = ({ menu, level }: Props) => {
           <ListItemText
             primary={
               <Typography variant="h6" color={selected === menu.id ? "primary" : textColor}>
-                {menu.title}
+                {t(menu.title ?? "undefined", { ns: "title" })}
               </Typography>
             }
             secondary={
@@ -211,19 +237,17 @@ const NavCollapse = ({ menu, level }: Props) => {
         )}
         {(drawerOpen || (!drawerOpen && level !== 1)) &&
           (openMini || open ? (
-            <UpOutlined style={{ fontSize: "0.625rem", marginLeft: 1, color: theme.palette.primary.main }} />
+            <UpOutlined className={classes.upIcon} />
           ) : (
-            <DownOutlined style={{ fontSize: "0.625rem", marginLeft: 1 }} />
+            <DownOutlined className={classes.downIcon} />
           ))}
 
         {!drawerOpen && (
-          <PopperStyled
+          <Popper
+            className={classes.popper}
             open={openMini}
             anchorEl={anchorEl}
             placement="right-start"
-            style={{
-              zIndex: 2001
-            }}
             popperOptions={{
               modifiers: [
                 {
@@ -237,22 +261,14 @@ const NavCollapse = ({ menu, level }: Props) => {
           >
             {({ TransitionProps }) => (
               <Transitions in={openMini} {...TransitionProps}>
-                <Paper
-                  sx={{
-                    overflow: "hidden",
-                    mt: 1.5,
-                    boxShadow: theme.customShadows.z1,
-                    backgroundImage: "none",
-                    border: `1px solid ${theme.palette.divider}`
-                  }}
-                >
+                <Paper className={classes.paper}>
                   <ClickAwayListener onClickAway={handleClose}>
                     <Box>{navCollapse}</Box>
                   </ClickAwayListener>
                 </Paper>
               </Transitions>
             )}
-          </PopperStyled>
+          </Popper>
         )}
       </ListItemButton>
       {drawerOpen && (

@@ -5,6 +5,7 @@ import {
   MonitorOutlined,
   ReadOutlined,
   ShoppingOutlined,
+  TeamOutlined,
   UnorderedListOutlined
 } from "@ant-design/icons";
 
@@ -51,20 +52,40 @@ const menuItems: { items: NavItemType[] } = {
           type: "item",
           url: "/node/status",
           icon: MonitorOutlined
-        }
-      ]
-    },
-    {
-      id: "billing",
-      title: "billing",
-      type: "group",
-      children: [
+        },
         {
           id: "order-list",
           title: "order-list",
           type: "item",
           url: "/order",
           icon: UnorderedListOutlined
+        }
+      ]
+    },
+    {
+      id: "user",
+      title: "user",
+      type: "group",
+      children: [
+        {
+          id: "invitation",
+          title: "invitation",
+          type: "collapse",
+          icon: TeamOutlined,
+          children: [
+            {
+              id: "invite",
+              title: "invite",
+              type: "item",
+              url: "/invite"
+            },
+            {
+              id: "invite-commissions",
+              title: "invite-commissions",
+              type: "item",
+              url: "/invite/commissions"
+            }
+          ]
         }
       ]
     }

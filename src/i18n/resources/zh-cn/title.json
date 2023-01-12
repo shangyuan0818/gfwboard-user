@@ -11,6 +11,9 @@
   "server_error": "服务器错误",
   "checkout": "收银台",
   "node-status": "节点状态",
-  "billing": "财务",
-  "order-list": "订单列表"
+  "order-list": "订单列表",
+  "user": "用户",
+  "invitation": "推广管理",
+  "invite": "邀请用户",
+  "invite-commissions": "佣金记录"
 }

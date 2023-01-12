@@ -83,7 +83,8 @@ const DataGrid: React.FC<MyDataGridProps> = (props) => {
       filterOperatorCustom: t("general::dataGrid.filter_operator.custom").toString(),
       filterOperatorBetween: t("general::dataGrid.filter_operator.between").toString(),
       filterOperatorNotBetween: t("general::dataGrid.filter_operator.not_between").toString(),
-      filterOperatorIsAnyOf: t("general::dataGrid.filter_operator.is_any_of").toString()
+      filterOperatorIsAnyOf: t("general::dataGrid.filter_operator.is_any_of").toString(),
+      footerRowSelected: (count) => t("general::dataGrid.footer_row_selected", { count }).toString()
     }),
     [t]
   );

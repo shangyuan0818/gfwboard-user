@@ -1,14 +1,22 @@
 import React, { useMemo } from "react";
-import DataGrid from "@/components/@extended/DataGrid";
-import { useCancelOrderMutation, useGetOrdersQuery } from "@/store/services/api";
-import { GridColDef, GridRowParams } from "@mui/x-data-grid";
+
+// third-party
 import { useTranslation } from "react-i18next";
-import Order, { OrderStatus } from "@/model/order";
-import { IconButton, Link, Tooltip } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 import dayjs from "dayjs";
-import { CloseOutlined, EyeOutlined } from "@ant-design/icons";
+
+// material-ui
+import { IconButton, Link, Tooltip } from "@mui/material";
+import { GridActionsColDef, GridColDef, GridRowParams } from "@mui/x-data-grid";
 import { useSnackbar } from "notistack";
+
+// project imports
+import DataGrid from "@/components/@extended/DataGrid";
+import { useCancelOrderMutation, useGetOrdersQuery } from "@/store/services/api";
+import Order, { OrderStatus } from "@/model/order";
+
+// assets
+import { CloseOutlined, EyeOutlined } from "@ant-design/icons";
 
 const Table: React.FC = () => {
   const { t } = useTranslation();
@@ -18,7 +26,9 @@ const Table: React.FC = () => {
   const [cancelOrder, { isLoading: isCanceling }] = useCancelOrderMutation();
   const { enqueueSnackbar } = useSnackbar();
 
-  const columns = useMemo<GridColDef<Order>[]>(
+  const [pageSize, setPageSize] = React.useState(10);
+
+  const columns = useMemo<(GridColDef<Order> | GridActionsColDef<Order>)[]>(
     () => [
       {
         field: "trade_no",
@@ -142,8 +152,8 @@ const Table: React.FC = () => {
       loading={isLoading}
       getRowId={(order) => order.trade_no}
       rowsPerPageOptions={[5, 10, 25, 50]}
-      disableColumnSelector
-      disableSelectionOnClick
+      pageSize={pageSize}
+      onPageSizeChange={(pageSize) => setPageSize(pageSize)}
     />
   );
 };

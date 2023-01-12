@@ -1,8 +1,8 @@
 import React from "react";
 
 // project imports
-import StatusWrapper from "@/sections/node/status/statusWrapper";
-import StatusTable from "@/sections/node/status/statusTable";
+import Wrapper from "@/sections/node/status/wrapper";
+import Table from "@/sections/node/status/table";
 import { makeStyles } from "@/themes/hooks";
 
 const useStyles = makeStyles()((theme) => ({
@@ -21,9 +21,9 @@ const Status: React.FC = () => {
   const { classes } = useStyles();
 
   return (
-    <StatusWrapper className={classes.root}>
-      <StatusTable className={classes.dataGrip} />
-    </StatusWrapper>
+    <Wrapper className={classes.root}>
+      <Table className={classes.dataGrip} />
+    </Wrapper>
   );
 };
 

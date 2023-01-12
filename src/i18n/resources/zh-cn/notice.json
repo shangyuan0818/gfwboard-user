@@ -24,5 +24,7 @@
   "order-detail-error": "订单详情获取失败：{{error}}",
   "order-cancel_success": "订单已取消",
   "order-cancel_fail": "取消订单失败",
-  "checkout-failed": "调用支付接口失败，请联系管理员"
+  "checkout-failed": "调用支付接口失败，请联系管理员",
+  "generate-invite-codes_success": "邀请码已生成",
+  "generate-invite-codes_fail": "邀请码生成失败"
 }

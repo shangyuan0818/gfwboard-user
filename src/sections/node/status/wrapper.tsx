@@ -1,7 +1,7 @@
 import React from "react";
 import MainCard from "@/components/MainCard";
 
-const StatusWrapper: React.FC<{
+const Wrapper: React.FC<{
   children: React.ReactNode;
   className?: string;
 }> = ({ children, className }) => (
@@ -10,4 +10,4 @@ const StatusWrapper: React.FC<{
   </MainCard>
 );
 
-export default StatusWrapper;
+export default Wrapper;

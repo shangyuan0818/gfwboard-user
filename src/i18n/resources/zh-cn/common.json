@@ -370,12 +370,84 @@
     "status": {
       "table": {
         "id_header": "节点 ID",
+        "id_description": "节点 ID 是节点的唯一标识。出现错误时，请向客服提供节点 ID。",
         "name_header": "节点名称",
+        "name_description": "节点名称是您的节点的名称。",
         "status_header": "状态",
+        "status_description": "状态表示节点的当前状态，节点每 5 分钟响应一次，如果最近一次响应大于 5 分钟就会返回下线状态。",
         "type_header": "协议类型",
+        "type_description": "协议类型表示节点支持的协议类型。",
         "rate_header": "倍率",
-        "tags_header": "标签"
+        "rate_description": "倍率表示节点的流量倍率。如倍率为 2x，则计费的流量为实际流量的 2 倍。",
+        "tags_header": "标签",
+        "tags_description": ""
       }
+    }
+  },
+  "invite": {
+    "my-invite": {
+      "invitation-card": {
+        "title": "我的邀请",
+        "currency": "CNY",
+        "description": "当前剩余佣金",
+        "helperText": "邀请好友注册，您将获得邀请奖励，好友也将获得注册奖励。",
+        "transfer-button": "划转",
+        "transfer-dialog": {
+          "title": "推广佣金划转至余额",
+          "info": "划转后的余额仅用于{{siteName}}消费使用",
+          "total-amount_label": "当前推广佣金余额",
+          "transfer-amount_label": "划转金额",
+          "cancel-button": "取消",
+          "confirm-button": "确定",
+          "validation_min": "最小提现金额为 {{count}} CNY",
+          "validation_max": "最大提现金额为 {{count}} CNY",
+          "validation_required": "请输入提现金额"
+        },
+        "withdraw-button": "提现",
+        "withdraw-dialog": {
+          "title": "推广佣金提现",
+          "info": "{{amount}} CNY 可提现，提现后将从推广佣金中扣除",
+          "withdraw-account_label": "提现账户",
+          "withdraw-method_label": "提现方式",
+          "withdraw-amount_label": "提现金额",
+          "cancel-button": "取消",
+          "confirm-button": "确定",
+          "validation_required": "请输入{{name}}"
+        }
+      },
+      "info-card": {
+        "title": "推广统计",
+        "user-register-count": "用户注册数",
+        "user-register-count-value": "{{count}} 人",
+        "commission-rate": "佣金比例",
+        "commission-rate-value": "{{rate}} %",
+        "commission-confirming": "待确认佣金",
+        "commission-confirming-value": "{{count}} CNY",
+        "commission-total": "累计佣金",
+        "commission-total-value": "{{count}} CNY"
+      },
+      "invite-codes-table": {
+        "title": "我的邀请码",
+        "generate_tooltip": "生成邀请码",
+        "id_header": "ID",
+        "code_header": "邀请码",
+        "code_description": "邀请码是您的邀请链接的重要一部分。",
+        "created_at_header": "创建时间",
+        "created_at_description": "创建时间是邀请码在系统中生成的时间。",
+        "actions_header": "操作",
+        "action-copy": "复制",
+        "action-delete": "删除"
+      }
+    },
+    "commissions": {
+      "id_header": "ID",
+      "order-amount_header": "订单金额",
+      "order-amount_description": "订单金额是用户购买商品时的订单金额。",
+      "get-amount_header": "获得佣金",
+      "get-amount_description": "获得佣金是用户购买商品后你获得的佣金。",
+      "created-at_header": "创建时间",
+      "created-at_description": "创建时间是佣金在系统中生成的时间。",
+      "amount-value": "{{value}} CNY"
     }
   }
 }

@@ -1,6 +1,12 @@
 // project import
 import { NavItemType } from "@/types/menu";
-import { DashboardOutlined, MonitorOutlined, ReadOutlined, ShoppingOutlined } from "@ant-design/icons";
+import {
+  DashboardOutlined,
+  MonitorOutlined,
+  ReadOutlined,
+  ShoppingOutlined,
+  UnorderedListOutlined
+} from "@ant-design/icons";
 
 // ==============================|| MENU ITEMS ||============================== //
 
@@ -45,6 +51,20 @@ const menuItems: { items: NavItemType[] } = {
           type: "item",
           url: "/node/status",
           icon: MonitorOutlined
+        }
+      ]
+    },
+    {
+      id: "billing",
+      title: "billing",
+      type: "group",
+      children: [
+        {
+          id: "order-list",
+          title: "order-list",
+          type: "item",
+          url: "/order",
+          icon: UnorderedListOutlined
         }
       ]
     }

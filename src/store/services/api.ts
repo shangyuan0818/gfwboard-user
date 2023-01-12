@@ -448,6 +448,13 @@ const api = createApi({
         }
       }),
       invalidatesTags: ["InviteData"]
+    }),
+    generateInviteCode: builder.mutation<boolean, void>({
+      query: () => ({
+        url: "/user/invite/save",
+        method: "GET"
+      }),
+      invalidatesTags: ["InviteData"]
     })
   })
 });
@@ -483,6 +490,7 @@ export const {
   useGetCommissionsQuery,
   useGetInviteDataQuery,
   useTransferMoneyMutation,
-  useWithdrawMoneyMutation
+  useWithdrawMoneyMutation,
+  useGenerateInviteCodeMutation
 } = api;
 export default api;

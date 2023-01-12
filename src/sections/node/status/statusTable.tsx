@@ -147,8 +147,6 @@ const StatusTable: React.FC<{
       className={className}
       loading={isLoading}
       rowsPerPageOptions={[5, 10, 25, 50]}
-      disableColumnSelector
-      disableSelectionOnClick
     />
   );
 };

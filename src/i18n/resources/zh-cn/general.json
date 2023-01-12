@@ -2,6 +2,7 @@
   "dataGrid": {
     "no_rows": "暂无数据",
     "pagination": "显示 {{from}} 到 {{to}} 项结果，共 {{count}} 项",
+    "footer_row_selected": "已选择 {{count}} 项",
     "rows_per_page": "每页行数：",
     "sort_asc": "升序排列",
     "sort_desc": "降序排列",

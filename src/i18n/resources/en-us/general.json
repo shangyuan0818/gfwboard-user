@@ -2,6 +2,8 @@
   "dataGrid": {
     "no_rows": "No Data",
     "pagination": "{{from}} - {{to}} of {{total}}",
+    "footer_row_selected_one": "{{count}} row selected",
+    "footer_row_selected": "{{count}} rows selected",
     "rows_per_page": "Rows per page:",
     "sort_asc": "Sort Ascending",
     "sort_desc": "Sort Descending",

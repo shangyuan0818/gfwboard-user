@@ -419,6 +419,18 @@
         "commission-confirming-value": "{{count}} CNY",
         "commission-total": "累计佣金",
         "commission-total-value": "{{count}} CNY"
+      },
+      "invite-codes-table": {
+        "title": "我的邀请码",
+        "generate_tooltip": "生成邀请码",
+        "id_header": "ID",
+        "code_header": "邀请码",
+        "code_description": "邀请码是您的邀请链接的重要一部分。",
+        "created_at_header": "创建时间",
+        "created_at_description": "创建时间是邀请码在系统中生成的时间。",
+        "actions_header": "操作",
+        "action-copy": "复制",
+        "action-delete": "删除"
       }
     }
   }

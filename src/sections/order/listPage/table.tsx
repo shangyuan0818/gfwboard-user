@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import DataGrid from "@/components/@extended/DataGrid";
 import { useCancelOrderMutation, useGetOrdersQuery } from "@/store/services/api";
-import { GridColDef, GridRowParams } from "@mui/x-data-grid";
+import { GridActionsColDef, GridColDef, GridRowParams } from "@mui/x-data-grid";
 import { useTranslation } from "react-i18next";
 import Order, { OrderStatus } from "@/model/order";
 import { IconButton, Link, Tooltip } from "@mui/material";
@@ -18,7 +18,7 @@ const Table: React.FC = () => {
   const [cancelOrder, { isLoading: isCanceling }] = useCancelOrderMutation();
   const { enqueueSnackbar } = useSnackbar();
 
-  const columns = useMemo<GridColDef<Order>[]>(
+  const columns = useMemo<(GridColDef<Order> | GridActionsColDef<Order>)[]>(
     () => [
       {
         field: "trade_no",
@@ -142,8 +142,6 @@ const Table: React.FC = () => {
       loading={isLoading}
       getRowId={(order) => order.trade_no}
       rowsPerPageOptions={[5, 10, 25, 50]}
-      disableColumnSelector
-      disableSelectionOnClick
     />
   );
 };

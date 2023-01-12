@@ -80,12 +80,6 @@ const menuItems: { items: NavItemType[] } = {
               url: "/invite"
             },
             {
-              id: "invite-codes",
-              title: "invite-codes",
-              type: "item",
-              url: "/invite/codes"
-            },
-            {
               id: "invite-commissions",
               title: "invite-commissions",
               type: "item",

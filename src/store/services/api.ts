@@ -28,6 +28,8 @@ import type Coupon from "@/model/coupon";
 import type { CouponPayload } from "@/model/coupon";
 import type { PaymentMethod } from "@/model/payment";
 import type Server from "@/model/server";
+import type InviteData from "@/model/invite_data";
+import type { CommissionQuery, CommissionResponse } from "@/model/commission";
 
 type AxiosBaseQueryFn = BaseQueryFn<
   {
@@ -67,6 +69,10 @@ const axiosBaseQuery: () => AxiosBaseQueryFn =
         };
       }
 
+      if (response.data.hasOwnProperty("total")) {
+        return { data: response.data as CommissionResponse };
+      }
+
       return { data: response.data.data };
     } catch (error) {
       const err: AxiosError<ApiResponse> = error as AxiosError<ApiResponse>;
@@ -84,7 +90,20 @@ const axiosBaseQuery: () => AxiosBaseQueryFn =
 const api = createApi({
   reducerPath: "api",
   baseQuery: axiosBaseQuery(),
-  tagTypes: ["User", "Subscription", "Plan", "Notice", "Ticket", "Knowledge", "Order", "PaymentMethod", "Server"],
+  tagTypes: [
+    "User",
+    "Subscription",
+    "Plan",
+    "Notice",
+    "Ticket",
+    "Knowledge",
+    "Order",
+    "PaymentMethod",
+    "Server",
+    "InviteData",
+    "InviteCode",
+    "Commission"
+  ],
   refetchOnReconnect: true,
   endpoints: (builder) => ({
     login: builder.mutation<LoginResponse, LoginPayload>({
@@ -105,7 +124,7 @@ const api = createApi({
         );
         return response;
       },
-      invalidatesTags: ["User", "Subscription", "Ticket", "Order", "Server"]
+      invalidatesTags: ["User", "Subscription", "Ticket", "Order", "Server", "InviteData", "InviteCode", "Commission"]
     }),
     getUserInfo: builder.query<User, void>({
       query: () => ({
@@ -383,6 +402,40 @@ const api = createApi({
         ...(result?.map((server) => ({ type: "Server" as const, id: server.id })) || []),
         { type: "Server" as const, id: "LIST" }
       ]
+    }),
+    getInviteData: builder.query<InviteData, void>({
+      query: () => ({
+        url: "/user/invite/fetch",
+        method: "GET"
+      }),
+      providesTags: (result) => [
+        { type: "InviteData" as const, id: "LIST" },
+        ...(result?.codes.map((code) => ({ type: "InviteCode" as const, id: code.id })) || [])
+      ]
+    }),
+    getCommissions: builder.query<CommissionResponse, CommissionQuery>({
+      query: (params) => ({
+        url: "/user/invite/details",
+        method: "GET",
+        params
+      }),
+      providesTags: (result, error, arg) => [
+        { type: "Commission", id: `LIST-${arg.page_size}-${arg.current}` },
+        ...(result?.data.map((commission) => ({ type: "Commission" as const, id: commission.id })) || [])
+      ]
+    }),
+    transferMoney: builder.mutation<boolean, number>({
+      query: (amount) => ({
+        url: "/user/transfer",
+        method: "POST",
+        body: qs.stringify({
+          transfer_amount: amount
+        }),
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        }
+      }),
+      invalidatesTags: ["InviteData"]
     })
   })
 });
@@ -414,6 +467,9 @@ export const {
   useGetPaymentMethodQuery,
   useCancelOrderMutation,
   useCheckoutOrderMutation,
-  useGetServersQuery
+  useGetServersQuery,
+  useGetCommissionsQuery,
+  useGetInviteDataQuery,
+  useTransferMoneyMutation
 } = api;
 export default api;

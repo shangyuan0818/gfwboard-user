@@ -377,5 +377,29 @@
         "tags_header": "标签"
       }
     }
+  },
+  "invite": {
+    "my-invite": {
+      "invitation-card": {
+        "title": "我的邀请",
+        "currency": "CNY",
+        "description": "当前剩余佣金",
+        "helperText": "邀请好友注册，您将获得邀请奖励，好友也将获得注册奖励。",
+        "transfer-button": "划转",
+        "transfer-dialog": {
+          "title": "推广佣金划转至余额",
+          "content": "您确定要划转 {{value}} CNY 到余额吗？",
+          "info": "划转后的余额仅用于{{siteName}}消费使用",
+          "total-amount_label": "当前推广佣金余额",
+          "transfer-amount_label": "划转金额",
+          "cancel-button": "取消",
+          "confirm-button": "确定",
+          "validation_min": "最小提现金额为 {{count}} CNY",
+          "validation_max": "最大提现金额为 {{count}} CNY",
+          "validation_required": "请输入提现金额"
+        },
+        "withdraw-button": "提现"
+      }
+    }
   }
 }

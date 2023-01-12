@@ -33,7 +33,7 @@ import { NavItemType } from "@/types/menu";
 import { RootStateProps } from "@/types/root";
 
 type VirtualElement = {
-  getBoundingClientRect: () => ClientRect | DOMRect;
+  getBoundingClientRect: () => DOMRect;
   contextElement?: Element;
 };
 

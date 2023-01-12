@@ -12,7 +12,9 @@ import { useSnackbar } from "notistack";
 
 const Table: React.FC = () => {
   const { t } = useTranslation();
-  const { data, isLoading } = useGetOrdersQuery();
+  const { data, isLoading } = useGetOrdersQuery(undefined, {
+    pollingInterval: 1000 * 60
+  });
   const [cancelOrder, { isLoading: isCanceling }] = useCancelOrderMutation();
   const { enqueueSnackbar } = useSnackbar();
 

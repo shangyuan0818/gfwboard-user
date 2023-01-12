@@ -370,11 +370,17 @@
     "status": {
       "table": {
         "id_header": "节点 ID",
+        "id_description": "节点 ID 是节点的唯一标识。出现错误时，请向客服提供节点 ID。",
         "name_header": "节点名称",
+        "name_description": "节点名称是您的节点的名称。",
         "status_header": "状态",
+        "status_description": "状态表示节点的当前状态，节点每 5 分钟响应一次，如果最近一次响应大于 5 分钟就会返回下线状态。",
         "type_header": "协议类型",
+        "type_description": "协议类型表示节点支持的协议类型。",
         "rate_header": "倍率",
-        "tags_header": "标签"
+        "rate_description": "倍率表示节点的流量倍率。如倍率为 2x，则计费的流量为实际流量的 2 倍。",
+        "tags_header": "标签",
+        "tags_description": ""
       }
     }
   },

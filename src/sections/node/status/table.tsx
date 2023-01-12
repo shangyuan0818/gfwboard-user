@@ -79,19 +79,22 @@ const Table: React.FC<{
     return [
       {
         field: "id",
-        headerName: t("node.status.table.id_header").toString(),
+        headerName: t("node.status.table.id", { context: "header" }).toString(),
+        description: t("node.status.table.id", { context: "description" }).toString(),
         type: "number"
       },
       {
         field: "name",
-        headerName: t("node.status.table.name_header").toString(),
+        headerName: t("node.status.table.name", { context: "header" }).toString(),
+        description: t("node.status.table.name", { context: "description" }).toString(),
         minWidth: 160,
         sortable: true,
         filterable: true
       },
       {
         field: "last_check_at",
-        headerName: t("node.status.table.status_header").toString(),
+        headerName: t("node.status.table.status", { context: "header" }).toString(),
+        description: t("node.status.table.status", { context: "description" }).toString(),
         width: 120,
         sortable: false,
         type: "boolean",
@@ -109,14 +112,16 @@ const Table: React.FC<{
       },
       {
         field: "type",
-        headerName: t("node.status.table.type_header").toString(),
+        headerName: t("node.status.table.type", { context: "header" }).toString(),
+        description: t("node.status.table.type", { context: "description" }).toString(),
         width: 160,
         sortable: false,
         valueFormatter: (params: GridValueFormatterParams<string>) => lo.capitalize(params.value)
       },
       {
         field: "rate",
-        headerName: t("node.status.table.rate_header").toString(),
+        headerName: t("node.status.table.rate", { context: "header" }).toString(),
+        description: t("node.status.table.rate", { context: "description" }).toString(),
         width: 120,
         sortable: false,
         renderCell: (params: GridRenderCellParams<string, Server>) => (
@@ -127,7 +132,8 @@ const Table: React.FC<{
       },
       {
         field: "tags",
-        headerName: t("node.status.table.tags_header").toString(),
+        headerName: t("node.status.table.tags", { context: "header" }).toString(),
+        description: t("node.status.table.tags", { context: "description" }).toString(),
         minWidth: 160,
         sortable: false,
         type: "singleSelect",

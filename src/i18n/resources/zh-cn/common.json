@@ -449,5 +449,77 @@
       "created-at_description": "创建时间是佣金在系统中生成的时间。",
       "amount-value": "{{value}} CNY"
     }
+  },
+  "profile": {
+    "account-info-card": {
+      "title": "账户信息",
+      "table": {
+        "email_key": "邮箱",
+        "email_value": "{{email}}",
+        "plan_id_key": "套餐 ID",
+        "plan_id_value": "{{count}}",
+        "plan_id_value_zero": "无",
+        "plan_expired_at_key": "订阅过期时间",
+        "plan_expired_at_value": "{{date}}",
+        "created_at_key": "创建时间",
+        "created_at_value": "{{date}}"
+      }
+    },
+    "wallet-card": {
+      "title": "我的资产",
+      "table": {
+        "balance_key": "余额",
+        "balance_value": "{{value}} CNY",
+        "commission_balance_key": "推广佣金",
+        "commission_balance_value": "{{value}} CNY"
+      }
+    },
+    "change-password-card": {
+      "title": "修改密码",
+      "form": {
+        "old_password_label": "旧密码",
+        "old_password_required": "请输入旧密码",
+        "new_password_label": "新密码",
+        "new_password_required": "请输入新密码",
+        "new_password_min": "新密码长度不能少于 {{count}} 位",
+        "confirm_password_label": "确认密码",
+        "confirm_password_required": "请输入确认密码",
+        "confirm_password_not_match": "两次输入的密码不一致",
+        "submit-button": "提交",
+        "reset-button": "重置"
+      }
+    },
+    "notification-card": {
+      "title": "通知设置",
+      "expired_notify_label": "订阅过期提醒",
+      "traffic_notify_label": "流量用量提醒",
+      "save-button": "保存"
+    },
+    "telegram-card": {
+      "title": "Telegram 通知",
+      "description": "绑定 Telegram 账号后，您可以在 Telegram 上接收到订阅过期提醒、流量用量提醒等通知。",
+      "bind-button": "绑定",
+      "unbind-button": "解绑",
+      "unbind-confirm": "您确定要解绑 Telegram 账号吗？",
+      "add_bot": "添加机器人",
+      "add_bot_content": "请下载 Telegram 并点击链接添加机器人：<0>https://t.me/{{name}}<0>",
+      "send_command_label": "发送命令",
+      "send_command_content": "请在 Telegram 中向机器人发送命令 {{command}} 绑定账号。",
+      "add_to_group_label": "加入 Telegram 群组",
+      "add_to_group_content": "加入 Telegram 群组以获得更多帮助：<0>{{link}}</0>",
+      "next_step": "下一步",
+      "previous_step": "上一步"
+    },
+    "reset-subscription-card": {
+      "title": "重置订阅",
+      "alert": "当你的订阅地址或账户发生泄漏被他人滥用时，可以在此重置订阅信息。避免带来不必要的损失。",
+      "button": "重置订阅",
+      "dialog": {
+        "title": "确定要重置订阅信息？",
+        "content": "如果您的订阅地址或信息发生泄露可以执行此操作。重置后您的 UUID 及订阅将会变更，需要重新导入订阅。",
+        "cancel": "取消",
+        "confirm": "确定"
+      }
+    }
   }
 }

@@ -24,5 +24,9 @@
   "order-detail-error": "Failed to obtain order details: {{error}}",
   "order-cancel_success": "Order has been canceled.",
   "order-cancel_fail": "Failed to cancel order.",
-  "checkout-failed": "Failed to call the payment gateway, please contact the manager."
+  "checkout-failed": "Failed to call the payment gateway, please contact the manager.",
+  "update-user_success": "User information updated.",
+  "update-user_fail": "Failed to update user information.",
+  "reset-security_success": "Subscription reset.",
+  "reset-security_fail": "Subscription reset failed."
 }

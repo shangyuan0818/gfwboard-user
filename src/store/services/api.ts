@@ -11,6 +11,7 @@ import { login } from "@/store/reducers/auth";
 import type ApiResponse from "@/model/api_response";
 import type { LoginPayload, LoginResponse } from "@/model/login";
 import type User from "@/model/user";
+import type { UserUpdatePayload } from "@/model/user";
 import type Subscription from "@/model/subscription";
 import type Notice from "@/model/notice";
 import type { GuestConfig, UserConfig } from "@/model/config";
@@ -30,23 +31,25 @@ import type { PaymentMethod } from "@/model/payment";
 import type Server from "@/model/server";
 import type InviteData from "@/model/invite_data";
 import type { CommissionQuery, CommissionResponse } from "@/model/commission";
-import { WithdrawPayload } from "@/model/withdraw";
+import type { WithdrawPayload } from "@/model/withdraw";
+import type { ChangePasswordPayload } from "@/model/password";
+import type { TelegramBotInfo } from "@/model/telegram";
 
-type AxiosBaseQueryFn = BaseQueryFn<
-  {
-    url: string;
-    method: AxiosRequestConfig["method"];
-    body?: AxiosRequestConfig["data"];
-    params?: AxiosRequestConfig["params"];
-    headers?: AxiosRequestConfig["headers"];
-  },
-  any,
-  {
-    status: number;
-    message: string;
-    errors: Record<string | number | symbol, string[]> | null;
-  }
->;
+export type BaseQueryArgs = {
+  url: string;
+  method: AxiosRequestConfig["method"];
+  body?: AxiosRequestConfig["data"];
+  params?: AxiosRequestConfig["params"];
+  headers?: AxiosRequestConfig["headers"];
+};
+
+export type BaseQueryError = {
+  status: number;
+  message: string;
+  errors: Record<string | number | symbol, string[]> | null;
+};
+
+type AxiosBaseQueryFn = BaseQueryFn<BaseQueryArgs, any, BaseQueryError>;
 
 const axiosBaseQuery: () => AxiosBaseQueryFn =
   () =>
@@ -103,360 +106,399 @@ const api = createApi({
     "Server",
     "InviteData",
     "InviteCode",
-    "Commission"
+    "Commission",
+    "TelegramBotInfo"
   ],
   refetchOnReconnect: true,
-  endpoints: (builder) => ({
-    login: builder.mutation<LoginResponse, LoginPayload>({
-      query: (body) => ({
-        url: "/passport/auth/login",
-        method: "POST",
-        body: qs.stringify(body),
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded"
-        }
-      }),
-      transformResponse: (response: LoginResponse) => {
-        localStorage.setItem("gfw_token", response.auth_data);
-        dispatch(
-          login({
-            isAdmin: response.is_admin
-          })
-        );
-        return response;
-      },
-      invalidatesTags: ["User", "Subscription", "Ticket", "Order", "Server", "InviteData", "InviteCode", "Commission"]
-    }),
-    getUserInfo: builder.query<User, void>({
-      query: () => ({
-        url: "/user/info",
-        method: "GET"
-      }),
-      providesTags: (result) => [
-        { type: "User", id: result?.uuid },
-        { type: "User", id: "LIST" }
-      ],
-      keepUnusedDataFor: 3600
-    }),
-    getUserSubscription: builder.query<Subscription, void>({
-      query: () => ({
-        url: "/user/getSubscribe",
-        method: "GET"
-      }),
-      providesTags: (result) => [
-        { type: "Subscription", id: result?.uuid },
-        ...(result?.plan_id !== null ? [{ type: "Plan" as const, id: result?.plan!.id }] : [])
-      ]
-    }),
-    // 0: 未支付的订单数 1: 未处理的工单数 2: 邀请的用户数
-    getUserStat: builder.query<number[], void>({
-      query: () => ({
-        url: "/user/getStat",
-        method: "GET"
-      })
-    }),
-    getNotices: builder.query<Notice[], void>({
-      query: () => ({
-        url: "/user/notice/fetch",
-        method: "GET"
-      }),
-      providesTags: (result) => [
-        ...(result?.map((notice) => ({ type: "Notice" as const, id: notice.id })) || []),
-        { type: "Notice" as const, id: "LIST" }
-      ]
-    }),
-    getUserConfig: builder.query<UserConfig, void>({
-      query: () => ({
-        url: "/user/comm/config",
-        method: "GET"
-      })
-    }),
-    getGuestConfig: builder.query<GuestConfig, void>({
-      query: () => ({
-        url: "/guest/comm/config",
-        method: "GET"
-      })
-    }),
-    sendEmailVerify: builder.mutation<boolean, SendMailPayload>({
-      query: (body) => ({
-        url: "/passport/comm/sendEmailVerify",
-        method: "POST",
-        body: qs.stringify(body),
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded"
-        }
-      })
-    }),
-    resetPassword: builder.mutation<boolean, ResetPasswordPayload>({
-      query: (body) => ({
-        url: "/passport/auth/forget",
-        method: "POST",
-        body: qs.stringify(body),
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded"
-        }
-      })
-    }),
-    register: builder.mutation<LoginResponse, RegisterPayload>({
-      query: (body) => ({
-        url: "/passport/auth/register",
-        method: "POST",
-        body: qs.stringify(body),
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded"
-        }
-      }),
-      transformResponse: (response: LoginResponse) => {
-        localStorage.setItem("gfw_token", response.auth_data);
-        dispatch(
-          login({
-            isAdmin: response.is_admin
-          })
-        );
-        return response;
-      },
-      invalidatesTags: ["User", "Subscription"]
-    }),
-    getTickets: builder.query<Omit<Ticket, "message">[], void>({
-      query: () => ({
-        url: "/user/ticket/fetch",
-        method: "GET"
-      }),
-      providesTags: (result) => [
-        ...(result?.map((ticket) => ({ type: "Ticket" as const, id: ticket.id })) || []),
-        { type: "Ticket" as const, id: "LIST" }
-      ]
-    }),
-    getTicket: builder.query<Ticket, number>({
-      query: (id) => ({
-        url: "/user/ticket/fetch",
-        method: "GET",
-        params: {
-          id
-        }
-      }),
-      providesTags: (result) => [{ type: "Ticket" as const, id: result?.id }]
-    }),
-    saveTicket: builder.mutation<boolean, TicketPayload>({
-      query: (body) => ({
-        url: "/user/ticket/save",
-        method: "POST",
-        body: qs.stringify(body),
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded"
-        }
-      }),
-      invalidatesTags: [{ type: "Ticket", id: "LIST" }]
-    }),
-    replyTicket: builder.mutation<boolean, ReplyTicketPayload>({
-      query: (body) => ({
-        url: "/user/ticket/reply",
-        method: "POST",
-        body: qs.stringify(body),
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded"
-        }
-      })
-    }),
-    getKnowledgeList: builder.query<Record<string, KnowledgeListResponse[]>, Omit<KnowledgePayload, "id">>({
-      query: ({ language, keyword }) => ({
-        url: "/user/knowledge/fetch",
-        method: "GET",
-        params: {
-          language,
-          keyword
-        }
-      }),
-      providesTags: (result, error, arg) => [
-        { type: "Knowledge", id: "LIST" },
-        { type: "Knowledge", id: "LIST_" + arg.language }
-      ]
-    }),
-    getKnowledge: builder.query<Knowledge, Omit<KnowledgePayload, "keyword">>({
-      query: ({ id, language }) => ({
-        url: "/user/knowledge/fetch",
-        method: "GET",
-        params: {
-          id,
-          language
-        }
-      }),
-      providesTags: (result, error, arg) => [
-        { type: "Knowledge", id: arg.id },
-        { type: "Knowledge", id: arg.id + "_" + arg.language }
-      ]
-    }),
-    getPlanList: builder.query<Plan[], void>({
-      query: () => ({
-        url: "/user/plan/fetch",
-        method: "GET"
-      }),
-      providesTags: (result) => [
-        ...(result?.map((plan) => ({ type: "Plan" as const, id: plan.id })) || []),
-        { type: "Plan" as const, id: "LIST" }
-      ]
-    }),
-    getPlan: builder.query<Plan, number>({
-      query: (id) => ({
-        url: "/user/plan/fetch",
-        method: "GET",
-        params: {
-          id
-        }
-      }),
-      providesTags: (result) => [{ type: "Plan" as const, id: result?.id }]
-    }),
-    saveOrder: builder.mutation<string, OrderPayload>({
-      query: (body) => ({
-        url: "/user/order/save",
-        method: "POST",
-        body: qs.stringify(body),
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded"
-        }
-      }),
-      invalidatesTags: (result) => [
-        { type: "Order", id: result },
-        { type: "Order", id: "LIST" }
-      ]
-    }),
-    checkCoupon: builder.mutation<Coupon, CouponPayload>({
-      query: (body) => ({
-        url: "/user/coupon/check",
-        method: "POST",
-        body: qs.stringify(body),
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded"
-        }
-      })
-    }),
-    getOrders: builder.query<Order[], void>({
-      query: () => ({
-        url: "/user/order/fetch",
-        method: "GET"
-      }),
-      providesTags: (result) => [
-        ...(result?.map((order) => ({ type: "Order" as const, id: order.trade_no })) || []),
-        { type: "Order" as const, id: "LIST" }
-      ]
-    }),
-    getOrderDetail: builder.query<Order, string>({
-      query: (id) => ({
-        url: "/user/order/detail",
-        method: "GET",
-        params: {
-          trade_no: id
-        }
-      }),
-      providesTags: (result) => [{ type: "Order" as const, id: result?.trade_no }]
-    }),
-    checkOrder: builder.query<OrderStatus, string>({
-      query: (id) => ({
-        url: "/user/order/check",
-        method: "GET",
-        params: {
-          trade_no: id
-        }
-      }),
-      keepUnusedDataFor: 1
-    }),
-    getPaymentMethod: builder.query<PaymentMethod[], void>({
-      query: () => ({
-        url: "/user/order/getPaymentMethod",
-        method: "GET"
-      }),
-      providesTags: (result) => [
-        ...(result?.map((method) => ({ type: "PaymentMethod" as const, id: method.id })) || []),
-        { type: "PaymentMethod" as const, id: "LIST" }
-      ]
-    }),
-    cancelOrder: builder.mutation<boolean, string>({
-      query: (id) => ({
-        url: "/user/order/cancel",
-        method: "POST",
-        body: qs.stringify({
-          trade_no: id
+  endpoints: (builder) => {
+    return {
+      login: builder.mutation<LoginResponse, LoginPayload>({
+        query: (body) => ({
+          url: "/passport/auth/login",
+          method: "POST",
+          body: qs.stringify(body),
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+          }
         }),
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded"
-        }
+        transformResponse: (response: LoginResponse) => {
+          localStorage.setItem("gfw_token", response.auth_data);
+          dispatch(
+            login({
+              isAdmin: response.is_admin
+            })
+          );
+          return response;
+        },
+        invalidatesTags: ["User", "Subscription", "Ticket", "Order", "Server", "InviteData", "InviteCode", "Commission"]
       }),
-      invalidatesTags: (result, error, id) => [{ type: "Order", id }]
-    }),
-    checkoutOrder: builder.mutation<string, CheckoutOrderPayload>({
-      query: (body) => ({
-        url: "/user/order/checkout",
-        method: "POST",
-        body: qs.stringify(body),
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded"
-        }
-      }),
-      invalidatesTags: (result, error, arg) => [{ type: "Order", id: arg.trade_no }]
-    }),
-    getServers: builder.query<Server[], void>({
-      query: () => ({
-        url: "/user/server/fetch",
-        method: "GET"
-      }),
-      providesTags: (result) => [
-        ...(result?.map((server) => ({ type: "Server" as const, id: server.id })) || []),
-        { type: "Server" as const, id: "LIST" }
-      ]
-    }),
-    getInviteData: builder.query<InviteData, void>({
-      query: () => ({
-        url: "/user/invite/fetch",
-        method: "GET"
-      }),
-      providesTags: (result) => [
-        { type: "InviteData" as const, id: "LIST" },
-        ...(result?.codes.map((code) => ({ type: "InviteCode" as const, id: code.id })) || [])
-      ]
-    }),
-    getCommissions: builder.query<CommissionResponse, CommissionQuery>({
-      query: (params) => ({
-        url: "/user/invite/details",
-        method: "GET",
-        params
-      }),
-      providesTags: (result, error, arg) => [
-        { type: "Commission", id: `LIST-${arg.page_size}-${arg.current}` },
-        ...(result?.data.map((commission) => ({ type: "Commission" as const, id: commission.id })) || [])
-      ]
-    }),
-    transferMoney: builder.mutation<boolean, number>({
-      query: (amount) => ({
-        url: "/user/transfer",
-        method: "POST",
-        body: qs.stringify({
-          transfer_amount: amount
+      getUserInfo: builder.query<User, void>({
+        query: () => ({
+          url: "/user/info",
+          method: "GET"
         }),
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded"
-        }
+        providesTags: (result) => [
+          { type: "User", id: result?.uuid },
+          { type: "User", id: "LIST" }
+        ],
+        keepUnusedDataFor: 3600
       }),
-      invalidatesTags: ["InviteData"]
-    }),
-    withdrawMoney: builder.mutation<boolean, WithdrawPayload>({
-      query: (body) => ({
-        url: "/user/ticket/withdraw",
-        method: "POST",
-        body: qs.stringify(body),
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded"
-        }
+      getUserSubscription: builder.query<Subscription, void>({
+        query: () => ({
+          url: "/user/getSubscribe",
+          method: "GET"
+        }),
+        providesTags: (result) => [
+          { type: "Subscription", id: result?.uuid },
+          ...(result?.plan_id !== null ? [{ type: "Plan" as const, id: result?.plan!.id }] : [])
+        ]
       }),
-      invalidatesTags: ["InviteData"]
-    }),
-    generateInviteCode: builder.mutation<boolean, void>({
-      query: () => ({
-        url: "/user/invite/save",
-        method: "GET"
+      // 0: 未支付的订单数 1: 未处理的工单数 2: 邀请的用户数
+      getUserStat: builder.query<number[], void>({
+        query: () => ({
+          url: "/user/getStat",
+          method: "GET"
+        })
       }),
-      invalidatesTags: ["InviteData"]
-    })
-  })
+      getNotices: builder.query<Notice[], void>({
+        query: () => ({
+          url: "/user/notice/fetch",
+          method: "GET"
+        }),
+        providesTags: (result) => [
+          ...(result?.map((notice) => ({ type: "Notice" as const, id: notice.id })) || []),
+          { type: "Notice" as const, id: "LIST" }
+        ]
+      }),
+      getUserConfig: builder.query<UserConfig, void>({
+        query: () => ({
+          url: "/user/comm/config",
+          method: "GET"
+        })
+      }),
+      getGuestConfig: builder.query<GuestConfig, void>({
+        query: () => ({
+          url: "/guest/comm/config",
+          method: "GET"
+        })
+      }),
+      sendEmailVerify: builder.mutation<boolean, SendMailPayload>({
+        query: (body) => ({
+          url: "/passport/comm/sendEmailVerify",
+          method: "POST",
+          body: qs.stringify(body),
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+          }
+        })
+      }),
+      resetPassword: builder.mutation<boolean, ResetPasswordPayload>({
+        query: (body) => ({
+          url: "/passport/auth/forget",
+          method: "POST",
+          body: qs.stringify(body),
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+          }
+        })
+      }),
+      register: builder.mutation<LoginResponse, RegisterPayload>({
+        query: (body) => ({
+          url: "/passport/auth/register",
+          method: "POST",
+          body: qs.stringify(body),
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+          }
+        }),
+        transformResponse: (response: LoginResponse) => {
+          localStorage.setItem("gfw_token", response.auth_data);
+          dispatch(
+            login({
+              isAdmin: response.is_admin
+            })
+          );
+          return response;
+        },
+        invalidatesTags: ["User", "Subscription"]
+      }),
+      getTickets: builder.query<Omit<Ticket, "message">[], void>({
+        query: () => ({
+          url: "/user/ticket/fetch",
+          method: "GET"
+        }),
+        providesTags: (result) => [
+          ...(result?.map((ticket) => ({ type: "Ticket" as const, id: ticket.id })) || []),
+          { type: "Ticket" as const, id: "LIST" }
+        ]
+      }),
+      getTicket: builder.query<Ticket, number>({
+        query: (id) => ({
+          url: "/user/ticket/fetch",
+          method: "GET",
+          params: {
+            id
+          }
+        }),
+        providesTags: (result) => [{ type: "Ticket" as const, id: result?.id }]
+      }),
+      saveTicket: builder.mutation<boolean, TicketPayload>({
+        query: (body) => ({
+          url: "/user/ticket/save",
+          method: "POST",
+          body: qs.stringify(body),
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+          }
+        }),
+        invalidatesTags: [{ type: "Ticket", id: "LIST" }]
+      }),
+      replyTicket: builder.mutation<boolean, ReplyTicketPayload>({
+        query: (body) => ({
+          url: "/user/ticket/reply",
+          method: "POST",
+          body: qs.stringify(body),
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+          }
+        })
+      }),
+      getKnowledgeList: builder.query<Record<string, KnowledgeListResponse[]>, Omit<KnowledgePayload, "id">>({
+        query: ({ language, keyword }) => ({
+          url: "/user/knowledge/fetch",
+          method: "GET",
+          params: {
+            language,
+            keyword
+          }
+        }),
+        providesTags: (result, error, arg) => [
+          { type: "Knowledge", id: "LIST" },
+          { type: "Knowledge", id: "LIST_" + arg.language }
+        ]
+      }),
+      getKnowledge: builder.query<Knowledge, Omit<KnowledgePayload, "keyword">>({
+        query: ({ id, language }) => ({
+          url: "/user/knowledge/fetch",
+          method: "GET",
+          params: {
+            id,
+            language
+          }
+        }),
+        providesTags: (result, error, arg) => [
+          { type: "Knowledge", id: arg.id },
+          { type: "Knowledge", id: arg.id + "_" + arg.language }
+        ]
+      }),
+      getPlanList: builder.query<Plan[], void>({
+        query: () => ({
+          url: "/user/plan/fetch",
+          method: "GET"
+        }),
+        providesTags: (result) => [
+          ...(result?.map((plan) => ({ type: "Plan" as const, id: plan.id })) || []),
+          { type: "Plan" as const, id: "LIST" }
+        ]
+      }),
+      getPlan: builder.query<Plan, number>({
+        query: (id) => ({
+          url: "/user/plan/fetch",
+          method: "GET",
+          params: {
+            id
+          }
+        }),
+        providesTags: (result) => [{ type: "Plan" as const, id: result?.id }]
+      }),
+      saveOrder: builder.mutation<string, OrderPayload>({
+        query: (body) => ({
+          url: "/user/order/save",
+          method: "POST",
+          body: qs.stringify(body),
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+          }
+        }),
+        invalidatesTags: (result) => [
+          { type: "Order", id: result },
+          { type: "Order", id: "LIST" }
+        ]
+      }),
+      checkCoupon: builder.mutation<Coupon, CouponPayload>({
+        query: (body) => ({
+          url: "/user/coupon/check",
+          method: "POST",
+          body: qs.stringify(body),
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+          }
+        })
+      }),
+      getOrders: builder.query<Order[], void>({
+        query: () => ({
+          url: "/user/order/fetch",
+          method: "GET"
+        }),
+        providesTags: (result) => [
+          ...(result?.map((order) => ({ type: "Order" as const, id: order.trade_no })) || []),
+          { type: "Order" as const, id: "LIST" }
+        ]
+      }),
+      getOrderDetail: builder.query<Order, string>({
+        query: (id) => ({
+          url: "/user/order/detail",
+          method: "GET",
+          params: {
+            trade_no: id
+          }
+        }),
+        providesTags: (result) => [{ type: "Order" as const, id: result?.trade_no }]
+      }),
+      checkOrder: builder.query<OrderStatus, string>({
+        query: (id) => ({
+          url: "/user/order/check",
+          method: "GET",
+          params: {
+            trade_no: id
+          }
+        }),
+        keepUnusedDataFor: 1
+      }),
+      getPaymentMethod: builder.query<PaymentMethod[], void>({
+        query: () => ({
+          url: "/user/order/getPaymentMethod",
+          method: "GET"
+        }),
+        providesTags: (result) => [
+          ...(result?.map((method) => ({ type: "PaymentMethod" as const, id: method.id })) || []),
+          { type: "PaymentMethod" as const, id: "LIST" }
+        ]
+      }),
+      cancelOrder: builder.mutation<boolean, string>({
+        query: (id) => ({
+          url: "/user/order/cancel",
+          method: "POST",
+          body: qs.stringify({
+            trade_no: id
+          }),
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+          }
+        }),
+        invalidatesTags: (result, error, id) => [{ type: "Order", id }]
+      }),
+      checkoutOrder: builder.mutation<string, CheckoutOrderPayload>({
+        query: (body) => ({
+          url: "/user/order/checkout",
+          method: "POST",
+          body: qs.stringify(body),
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+          }
+        }),
+        invalidatesTags: (result, error, arg) => [{ type: "Order", id: arg.trade_no }]
+      }),
+      getServers: builder.query<Server[], void>({
+        query: () => ({
+          url: "/user/server/fetch",
+          method: "GET"
+        }),
+        providesTags: (result) => [
+          ...(result?.map((server) => ({ type: "Server" as const, id: server.id })) || []),
+          { type: "Server" as const, id: "LIST" }
+        ]
+      }),
+      getInviteData: builder.query<InviteData, void>({
+        query: () => ({
+          url: "/user/invite/fetch",
+          method: "GET"
+        }),
+        providesTags: (result) => [
+          { type: "InviteData" as const, id: "LIST" },
+          ...(result?.codes.map((code) => ({ type: "InviteCode" as const, id: code.id })) || [])
+        ]
+      }),
+      getCommissions: builder.query<CommissionResponse, CommissionQuery>({
+        query: (params) => ({
+          url: "/user/invite/details",
+          method: "GET",
+          params
+        }),
+        providesTags: (result, error, arg) => [
+          { type: "Commission", id: `LIST-${arg.page_size}-${arg.current}` },
+          ...(result?.data.map((commission) => ({ type: "Commission" as const, id: commission.id })) || [])
+        ]
+      }),
+      transferMoney: builder.mutation<boolean, number>({
+        query: (amount) => ({
+          url: "/user/transfer",
+          method: "POST",
+          body: qs.stringify({
+            transfer_amount: amount
+          }),
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+          }
+        }),
+        invalidatesTags: ["InviteData"]
+      }),
+      withdrawMoney: builder.mutation<boolean, WithdrawPayload>({
+        query: (body) => ({
+          url: "/user/ticket/withdraw",
+          method: "POST",
+          body: qs.stringify(body),
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+          }
+        }),
+        invalidatesTags: ["InviteData"]
+      }),
+      generateInviteCode: builder.mutation<boolean, void>({
+        query: () => ({
+          url: "/user/invite/save",
+          method: "GET"
+        }),
+        invalidatesTags: ["InviteData"]
+      }),
+      changePassword: builder.mutation<boolean, ChangePasswordPayload>({
+        query: (body) => ({
+          url: "/user/changePassword",
+          method: "POST",
+          body: qs.stringify(body),
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+          }
+        }),
+        invalidatesTags: ["User"]
+      }),
+      updateUser: builder.mutation<boolean, UserUpdatePayload>({
+        query: (body) => ({
+          url: "/user/update",
+          method: "POST",
+          body: qs.stringify(body),
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+          }
+        }),
+        invalidatesTags: ["User"]
+      }),
+      getTelegramBot: builder.query<TelegramBotInfo, void>({
+        query: () => ({
+          url: "/user/telegram/getBotInfo",
+          method: "GET"
+        }),
+        providesTags: ["TelegramBotInfo"]
+      }),
+      resetSecurity: builder.mutation<boolean, void>({
+        query: () => ({
+          url: "/user/resetSecurity",
+          method: "GET"
+        }),
+        invalidatesTags: ["User", "Subscription"]
+      })
+    };
+  }
 });
 
 export const {
@@ -491,6 +533,10 @@ export const {
   useGetInviteDataQuery,
   useTransferMoneyMutation,
   useWithdrawMoneyMutation,
-  useGenerateInviteCodeMutation
+  useGenerateInviteCodeMutation,
+  useChangePasswordMutation,
+  useUpdateUserMutation,
+  useGetTelegramBotQuery,
+  useResetSecurityMutation
 } = api;
 export default api;

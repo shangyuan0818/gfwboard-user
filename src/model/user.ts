@@ -4,8 +4,8 @@ export default interface User {
   last_login_at: null | number;
   created_at: number;
   banned: 0 | 1;
-  remind_expire: number;
-  remind_traffic: number;
+  remind_expire: 0 | 1;
+  remind_traffic: 0 | 1;
   expired_at: null | number;
   balance: number;
   commission_balance: number;
@@ -15,4 +15,9 @@ export default interface User {
   telegram_id: null | number;
   uuid: string;
   avatar_url: string;
+}
+
+export interface UserUpdatePayload {
+  remind_traffic: 0 | 1;
+  remind_expire: 0 | 1;
 }

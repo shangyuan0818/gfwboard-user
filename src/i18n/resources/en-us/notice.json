@@ -26,5 +26,7 @@
   "order-cancel_fail": "Failed to cancel order.",
   "checkout-failed": "Failed to call the payment gateway, please contact the manager.",
   "update-user_success": "User information updated.",
-  "update-user_fail": "Failed to update user information."
+  "update-user_fail": "Failed to update user information.",
+  "reset-security_success": "Subscription reset.",
+  "reset-security_fail": "Subscription reset failed."
 }

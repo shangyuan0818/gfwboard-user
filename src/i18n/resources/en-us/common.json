@@ -376,5 +376,140 @@
         "tags_header": "Tags"
       }
     }
+  },
+  "invite": {
+    "my-invite": {
+      "invitation-card": {
+        "title": "我的邀请",
+        "currency": "CNY",
+        "description": "当前剩余佣金",
+        "helperText": "邀请好友注册，您将获得邀请奖励，好友也将获得注册奖励。",
+        "transfer-button": "划转",
+        "transfer-dialog": {
+          "title": "推广佣金划转至余额",
+          "info": "划转后的余额仅用于{{siteName}}消费使用",
+          "total-amount_label": "当前推广佣金余额",
+          "transfer-amount_label": "划转金额",
+          "cancel-button": "取消",
+          "confirm-button": "确定",
+          "validation_min": "最小提现金额为 {{count}} CNY",
+          "validation_max": "最大提现金额为 {{count}} CNY",
+          "validation_required": "请输入提现金额"
+        },
+        "withdraw-button": "提现",
+        "withdraw-dialog": {
+          "title": "推广佣金提现",
+          "info": "{{amount}} CNY 可提现，提现后将从推广佣金中扣除",
+          "withdraw-account_label": "提现账户",
+          "withdraw-method_label": "提现方式",
+          "withdraw-amount_label": "提现金额",
+          "cancel-button": "取消",
+          "confirm-button": "确定",
+          "validation_required": "请输入{{name}}"
+        }
+      },
+      "info-card": {
+        "title": "推广统计",
+        "user-register-count": "用户注册数",
+        "user-register-count-value": "{{count}} 人",
+        "commission-rate": "佣金比例",
+        "commission-rate-value": "{{rate}} %",
+        "commission-confirming": "待确认佣金",
+        "commission-confirming-value": "{{count}} CNY",
+        "commission-total": "累计佣金",
+        "commission-total-value": "{{count}} CNY"
+      },
+      "invite-codes-table": {
+        "title": "我的邀请码",
+        "generate_tooltip": "生成邀请码",
+        "id_header": "ID",
+        "code_header": "邀请码",
+        "code_description": "邀请码是您的邀请链接的重要一部分。",
+        "created_at_header": "创建时间",
+        "created_at_description": "创建时间是邀请码在系统中生成的时间。",
+        "actions_header": "操作",
+        "action-copy": "复制",
+        "action-delete": "删除"
+      }
+    },
+    "commissions": {
+      "id_header": "ID",
+      "order-amount_header": "订单金额",
+      "order-amount_description": "订单金额是用户购买商品时的订单金额。",
+      "get-amount_header": "获得佣金",
+      "get-amount_description": "获得佣金是用户购买商品后你获得的佣金。",
+      "created-at_header": "创建时间",
+      "created-at_description": "创建时间是佣金在系统中生成的时间。",
+      "amount-value": "{{value}} CNY"
+    }
+  },
+  "profile": {
+    "account-info-card": {
+      "title": "Account Info",
+      "table": {
+        "email_key": "Email",
+        "email_value": "{{email}}",
+        "plan_id_key": "Plan ID",
+        "plan_id_value": "{{count}}",
+        "plan_id_value_zero": "None",
+        "plan_expired_at_key": "Subscription Expire",
+        "plan_expired_at_value": "{{date}}",
+        "created_at_key": "Created At",
+        "created_at_value": "{{date}}"
+      }
+    },
+    "wallet-card": {
+      "title": "My Wallet",
+      "table": {
+        "balance_key": "Balance",
+        "balance_value": "{{value}} CNY",
+        "commission_balance_key": "Promotion commission",
+        "commission_balance_value": "{{value}} CNY"
+      }
+    },
+    "change-password-card": {
+      "title": "Change Password",
+      "form": {
+        "old_password_label": "Old Password",
+        "old_password_required": "Please enter old password.",
+        "new_password_label": "New Password",
+        "new_password_required": "Please enter a new password.",
+        "new_password_min": "The new password must be at least {{count}} characters long.",
+        "confirm_password_label": "Confirm Password",
+        "confirm_password_required": "Please enter the confirmation password.",
+        "confirm_password_not_match": "The two entered passwords do not match.",
+        "submit-button": "Submit",
+        "reset-button": "Reset"
+      }
+    },
+    "notification-card": {
+      "title": "Notification settings",
+      "expired_notify_label": "Subscription expiration reminder",
+      "traffic_notify_label": "Traffic usage reminder",
+      "save-button": "Save"
+    },
+    "telegram-card": {
+      "title": "Telegram Notification",
+      "description": "After binding your Telegram account, you can receive notifications such as subscription expiration reminders and data usage reminders on Telegram.",
+      "add_bot": "Add bot",
+      "add_bot_content": "Please download Telegram and follow the link to add a bot: <0>https://t.me/{{name}}<0>",
+      "send_command_label": "Send command",
+      "send_command_content": "Please send the command {{command}} to the robot in Telegram to bind the account.",
+      "add_to_group_label": "Join the Telegram group",
+      "add_to_group_content": "Join the Telegram group for more help: <0>{{link}}</0>",
+      "next_step": "Next",
+      "previous_step": "Previous"
+    },
+    "reset-subscription-card": {
+      "title": "Reset Subscription",
+      "alert": "When your subscription address or account is leaked and misused by others, you can reset your subscription information here. Avoid unnecessary losses.",
+      "button": "Go Reset",
+      "dialog": {
+        "title": "Are you sure you want to reset subscription information?",
+        "content": "This can be done if your subscription address or information is compromised. After resetting, your UUID and subscription will change, and you need to re-import the subscription.",
+        "cancel": "Cancel",
+        "confirm": "Confirm"
+      }
+    }
   }
 }

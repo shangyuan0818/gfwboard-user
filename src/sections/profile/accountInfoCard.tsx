@@ -40,13 +40,6 @@ const AccountInfoCard: React.FC = () => {
               context: "value",
               date: dayjs.unix(data?.created_at ?? 0).format("YYYY-MM-DD HH:mm")
             })
-          },
-          {
-            key: t("profile.account-info-card.table.last_login_at", { context: "key" }),
-            value: t("profile.account-info-card.table.last_login_at", {
-              context: "value",
-              date: dayjs.unix(data?.last_login_at ?? data?.created_at ?? 0).format("YYYY-MM-DD HH:mm")
-            })
           }
         ] satisfies KeyValueData[]
       ).map((datum) => ({

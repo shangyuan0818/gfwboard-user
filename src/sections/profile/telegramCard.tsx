@@ -21,7 +21,7 @@ const TelegramCard: React.FC = () => {
     parseInt(localStorage.getItem("telegram_card_init") || "0") || 0,
     {
       min: 0,
-      max: 2
+      max: 3
     }
   );
 
@@ -29,7 +29,7 @@ const TelegramCard: React.FC = () => {
     () => () =>
       (
         <Stack direction={"row"} spacing={1} mt={2}>
-          <Button onClick={() => incActiveStep()} variant={"contained"} disabled={activeStep >= 2}>
+          <Button onClick={() => incActiveStep()} variant={"contained"} disabled={activeStep >= 3}>
             {t("profile.telegram-card.next_step")}
           </Button>
           <Button onClick={() => decActiveStep()} variant={"text"} disabled={activeStep <= 0}>
@@ -80,7 +80,11 @@ const TelegramCard: React.FC = () => {
           </StepContent>
         </Step>
         <Step>
-          <StepLabel>{t("profile.telegram-card.add_to_group", { context: "label" })}</StepLabel>
+          <StepLabel>
+            <Typography variant={"subtitle1"}>
+              {t("profile.telegram-card.add_to_group", { context: "label" })}
+            </Typography>
+          </StepLabel>
           <StepContent>
             <Box>
               <Typography>

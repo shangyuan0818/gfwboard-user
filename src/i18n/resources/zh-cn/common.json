@@ -462,9 +462,7 @@
         "plan_expired_at_key": "订阅过期时间",
         "plan_expired_at_value": "{{date}}",
         "created_at_key": "创建时间",
-        "created_at_value": "{{date}}",
-        "last_login_at_key": "最后登录时间",
-        "last_login_at_value": "{{date}}"
+        "created_at_value": "{{date}}"
       }
     },
     "wallet-card": {
@@ -516,7 +514,6 @@
       "title": "重置订阅",
       "alert": "当你的订阅地址或账户发生泄漏被他人滥用时，可以在此重置订阅信息。避免带来不必要的损失。",
       "button": "重置订阅",
-      "reset-confirm": "您确定要重置订阅吗？",
       "dialog": {
         "title": "确定要重置订阅信息？",
         "content": "如果您的订阅地址或信息发生泄露可以执行此操作。重置后您的 UUID 及订阅将会变更，需要重新导入订阅。",

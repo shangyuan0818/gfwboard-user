@@ -489,6 +489,13 @@ const api = createApi({
           method: "GET"
         }),
         providesTags: ["TelegramBotInfo"]
+      }),
+      resetSecurity: builder.mutation<boolean, void>({
+        query: () => ({
+          url: "/user/resetSecurity",
+          method: "GET"
+        }),
+        invalidatesTags: ["User", "Subscription"]
       })
     };
   }
@@ -529,6 +536,7 @@ export const {
   useGenerateInviteCodeMutation,
   useChangePasswordMutation,
   useUpdateUserMutation,
-  useGetTelegramBotQuery
+  useGetTelegramBotQuery,
+  useResetSecurityMutation
 } = api;
 export default api;

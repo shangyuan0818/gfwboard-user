@@ -511,6 +511,18 @@
       "add_to_group_content": "加入 Telegram 群组以获得更多帮助：<0>{{link}}</0>",
       "next_step": "下一步",
       "previous_step": "上一步"
+    },
+    "reset-subscription-card": {
+      "title": "重置订阅",
+      "alert": "当你的订阅地址或账户发生泄漏被他人滥用时，可以在此重置订阅信息。避免带来不必要的损失。",
+      "button": "重置订阅",
+      "reset-confirm": "您确定要重置订阅吗？",
+      "dialog": {
+        "title": "确定要重置订阅信息？",
+        "content": "如果您的订阅地址或信息发生泄露可以执行此操作。重置后您的 UUID 及订阅将会变更，需要重新导入订阅。",
+        "cancel": "取消",
+        "confirm": "确定"
+      }
     }
   }
 }

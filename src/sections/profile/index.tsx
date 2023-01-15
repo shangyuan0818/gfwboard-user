@@ -9,6 +9,7 @@ import WalletCard from "./walletCard";
 import ChangePasswordCard from "./changePasswordCard";
 import NotificationCard from "./notificationCard";
 import TelegramCard from "./telegramCard";
+import ResetSubscriptionCard from "./resetSubscriptionCard";
 
 const Profile: React.FC = () => (
   <Masonry
@@ -24,6 +25,7 @@ const Profile: React.FC = () => (
     <ChangePasswordCard />
     <NotificationCard />
     <TelegramCard />
+    <ResetSubscriptionCard />
   </Masonry>
 );
 

@@ -449,5 +449,32 @@
       "created-at_description": "创建时间是佣金在系统中生成的时间。",
       "amount-value": "{{value}} CNY"
     }
+  },
+  "profile": {
+    "account-info-card": {
+      "title": "账户信息",
+      "table": {
+        "email_key": "邮箱",
+        "email_value": "{{email}}",
+        "plan_id_key": "套餐 ID",
+        "plan_id_value": "{{count}}",
+        "plan_id_value_zero": "无",
+        "plan_expired_at_key": "订阅过期时间",
+        "plan_expired_at_value": "{{date}}",
+        "created_at_key": "创建时间",
+        "created_at_value": "{{date}}",
+        "last_login_at_key": "最后登录时间",
+        "last_login_at_value": "{{date}}"
+      }
+    },
+    "wallet-card": {
+      "title": "我的资产",
+      "table": {
+        "balance_key": "余额",
+        "balance_value": "{{value}} CNY",
+        "commission_balance_key": "推广佣金",
+        "commission_balance_value": "{{value}} CNY"
+      }
+    }
   }
 }

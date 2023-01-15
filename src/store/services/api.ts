@@ -30,7 +30,7 @@ import type { PaymentMethod } from "@/model/payment";
 import type Server from "@/model/server";
 import type InviteData from "@/model/invite_data";
 import type { CommissionQuery, CommissionResponse } from "@/model/commission";
-import { WithdrawPayload } from "@/model/withdraw";
+import type { WithdrawPayload } from "@/model/withdraw";
 
 type AxiosBaseQueryFn = BaseQueryFn<
   {

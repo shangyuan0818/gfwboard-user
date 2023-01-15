@@ -3,6 +3,7 @@ import { NavItemType } from "@/types/menu";
 import {
   DashboardOutlined,
   MonitorOutlined,
+  ProfileOutlined,
   ReadOutlined,
   ShoppingOutlined,
   TeamOutlined,
@@ -86,6 +87,13 @@ const menuItems: { items: NavItemType[] } = {
               url: "/invite/commissions"
             }
           ]
+        },
+        {
+          id: "profile",
+          title: "profile",
+          type: "item",
+          url: "/profile",
+          icon: ProfileOutlined
         }
       ]
     }

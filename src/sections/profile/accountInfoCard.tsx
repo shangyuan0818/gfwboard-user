@@ -24,12 +24,8 @@ const AccountInfoCard: React.FC = () => {
             value: t("profile.account-info-card.table.email", { context: "value", email: data?.email })
           },
           {
-            key: <Typography noWrap>{t("profile.account-info-card.table.plan_id", { context: "key" })}</Typography>,
-            value: (
-              <Typography noWrap>
-                {t("profile.account-info-card.table.plan_id", { context: "value", count: data?.plan_id ?? 0 })}
-              </Typography>
-            )
+            key: t("profile.account-info-card.table.plan_id", { context: "key" }),
+            value: t("profile.account-info-card.table.plan_id", { context: "value", count: data?.plan_id ?? 0 })
           },
           {
             key: t("profile.account-info-card.table.plan_expired_at", { context: "key" }),

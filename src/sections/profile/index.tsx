@@ -4,8 +4,9 @@ import React from "react";
 import { Masonry } from "@mui/lab";
 
 // project imports
-import AccountInfoCard from "@/sections/profile/accountInfoCard";
-import WalletCard from "@/sections/profile/walletCard";
+import AccountInfoCard from "./accountInfoCard";
+import WalletCard from "./walletCard";
+import ChangePasswordCard from "./changePasswordCard";
 
 const Profile: React.FC = () => (
   <Masonry
@@ -18,6 +19,7 @@ const Profile: React.FC = () => (
   >
     <AccountInfoCard />
     <WalletCard />
+    <ChangePasswordCard />
   </Masonry>
 );
 

@@ -475,6 +475,21 @@
         "commission_balance_key": "推广佣金",
         "commission_balance_value": "{{value}} CNY"
       }
+    },
+    "change-password-card": {
+      "title": "修改密码",
+      "form": {
+        "old_password_label": "旧密码",
+        "old_password_required": "请输入旧密码",
+        "new_password_label": "新密码",
+        "new_password_required": "请输入新密码",
+        "new_password_min": "新密码长度不能少于 {{count}} 位",
+        "confirm_password_label": "确认密码",
+        "confirm_password_required": "请输入确认密码",
+        "confirm_password_not_match": "两次输入的密码不一致",
+        "submit-button": "提交",
+        "reset-button": "重置"
+      }
     }
   }
 }

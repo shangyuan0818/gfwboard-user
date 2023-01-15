@@ -7,7 +7,8 @@ import { Masonry } from "@mui/lab";
 import AccountInfoCard from "./accountInfoCard";
 import WalletCard from "./walletCard";
 import ChangePasswordCard from "./changePasswordCard";
-import NotificationCard from "@/sections/profile/notificationCard";
+import NotificationCard from "./notificationCard";
+import TelegramCard from "./telegramCard";
 
 const Profile: React.FC = () => (
   <Masonry
@@ -22,6 +23,7 @@ const Profile: React.FC = () => (
     <WalletCard />
     <ChangePasswordCard />
     <NotificationCard />
+    <TelegramCard />
   </Masonry>
 );
 

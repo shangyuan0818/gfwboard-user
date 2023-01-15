@@ -33,6 +33,7 @@ import type InviteData from "@/model/invite_data";
 import type { CommissionQuery, CommissionResponse } from "@/model/commission";
 import type { WithdrawPayload } from "@/model/withdraw";
 import type { ChangePasswordPayload } from "@/model/password";
+import type { TelegramBotInfo } from "@/model/telegram";
 
 export type BaseQueryArgs = {
   url: string;
@@ -105,7 +106,8 @@ const api = createApi({
     "Server",
     "InviteData",
     "InviteCode",
-    "Commission"
+    "Commission",
+    "TelegramBotInfo"
   ],
   refetchOnReconnect: true,
   endpoints: (builder) => {
@@ -480,6 +482,13 @@ const api = createApi({
           }
         }),
         invalidatesTags: ["User"]
+      }),
+      getTelegramBot: builder.query<TelegramBotInfo, void>({
+        query: () => ({
+          url: "/user/telegram/getBotInfo",
+          method: "GET"
+        }),
+        providesTags: ["TelegramBotInfo"]
       })
     };
   }
@@ -519,6 +528,7 @@ export const {
   useWithdrawMoneyMutation,
   useGenerateInviteCodeMutation,
   useChangePasswordMutation,
-  useUpdateUserMutation
+  useUpdateUserMutation,
+  useGetTelegramBotQuery
 } = api;
 export default api;

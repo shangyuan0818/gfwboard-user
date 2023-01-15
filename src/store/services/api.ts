@@ -11,6 +11,7 @@ import { login } from "@/store/reducers/auth";
 import type ApiResponse from "@/model/api_response";
 import type { LoginPayload, LoginResponse } from "@/model/login";
 import type User from "@/model/user";
+import type { UserUpdatePayload } from "@/model/user";
 import type Subscription from "@/model/subscription";
 import type Notice from "@/model/notice";
 import type { GuestConfig, UserConfig } from "@/model/config";
@@ -468,6 +469,17 @@ const api = createApi({
           }
         }),
         invalidatesTags: ["User"]
+      }),
+      updateUser: builder.mutation<boolean, UserUpdatePayload>({
+        query: (body) => ({
+          url: "/user/update",
+          method: "POST",
+          body: qs.stringify(body),
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+          }
+        }),
+        invalidatesTags: ["User"]
       })
     };
   }
@@ -506,6 +518,7 @@ export const {
   useTransferMoneyMutation,
   useWithdrawMoneyMutation,
   useGenerateInviteCodeMutation,
-  useChangePasswordMutation
+  useChangePasswordMutation,
+  useUpdateUserMutation
 } = api;
 export default api;

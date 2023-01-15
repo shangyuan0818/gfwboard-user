@@ -490,6 +490,12 @@
         "submit-button": "提交",
         "reset-button": "重置"
       }
+    },
+    "notification-card": {
+      "title": "通知设置",
+      "expired_notify_label": "订阅过期提醒",
+      "traffic_notify_label": "流量用量提醒",
+      "save-button": "保存"
     }
   }
 }

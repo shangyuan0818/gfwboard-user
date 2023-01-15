@@ -26,5 +26,7 @@
   "order-cancel_fail": "取消订单失败",
   "checkout-failed": "调用支付接口失败，请联系管理员",
   "generate-invite-codes_success": "邀请码已生成",
-  "generate-invite-codes_fail": "邀请码生成失败"
+  "generate-invite-codes_fail": "邀请码生成失败",
+  "update-user_success": "用户信息已更新",
+  "update-user_fail": "用户信息更新失败"
 }

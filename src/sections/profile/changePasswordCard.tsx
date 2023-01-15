@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useCallback, useMemo } from "react";
 
 // third-party
 import { useTranslation } from "react-i18next";
 import { Formik } from "formik";
+import type { FormikHelpers } from "formik/dist/types";
 import * as Yup from "yup";
 
 // material-ui
@@ -15,12 +16,12 @@ import { BaseQueryError, useChangePasswordMutation } from "@/store/services/api"
 import { useDispatch } from "@/store";
 import { logout } from "@/store/reducers/auth";
 
-type ChangePasswordData = ChangePasswordPayload & {
+type ChangePasswordFormData = ChangePasswordPayload & {
   confirm_password: string;
   submit: null;
 };
 
-const initialValues: ChangePasswordData = {
+const initialValues: ChangePasswordFormData = {
   old_password: "",
   new_password: "",
   confirm_password: "",
@@ -32,45 +33,55 @@ const ChangePasswordCard: React.FC = () => {
   const dispatch = useDispatch();
   const [changePassword] = useChangePasswordMutation();
 
+  const validationSchema = useMemo(
+    () =>
+      Yup.object({
+        old_password: Yup.string().required(
+          t("profile.change-password-card.form.old_password", {
+            context: "required"
+          }).toString()
+        ),
+        new_password: Yup.string()
+          .required(t("profile.change-password-card.form.new_password", { context: "required" }).toString())
+          .min(8, t("profile.change-password-card.form.new_password", { context: "min", count: 8 }).toString()),
+        confirm_password: Yup.string()
+          .required(t("profile.change-password-card.form.confirm_password", { context: "required" }).toString())
+          .oneOf(
+            [Yup.ref("new_password")],
+            t("profile.change-password-card.form.confirm_password", { context: "not_match" }).toString()
+          )
+      }),
+    [t]
+  );
+
+  const handleSubmit = useCallback(
+    async (
+      values: ChangePasswordFormData,
+      { setSubmitting, setStatus, setErrors }: FormikHelpers<ChangePasswordFormData>
+    ) => {
+      try {
+        await changePassword(values).unwrap();
+        setStatus({ success: true });
+        dispatch(logout());
+      } catch (_e: any) {
+        const err = _e as BaseQueryError;
+        console.error("Error changing password", err);
+        setStatus({ success: false, message: err.message });
+        setErrors(
+          err.errors || {
+            submit: err.message
+          }
+        );
+      } finally {
+        setSubmitting(false);
+      }
+    },
+    [changePassword, dispatch]
+  );
+
   return (
     <MainCard title={t("profile.change-password-card.title")}>
-      <Formik
-        initialValues={initialValues}
-        validationSchema={Yup.object({
-          old_password: Yup.string().required(
-            t("profile.change-password-card.form.old_password", {
-              context: "required"
-            }).toString()
-          ),
-          new_password: Yup.string()
-            .required(t("profile.change-password-card.form.new_password", { context: "required" }).toString())
-            .min(8, t("profile.change-password-card.form.new_password", { context: "min", count: 8 }).toString()),
-          confirm_password: Yup.string()
-            .required(t("profile.change-password-card.form.confirm_password", { context: "required" }).toString())
-            .oneOf(
-              [Yup.ref("new_password")],
-              t("profile.change-password-card.form.confirm_password", { context: "not_match" }).toString()
-            )
-        })}
-        onSubmit={async (values, { setSubmitting, setStatus, setErrors }) => {
-          try {
-            await changePassword(values).unwrap();
-            setStatus({ success: true });
-            dispatch(logout());
-          } catch (_e: any) {
-            const err = _e as BaseQueryError;
-            console.error("Error changing password", err);
-            setStatus({ success: false, message: err.message });
-            setErrors(
-              err.errors || {
-                submit: err.message
-              }
-            );
-          } finally {
-            setSubmitting(false);
-          }
-        }}
-      >
+      <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
         {({ handleChange, handleBlur, handleSubmit, errors, touched, isSubmitting, values }) => (
           <Box component={"form"} onSubmit={handleSubmit}>
             <Stack spacing={2}>
@@ -117,7 +128,7 @@ const ChangePasswordCard: React.FC = () => {
               />
               <Stack direction={"row"} justifyContent={"space-between"}>
                 <Box>
-                  <Typography variant={"caption"} color={"error"}>
+                  <Typography variant={"caption"} color={"error"} noWrap>
                     {errors.submit}
                   </Typography>
                 </Box>

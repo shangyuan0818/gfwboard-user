@@ -7,9 +7,6 @@ import { Provider as ReduxProvider } from "react-redux";
 import "react-app-polyfill/ie11";
 import "core-js/stable";
 
-// scroll bar
-import "simplebar/src/simplebar.css";
-
 // apex-chart
 import "@/assets/third-party/apex-chart.css";
 import "@/assets/third-party/react-table.css";

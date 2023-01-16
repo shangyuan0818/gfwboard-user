@@ -3,8 +3,8 @@ import { useParams } from "react-router-dom";
 
 // project imports
 import useTitle from "@/hooks/useTitle";
-import { TicketProvider } from "@/sections/ticket/context";
-import TicketSection from "@/sections/ticket";
+import { TicketProvider } from "@/sections/ticket/detailPage/context";
+import TicketSection from "@/sections/ticket/detailPage";
 
 // assets
 import "emoji-picker-react/src/EmojiPickerReact.css";

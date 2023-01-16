@@ -10,7 +10,7 @@ import MuiMarkdown from "mui-markdown";
 // project imports
 import SimpleBar from "@/components/third-party/SimpleBar";
 import Avatar from "@/components/@extended/Avatar";
-import { useTicketContext } from "@/sections/ticket/context";
+import { useTicketContext } from "../context";
 import { Message } from "@/model/ticket";
 import { makeStyles } from "@/themes/hooks";
 import { useGetUserInfoQuery } from "@/store/services/api";

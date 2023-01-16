@@ -10,7 +10,7 @@ import { Avatar, List, ListItem, ListItemAvatar, ListItemButton, ListItemText, S
 
 // project imports
 import Dot from "@/components/@extended/Dot";
-import { useTicketContext } from "@/sections/ticket/context";
+import { useTicketContext } from "./context";
 import { TicketLevel, TicketReplyStatus, TicketStatus } from "@/model/ticket";
 import { makeStyles } from "@/themes/hooks";
 

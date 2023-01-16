@@ -18,7 +18,7 @@ import {
 import { LoadingButton } from "@mui/lab";
 
 // project imports
-import { useTicketContext } from "@/sections/ticket/context";
+import { useTicketContext } from "../../context";
 import { useCloseTicketMutation } from "@/store/services/api";
 
 // assets

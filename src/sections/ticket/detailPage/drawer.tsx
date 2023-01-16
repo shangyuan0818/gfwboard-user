@@ -9,7 +9,7 @@ import { Box, Chip, Drawer, InputAdornment, OutlinedInput, Stack, Typography, us
 import UserList from "./userList";
 import MainCard from "@/components/MainCard";
 import SimpleBar from "@/components/third-party/SimpleBar";
-import { useTicketContext } from "@/sections/ticket/context";
+import { useTicketContext } from "./context";
 import { makeStyles } from "@/themes/hooks";
 import { TicketStatus } from "@/model/ticket";
 

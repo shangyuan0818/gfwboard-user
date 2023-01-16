@@ -1,17 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import { useTranslation } from "react-i18next";
 
 // material-ui
-import { Grid, IconButton, Menu, MenuItem, Skeleton, Stack, Typography } from "@mui/material";
+import { Grid, IconButton, Skeleton, Stack, Typography } from "@mui/material";
 
 // project imports
 import { TicketLevelMap, TicketStatus } from "@/model/ticket";
-import { useTicketContext } from "@/sections/ticket/context";
+import { useTicketContext } from "../../context";
 import { makeStyles } from "@/themes/hooks";
+import CloseButton from "./closeButton";
 
 // assets
-import { DownloadOutlined, MenuFoldOutlined, MenuUnfoldOutlined, MoreOutlined } from "@ant-design/icons";
-import CloseButton from "@/sections/ticket/main/topBar/closeButton";
+import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 
 const useStyles = makeStyles()((theme) => ({
   root: {

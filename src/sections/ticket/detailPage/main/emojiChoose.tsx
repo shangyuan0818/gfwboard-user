@@ -9,7 +9,7 @@ import { useTheme } from "@mui/material/styles";
 
 // project imports
 import MainCard from "@/components/MainCard";
-import { useTicketContext } from "@/sections/ticket/context";
+import { useTicketContext } from "../context";
 import config from "@/config";
 import { makeStyles } from "@/themes/hooks";
 

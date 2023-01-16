@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import lo from "lodash-es";
 
@@ -6,8 +6,8 @@ import lo from "lodash-es";
 import { IconButton, Stack, TextField } from "@mui/material";
 
 // project imports
-import EmojiChoose from "@/sections/ticket/main/emojiChoose";
-import { useTicketContext } from "@/sections/ticket/context";
+import EmojiChoose from "./emojiChoose";
+import { useTicketContext } from "../context";
 import { makeStyles } from "@/themes/hooks";
 
 // assets

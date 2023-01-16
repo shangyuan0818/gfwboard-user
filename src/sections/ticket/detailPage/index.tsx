@@ -4,8 +4,8 @@ import React from "react";
 import { Box } from "@mui/material";
 
 // project imports
-import Drawer from "@/sections/ticket/drawer";
-import Main from "@/sections/ticket/main";
+import Drawer from "./drawer";
+import Main from "./main";
 
 const TicketSection: React.FC = () => {
   return (

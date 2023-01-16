@@ -6,10 +6,10 @@ import { Box, Grid, Stack, Typography } from "@mui/material";
 
 // project imports
 import MainCard from "@/components/MainCard";
-import { useTicketContext } from "@/sections/ticket/context";
-import TopBar from "@/sections/ticket/main/topBar";
-import InputArea from "@/sections/ticket/main/inputArea";
-import ChatHistory from "@/sections/ticket/main/chatHistory";
+import { useTicketContext } from "../context";
+import TopBar from "./topBar";
+import InputArea from "./inputArea";
+import ChatHistory from "./chatHistory";
 import { makeStyles } from "@/themes/hooks";
 
 const useStyles = makeStyles<{

@@ -89,7 +89,15 @@ const DataGrid: React.FC<MyDataGridProps> = ({ localeText, ...props }) => {
     [t]
   );
 
-  return <MuiDataGrid localeText={Object.assign(defaultLocaleText, localeText)} {...props} />;
+  return (
+    <MuiDataGrid
+      localeText={Object.assign(defaultLocaleText, localeText)}
+      logLevel={import.meta.env.DEV ? "debug" : "error"}
+      columnBuffer={2}
+      columnThreshold={2}
+      {...props}
+    />
+  );
 };
 
 export default DataGrid;

@@ -3,7 +3,7 @@ import React, { useState } from "react";
 // third party
 import { useToggle } from "ahooks";
 import { useTranslation } from "react-i18next";
-import { Formik } from "formik";
+import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import lo from "lodash-es";
 import { useNavigate } from "react-router-dom";
@@ -37,11 +37,22 @@ import {
   useTransferMoneyMutation,
   useWithdrawMoneyMutation
 } from "@/store/services/api";
+import { makeStyles } from "@/themes/hooks";
+import { useTheme } from "@mui/material/styles";
+
+const useStyles = makeStyles()((theme) => ({
+  root: {},
+  form: {
+    backgroundColor: "transparent"
+  }
+}));
 
 const TransferButton: React.FC = () => {
   const { t } = useTranslation();
   const { data } = useGetInviteDataQuery();
   const [transfer] = useTransferMoneyMutation();
+  const { classes } = useStyles();
+  const theme = useTheme();
 
   const [open, { setLeft: setClose, setRight: setOpen }] = useToggle(false);
 
@@ -85,7 +96,7 @@ const TransferButton: React.FC = () => {
           }}
         >
           {({ values, handleChange, handleBlur, handleSubmit, isSubmitting, errors, touched }) => (
-            <Box component={"form"} onSubmit={handleSubmit}>
+            <Box component={Form} onSubmit={handleSubmit} className={classes.form}>
               <DialogContent>
                 <Stack spacing={3}>
                   <Alert severity={"info"}>
@@ -100,6 +111,7 @@ const TransferButton: React.FC = () => {
                     fullWidth
                     value={(data?.stat[4] ?? 0) / 100}
                     label={t("invite.my-invite.invitation-card.transfer-dialog.total-amount", { context: "label" })}
+                    variant={"standard"}
                   />
                   <TextField
                     id={"transfer-amount"}
@@ -113,6 +125,7 @@ const TransferButton: React.FC = () => {
                     disabled={isSubmitting}
                     helperText={errors.transfer_amount && touched.transfer_amount ? errors.transfer_amount : undefined}
                     error={Boolean(touched.transfer_amount && errors.transfer_amount)}
+                    variant={"standard"}
                   />
                 </Stack>
               </DialogContent>
@@ -144,6 +157,7 @@ const WithdrawButton: React.FC = () => {
   const [withdrew] = useWithdrawMoneyMutation();
 
   const navigate = useNavigate();
+  const { classes } = useStyles();
 
   return (
     <>
@@ -192,16 +206,16 @@ const WithdrawButton: React.FC = () => {
           }}
         >
           {({ values, handleChange, handleBlur, handleSubmit, isSubmitting, errors, touched }) => (
-            <Box component={"form"} onSubmit={handleSubmit}>
+            <Box component={Form} onSubmit={handleSubmit} className={classes.form}>
               <DialogContent>
                 <Stack spacing={3}>
-                  <Alert severity={"info"}>
+                  <Alert severity={"info"} color={"info"}>
                     {t("invite.my-invite.invitation-card.withdraw-dialog.info", {
                       siteName: config.title,
                       amount: (data?.stat[4] ?? 0) / 100
                     })}
                   </Alert>
-                  <FormControl fullWidth>
+                  <FormControl fullWidth variant={"standard"}>
                     <InputLabel id="select-payment-label">
                       {t("invite.my-invite.invitation-card.withdraw-dialog.withdraw-method", {
                         context: "label"
@@ -245,6 +259,7 @@ const WithdrawButton: React.FC = () => {
                       errors.withdraw_account && touched.withdraw_account ? errors.withdraw_account : undefined
                     }
                     error={Boolean(touched.withdraw_account && errors.withdraw_account)}
+                    variant={"standard"}
                   />
                 </Stack>
               </DialogContent>
@@ -269,7 +284,12 @@ const MyInvitationCard: React.FC = () => {
   const { data } = useGetInviteDataQuery();
 
   return (
-    <MainCard title={t("invite.my-invite.invitation-card.title")} sx={{ height: 240 }}>
+    <MainCard
+      title={t("invite.my-invite.invitation-card.title")}
+      sx={{
+        height: 240
+      }}
+    >
       <Stack spacing={2}>
         <Stack direction={"row"} spacing={2} alignItems={"flex-end"}>
           <Typography variant={"h2"} component={"span"}>
@@ -281,7 +301,7 @@ const MyInvitationCard: React.FC = () => {
         </Stack>
         <Box>
           <Typography variant={"subtitle1"}>{t("invite.my-invite.invitation-card.description")}</Typography>
-          <Typography variant={"body2"} color={"textSecondary"}>
+          <Typography variant={"body2"} color={"textSecondary"} noWrap>
             {t("invite.my-invite.invitation-card.helperText")}
           </Typography>
         </Box>

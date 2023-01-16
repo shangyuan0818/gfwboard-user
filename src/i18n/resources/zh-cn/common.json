@@ -521,5 +521,55 @@
         "confirm": "确定"
       }
     }
+  },
+  "ticket": {
+    "drawer": {
+      "title": "工单",
+      "new-ticket": "新建工单",
+      "updated_at_just_now": "刚刚",
+      "updated_at": "更新于 {{date}}",
+      "updated_at_minute": "更新于 {{count}} 分钟前",
+      "updated_at_hour": "更新于 {{count}} 小时前",
+      "updated_at_day": "更新于 {{count}} 天前",
+      "updated_at_month": "更新于 {{count}} 月前",
+      "updated_at_year": "更新于 {{count}} 年前",
+      "reply_status_replied": "已回复",
+      "reply_status_pending": "待回复",
+      "reply_status_closed": "已关闭",
+      "search_placeholder": "搜索工单",
+      "create_dialog": {
+        "title": "新建工单",
+        "subject_label": "主题",
+        "subject_required": "请输入主题",
+        "message_label": "内容",
+        "message_required": "请输入内容",
+        "level_label": "优先级",
+        "level_required": "请选择优先级",
+        "level_0": "低",
+        "level_1": "中",
+        "level_2": "高",
+        "cancel_button": "取消",
+        "submit_button": "提交"
+      }
+    },
+    "header": {
+      "title": "工单 {{id}}：{{subject}}",
+      "ticket_level_low": "优先级：低",
+      "ticket_level_medium": "优先级：中",
+      "ticket_level_high": "优先级：高",
+      "close_dialog": {
+        "title": "关闭工单",
+        "content": "您确定要关闭工单吗？关闭工单后无法继续打开，当然您可以通过创建新的工单来继续您的咨询。",
+        "cancel-button": "取消",
+        "confirm-button": "确定"
+      }
+    },
+    "conversation": {
+      "none_selected": "暂无工单"
+    },
+    "input-area": {
+      "input_placeholder": "输入回复内容",
+      "submit-button": "提交"
+    }
   }
 }

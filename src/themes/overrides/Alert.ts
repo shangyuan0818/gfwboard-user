@@ -32,6 +32,7 @@ export default function Alert(theme: Theme) {
       styleOverrides: {
         root: {
           color: theme.palette.text.primary,
+          backgroundColor: primaryDashed.backgroundColor,
           fontSize: "0.875rem"
         },
         icon: {

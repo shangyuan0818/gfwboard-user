@@ -9,11 +9,12 @@ import ThemeOption from "./theme";
 
 // types
 import { PaletteThemeProps } from "@/types/theme";
-import { PresetColor, ThemeMode } from "@/types/config";
+import { PresetColor } from "@/types/config";
+import { PaletteMode } from "@mui/material";
 
 // ==============================|| DEFAULT THEME - PALETTE  ||============================== //
 
-const Palette = (mode: ThemeMode, presetColor: PresetColor) => {
+const Palette = (mode: PaletteMode, presetColor: PresetColor) => {
   const colors: PalettesProps = mode === "dark" ? presetDarkPalettes : presetPalettes;
 
   let greyPrimary = [
@@ -53,6 +54,7 @@ const Palette = (mode: ThemeMode, presetColor: PresetColor) => {
   colors.grey = [...greyPrimary, ...greyAscent, ...greyConstant];
 
   const paletteColor: PaletteThemeProps = ThemeOption(colors, presetColor, mode);
+  console.log(paletteColor.grey);
 
   return createTheme({
     palette: {
@@ -73,7 +75,7 @@ const Palette = (mode: ThemeMode, presetColor: PresetColor) => {
       divider: mode === "dark" ? alpha(paletteColor.grey[900]!, 0.05) : paletteColor.grey[200],
       background: {
         paper: mode === "dark" ? paletteColor.grey[100] : paletteColor.grey[0],
-        default: paletteColor.grey.A50
+        default: paletteColor.grey["A50"]
       }
     }
   });

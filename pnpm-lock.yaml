@@ -49,6 +49,7 @@ specifiers:
   dayjs: ^1.11.7
   dotenv: ^16.0.3
   dotenv-expand: ^10.0.0
+  emoji-picker-react: ^4.4.7
   eslint: ^8.30.0
   eslint-config-prettier: ^8.5.0
   eslint-config-react-app: ^7.0.1
@@ -145,6 +146,7 @@ dependencies:
   dayjs: 1.11.7
   dotenv: 16.0.3
   dotenv-expand: 10.0.0
+  emoji-picker-react: 4.4.7_react@18.2.0
   flag-icons: 6.6.6
   formik: 2.2.9_react@18.2.0
   framer-motion: 8.2.4_biqbaboplfbrettd7655fr4n2y
@@ -3892,6 +3894,16 @@ packages:
       inherits: 2.0.4
       minimalistic-assert: 1.0.1
       minimalistic-crypto-utils: 1.0.1
+    dev: false
+
+  /emoji-picker-react/4.4.7_react@18.2.0:
+    resolution: {integrity: sha512-HcB1Fr57W6M+gLLm/W4YhbAnUQqYBUAhZBOHmPlSQODLtsDI8vecyqNIF9RrStZHfZwzUSLlpZMfY07AA6gxmA==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      react: '>=16'
+    dependencies:
+      clsx: 1.2.1
+      react: 18.2.0
     dev: false
 
   /emoji-regex/7.0.3:

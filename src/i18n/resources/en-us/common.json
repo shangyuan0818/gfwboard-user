@@ -512,5 +512,57 @@
         "confirm": "Confirm"
       }
     }
+  },
+  "ticket": {
+    "drawer": {
+      "title": "Ticket",
+      "new-ticket": "New Ticket",
+      "updated_at_just_now": "Just now",
+      "updated_at": "Updated at {{date}}",
+      "updated_at_minute_one": "Updated 1 minute ago",
+      "updated_at_minute": "Updated {{count}} minutes ago",
+      "updated_at_hour_one": "Updated {{count}} hours ago",
+      "updated_at_hour": "Updated {{count}} hours ago",
+      "updated_at_day": "Updated {{count}} days ago",
+      "updated_at_month": "Updated {{count}} months ago",
+      "updated_at_year": "Updated {{count}} years ago",
+      "reply_status_replied": "Replied",
+      "reply_status_pending": "Pending reply",
+      "reply_status_closed": "Closed",
+      "search_placeholder": "Search",
+      "create_dialog": {
+        "title": "New Ticket",
+        "subject_label": "Subject",
+        "subject_required": "Please enter a subject.",
+        "message_label": "Content",
+        "message_required": "Please enter content.",
+        "level_label": "Priority",
+        "level_required": "Please select a priority.",
+        "level_0": "Low",
+        "level_1": "Medium",
+        "level_2": "High",
+        "cancel_button": "Cancel",
+        "submit_button": "Submit"
+      }
+    },
+    "header": {
+      "title": "Ticket {{id}}: {{subject}}",
+      "ticket_level_low": "Low Priority",
+      "ticket_level_medium": "Medium Priority",
+      "ticket_level_high": "High Priority",
+      "close_dialog": {
+        "title": "Close Ticket",
+        "content": "Are you sure you want to close the ticket? After the ticket is closed, it cannot be opened again. Of course, you can continue your consultation by creating a new ticket.",
+        "cancel-button": "Cancel",
+        "confirm-button": "Confirm"
+      }
+    },
+    "conversation": {
+      "none_selected": "No ticket"
+    },
+    "input-area": {
+      "input_placeholder": "Enter your message",
+      "submit-button": "Submit"
+    }
   }
 }

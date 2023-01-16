@@ -1,5 +1,5 @@
 // material-ui
-import { Theme } from '@mui/material/styles';
+import { Theme } from "@mui/material/styles";
 
 // ==============================|| OVERRIDES - INPUT LABEL ||============================== //
 
@@ -11,15 +11,15 @@ export default function InputLabel(theme: Theme) {
           color: theme.palette.grey[600]
         },
         outlined: {
-          lineHeight: '0.8em',
-          '&.MuiInputLabel-sizeSmall': {
-            lineHeight: '1em'
+          lineHeight: "0.8em",
+          "&.MuiInputLabel-sizeSmall": {
+            lineHeight: "1em"
           },
-          '&.MuiInputLabel-shrink': {
-            background: theme.palette.background.paper,
-            padding: '0 8px',
+          "&.MuiInputLabel-shrink": {
+            backgroundColor: theme.palette.mode === "dark" ? "transparent" : theme.palette.background.paper,
+            padding: "0 8px",
             marginLeft: -6,
-            lineHeight: '1.4375em'
+            lineHeight: "1.4375em"
           }
         }
       }

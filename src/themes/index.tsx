@@ -2,7 +2,7 @@ import { ReactNode, useMemo } from "react";
 import dayjs from "dayjs";
 
 // material-ui
-import { CssBaseline, StyledEngineProvider, useMediaQuery } from "@mui/material";
+import { CssBaseline, PaletteMode, StyledEngineProvider, useMediaQuery } from "@mui/material";
 import { createTheme, ThemeOptions, ThemeProvider, Theme, TypographyVariantsOptions } from "@mui/material/styles";
 import "@mui/x-data-grid/themeAugmentation";
 
@@ -28,7 +28,7 @@ export default function ThemeCustomization({ children }: ThemeCustomizationProps
   const { themeDirection, presetColor, fontFamily } = useConfig();
   const modeSelect = useSelector((state) => state.view.theme.mode);
   const isSystemDark = useMediaQuery("(prefers-color-scheme: dark)");
-  const mode = useMemo(() => {
+  const mode = useMemo<PaletteMode>(() => {
     switch (modeSelect) {
       case "system":
       default:

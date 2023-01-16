@@ -50,6 +50,7 @@
     "dayjs": "^1.11.7",
     "dotenv": "^16.0.3",
     "dotenv-expand": "^10.0.0",
+    "emoji-picker-react": "^4.4.7",
     "flag-icons": "^6.6.6",
     "formik": "^2.2.9",
     "framer-motion": "^8.0.2",

@@ -3,16 +3,14 @@ import { useTranslation } from "react-i18next";
 
 // material-ui
 import { Box, Grid, Stack, Typography } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
 
 // project imports
 import MainCard from "@/components/MainCard";
 import { useTicketContext } from "@/sections/ticket/context";
 import HeaderBar from "@/sections/ticket/main/headerBar";
 import InputArea from "@/sections/ticket/main/inputArea";
-import { useGetTicketQuery } from "@/store/services/api";
-import { makeStyles } from "@/themes/hooks";
 import ChatHistory from "@/sections/ticket/main/chatHistory";
+import { makeStyles } from "@/themes/hooks";
 
 const useStyles = makeStyles<{
   drawerOpen: boolean;
@@ -53,12 +51,7 @@ const useStyles = makeStyles<{
 
 const Main: React.FC = () => {
   const { t } = useTranslation();
-  const theme = useTheme();
-  const { drawerOpen, drawerWidth, currentId, messageInput, setMessageInput } = useTicketContext();
-
-  const { data } = useGetTicketQuery(currentId, {
-    skip: currentId === 0
-  });
+  const { drawerOpen, drawerWidth, currentId } = useTicketContext();
 
   const { classes } = useStyles({
     drawerOpen,

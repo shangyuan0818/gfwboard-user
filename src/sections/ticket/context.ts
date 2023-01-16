@@ -1,16 +1,20 @@
 import { useEffect, useMemo, useState } from "react";
-import { useSet, useToggle } from "ahooks";
+
+// third party
+import { useToggle } from "ahooks";
+import constate from "constate";
+import { useSnackbar } from "notistack";
+import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
+
+// material-ui
+import { useMediaQuery } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
 // project imports
 import { useGetTicketQuery, useGetTicketsQuery, useReplyTicketMutation } from "@/store/services/api";
-import constate from "constate";
-import { useMediaQuery } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
-import { useSnackbar } from "notistack";
-import { useTranslation } from "react-i18next";
 import useQuery from "@/hooks/useQuery";
 import Ticket from "@/model/ticket";
-import { useNavigate } from "react-router-dom";
 
 export interface useTicketProps {
   id?: number;

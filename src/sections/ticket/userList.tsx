@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from "react";
+import React, { useCallback } from "react";
 
 // third-party
 import dayjs from "dayjs";
@@ -11,7 +11,7 @@ import { Avatar, List, ListItem, ListItemAvatar, ListItemButton, ListItemText, S
 // project imports
 import Dot from "@/components/@extended/Dot";
 import { useTicketContext } from "@/sections/ticket/context";
-import Ticket, { TicketLevel, TicketReplyStatus, TicketStatus } from "@/model/ticket";
+import { TicketLevel, TicketReplyStatus, TicketStatus } from "@/model/ticket";
 import { makeStyles } from "@/themes/hooks";
 
 // assets

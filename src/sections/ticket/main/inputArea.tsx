@@ -8,7 +8,6 @@ import { IconButton, Stack, TextField } from "@mui/material";
 // project imports
 import EmojiChoose from "@/sections/ticket/main/emojiChoose";
 import { useTicketContext } from "@/sections/ticket/context";
-import { useGetTicketQuery } from "@/store/services/api";
 import { makeStyles } from "@/themes/hooks";
 
 // assets

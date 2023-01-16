@@ -27,7 +27,8 @@ const config: DefaultConfigProps = {
   languages: ["zh-CN", "en-US"],
   googleAnalytics: {
     measurementId: "G-HSJEER5NF4"
-  }
+  },
+  emojiEndpoint: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/{{code}}.png"
 };
 
 export default config;

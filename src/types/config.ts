@@ -43,6 +43,7 @@ export type DefaultConfigProps = {
   googleAnalytics?: {
     measurementId: string;
   };
+  emojiEndpoint?: string;
 };
 
 export type CustomizationProps = {

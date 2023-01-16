@@ -24,17 +24,15 @@ const useStyles = makeStyles<{
 }>()((theme, { drawerOpen, drawerWidth }) => ({
   drawer: {
     width: drawerWidth,
-    flexShrink: 0,
     zIndex: theme.zIndex.drawer,
     [theme.breakpoints.up("lg")]: {
       zIndex: 0
-    }
+    },
+    display: "flex",
+    flexDirection: "column",
+    flexShrink: 0
   },
   drawerPaper: {
-    height: "auto",
-    [theme.breakpoints.down("lg")]: {
-      height: "100%"
-    },
     width: drawerWidth,
     boxSizing: "border-box",
     position: "relative",
@@ -69,13 +67,12 @@ const ChatDrawer: React.FC = () => {
   const { t } = useTranslation();
   const theme = useTheme();
   const {
-    currentId,
     drawerWidth,
     drawerOpen,
     drawerActions: { setRight: setDrawerClose },
     search,
     setSearch,
-    ticketsQuery: { data: tickets, isLoading: ticketsLoading }
+    ticketsQuery: { data: tickets }
   } = useTicketContext();
 
   const matchDownLG = useMediaQuery(theme.breakpoints.down("lg"));
@@ -98,12 +95,12 @@ const ChatDrawer: React.FC = () => {
         <MainCard className={classes.mainCard} border={!matchDownLG} content={false}>
           <Box className={classes.mainCardContainer}>
             <Stack spacing={2}>
-              <Stack direction="row" spacing={0.5} alignItems="center">
+              <Stack direction="row" spacing={1} alignItems="center">
                 <Typography variant="h5" color="inherit">
                   {t("ticket.drawer.title")}
                 </Typography>
                 <Chip
-                  label={tickets?.filter((ticket) => ticket.status === TicketStatus.Open).length}
+                  label={tickets?.filter((ticket) => ticket.status === TicketStatus.Open).length ?? 0}
                   component="span"
                   color="secondary"
                   className={classes.titleChip}

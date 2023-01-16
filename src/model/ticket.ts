@@ -20,6 +20,12 @@ export enum TicketLevel {
   High = 2
 }
 
+export const TicketLevelMap: Record<TicketLevel, string> = {
+  [TicketLevel.Low]: "low",
+  [TicketLevel.Medium]: "medium",
+  [TicketLevel.High]: "high"
+};
+
 export default interface Ticket {
   created_at: number;
   updated_at: number;

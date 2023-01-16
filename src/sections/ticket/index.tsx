@@ -9,7 +9,7 @@ import Main from "@/sections/ticket/main";
 
 const TicketSection: React.FC = () => {
   return (
-    <Box>
+    <Box display={"flex"} flexDirection={"row"} flexWrap={"wrap"} flexGrow={"1"}>
       <Drawer />
       <Main />
     </Box>

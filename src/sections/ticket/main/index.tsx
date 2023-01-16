@@ -7,7 +7,7 @@ import { Box, Grid, Stack, Typography } from "@mui/material";
 // project imports
 import MainCard from "@/components/MainCard";
 import { useTicketContext } from "@/sections/ticket/context";
-import HeaderBar from "@/sections/ticket/main/headerBar";
+import TopBar from "@/sections/ticket/main/topBar";
 import InputArea from "@/sections/ticket/main/inputArea";
 import ChatHistory from "@/sections/ticket/main/chatHistory";
 import { makeStyles } from "@/themes/hooks";
@@ -70,7 +70,7 @@ const Main: React.FC = () => {
                 </Box>
               ) : (
                 <>
-                  <HeaderBar />
+                  <TopBar />
                   <Box flexGrow={1}>
                     <ChatHistory />
                   </Box>

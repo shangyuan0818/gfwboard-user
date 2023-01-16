@@ -261,7 +261,24 @@ const api = createApi({
           headers: {
             "Content-Type": "application/x-www-form-urlencoded"
           }
-        })
+        }),
+        invalidatesTags: (result, error, arg) => [
+          { type: "Ticket", id: "LIST" },
+          { type: "Ticket", id: arg.id }
+        ]
+      }),
+      closeTicket: builder.mutation<boolean, number>({
+        query: (id) => ({
+          url: "/user/ticket/close",
+          method: "POST",
+          body: qs.stringify({
+            id
+          }),
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+          }
+        }),
+        invalidatesTags: (result, error, id) => [{ type: "Ticket", id }]
       }),
       getKnowledgeList: builder.query<Record<string, KnowledgeListResponse[]>, Omit<KnowledgePayload, "id">>({
         query: ({ language, keyword }) => ({
@@ -516,6 +533,7 @@ export const {
   useGetTicketQuery,
   useSaveTicketMutation,
   useReplyTicketMutation,
+  useCloseTicketMutation,
   useGetKnowledgeListQuery,
   useGetKnowledgeQuery,
   useGetPlanListQuery,

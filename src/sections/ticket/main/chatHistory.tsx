@@ -41,11 +41,10 @@ const useStyles = makeStyles()((theme) => ({
     boxShadow: "none"
   },
   cardContent: {
-    padding: theme.spacing(1),
-    paddingBottom: `${theme.spacing(1)} !important`,
+    padding: theme.spacing(1.25),
+    paddingBottom: `${theme.spacing(1.25)} !important`,
     width: "fit-content",
     marginLeft: "auto",
-    minWidth: 80,
     "& > p": {
       marginBottom: 0
     }

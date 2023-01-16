@@ -5,12 +5,13 @@ import { useTranslation } from "react-i18next";
 import { Grid, IconButton, Menu, MenuItem, Skeleton, Stack, Typography } from "@mui/material";
 
 // project imports
-import { TicketLevelMap } from "@/model/ticket";
+import { TicketLevelMap, TicketStatus } from "@/model/ticket";
 import { useTicketContext } from "@/sections/ticket/context";
 import { makeStyles } from "@/themes/hooks";
 
 // assets
 import { DownloadOutlined, MenuFoldOutlined, MenuUnfoldOutlined, MoreOutlined } from "@ant-design/icons";
+import CloseButton from "@/sections/ticket/main/topBar/closeButton";
 
 const useStyles = makeStyles()((theme) => ({
   root: {
@@ -18,16 +19,10 @@ const useStyles = makeStyles()((theme) => ({
     paddingRight: theme.spacing(2),
     paddingBottom: theme.spacing(2),
     borderBottom: `1px solid ${theme.palette.divider}`
-  },
-  infoMenu: {
-    padding: 0,
-    "& .MuiMenu-list": {
-      padding: 0
-    }
   }
 }));
 
-const HeaderBar: React.FC = () => {
+const TopBar: React.FC = () => {
   const { t } = useTranslation();
   const {
     drawerOpen,
@@ -35,8 +30,6 @@ const HeaderBar: React.FC = () => {
     currentId,
     ticketQuery: { data, isFetching }
   } = useTicketContext();
-
-  const [anchorEl, setAnchorEl] = useState<Element | ((element: Element) => Element) | null | undefined>(null);
 
   const { classes } = useStyles();
 
@@ -72,40 +65,11 @@ const HeaderBar: React.FC = () => {
       </Grid>
       <Grid item>
         <Stack direction="row" alignItems="center" justifyContent="flex-end" spacing={1}>
-          <IconButton
-            onClick={(e) => {
-              setAnchorEl(e.currentTarget);
-            }}
-            size="large"
-            color="secondary"
-          >
-            <MoreOutlined />
-          </IconButton>
-          <Menu
-            id="simple-menu"
-            anchorEl={anchorEl}
-            keepMounted
-            open={Boolean(anchorEl)}
-            onClose={() => setAnchorEl(null)}
-            className={classes.infoMenu}
-            anchorOrigin={{
-              vertical: "bottom",
-              horizontal: "right"
-            }}
-            transformOrigin={{
-              vertical: "top",
-              horizontal: "right"
-            }}
-          >
-            <MenuItem onClick={() => setAnchorEl(null)}>
-              <DownloadOutlined style={{ paddingRight: 8 }} />
-              <Typography>Archive</Typography>
-            </MenuItem>
-          </Menu>
+          {data?.status === TicketStatus.Open && <CloseButton />}
         </Stack>
       </Grid>
     </Grid>
   );
 };
 
-export default HeaderBar;
+export default TopBar;

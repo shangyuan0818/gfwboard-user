@@ -129,7 +129,12 @@ const UserList = () => {
                   <Typography component="span" color="textSecondary" variant="caption">
                     {/* TODO: last message */}
                     {t("ticket.drawer.reply_status", {
-                      context: ticket.reply_status === TicketReplyStatus.Replied ? "replied" : "pending"
+                      context:
+                        ticket.status === TicketStatus.Closed
+                          ? "closed"
+                          : ticket.reply_status === TicketReplyStatus.Replied
+                          ? "replied"
+                          : "pending"
                     })}
                   </Typography>
                 </Stack>

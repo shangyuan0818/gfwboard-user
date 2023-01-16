@@ -4,13 +4,29 @@ export interface TicketPayload {
   message: string;
 }
 
+export enum TicketStatus {
+  Open = 0,
+  Closed = 1
+}
+
+export enum TicketReplyStatus {
+  Replied = 0,
+  Pending = 1
+}
+
+export enum TicketLevel {
+  Low = 0,
+  Medium = 1,
+  High = 2
+}
+
 export default interface Ticket {
   created_at: number;
   updated_at: number;
   id: number;
-  level: number;
-  reply_status: 0 | 1;
-  status: 0 | 1;
+  level: TicketLevel;
+  reply_status: TicketReplyStatus;
+  status: TicketStatus;
   user_id: number;
   message: Message[];
   subject: string;

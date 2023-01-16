@@ -521,5 +521,20 @@
         "confirm": "确定"
       }
     }
+  },
+  "ticket": {
+    "drawer": {
+      "title": "工单",
+      "new-ticket": "新建工单",
+      "updated_at_just_now": "刚刚",
+      "updated_at": "更新于 {{date}}",
+      "updated_at_minute": "更新于 {{count}} 分钟前",
+      "updated_at_hour": "更新于 {{count}} 小时前",
+      "updated_at_day": "更新于 {{count}} 天前",
+      "updated_at_month": "更新于 {{count}} 月前",
+      "updated_at_year": "更新于 {{count}} 年前",
+      "reply_status_replied": "已回复",
+      "reply_status_pending": "待回复"
+    }
   }
 }

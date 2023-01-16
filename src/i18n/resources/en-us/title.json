@@ -17,5 +17,8 @@
   "invite": "Invite",
   "invite-commissions": "Commissions Log",
   "profile": "Profile",
-  "ticket": "Ticket"
+  "service": "Service",
+  "ticket": "Ticket",
+  "ticket-create": "Create Ticket",
+  "ticket-list": "Ticket List"
 }

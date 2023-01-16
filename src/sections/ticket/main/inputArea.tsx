@@ -17,7 +17,8 @@ import { SendOutlined } from "@ant-design/icons";
 const useStyles = makeStyles()((theme) => ({
   root: {
     backgroundColor: theme.palette.background.paper,
-    borderTop: `1px solid ${theme.palette.divider}`
+    borderTop: `1px solid ${theme.palette.divider}`,
+    padding: theme.spacing(2)
   },
   textField: {
     paddingRight: theme.spacing(2),
@@ -27,25 +28,12 @@ const useStyles = makeStyles()((theme) => ({
 
 const InputArea: React.FC = () => {
   const { t } = useTranslation();
-  const { currentId, messageInput, setMessageInput } = useTicketContext();
-
-  const { data } = useGetTicketQuery(currentId, {
-    skip: currentId === 0
-  });
+  const { messageInput, setMessageInput, handleOnSend } = useTicketContext();
 
   const { classes } = useStyles();
 
   // handle new message form
   const textInput = useRef<HTMLInputElement>(null);
-
-  const handleOnSend = () => {
-    if (messageInput.trim() === "") {
-      // do nothing
-    } else {
-      // send message
-    }
-    setMessageInput("");
-  };
 
   const handleEnter = (event: KeyboardEvent) => {
     switch (event.key) {
@@ -64,14 +52,11 @@ const InputArea: React.FC = () => {
     }
   }, [textInput.current]);
 
-  const handleInputChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      let value = e.target.value;
-      value = lo.trim(value);
-      setMessageInput(value);
-    },
-    [setMessageInput]
-  );
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let value = e.target.value;
+    value = lo.trim(value);
+    setMessageInput(value);
+  };
 
   return (
     <Stack className={classes.root}>

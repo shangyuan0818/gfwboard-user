@@ -12,6 +12,7 @@ import HeaderBar from "@/sections/ticket/main/headerBar";
 import InputArea from "@/sections/ticket/main/inputArea";
 import { useGetTicketQuery } from "@/store/services/api";
 import { makeStyles } from "@/themes/hooks";
+import ChatHistory from "@/sections/ticket/main/chatHistory";
 
 const useStyles = makeStyles<{
   drawerOpen: boolean;
@@ -77,7 +78,9 @@ const Main: React.FC = () => {
               ) : (
                 <>
                   <HeaderBar />
-                  <Box flexGrow={1}></Box>
+                  <Box flexGrow={1}>
+                    <ChatHistory />
+                  </Box>
                   <InputArea />
                 </>
               )}

@@ -40,15 +40,22 @@ const useStyles = makeStyles()((theme) => ({
 
 // ==============================|| SIMPLE SCROLL BAR  ||============================== //
 
-type SimpleScrollBarProps = MUIStyledCommonProps<Theme> & Props & { children?: React.ReactNode };
+type SimpleScrollBarProps = MUIStyledCommonProps<Theme> & Props & { children?: React.ReactNode; className?: string };
 
-const SimpleBarScroll: React.FC<SimpleScrollBarProps> = ({ sx, children, ...other }) => {
-  const { classes } = useStyles();
+const SimpleBarScroll: React.FC<SimpleScrollBarProps> = ({ sx, children, className, ...other }) => {
+  const { classes, cx } = useStyles();
 
   return (
     <>
       <Box component={BrowserView} className={classes.root}>
-        <Box component={SimpleBar} className={classes.simpleBar} timeout={500} clickOnTrack={false} sx={sx} {...other}>
+        <Box
+          component={SimpleBar}
+          className={cx(classes.simpleBar, className)}
+          timeout={500}
+          clickOnTrack={false}
+          sx={sx}
+          {...other}
+        >
           {children}
         </Box>
       </Box>

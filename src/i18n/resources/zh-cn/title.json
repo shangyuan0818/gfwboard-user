@@ -17,5 +17,8 @@
   "invite": "邀请用户",
   "invite-commissions": "佣金记录",
   "profile": "个人资料",
-  "ticket": "工单"
+  "service": "服务",
+  "ticket": "工单",
+  "ticket-create": "创建工单",
+  "ticket-list": "工单列表"
 }

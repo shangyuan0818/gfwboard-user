@@ -7,6 +7,7 @@ import {
   ReadOutlined,
   ShoppingOutlined,
   TeamOutlined,
+  ToolOutlined,
   UnorderedListOutlined
 } from "@ant-design/icons";
 
@@ -94,6 +95,33 @@ const menuItems: { items: NavItemType[] } = {
           type: "item",
           url: "/profile",
           icon: ProfileOutlined
+        }
+      ]
+    },
+    {
+      id: "service",
+      title: "service",
+      type: "group",
+      children: [
+        {
+          id: "ticket",
+          title: "ticket",
+          type: "collapse",
+          icon: ToolOutlined,
+          children: [
+            {
+              id: "ticket-create",
+              title: "ticket-create",
+              type: "item",
+              url: "/ticket/create"
+            },
+            {
+              id: "ticket-list",
+              title: "ticket-list",
+              type: "item",
+              url: "/ticket"
+            }
+          ]
         }
       ]
     }

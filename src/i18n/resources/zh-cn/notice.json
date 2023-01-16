@@ -30,5 +30,8 @@
   "update-user_success": "用户信息已更新",
   "update-user_fail": "用户信息更新失败",
   "reset-security_success": "订阅已重置",
-  "reset-security_fail": "订阅重置失败"
+  "reset-security_fail": "订阅重置失败",
+  "send-message_success": "消息已发送",
+  "send-message_failed": "消息发送失败",
+  "send-message_empty": "消息不能为空"
 }

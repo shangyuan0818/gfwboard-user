@@ -534,7 +534,8 @@
       "updated_at_month": "更新于 {{count}} 月前",
       "updated_at_year": "更新于 {{count}} 年前",
       "reply_status_replied": "已回复",
-      "reply_status_pending": "待回复"
+      "reply_status_pending": "待回复",
+      "search_placeholder": "搜索工单"
     },
     "header": {
       "title": "工单 {{id}}：{{subject}}",
@@ -543,7 +544,7 @@
       "ticket_level_high": "优先级：高"
     },
     "conversation": {
-      "none_selected": "请选择一个工单"
+      "none_selected": "暂无工单"
     },
     "input-area": {
       "input_placeholder": "输入回复内容",

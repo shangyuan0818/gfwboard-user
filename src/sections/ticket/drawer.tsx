@@ -69,7 +69,7 @@ const ChatDrawer: React.FC = () => {
   const {
     drawerWidth,
     drawerOpen,
-    drawerActions: { setRight: setDrawerClose },
+    drawerActions: { setLeft: setDrawerClose },
     search,
     setSearch,
     ticketsQuery: { data: tickets }
@@ -110,7 +110,7 @@ const ChatDrawer: React.FC = () => {
               <OutlinedInput
                 fullWidth
                 id="input-search-header"
-                placeholder="Search"
+                placeholder={t("ticket.drawer.search", { context: "placeholder" })}
                 value={search}
                 onChange={(event) => {
                   setSearch(event.target.value);

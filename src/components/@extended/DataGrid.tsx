@@ -2,8 +2,8 @@ import React, { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 
 // material-ui
-import { ListItemIcon, ListItemText } from "@mui/material";
-import { DataGrid as MuiDataGrid, DataGridProps, GridLocaleText } from "@mui/x-data-grid";
+import { ListItemIcon, ListItemText, Typography } from "@mui/material";
+import { DataGrid as MuiDataGrid, DataGridProps, GridHeader, GridLocaleText } from "@mui/x-data-grid";
 import { GridValidRowModel } from "@mui/x-data-grid/models/gridRows";
 
 // assets
@@ -11,10 +11,10 @@ import { CloseCircleFilled, FilterOutlined, SortAscendingOutlined, SortDescendin
 
 type MyDataGridProps<R extends GridValidRowModel = any> = DataGridProps<R> & React.RefAttributes<HTMLDivElement>;
 
-const DataGrid: React.FC<MyDataGridProps> = (props) => {
+const DataGrid: React.FC<MyDataGridProps> = ({ localeText, ...props }) => {
   const { t } = useTranslation();
 
-  const localeText = useMemo<Partial<GridLocaleText>>(
+  const defaultLocaleText = useMemo<Partial<GridLocaleText>>(
     () => ({
       noRowsLabel: t("general::dataGrid.no_rows").toString(),
       columnMenuSortAsc: (
@@ -89,7 +89,7 @@ const DataGrid: React.FC<MyDataGridProps> = (props) => {
     [t]
   );
 
-  return <MuiDataGrid localeText={Object.assign(localeText, props.localeText)} {...props} />;
+  return <MuiDataGrid localeText={Object.assign(defaultLocaleText, localeText)} {...props} />;
 };
 
 export default DataGrid;

@@ -559,7 +559,7 @@
       "ticket_level_high": "优先级：高",
       "close_dialog": {
         "title": "关闭工单",
-        "content": "您确定要关闭工单吗？",
+        "content": "您确定要关闭工单吗？关闭工单后无法继续打开，当然您可以通过创建新的工单来继续您的咨询。",
         "cancel-button": "取消",
         "confirm-button": "确定"
       }

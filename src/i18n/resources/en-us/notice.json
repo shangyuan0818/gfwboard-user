@@ -28,5 +28,10 @@
   "update-user_success": "User information updated.",
   "update-user_fail": "Failed to update user information.",
   "reset-security_success": "Subscription reset.",
-  "reset-security_fail": "Subscription reset failed."
+  "reset-security_fail": "Subscription reset failed.",
+  "send-message_success": "Message sent.",
+  "send-message_failed": "Failed to send message.",
+  "send-message_empty": "Please enter a message.",
+  "close-ticket_success": "Ticket closed.",
+  "close-ticket_fail": "Failed to close ticket."
 }

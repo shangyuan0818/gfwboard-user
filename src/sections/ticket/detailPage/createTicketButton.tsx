@@ -30,10 +30,7 @@ import * as Yup from "yup";
 const useStyles = makeStyles()((theme) => ({
   root: {
     padding: theme.spacing(2, 0),
-    backgroundColor: "transparent",
-    "& .MuiInputLabel-root": {
-      backgroundColor: "transparent"
-    }
+    backgroundColor: "transparent"
   }
 }));
 

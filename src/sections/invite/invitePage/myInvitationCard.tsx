@@ -43,10 +43,7 @@ import { useTheme } from "@mui/material/styles";
 const useStyles = makeStyles()((theme) => ({
   root: {},
   form: {
-    backgroundColor: "transparent",
-    "& .MuiInputLabel-root": {
-      backgroundColor: "transparent"
-    }
+    backgroundColor: "transparent"
   }
 }));
 

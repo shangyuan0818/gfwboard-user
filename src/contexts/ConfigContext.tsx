@@ -5,7 +5,7 @@ import { useLocalStorageState } from "ahooks";
 import config from "@/config";
 
 // types
-import { CustomizationProps, FontFamily, PresetColor, ThemeDirection, ThemeMode } from "@/types/config";
+import { CustomizationProps, FontFamily, PresetColor, ThemeDirection } from "@/types/config";
 
 // initial state
 const initialState: CustomizationProps = {

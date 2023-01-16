@@ -1,5 +1,4 @@
 export type ThemeDirection = "ltr" | "rtl";
-export type ThemeMode = "light" | "dark";
 export type FontFamily =
   | `'Inter', sans-serif`
   | `'Poppins', sans-serif`
@@ -15,7 +14,6 @@ export type PresetColor =
   | "theme6"
   | "theme7"
   | "theme8";
-export type I18n = "en" | "fr" | "ro" | "zh"; // 'en' - English, 'fr' - French, 'ro' - Romanian, 'zh' - Chinese
 
 // ==============================|| CONFIG TYPES  ||============================== //
 
@@ -47,7 +45,6 @@ export type DefaultConfigProps = {
 export type CustomizationProps = {
   defaultPath: string;
   fontFamily: FontFamily;
-  i18n: I18n;
   miniDrawer: boolean;
   container: boolean;
   presetColor: PresetColor;

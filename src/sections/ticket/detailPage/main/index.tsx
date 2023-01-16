@@ -11,6 +11,7 @@ import TopBar from "./topBar";
 import InputArea from "./inputArea";
 import ChatHistory from "./chatHistory";
 import { makeStyles } from "@/themes/hooks";
+import { TicketStatus } from "@/model/ticket";
 
 const useStyles = makeStyles<{
   drawerOpen: boolean;
@@ -51,7 +52,12 @@ const useStyles = makeStyles<{
 
 const Main: React.FC = () => {
   const { t } = useTranslation();
-  const { drawerOpen, drawerWidth, currentId } = useTicketContext();
+  const {
+    drawerOpen,
+    drawerWidth,
+    currentId,
+    ticketQuery: { data }
+  } = useTicketContext();
 
   const { classes } = useStyles({
     drawerOpen,
@@ -74,7 +80,7 @@ const Main: React.FC = () => {
                   <Box flexGrow={1}>
                     <ChatHistory />
                   </Box>
-                  <InputArea />
+                  {data?.status === TicketStatus.Open && <InputArea />}
                 </>
               )}
             </Stack>

@@ -27,10 +27,8 @@ export type CustomizationActionProps = {
 export type DefaultConfigProps = {
   defaultPath: string;
   fontFamily: FontFamily;
-  i18n: I18n;
   miniDrawer: boolean;
   container: boolean;
-  mode: ThemeMode;
   presetColor: PresetColor;
   themeDirection: ThemeDirection;
   title: string;

@@ -12,10 +12,8 @@ export const linkedInColor = "#0e76a8";
 const config: DefaultConfigProps = {
   defaultPath: "/",
   fontFamily: `'Public Sans', sans-serif`,
-  i18n: "en",
   miniDrawer: false,
   container: true,
-  mode: "light",
   presetColor: "default",
   themeDirection: "ltr",
   title: "跨越长城",

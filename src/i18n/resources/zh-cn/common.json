@@ -536,7 +536,21 @@
       "reply_status_replied": "已回复",
       "reply_status_pending": "待回复",
       "reply_status_closed": "已关闭",
-      "search_placeholder": "搜索工单"
+      "search_placeholder": "搜索工单",
+      "create_dialog": {
+        "title": "新建工单",
+        "subject_label": "主题",
+        "subject_required": "请输入主题",
+        "message_label": "内容",
+        "message_required": "请输入内容",
+        "level_label": "优先级",
+        "level_required": "请选择优先级",
+        "level_0": "低",
+        "level_1": "中",
+        "level_2": "高",
+        "cancel_button": "取消",
+        "submit_button": "提交"
+      }
     },
     "header": {
       "title": "工单 {{id}}：{{subject}}",

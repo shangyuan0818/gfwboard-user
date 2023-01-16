@@ -33,5 +33,7 @@
   "reset-security_fail": "订阅重置失败",
   "send-message_success": "消息已发送",
   "send-message_failed": "消息发送失败",
-  "send-message_empty": "消息不能为空"
+  "send-message_empty": "消息不能为空",
+  "close-ticket_success": "工单已关闭",
+  "close-ticket_fail": "工单关闭失败"
 }

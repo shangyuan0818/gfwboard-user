@@ -26,7 +26,6 @@ const Invite = Loadable(lazy(() => import("@/pages/invite")));
 const InviteCommissions = Loadable(lazy(() => import("@/pages/invite/commissions")));
 const Profile = Loadable(lazy(() => import("@/pages/profile")));
 const Ticket = Loadable(lazy(() => import("@/pages/ticket")));
-const TicketCreate = Loadable(lazy(() => import("@/pages/ticket/create")));
 const TicketId = Loadable(lazy(() => import("@/pages/ticket/[id]")));
 
 // ==============================|| MAIN ROUTING ||============================== //
@@ -93,10 +92,6 @@ const MainRoutes: RouteObject = {
         {
           path: "ticket",
           element: <Ticket />
-        },
-        {
-          path: "ticket/create",
-          element: <TicketCreate />
         },
         {
           path: "ticket/:id",

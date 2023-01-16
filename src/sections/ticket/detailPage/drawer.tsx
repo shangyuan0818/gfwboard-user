@@ -3,7 +3,17 @@ import { useTranslation } from "react-i18next";
 
 // material-ui
 import { useTheme } from "@mui/material/styles";
-import { Box, Chip, Drawer, InputAdornment, OutlinedInput, Stack, Typography, useMediaQuery } from "@mui/material";
+import {
+  Box,
+  Chip,
+  Drawer,
+  IconButton,
+  InputAdornment,
+  OutlinedInput,
+  Stack,
+  Typography,
+  useMediaQuery
+} from "@mui/material";
 
 // project imports
 import UserList from "./userList";
@@ -15,13 +25,11 @@ import { TicketStatus } from "@/model/ticket";
 
 // assets
 import { SearchOutlined } from "@ant-design/icons";
+import CreateTicketButton from "@/sections/ticket/detailPage/createTicketButton";
 
 // ==============================|| CHAT DRAWER ||============================== //
 
-const useStyles = makeStyles<{
-  drawerOpen: boolean;
-  drawerWidth: number;
-}>()((theme, { drawerOpen, drawerWidth }) => ({
+const useStyles = makeStyles<{ drawerWidth: number }>()((theme, { drawerWidth }) => ({
   drawer: {
     width: drawerWidth,
     zIndex: theme.zIndex.drawer,
@@ -77,7 +85,7 @@ const ChatDrawer: React.FC = () => {
 
   const matchDownLG = useMediaQuery(theme.breakpoints.down("lg"));
 
-  const { classes } = useStyles({ drawerOpen, drawerWidth });
+  const { classes } = useStyles({ drawerWidth });
 
   return (
     <Drawer
@@ -95,16 +103,21 @@ const ChatDrawer: React.FC = () => {
         <MainCard className={classes.mainCard} border={!matchDownLG} content={false}>
           <Box className={classes.mainCardContainer}>
             <Stack spacing={2}>
-              <Stack direction="row" spacing={1} alignItems="center">
-                <Typography variant="h5" color="inherit">
-                  {t("ticket.drawer.title")}
-                </Typography>
-                <Chip
-                  label={tickets?.filter((ticket) => ticket.status === TicketStatus.Open).length ?? 0}
-                  component="span"
-                  color="secondary"
-                  className={classes.titleChip}
-                />
+              <Stack direction="row" spacing={1} alignItems="center" justifyContent={"space-between"}>
+                <Stack direction="row" spacing={1} alignItems="center">
+                  <Typography variant="h5" color="inherit">
+                    {t("ticket.drawer.title")}
+                  </Typography>
+                  <Chip
+                    label={tickets?.filter((ticket) => ticket.status === TicketStatus.Open).length ?? 0}
+                    component="span"
+                    color="secondary"
+                    className={classes.titleChip}
+                  />
+                </Stack>
+                <Stack direction="row" alignItems="center" justifyContent="flex-end">
+                  <CreateTicketButton />
+                </Stack>
               </Stack>
 
               <OutlinedInput

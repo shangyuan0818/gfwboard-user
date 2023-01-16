@@ -5,6 +5,10 @@ import { I18nextProvider } from "react-i18next";
 import { SnackbarProvider } from "notistack";
 import { CacheProvider } from "@emotion/react";
 
+// material-ui
+import { GlobalStyles } from "tss-react";
+import { useTheme } from "@mui/material/styles";
+
 // project import
 import Routes from "@/routes";
 import ThemeCustomization from "@/themes";
@@ -20,6 +24,8 @@ import useTitle from "@/hooks/useTitle";
 // ==============================|| APP - THEME, ROUTER, LOCAL  ||============================== //
 
 const App = () => {
+  const theme = useTheme();
+
   usePageAnalyticsEffect();
   useAuthStateDetector();
   useHtmlLangSelector();
@@ -41,6 +47,16 @@ const App = () => {
               dense
             >
               <Routes />
+              <GlobalStyles
+                styles={{
+                  body: {
+                    transition: theme.transitions.create("background-color", {
+                      duration: theme.transitions.duration.shortest,
+                      easing: theme.transitions.easing.easeInOut
+                    })
+                  }
+                }}
+              />
             </SnackbarProvider>
           </ScrollTop>
         </I18nextProvider>

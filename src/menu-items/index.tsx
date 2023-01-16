@@ -106,22 +106,9 @@ const menuItems: { items: NavItemType[] } = {
         {
           id: "ticket",
           title: "ticket",
-          type: "collapse",
+          type: "item",
           icon: ToolOutlined,
-          children: [
-            {
-              id: "ticket-create",
-              title: "ticket-create",
-              type: "item",
-              url: "/ticket/create"
-            },
-            {
-              id: "ticket-list",
-              title: "ticket-list",
-              type: "item",
-              url: "/ticket"
-            }
-          ]
+          url: "/ticket"
         }
       ]
     }

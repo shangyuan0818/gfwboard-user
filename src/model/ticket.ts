@@ -1,6 +1,6 @@
 export interface TicketPayload {
   subject: string;
-  level: number;
+  level: TicketLevel;
   message: string;
 }
 

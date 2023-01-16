@@ -23,7 +23,6 @@ import store from "@/store";
 import { ConfigProvider } from "@/contexts/ConfigContext";
 import "@/analytics";
 
-import "@/global.scss";
 import "@fontsource/roboto";
 
 // hash router change to browser router

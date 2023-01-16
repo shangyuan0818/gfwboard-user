@@ -25,9 +25,6 @@ export default defineConfig({
       lodash: "lodash-es"
     }
   },
-  define: {
-    global: "window"
-  },
   server: {
     port: 3000
   },

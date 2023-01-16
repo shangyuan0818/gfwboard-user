@@ -24,7 +24,7 @@
   "dependencies": {
     "@ahooksjs/use-url-state": "^3.5.1",
     "@ant-design/colors": "^7.0.0",
-    "@ant-design/icons": "^4.8.0",
+    "@ant-design/icons": "^5.0.0",
     "@emotion/cache": "^11.10.5",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",

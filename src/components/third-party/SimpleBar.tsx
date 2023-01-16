@@ -48,14 +48,7 @@ const SimpleBarScroll: React.FC<SimpleScrollBarProps> = ({ sx, children, classNa
   return (
     <>
       <Box component={BrowserView} className={classes.root}>
-        <Box
-          component={SimpleBar}
-          className={cx(classes.simpleBar, className)}
-          timeout={500}
-          clickOnTrack={false}
-          sx={sx}
-          {...other}
-        >
+        <Box component={SimpleBar} className={cx(classes.simpleBar, className)} clickOnTrack={false} sx={sx} {...other}>
           {children}
         </Box>
       </Box>

@@ -92,7 +92,7 @@ const InviteCodesTable: React.FC = () => {
         ]
       }
     ],
-    [data]
+    [data, t]
   );
 
   return (

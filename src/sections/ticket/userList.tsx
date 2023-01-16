@@ -36,35 +36,8 @@ const useStyles = makeStyles()((theme) => ({
 const UserList = () => {
   const { t } = useTranslation();
   const theme = useTheme();
-  const {
-    ticketsQuery: { data: tickets },
-    search,
-    currentId,
-    setCurrentId
-  } = useTicketContext();
+  const { tickets, currentId, setCurrentId } = useTicketContext();
   const { classes, css, cx } = useStyles();
-
-  const data = useMemo(
-    () =>
-      tickets?.filter((row) => {
-        let matches = true;
-
-        const properties: (keyof Omit<Ticket, "message">)[] = ["subject"];
-        let containsQuery = false;
-
-        properties.forEach((property) => {
-          if (row[property].toString().toLowerCase().includes(search.toString().toLowerCase())) {
-            containsQuery = true;
-          }
-        });
-
-        if (!containsQuery) {
-          matches = false;
-        }
-        return matches;
-      }) ?? [],
-    [tickets, search]
-  );
 
   const getDateDiff = useCallback(
     (unix: number, key: string) => {
@@ -130,7 +103,7 @@ const UserList = () => {
 
   return (
     <List component="nav">
-      {data.map((ticket) => (
+      {tickets.map((ticket) => (
         <ListItem key={ticket.id} disablePadding divider>
           <ListItemButton
             className={classes.listItemButton}

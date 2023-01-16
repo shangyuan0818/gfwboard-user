@@ -69,7 +69,7 @@ const ChatDrawer: React.FC = () => {
   const {
     drawerWidth,
     drawerOpen,
-    drawerActions: { setLeft: setDrawerClose },
+    drawerActions: { set: setDrawer },
     search,
     setSearch,
     ticketsQuery: { data: tickets }
@@ -89,7 +89,7 @@ const ChatDrawer: React.FC = () => {
       anchor="left"
       open={drawerOpen}
       ModalProps={{ keepMounted: true }}
-      onClose={() => setDrawerClose()}
+      onClose={() => setDrawer(false)}
     >
       {drawerOpen && (
         <MainCard className={classes.mainCard} border={!matchDownLG} content={false}>
@@ -110,7 +110,7 @@ const ChatDrawer: React.FC = () => {
               <OutlinedInput
                 fullWidth
                 id="input-search-header"
-                placeholder={t("ticket.drawer.search", { context: "placeholder" })}
+                placeholder={t("ticket.drawer.search", { context: "placeholder" }).toString()}
                 value={search}
                 onChange={(event) => {
                   setSearch(event.target.value);

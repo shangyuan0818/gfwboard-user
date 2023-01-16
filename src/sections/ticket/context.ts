@@ -8,6 +8,8 @@ import { useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { useSnackbar } from "notistack";
 import { useTranslation } from "react-i18next";
+import useQuery from "@/hooks/useQuery";
+import Ticket from "@/model/ticket";
 
 export interface useTicketProps {
   id?: number;
@@ -15,15 +17,22 @@ export interface useTicketProps {
 
 const useTicket = ({ id }: useTicketProps) => {
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+  const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
   const { enqueueSnackbar } = useSnackbar();
   const { t } = useTranslation();
+  const query = useQuery();
 
-  const [drawerOpen, drawerActions] = useToggle(!isMobile);
+  const [drawerOpen, drawerActions] = useToggle(false);
   const [currentId, setCurrentId] = useState<number>(id ?? 0);
-  const [search, setSearch] = useState<string>("");
+  const [search, setSearch] = useState<string>(query.get("s") ?? "");
   const [messageInput, setMessageInput] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!isMobile) {
+      drawerActions.set(true);
+    }
+  }, [isMobile]);
 
   const drawerWidth = useMemo(() => (isMobile ? 280 : 320), [isMobile]);
 
@@ -47,7 +56,7 @@ const useTicket = ({ id }: useTicketProps) => {
     if (ticketsQuery.data && (ticketsQuery.data?.length ?? 0) > 0 && !currentId) {
       setCurrentId(ticketsQuery.data[0].id);
     }
-  });
+  }, [ticketsQuery.data]);
 
   const handleOnSend = async () => {
     if (messageInput.trim() === "") {
@@ -77,7 +86,30 @@ const useTicket = ({ id }: useTicketProps) => {
     }
   };
 
+  const tickets = useMemo(
+    () =>
+      ticketsQuery.data?.filter((row) => {
+        let matches = true;
+
+        const properties: (keyof Omit<Ticket, "message">)[] = ["subject"];
+        let containsQuery = false;
+
+        properties.forEach((property) => {
+          if (row[property].toString().toLowerCase().includes(search.toString().toLowerCase())) {
+            containsQuery = true;
+          }
+        });
+
+        if (!containsQuery) {
+          matches = false;
+        }
+        return matches;
+      }) ?? [],
+    [ticketsQuery.data, search]
+  );
+
   return {
+    tickets,
     ticketsQuery,
     ticketQuery,
     currentId,

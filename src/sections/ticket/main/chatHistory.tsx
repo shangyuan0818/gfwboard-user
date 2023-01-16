@@ -152,7 +152,11 @@ const ChatHistory: React.FC = () => {
       <Box className={classes.rootBox}>
         <Stack spacing={2.5} ref={wrapper} direction={"column"}>
           {data?.message.map((message, index) =>
-            message.is_me ? <UserMessage message={message} /> : <ServerMessage message={message} />
+            message.is_me ? (
+              <UserMessage message={message} key={index} />
+            ) : (
+              <ServerMessage message={message} key={index} />
+            )
           )}
         </Stack>
       </Box>

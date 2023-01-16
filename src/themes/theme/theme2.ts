@@ -2,11 +2,11 @@
 import { PaletteThemeProps } from "@/types/theme";
 import { PalettesProps } from "@ant-design/colors";
 import { PaletteColorOptions } from "@mui/material/styles";
-import { ThemeMode } from "@/types/config";
+import { PaletteMode } from "@mui/material";
 
 // ==============================|| PRESET THEME - DEFAULT ||============================== //
 
-const Theme2 = (colors: PalettesProps, mode: ThemeMode): PaletteThemeProps => {
+const Theme2 = (colors: PalettesProps, mode: PaletteMode): PaletteThemeProps => {
   const { grey } = colors;
   const greyColors: PaletteColorOptions = {
     0: grey[0],

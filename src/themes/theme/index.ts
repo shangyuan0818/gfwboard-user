@@ -12,11 +12,12 @@ import Theme8 from "./theme8";
 // types
 import { PaletteThemeProps } from "@/types/theme";
 import { PalettesProps } from "@ant-design/colors";
-import { ThemeMode, PresetColor } from "@/types/config";
+import { PresetColor } from "@/types/config";
+import { PaletteMode } from "@mui/material";
 
 // ==============================|| PRESET THEME - THEME SELECTOR ||============================== //
 
-const Theme = (colors: PalettesProps, presetColor: PresetColor, mode: ThemeMode): PaletteThemeProps => {
+const Theme = (colors: PalettesProps, presetColor: PresetColor, mode: PaletteMode): PaletteThemeProps => {
   switch (presetColor) {
     case "theme1":
       return Theme1(colors, mode);

@@ -7,6 +7,7 @@ import TicketSection from "@/sections/ticket";
 
 // assets
 import "emoji-picker-react/src/EmojiPickerReact.css";
+
 const Ticket: React.FC = () => {
   useTitle("ticket");
 

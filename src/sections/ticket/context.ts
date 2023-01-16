@@ -10,6 +10,7 @@ import { useSnackbar } from "notistack";
 import { useTranslation } from "react-i18next";
 import useQuery from "@/hooks/useQuery";
 import Ticket from "@/model/ticket";
+import { useNavigate } from "react-router-dom";
 
 export interface useTicketProps {
   id?: number;
@@ -21,6 +22,7 @@ const useTicket = ({ id }: useTicketProps) => {
   const { enqueueSnackbar } = useSnackbar();
   const { t } = useTranslation();
   const query = useQuery();
+  const navigate = useNavigate();
 
   const [drawerOpen, drawerActions] = useToggle(false);
   const [currentId, setCurrentId] = useState<number>(id ?? 0);
@@ -55,6 +57,7 @@ const useTicket = ({ id }: useTicketProps) => {
   useEffect(() => {
     if (ticketsQuery.data && (ticketsQuery.data?.length ?? 0) > 0 && !currentId) {
       setCurrentId(ticketsQuery.data[0].id);
+      navigate(`/ticket/${ticketsQuery.data[0].id}`);
     }
   }, [ticketsQuery.data]);
 

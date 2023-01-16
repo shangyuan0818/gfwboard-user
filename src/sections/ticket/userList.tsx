@@ -16,6 +16,7 @@ import { makeStyles } from "@/themes/hooks";
 
 // assets
 import { CheckOutlined, CommentOutlined, MessageOutlined } from "@ant-design/icons";
+import { useNavigate } from "react-router-dom";
 
 const useStyles = makeStyles()((theme) => ({
   listItemButton: {
@@ -38,6 +39,7 @@ const UserList = () => {
   const theme = useTheme();
   const { tickets, currentId, setCurrentId } = useTicketContext();
   const { classes, css, cx } = useStyles();
+  const navigate = useNavigate();
 
   const getDateDiff = useCallback(
     (unix: number, key: string) => {
@@ -110,6 +112,7 @@ const UserList = () => {
             selected={ticket.id === currentId}
             onClick={() => {
               setCurrentId(ticket.id);
+              navigate(`/ticket/${ticket.id}`);
             }}
           >
             <ListItemAvatar>

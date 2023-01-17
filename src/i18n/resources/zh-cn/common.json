@@ -587,6 +587,7 @@
       "total_description": "当前项的总计流量，可能与实际流量不一致，用于计费。"
     },
     "chart": {
+      "title": "流量统计",
         "upload_name": "上传",
         "download_name": "下载",
         "total_name": "总计"

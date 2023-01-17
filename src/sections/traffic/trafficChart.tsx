@@ -1,11 +1,17 @@
 import React, { useMemo, useState } from "react";
 
+// third-party
 import ReactApexChart from "react-apexcharts";
-import { useGetTrafficLogsQuery } from "@/store/services/api";
-import { useTranslation } from "react-i18next";
-import { useTheme } from "@mui/material/styles";
 import dayjs from "dayjs";
 import { filesize } from "filesize";
+import { useTranslation } from "react-i18next";
+
+// material-ui
+import { useTheme } from "@mui/material/styles";
+
+// project imports
+import MainCard from "@/components/MainCard";
+import { useGetTrafficLogsQuery } from "@/store/services/api";
 
 const TrafficChart: React.FC = () => {
   const { t } = useTranslation();
@@ -160,7 +166,11 @@ const TrafficChart: React.FC = () => {
 
   console.log(options);
 
-  return <ReactApexChart options={options} series={series} type="area" height={280} />;
+  return (
+    <MainCard title={t("traffic.chart.title").toString()} divider={false}>
+      <ReactApexChart options={options} series={series} type="area" height={280} />
+    </MainCard>
+  );
 };
 
 export default TrafficChart;

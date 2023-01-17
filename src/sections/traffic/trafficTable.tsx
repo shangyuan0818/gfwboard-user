@@ -9,6 +9,7 @@ import { useTranslation } from "react-i18next";
 import { GridColDef } from "@mui/x-data-grid";
 
 // project imports
+import MainCard from "@/components/MainCard";
 import DataGrid from "@/components/@extended/DataGrid";
 import { useGetTrafficLogsQuery } from "@/store/services/api";
 import { TrafficLog } from "@/model/traffic";
@@ -75,21 +76,26 @@ const TrafficTable: React.FC = () => {
   );
 
   return (
-    <DataGrid
-      columns={columns}
-      rows={data ?? []}
-      loading={isLoading}
-      getRowId={(log) => `${log.record_at}_${log.server_rate}`}
-      rowsPerPageOptions={[5, 10, 25, 50]}
-      pageSize={pageSize}
-      onPageSizeChange={(pageSize) => setPageSize(pageSize)}
-      sx={{
-        height: {
-          xs: 280,
-          sm: 360
-        }
-      }}
-    />
+    <MainCard content={false}>
+      <DataGrid
+        columns={columns}
+        rows={data ?? []}
+        loading={isLoading}
+        getRowId={(log) => `${log.record_at}_${log.server_rate}`}
+        rowsPerPageOptions={[5, 10, 25, 50]}
+        pageSize={pageSize}
+        onPageSizeChange={(pageSize) => setPageSize(pageSize)}
+        sx={{
+          height: {
+            xs: 280,
+            sm: 360,
+            md: 400,
+            lg: 440,
+            xl: 480
+          }
+        }}
+      />
+    </MainCard>
   );
 };
 

@@ -12,14 +12,10 @@ const TrafficSection: React.FC = () => {
         <TrafficAlert />
       </Grid>
       <Grid item xs={12} md={8}>
-        <MainCard>
-          <TrafficChart />
-        </MainCard>
+        <TrafficChart />
       </Grid>
       <Grid item xs={12}>
-        <MainCard>
-          <TrafficTable />
-        </MainCard>
+        <TrafficTable />
       </Grid>
     </Grid>
   );

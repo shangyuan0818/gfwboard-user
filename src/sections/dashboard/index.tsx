@@ -7,17 +7,21 @@ import { Grid } from "@mui/material";
 import NoticeCarousel from "@/sections/dashboard/noticeCarousel";
 import SubscriptionCard from "@/sections/dashboard/subscriptionCard";
 import ShortcutCard from "@/sections/dashboard/shortcutCard";
+import OrderPendingAlert from "@/sections/dashboard/alerts/orderPendingAlert";
 
 const Dashboard: React.FC = () => {
   return (
     <Grid
       container
-      rowSpacing={1}
+      rowSpacing={2}
       columnSpacing={{
         xs: 1,
         md: 2
       }}
     >
+      <Grid item xs={12}>
+        <OrderPendingAlert />
+      </Grid>
       <Grid item xs={12}>
         <NoticeCarousel />
       </Grid>

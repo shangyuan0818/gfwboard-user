@@ -188,6 +188,10 @@
         "primary": "提交工单",
         "secondary": "遇到问题？提交工单寻求帮助"
       }
+    },
+    "alert": {
+      "pending-order": "您有 {{count}} 笔待支付订单，请及时支付。",
+      "pending-order_action": "查看订单"
     }
   },
   "maintenance": {

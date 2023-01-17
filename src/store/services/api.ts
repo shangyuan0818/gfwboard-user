@@ -181,6 +181,9 @@ const api = createApi({
           url: "/user/notice/fetch",
           method: "GET"
         }),
+        transformResponse: (response: any) => {
+          return response.data;
+        },
         providesTags: (result) => [
           ...(result?.map((notice) => ({ type: "Notice" as const, id: notice.id })) || []),
           { type: "Notice" as const, id: "LIST" }

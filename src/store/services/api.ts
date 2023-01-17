@@ -34,6 +34,7 @@ import type { CommissionQuery, CommissionResponse } from "@/model/commission";
 import type { WithdrawPayload } from "@/model/withdraw";
 import type { ChangePasswordPayload } from "@/model/password";
 import type { TelegramBotInfo } from "@/model/telegram";
+import type { TrafficLog } from "@/model/traffic";
 
 export type BaseQueryArgs = {
   url: string;
@@ -58,8 +59,15 @@ const axiosBaseQuery: () => AxiosBaseQueryFn =
       const response = await instance.request<ApiResponse>({
         url,
         method,
-        data: body,
-        headers,
+        data: body ? qs.stringify(body) : undefined,
+        headers: Object.assign(
+          {
+            "Content-Type": ["GET", "HEAD", "OPTIONS"].includes(method?.toUpperCase() || "GET")
+              ? "application/json"
+              : "application/x-www-form-urlencoded"
+          },
+          headers
+        ),
         params
       });
 
@@ -107,7 +115,8 @@ const api = createApi({
     "InviteData",
     "InviteCode",
     "Commission",
-    "TelegramBotInfo"
+    "TelegramBotInfo",
+    "TrafficLog"
   ],
   refetchOnReconnect: true,
   endpoints: (builder) => {
@@ -116,10 +125,7 @@ const api = createApi({
         query: (body) => ({
           url: "/passport/auth/login",
           method: "POST",
-          body: qs.stringify(body),
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-          }
+          body: body
         }),
         transformResponse: (response: LoginResponse) => {
           localStorage.setItem("gfw_token", response.auth_data);
@@ -130,7 +136,17 @@ const api = createApi({
           );
           return response;
         },
-        invalidatesTags: ["User", "Subscription", "Ticket", "Order", "Server", "InviteData", "InviteCode", "Commission"]
+        invalidatesTags: [
+          "User",
+          "Subscription",
+          "Ticket",
+          "Order",
+          "Server",
+          "InviteData",
+          "InviteCode",
+          "Commission",
+          "TrafficLog"
+        ]
       }),
       getUserInfo: builder.query<User, void>({
         query: () => ({
@@ -186,30 +202,21 @@ const api = createApi({
         query: (body) => ({
           url: "/passport/comm/sendEmailVerify",
           method: "POST",
-          body: qs.stringify(body),
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-          }
+          body: body
         })
       }),
       resetPassword: builder.mutation<boolean, ResetPasswordPayload>({
         query: (body) => ({
           url: "/passport/auth/forget",
           method: "POST",
-          body: qs.stringify(body),
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-          }
+          body: body
         })
       }),
       register: builder.mutation<LoginResponse, RegisterPayload>({
         query: (body) => ({
           url: "/passport/auth/register",
           method: "POST",
-          body: qs.stringify(body),
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-          }
+          body: body
         }),
         transformResponse: (response: LoginResponse) => {
           localStorage.setItem("gfw_token", response.auth_data);
@@ -246,10 +253,7 @@ const api = createApi({
         query: (body) => ({
           url: "/user/ticket/save",
           method: "POST",
-          body: qs.stringify(body),
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-          }
+          body: body
         }),
         invalidatesTags: [{ type: "Ticket", id: "LIST" }]
       }),
@@ -257,10 +261,7 @@ const api = createApi({
         query: (body) => ({
           url: "/user/ticket/reply",
           method: "POST",
-          body: qs.stringify(body),
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-          }
+          body: body
         }),
         invalidatesTags: (result, error, arg) => [
           { type: "Ticket", id: "LIST" },
@@ -271,11 +272,8 @@ const api = createApi({
         query: (id) => ({
           url: "/user/ticket/close",
           method: "POST",
-          body: qs.stringify({
+          body: {
             id
-          }),
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
           }
         }),
         invalidatesTags: (result, error, id) => [{ type: "Ticket", id }]
@@ -332,10 +330,7 @@ const api = createApi({
         query: (body) => ({
           url: "/user/order/save",
           method: "POST",
-          body: qs.stringify(body),
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-          }
+          body: body
         }),
         invalidatesTags: (result) => [
           { type: "Order", id: result },
@@ -346,10 +341,7 @@ const api = createApi({
         query: (body) => ({
           url: "/user/coupon/check",
           method: "POST",
-          body: qs.stringify(body),
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-          }
+          body: body
         })
       }),
       getOrders: builder.query<Order[], void>({
@@ -396,11 +388,8 @@ const api = createApi({
         query: (id) => ({
           url: "/user/order/cancel",
           method: "POST",
-          body: qs.stringify({
+          body: {
             trade_no: id
-          }),
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
           }
         }),
         invalidatesTags: (result, error, id) => [{ type: "Order", id }]
@@ -409,10 +398,7 @@ const api = createApi({
         query: (body) => ({
           url: "/user/order/checkout",
           method: "POST",
-          body: qs.stringify(body),
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-          }
+          body: body
         }),
         invalidatesTags: (result, error, arg) => [{ type: "Order", id: arg.trade_no }]
       }),
@@ -451,11 +437,8 @@ const api = createApi({
         query: (amount) => ({
           url: "/user/transfer",
           method: "POST",
-          body: qs.stringify({
+          body: {
             transfer_amount: amount
-          }),
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
           }
         }),
         invalidatesTags: ["InviteData"]
@@ -464,10 +447,7 @@ const api = createApi({
         query: (body) => ({
           url: "/user/ticket/withdraw",
           method: "POST",
-          body: qs.stringify(body),
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-          }
+          body: body
         }),
         invalidatesTags: ["InviteData"]
       }),
@@ -482,10 +462,7 @@ const api = createApi({
         query: (body) => ({
           url: "/user/changePassword",
           method: "POST",
-          body: qs.stringify(body),
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-          }
+          body: body
         }),
         invalidatesTags: ["User"]
       }),
@@ -493,10 +470,7 @@ const api = createApi({
         query: (body) => ({
           url: "/user/update",
           method: "POST",
-          body: qs.stringify(body),
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-          }
+          body: body
         }),
         invalidatesTags: ["User"]
       }),
@@ -513,6 +487,16 @@ const api = createApi({
           method: "GET"
         }),
         invalidatesTags: ["User", "Subscription"]
+      }),
+      getTrafficLogs: builder.query<TrafficLog[], void>({
+        query: () => ({
+          url: "/user/stat/getTrafficLog",
+          method: "GET"
+        }),
+        providesTags: (result) => [
+          ...(result?.map((log) => ({ type: "TrafficLog" as const, id: `${log.user_id}-${log.record_at}` })) || []),
+          { type: "TrafficLog" as const, id: "LIST" }
+        ]
       })
     };
   }
@@ -555,6 +539,7 @@ export const {
   useChangePasswordMutation,
   useUpdateUserMutation,
   useGetTelegramBotQuery,
-  useResetSecurityMutation
+  useResetSecurityMutation,
+  useGetTrafficLogsQuery
 } = api;
 export default api;

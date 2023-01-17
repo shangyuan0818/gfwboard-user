@@ -2,6 +2,7 @@
 import { NavItemType } from "@/types/menu";
 import {
   DashboardOutlined,
+  LineChartOutlined,
   MonitorOutlined,
   ProfileOutlined,
   ReadOutlined,
@@ -110,6 +111,13 @@ const menuItems: { items: NavItemType[] } = {
           icon: ToolOutlined,
           url: "/ticket",
           breadcrumbs: false
+        },
+        {
+          id: "traffic",
+          title: "traffic",
+          type: "item",
+          icon: LineChartOutlined,
+          url: "/traffic"
         }
       ]
     }

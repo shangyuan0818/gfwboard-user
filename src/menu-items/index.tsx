@@ -108,7 +108,8 @@ const menuItems: { items: NavItemType[] } = {
           title: "ticket",
           type: "item",
           icon: ToolOutlined,
-          url: "/ticket"
+          url: "/ticket",
+          breadcrumbs: false
         }
       ]
     }

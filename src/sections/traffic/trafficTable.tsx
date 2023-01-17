@@ -6,7 +6,9 @@ import { filesize } from "filesize";
 import { useTranslation } from "react-i18next";
 
 // material-ui
+import { useMediaQuery } from "@mui/material";
 import { GridColDef } from "@mui/x-data-grid";
+import { useTheme } from "@mui/material/styles";
 
 // project imports
 import MainCard from "@/components/MainCard";
@@ -16,6 +18,9 @@ import { TrafficLog } from "@/model/traffic";
 
 const TrafficTable: React.FC = () => {
   const { t } = useTranslation();
+  const theme = useTheme();
+  const isLessMedium = useMediaQuery(theme.breakpoints.down("md"));
+
   const { data, isLoading } = useGetTrafficLogsQuery();
   const [pageSize, setPageSize] = React.useState(10);
 
@@ -87,13 +92,10 @@ const TrafficTable: React.FC = () => {
         onPageSizeChange={(pageSize) => setPageSize(pageSize)}
         sx={{
           height: {
-            xs: 280,
-            sm: 360,
-            md: 400,
-            lg: 440,
-            xl: 480
+            md: 400
           }
         }}
+        autoHeight={isLessMedium}
       />
     </MainCard>
   );

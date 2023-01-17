@@ -83,6 +83,12 @@ const TrafficTable: React.FC = () => {
       rowsPerPageOptions={[5, 10, 25, 50]}
       pageSize={pageSize}
       onPageSizeChange={(pageSize) => setPageSize(pageSize)}
+      sx={{
+        height: {
+          xs: 280,
+          sm: 360
+        }
+      }}
     />
   );
 };

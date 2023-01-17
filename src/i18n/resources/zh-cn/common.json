@@ -585,6 +585,11 @@
       "server_rate_description": "节点的倍率，计费流量 = 实际流量 x 倍率。",
       "total_header": "总计",
       "total_description": "当前项的总计流量，可能与实际流量不一致，用于计费。"
+    },
+    "chart": {
+        "upload_name": "上传",
+        "download_name": "下载",
+        "total_name": "总计"
     }
   }
 }

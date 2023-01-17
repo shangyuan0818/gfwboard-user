@@ -588,9 +588,17 @@
     },
     "chart": {
       "title": "流量统计",
-        "upload_name": "上传",
-        "download_name": "下载",
-        "total_name": "总计"
+      "upload_name": "上传",
+      "download_name": "下载",
+      "total_name": "总计"
+    },
+    "info-card": {
+      "title": "流量信息",
+      "sum_upload_label": "本月上传",
+      "sum_download_label": "本月下载",
+      "sum_total_label": "计费流量",
+      "day_num_label": "本月数据",
+      "average_total_label": "日平均流量"
     }
   }
 }

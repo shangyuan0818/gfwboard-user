@@ -3,6 +3,7 @@ import React, { useMemo, useState } from "react";
 // third-party
 import ReactApexChart from "react-apexcharts";
 import dayjs from "dayjs";
+import lodash from "lodash-es";
 import { filesize } from "filesize";
 import { useTranslation } from "react-i18next";
 
@@ -16,72 +17,65 @@ import { useGetTrafficLogsQuery } from "@/store/services/api";
 const TrafficChart: React.FC = () => {
   const { t } = useTranslation();
   const theme = useTheme();
-  const { primary, secondary } = theme.palette.text;
+  const { secondary } = theme.palette.text;
   const [tick, setTick] = useState(7);
 
-  const { data: trafficLogs, isLoading } = useGetTrafficLogsQuery();
+  const { data: trafficLogs } = useGetTrafficLogsQuery();
   const dataMap = useMemo(
     () =>
-      (trafficLogs ?? []).reduce(
-        (acc, cur) =>
-          acc.set(cur.record_at, {
-            u:
-              cur.u / (isNaN(parseInt(cur.server_rate)) ? 1 : parseInt(cur.server_rate)) +
-              (acc.get(cur.record_at)?.u ?? 0),
-            d:
-              cur.d / (isNaN(parseInt(cur.server_rate)) ? 1 : parseInt(cur.server_rate)) +
-              (acc.get(cur.record_at)?.d ?? 0),
-            total: (cur.u + cur.d) / parseInt(cur.server_rate) + (acc.get(cur.record_at)?.total ?? 0)
-          }),
-        new Map<
-          number,
-          {
-            u: number;
-            d: number;
-            total: number;
-          }
-        >()
+      lodash.take(
+        Array.from(
+          (trafficLogs ?? [])
+            .reduce(
+              (acc, cur) =>
+                acc.set(cur.record_at, {
+                  u:
+                    cur.u / (isNaN(parseInt(cur.server_rate)) ? 1 : parseInt(cur.server_rate)) +
+                    (acc.get(cur.record_at)?.u ?? 0),
+                  d:
+                    cur.d / (isNaN(parseInt(cur.server_rate)) ? 1 : parseInt(cur.server_rate)) +
+                    (acc.get(cur.record_at)?.d ?? 0),
+                  total: (cur.u + cur.d) / parseInt(cur.server_rate) + (acc.get(cur.record_at)?.total ?? 0)
+                }),
+              new Map<
+                number,
+                {
+                  u: number;
+                  d: number;
+                  total: number;
+                }
+              >()
+            )
+            .values()
+        ).reverse(),
+        tick
       ),
-    [trafficLogs]
+    [trafficLogs, tick]
   );
 
   const series = useMemo<ApexAxisChartSeries>(
     () => [
       {
         name: t("traffic.chart.upload", { context: "name" }).toString(),
-        data:
-          Array.from(dataMap.values())
-            .map((v) => v.u)
-            .slice(0, tick)
-            .reverse() || Array(tick).fill(0),
+        data: dataMap.map((d) => d.u) || Array(tick).fill(0),
         color: theme.palette.warning.main
       },
       {
         name: t("traffic.chart.download", { context: "name" }).toString(),
-        data:
-          Array.from(dataMap.values())
-            .map((v) => v.d)
-            .slice(0, tick)
-            .reverse() || Array(tick).fill(0),
+        data: dataMap.map((d) => d.d) || Array(tick).fill(0),
         color: theme.palette.success.main
       },
       {
         name: t("traffic.chart.total", { context: "name" }).toString(),
-        data:
-          Array.from(dataMap.values())
-            .map((v) => v.total)
-            .slice(0, tick)
-            .reverse() || Array(tick).fill(0),
+        data: dataMap.map((d) => d.total) || Array(tick).fill(0),
         color: theme.palette.primary.light
       }
     ],
     [trafficLogs, tick, theme.palette, t]
   );
 
-  console.log(series);
-
-  const options = useMemo<ApexCharts.ApexOptions>(
-    () => ({
+  const options = useMemo<ApexCharts.ApexOptions>(() => {
+    return {
       chart: {
         height: 280,
         type: "area",
@@ -89,7 +83,6 @@ const TrafficChart: React.FC = () => {
           show: false
         }
       },
-      colors: [theme.palette.primary.main, theme.palette.primary[700]],
       fill: {
         type: "gradient",
         gradient: {
@@ -105,7 +98,7 @@ const TrafficChart: React.FC = () => {
       },
       stroke: {
         curve: "smooth",
-        width: 1.5
+        width: 2
       },
       grid: {
         show: true,
@@ -124,47 +117,64 @@ const TrafficChart: React.FC = () => {
         }
       },
       xaxis: {
-        type: "datetime",
         categories: Array.from(new Array(tick))
           .map((_, i) => dayjs().subtract(i, "day").toISOString())
           .reverse(),
         labels: {
-          format: "MM.dd",
+          formatter: (value: string) => dayjs(value).format("MM.DD"),
           style: {
             colors: Array.from(new Array(tick)).map(() => secondary)
           }
         },
         axisBorder: {
-          show: true,
+          show: false,
           color: theme.palette.divider
         },
-        tickAmount: tick
+        tickAmount: tick,
+        axisTicks: {
+          show: false
+        }
       },
       yaxis: {
         labels: {
+          formatter: (val: number) =>
+            String(
+              filesize(val, {
+                base: 2,
+                standard: "jedec",
+                round: 2,
+                roundingMethod: "floor"
+              })
+            ),
           style: {
             colors: Array.from(new Array(tick)).map(() => secondary)
-          },
-          formatter(val: number): string | string[] {
-            return String(filesize(val, { base: 2, standard: "jedec", round: 2, roundingMethod: "floor" }));
           }
+        },
+        axisBorder: {
+          show: false
+        },
+        axisTicks: {
+          show: false
         }
       },
       tooltip: {
         theme: theme.palette.mode,
         x: {
-          format: "yyyy-MM-dd"
+          formatter: (val) =>
+            dayjs()
+              .subtract(tick - val, "day")
+              .format("YYYY-MM-DD")
         },
         y: {
           formatter: (value) =>
             String(filesize(value, { base: 2, standard: "jedec", round: 2, roundingMethod: "floor" }))
         }
+      },
+      legend: {
+        show: false
       }
-    }),
-    [tick, theme.palette, t]
-  );
-
-  console.log(options);
+    };
+  }, [tick, theme.palette, t]);
 
   return (
     <MainCard title={t("traffic.chart.title").toString()} divider={false}>

@@ -16,7 +16,7 @@ const OrderPendingAlert: React.FC = () => {
 
   const { data } = useGetUserStatQuery();
 
-  return data ? (
+  return data && data[0] > 0 ? (
     <Alert
       severity="warning"
       action={

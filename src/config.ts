@@ -20,7 +20,7 @@ const config: DefaultConfigProps = {
   api: "https://sub.crosswalltech.com",
   languages: ["zh-CN", "en-US"],
   googleAnalytics: {
-    measurementId: "G-HSJEER5NF4"
+    measurementId: "G-D6GDYEWSQT"
   },
   emojiEndpoint: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/{{code}}.png"
 };

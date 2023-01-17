@@ -20,9 +20,7 @@ import { CopyOutlined } from "@ant-design/icons";
 
 const useStyles = makeStyles()((theme) => ({
   root: {
-    overflowX: "hidden",
-    height: "calc(100vh - 410px)",
-    minHeight: 420
+    overflowX: "hidden"
   },
   rootBox: {
     paddingLeft: theme.spacing(1),

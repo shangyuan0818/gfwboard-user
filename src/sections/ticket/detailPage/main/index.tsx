@@ -23,6 +23,7 @@ const useStyles = makeStyles<{
       duration: drawerOpen ? theme.transitions.duration.shorter : theme.transitions.duration.shorter
     }),
     marginLeft: drawerOpen ? 0 : -drawerWidth,
+    width: drawerOpen ? `calc(100% - ${drawerWidth}px)` : "100%",
     [theme.breakpoints.down("lg")]: {
       paddingLeft: 0,
       marginLeft: 0
@@ -35,7 +36,6 @@ const useStyles = makeStyles<{
   mainCard: {
     backgroundColor: theme.palette.mode === "dark" ? theme.palette.background.paper : theme.palette.grey[50],
     paddingTop: theme.spacing(2),
-    paddingLeft: theme.spacing(2),
     borderRadius: theme.spacing(0, 0.5, 0.5, 0),
     borderLeft: "none",
     height: "100%"
@@ -65,7 +65,7 @@ const Main: React.FC = () => {
   });
 
   return (
-    <Box component={"main"} className={classes.root}>
+    <Box className={classes.root}>
       <Grid container flexGrow={1}>
         <Grid item xs={12}>
           <MainCard content={false} className={classes.mainCard}>

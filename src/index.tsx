@@ -21,6 +21,7 @@ import { ConfigProvider } from "@/contexts/ConfigContext";
 import "@/analytics";
 
 import "@fontsource/roboto";
+import "simplebar-react/dist/simplebar.min.css";
 
 // hash router change to browser router
 if (window.location.hash) {
@@ -36,7 +37,7 @@ const root = createRoot(container!);
 
 const ro = new ResizeObserver((entries, observer) =>
   entries.forEach((entry) => {
-    const { left, top, right, bottom, width, height } = entry.contentRect;
+    const { width, height } = entry.contentRect;
 
     // if (import.meta.env.DEV) {
     //   console.log("Element:", entry.target);

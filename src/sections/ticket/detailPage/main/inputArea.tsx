@@ -17,7 +17,8 @@ const useStyles = makeStyles()((theme) => ({
   root: {
     backgroundColor: theme.palette.background.paper,
     borderTop: `1px solid ${theme.palette.divider}`,
-    padding: theme.spacing(2)
+    padding: theme.spacing(2),
+    height: "auto"
   },
   textField: {
     paddingRight: theme.spacing(2),

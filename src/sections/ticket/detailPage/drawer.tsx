@@ -38,7 +38,8 @@ const useStyles = makeStyles<{ drawerWidth: number }>()((theme, { drawerWidth })
     },
     display: "flex",
     flexDirection: "column",
-    flexShrink: 0
+    flexShrink: 0,
+    flexGrow: 1
   },
   drawerPaper: {
     width: drawerWidth,

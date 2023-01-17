@@ -188,6 +188,11 @@
         "primary": "Ticket",
         "secondary": "Submit a ticket to get help"
       }
+    },
+    "alert": {
+      "pending-order": "You have {{count}} pending orders, please pay in time.",
+      "pending-order_one": "You have 1 pending order, please pay in time.",
+      "pending-order-action": "查看订单"
     }
   },
   "maintenance": {
@@ -523,8 +528,11 @@
       "updated_at_minute": "Updated {{count}} minutes ago",
       "updated_at_hour_one": "Updated {{count}} hours ago",
       "updated_at_hour": "Updated {{count}} hours ago",
+      "updated_at_day_one": "Updated {{count}} day ago",
       "updated_at_day": "Updated {{count}} days ago",
+      "updated_at_month_one": "Updated {{count}} month ago",
       "updated_at_month": "Updated {{count}} months ago",
+      "updated_at_year_one": "Updated {{count}} year ago",
       "updated_at_year": "Updated {{count}} years ago",
       "reply_status_replied": "Replied",
       "reply_status_pending": "Pending reply",
@@ -563,6 +571,35 @@
     "input-area": {
       "input_placeholder": "Enter your message",
       "submit-button": "Submit"
+    }
+  },
+  "traffic": {
+    "alert": "Traffic details only retain the data of the past month for query. This data is not guaranteed to be 100% accurate and is for informational purposes only.",
+    "table": {
+      "record_at_header": "Record Time",
+      "record_at_description": "The system will obtain and record traffic data from each node at 00:00 every night.",
+      "upload_header": "Upload Traffic",
+      "upload_description": "Use the traffic uploaded by the node to the remote server.",
+      "download_header": "Download Traffic",
+      "download_description": "Use the traffic downloaded by the node from the remote server.",
+      "server_rate_header": "Node Rate",
+      "server_rate_description": "Node multiplier, billing traffic = actual traffic x multiplier.",
+      "total_header": "Total Traffic",
+      "total_description": "The total traffic of the current item may be inconsistent with the actual traffic, and is used for billing."
+    },
+    "chart": {
+      "title": "Traffic Statistics",
+      "upload_name": "Upload",
+      "download_name": "Download",
+      "total_name": "Total"
+    },
+    "info-card": {
+      "title": "Traffic Info",
+      "sum_upload_label": "Monthly Upload",
+      "sum_download_label": "Monthly Download",
+      "sum_total_label": "Total this Month",
+      "day_num_label": "Billing Days",
+      "average_total_label": "Daily Average"
     }
   }
 }

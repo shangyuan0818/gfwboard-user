@@ -27,7 +27,7 @@ const OrderPendingAlert: React.FC = () => {
             navigate("/order");
           }}
         >
-          {t("dashboard.alert.pending-order_action")}
+          {t("dashboard.alert.pending-order-action")}
         </Button>
       }
     >

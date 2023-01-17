@@ -191,7 +191,7 @@
     },
     "alert": {
       "pending-order": "您有 {{count}} 笔待支付订单，请及时支付。",
-      "pending-order_action": "查看订单"
+      "pending-order-action": "查看订单"
     }
   },
   "maintenance": {

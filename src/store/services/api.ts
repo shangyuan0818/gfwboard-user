@@ -34,7 +34,7 @@ import type { CommissionQuery, CommissionResponse } from "@/model/commission";
 import type { WithdrawPayload } from "@/model/withdraw";
 import type { ChangePasswordPayload } from "@/model/password";
 import type { TelegramBotInfo } from "@/model/telegram";
-import { TrafficLog } from "@/model/traffic";
+import type { TrafficLog } from "@/model/traffic";
 
 export type BaseQueryArgs = {
   url: string;

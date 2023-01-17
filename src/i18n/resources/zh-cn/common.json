@@ -571,5 +571,20 @@
       "input_placeholder": "输入回复内容",
       "submit-button": "提交"
     }
+  },
+  "traffic": {
+    "alert": "流量明细仅保留近一个月数据以供查询。此数据不保证 100% 准确性，仅供参考。",
+    "table": {
+      "record_at_header": "记录时间",
+      "record_at_description": "系统每晚 00:00 会从各节点获取流量数据并记录。",
+      "upload_header": "上传流量",
+      "upload_description": "使用节点上传至远端服务器的流量。",
+      "download_header": "下载流量",
+      "download_description": "使用节点从远端服务器下载的流量。",
+      "server_rate_header": "节点倍率",
+      "server_rate_description": "节点的倍率，计费流量 = 实际流量 x 倍率。",
+      "total_header": "总计",
+      "total_description": "当前项的总计流量，可能与实际流量不一致，用于计费。"
+    }
   }
 }

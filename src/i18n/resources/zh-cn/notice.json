@@ -8,7 +8,11 @@
     "reset_success": "密码重置成功"
   },
   "logout_success": "登出成功",
+  "logout_fail": "登出失败",
   "login_success": "登录成功",
+  "login_fail": "登录失败",
+  "register_success": "注册成功",
+  "register_fail": "注册失败",
   "copy_success": "复制成功",
   "copy_fail": "复制失败",
   "knowledge_post": {

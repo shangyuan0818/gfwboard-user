@@ -7,14 +7,18 @@
   "forgot_password": {
     "reset_success": "Password reset successfully"
   },
-  "logout_success": "Logout successfully",
-  "login_success": "Login successfully",
-  "copy_success": "Copy successfully",
+  "logout_success": "Logout succeeded",
+  "logout_fail": "Logout failed",
+  "login_success": "Login succeeded",
+  "login_fail": "Login failed",
+  "register_success": "Register succeeded",
+  "register_fail": "Register failed",
+  "copy_success": "Copy succeeded",
   "copy_fail": "Copy failed",
   "knowledge_post": {
     "loading_error": "Failed to load knowledge post"
   },
-  "refresh_success": "Refresh successfully",
+  "refresh_success": "Refresh success",
   "refresh_fail": "Refresh failed",
   "language-change_success": "Language switched to $t(language::{{lng}}_name)",
   "language-change_fail": "Failed to switch language",
@@ -25,6 +29,8 @@
   "order-cancel_success": "Order has been canceled.",
   "order-cancel_fail": "Failed to cancel order.",
   "checkout-failed": "Failed to call the payment gateway, please contact the manager.",
+  "generate-invite-codes_success": "Invite codes generated successfully.",
+  "generate-invite-codes_fail": "Failed to generate invite codes.",
   "update-user_success": "User information updated.",
   "update-user_fail": "Failed to update user information.",
   "reset-security_success": "Subscription reset.",

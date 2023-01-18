@@ -39,5 +39,6 @@
   "send-message_failed": "Failed to send message.",
   "send-message_empty": "Please enter a message.",
   "close-ticket_success": "Ticket closed.",
-  "close-ticket_fail": "Failed to close ticket."
+  "close-ticket_fail": "Failed to close ticket.",
+  "no-subscription": "You have no subscription."
 }

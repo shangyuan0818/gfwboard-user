@@ -176,7 +176,8 @@
         "shadowrocket": "导入至 Shadowrocket",
         "quantumultx": "导入至 Quantumult X",
         "surge": "导入至 Surge",
-        "stash": "导入至 Stash"
+        "stash": "导入至 Stash",
+        "buy-button": "购买"
       },
       "purchase": {
         "primary_purchased": "续费订阅",

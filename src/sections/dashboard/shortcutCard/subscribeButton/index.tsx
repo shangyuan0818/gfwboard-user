@@ -1,7 +1,8 @@
-import React, { useMemo, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 
 // material-ui
 import {
+  Button,
   Dialog,
   DialogTitle,
   Drawer,
@@ -15,10 +16,12 @@ import {
 } from "@mui/material";
 import { CloudDownloadOutlined } from "@ant-design/icons";
 import { useTheme } from "@mui/material/styles";
+import { useSnackbar } from "notistack";
 
 // third-party
 import { useTranslation } from "react-i18next";
 import UAParser from "ua-parser-js";
+import { useNavigate } from "react-router-dom";
 
 // project imports
 import MantisAvatar from "@/components/@extended/Avatar";
@@ -31,12 +34,16 @@ import SurgeButton from "./surgeButton";
 import ShadowrocketButton from "./shadowrocketButton";
 import QuantumultXButton from "./quantumultxButton";
 import StashButton from "./stashButton";
+import { useGetUserSubscriptionQuery } from "@/store/services/api";
 
 const SubscribeButton: React.FC = () => {
   const { t } = useTranslation();
+  const { data } = useGetUserSubscriptionQuery();
 
   const [open, setOpen] = useState(false);
   const theme = useTheme();
+  const navigate = useNavigate();
+  const { enqueueSnackbar } = useSnackbar();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const Modal = useMemo(() => (isMobile ? Drawer : Dialog), [isMobile, window.innerWidth]);
 
@@ -60,10 +67,32 @@ const SubscribeButton: React.FC = () => {
     }
   }, [UserAgentData.os.name]);
 
+  const handleClick = useCallback(() => {
+    if (data?.plan_id === null) {
+      enqueueSnackbar(t("notice::no-subscription"), {
+        variant: "warning",
+        action: (
+          <Button
+            color="inherit"
+            size="small"
+            onClick={() => {
+              navigate("/plan/buy");
+            }}
+          >
+            {t("dashboard.shortcut.subscribe.buy-button")}
+          </Button>
+        )
+      });
+      return;
+    }
+
+    setOpen(true);
+  }, [data, enqueueSnackbar, navigate, t]);
+
   return (
     <>
       <ListItem disablePadding divider>
-        <ListItemButton onClick={() => setOpen(true)}>
+        <ListItemButton onClick={handleClick}>
           <ListItemAvatar>
             <MantisAvatar alt="Subscribe" type="combined" color="info">
               <CloudDownloadOutlined />

@@ -176,7 +176,8 @@
         "shadowrocket": "Import into Shadowrocket",
         "quantumultx": "Import into Quantumult X",
         "surge": "Import into Surge",
-        "stash": "Import into Stash"
+        "stash": "Import into Stash",
+        "buy-button": "Buy"
       },
       "purchase": {
         "primary_purchased": "Renew",

@@ -81,15 +81,7 @@ const MenuList: React.FC = () => {
           </ListItemButton>
         </ListItem>
       ))}
-      <ListItem
-        disablePadding
-        sx={{
-          display: {
-            xs: "block",
-            md: "none"
-          }
-        }}
-      >
+      <ListItem disablePadding>
         <ListItemButton onClick={handleLogout}>
           <ListItemIcon>
             <LogoutOutlined />

@@ -1,6 +1,6 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import { Trans, useTranslation } from "react-i18next";
-import { useCounter } from "ahooks";
+import { useCounter, useLocalStorageState } from "ahooks";
 
 // material-ui
 import { Stepper, Step, Typography, Link, StepLabel, StepContent, Stack, Button, Box } from "@mui/material";
@@ -8,6 +8,8 @@ import { Stepper, Step, Typography, Link, StepLabel, StepContent, Stack, Button,
 // project imports
 import MainCard from "@/components/MainCard";
 import { useGetTelegramBotQuery, useGetUserConfigQuery, useGetUserSubscriptionQuery } from "@/store/services/api";
+
+const maxStep = 2;
 
 const TelegramCard: React.FC = () => {
   const { t } = useTranslation();
@@ -17,19 +19,23 @@ const TelegramCard: React.FC = () => {
 
   const I18n = useMemo(() => Trans, [t]);
 
-  const [activeStep, { inc: incActiveStep, dec: decActiveStep }] = useCounter(
-    parseInt(localStorage.getItem("telegram_card_init") || "0") || 0,
-    {
-      min: 0,
-      max: 3
-    }
-  );
+  const [step, setStep] = useLocalStorageState<number>("telegram_card_init", {
+    defaultValue: 0
+  });
+  const [activeStep, { inc: incActiveStep, dec: decActiveStep }] = useCounter(step, {
+    min: 0,
+    max: maxStep
+  });
+
+  useEffect(() => {
+    setStep(activeStep);
+  }, [activeStep]);
 
   const ButtonGroup = useMemo(
     () => () =>
       (
         <Stack direction={"row"} spacing={1} mt={2}>
-          <Button onClick={() => incActiveStep()} variant={"contained"} disabled={activeStep >= 3}>
+          <Button onClick={() => incActiveStep()} variant={"contained"} disabled={activeStep >= maxStep}>
             {t("profile.telegram-card.next_step")}
           </Button>
           <Button onClick={() => decActiveStep()} variant={"text"} disabled={activeStep <= 0}>

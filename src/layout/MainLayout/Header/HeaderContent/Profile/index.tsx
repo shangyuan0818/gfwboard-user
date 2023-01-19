@@ -63,7 +63,7 @@ const useStyles = makeStyles<{ open: boolean }>({
   },
   userAvatar: { width: theme.spacing(4), height: theme.spacing(4) },
   avatarStack: {
-    justifyContent: "space-between",
+    justifyContent: "flex-start",
     alignItems: "center",
     flexWrap: "nowrap"
   },

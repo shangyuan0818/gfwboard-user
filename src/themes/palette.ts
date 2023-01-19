@@ -54,7 +54,6 @@ const Palette = (mode: PaletteMode, presetColor: PresetColor) => {
   colors.grey = [...greyPrimary, ...greyAscent, ...greyConstant];
 
   const paletteColor: PaletteThemeProps = ThemeOption(colors, mode);
-  console.log(paletteColor.grey);
 
   return createTheme({
     palette: {

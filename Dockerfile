@@ -14,6 +14,7 @@ COPY --from=deps ~/app/node_modules ./node_modules
 COPY . .
 
 # Build
+RUN curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm
 RUN pnpm run build
 
 FROM nginx:stable-alpine AS runner

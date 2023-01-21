@@ -135,7 +135,7 @@
       "error_null_token": "出现错误，Token 为空，请重试"
     },
     "footer": {
-      "privacy": "<2>隐私政策</2> 指定我们如何收集、使用和保护您的信息。",
+      "copyright": "© {{date}} <0>CROSSWALL NETWORK</0> 保留所有权利",
       "links": {
         "terms": "服务协议",
         "privacy": "隐私政策"

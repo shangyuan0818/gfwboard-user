@@ -1,12 +1,24 @@
 // material-ui
 import { Theme } from "@mui/material/styles";
 import { useMediaQuery, Container, Link, Typography, Stack } from "@mui/material";
-import { Trans } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
+import { useMemo } from "react";
+import dayjs from "dayjs";
 
 // ==============================|| FOOTER - AUTHENTICATION ||============================== //
 
+const pastYear = 2022;
+
 const AuthFooter = () => {
   const matchDownSM = useMediaQuery((theme: Theme) => theme.breakpoints.down("sm"));
+  const { t } = useTranslation();
+
+  const date = useMemo(() => {
+    const year = dayjs().year();
+    return year > pastYear ? `${pastYear}-${year}` : `${pastYear}`;
+  }, [pastYear, dayjs]);
+
+  const AppTrans = useMemo(() => Trans, [t]);
 
   return (
     <Container maxWidth="xl">
@@ -17,12 +29,9 @@ const AuthFooter = () => {
         textAlign={matchDownSM ? "center" : "inherit"}
       >
         <Typography variant="subtitle2" color="secondary" component="span">
-          <Trans i18nKey={"auth.footer.privacy"}>
-            This site is protected by{" "}
-            <Typography component={Link} variant="subtitle2" href="#mantis-privacy" target="_blank" underline="hover">
-              Privacy Policy
-            </Typography>
-          </Trans>
+          <AppTrans i18nKey={"auth.footer.copyright"} tOptions={{ date }}>
+            <Link href="https://github.com/star-horizon" target="_blank" color="secondary" underline="hover" />
+          </AppTrans>
         </Typography>
 
         <Stack
@@ -34,21 +43,21 @@ const AuthFooter = () => {
             variant="subtitle2"
             color="secondary"
             component={Link}
-            href="https://codedthemes.com"
+            href={"/terms"}
             target="_blank"
             underline="hover"
           >
-            <Trans i18nKey={"auth.footer.links.terms"}>Terms and Conditions</Trans>
+            {t("auth.footer.links.terms")}
           </Typography>
           <Typography
             variant="subtitle2"
             color="secondary"
             component={Link}
-            href="https://codedthemes.com"
+            href={"/privacy-policy"}
             target="_blank"
             underline="hover"
           >
-            <Trans i18nKey={"auth.footer.links.privacy"}>Privacy Policy</Trans>
+            {t("auth.footer.links.privacy")}
           </Typography>
         </Stack>
       </Stack>

@@ -47,13 +47,13 @@ export interface CommonLayoutProps {
 
 const CommonLayout: React.FC<CommonLayoutProps> = ({ layout = "blank" }) => (
   <>
-    {(layout === "landing" || layout === "simple") && (
-      <Suspense fallback={<Loader />}>
-        <Header layout={layout} />
-        <Outlet />
-        <FooterBlock isFull={layout === "landing"} />
-      </Suspense>
-    )}
+    {/*{(layout === "landing" || layout === "simple") && (*/}
+    {/*  <Suspense fallback={<Loader />}>*/}
+    {/*    <Header layout={layout} />*/}
+    {/*    <Outlet />*/}
+    {/*    <FooterBlock isFull={layout === "landing"} />*/}
+    {/*  </Suspense>*/}
+    {/*)}*/}
     {layout === "blank" && <Outlet />}
   </>
 );

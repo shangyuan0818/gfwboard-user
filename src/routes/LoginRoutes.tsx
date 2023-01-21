@@ -20,7 +20,7 @@ const LoginRoutes: RouteObject = {
       path: "/",
       element: (
         <GuestGuard>
-          <CommonLayout />
+          <CommonLayout layout={"blank"} />
         </GuestGuard>
       ),
       children: [

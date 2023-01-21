@@ -8,7 +8,6 @@ import { Box, Button, Container, CardMedia, Divider, Grid, Link, Typography } fr
 import { motion } from "framer-motion";
 
 // project import
-import useConfig from "@/hooks/useConfig";
 import AnimateButton from "@/components/@extended/AnimateButton";
 
 // assets
@@ -57,6 +56,15 @@ const useStyles = makeStyles()((theme) => ({
     position: "absolute",
     top: "-28%",
     right: 0
+  },
+  link: {
+    color: theme.palette.common.white,
+    fontSize: "0.875rem",
+    fontWeight: 400,
+    opacity: "0.6",
+    "&:hover": {
+      opacity: "1"
+    }
   }
 }));
 
@@ -68,18 +76,7 @@ type FooterBlockProps = {
 
 const FooterBlock: React.FC<FooterBlockProps> = ({ isFull }) => {
   const theme = useTheme();
-  const { presetColor } = useConfig();
   const { classes } = useStyles();
-
-  const linkSX = {
-    color: theme.palette.common.white,
-    fontSize: "0.875rem",
-    fontWeight: 400,
-    opacity: "0.6",
-    "&:hover": {
-      opacity: "1"
-    }
-  };
 
   return (
     <>
@@ -193,7 +190,7 @@ const FooterBlock: React.FC<FooterBlockProps> = ({ isFull }) => {
                         <Link
                           href="https://mui.com/store/items/mantis-react-admin-dashboard-template/"
                           underline="none"
-                          sx={linkSX}
+                          className={classes.link}
                           target="_blank"
                         >
                           Purchase Mantis React
@@ -203,14 +200,19 @@ const FooterBlock: React.FC<FooterBlockProps> = ({ isFull }) => {
                         <Link
                           href="https://material-ui.com/store/contributors/codedthemes/"
                           underline="none"
-                          sx={linkSX}
+                          className={classes.link}
                           target="_blank"
                         >
                           Portfolio
                         </Link>
                       </Grid>
                       <Grid item xs={12}>
-                        <Link href="https://blog.mantisdashboard.io" underline="none" target="_blank" sx={linkSX}>
+                        <Link
+                          href="https://blog.mantisdashboard.io"
+                          underline="none"
+                          target="_blank"
+                          className={classes.link}
+                        >
                           Blog
                         </Link>
                       </Grid>
@@ -239,13 +241,18 @@ const FooterBlock: React.FC<FooterBlockProps> = ({ isFull }) => {
                           href="https://codedthemes.gitbook.io/mantis/"
                           underline="none"
                           target="_blank"
-                          sx={linkSX}
+                          className={classes.link}
                         >
                           Documentation
                         </Link>
                       </Grid>
                       <Grid item xs={12}>
-                        <Link href="https://github.com/codedthemes/" underline="none" target="_blank" sx={linkSX}>
+                        <Link
+                          href="https://github.com/codedthemes/"
+                          underline="none"
+                          target="_blank"
+                          className={classes.link}
+                        >
                           Github
                         </Link>
                       </Grid>
@@ -254,7 +261,7 @@ const FooterBlock: React.FC<FooterBlockProps> = ({ isFull }) => {
                           href="https://codedthemes.gitbook.io/mantis/changelog"
                           underline="none"
                           target="_blank"
-                          sx={linkSX}
+                          className={classes.link}
                         >
                           Change Log
                         </Link>
@@ -284,7 +291,7 @@ const FooterBlock: React.FC<FooterBlockProps> = ({ isFull }) => {
                           href="https://mui.com/store/previews/berry-react-material-admin/"
                           underline="none"
                           target="_blank"
-                          sx={linkSX}
+                          className={classes.link}
                         >
                           - &nbsp; Berry React Material
                         </Link>
@@ -294,7 +301,7 @@ const FooterBlock: React.FC<FooterBlockProps> = ({ isFull }) => {
                           href="https://mui.com/store/previews/berry-react-material-admin-free/"
                           underline="none"
                           target="_blank"
-                          sx={linkSX}
+                          className={classes.link}
                         >
                           - &nbsp; Berry React Free
                         </Link>
@@ -304,7 +311,7 @@ const FooterBlock: React.FC<FooterBlockProps> = ({ isFull }) => {
                           href="https://github.com/codedthemes/mantis-free-react-admin-template"
                           underline="none"
                           target="_blank"
-                          sx={linkSX}
+                          className={classes.link}
                         >
                           - &nbsp; Mantis Free React
                         </Link>
@@ -334,17 +341,17 @@ const FooterBlock: React.FC<FooterBlockProps> = ({ isFull }) => {
             <Grid item xs={12} sm={4}>
               <Grid container spacing={2} alignItems="center" sx={{ justifyContent: "flex-end" }}>
                 <Grid item>
-                  <Link href="#" underline="none" sx={linkSX}>
+                  <Link href="#" underline="none" className={classes.link}>
                     <CardMedia component="img" image={imgfootersoc1} />
                   </Link>
                 </Grid>
                 <Grid item>
-                  <Link href="#" underline="none" sx={linkSX}>
+                  <Link href="#" underline="none" className={classes.link}>
                     <CardMedia component="img" image={imgfootersoc2} />
                   </Link>
                 </Grid>
                 <Grid item>
-                  <Link href="#" underline="none" sx={linkSX}>
+                  <Link href="#" underline="none" className={classes.link}>
                     <CardMedia component="img" image={imgfootersoc3} />
                   </Link>
                 </Grid>

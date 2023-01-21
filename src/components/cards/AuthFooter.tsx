@@ -1,22 +1,26 @@
+import React, { useMemo } from "react";
+
 // material-ui
 import { Theme } from "@mui/material/styles";
 import { useMediaQuery, Container, Link, Typography, Stack } from "@mui/material";
+
+// third-party
 import { Trans, useTranslation } from "react-i18next";
-import { useMemo } from "react";
 import dayjs from "dayjs";
+
+// project import
+import config from "@/config";
 
 // ==============================|| FOOTER - AUTHENTICATION ||============================== //
 
-const pastYear = 2022;
-
-const AuthFooter = () => {
+const AuthFooter: React.FC = () => {
   const matchDownSM = useMediaQuery((theme: Theme) => theme.breakpoints.down("sm"));
   const { t } = useTranslation();
 
   const date = useMemo(() => {
     const year = dayjs().year();
-    return year > pastYear ? `${pastYear}-${year}` : `${pastYear}`;
-  }, [pastYear, dayjs]);
+    return year > (config?.startYear ?? year) ? `${config.startYear}-${year}` : `${year}`;
+  }, [config?.startYear, dayjs]);
 
   const AppTrans = useMemo(() => Trans, [t]);
 

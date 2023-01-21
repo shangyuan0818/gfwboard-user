@@ -29,6 +29,7 @@ export type DefaultConfigProps = {
     measurementId: string;
   };
   emojiEndpoint?: string;
+  startYear?: number;
 };
 
 export type CustomizationProps = {

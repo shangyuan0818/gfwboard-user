@@ -2,11 +2,14 @@ import { Link as RouterLink } from "react-router-dom";
 
 // material-ui
 import { Link, Stack, Typography } from "@mui/material";
-import { Trans } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 
 // project import
 import { useGetUserConfigQuery } from "@/store/services/api";
 import { makeStyles } from "@/themes/hooks";
+import { useMemo } from "react";
+import dayjs from "dayjs";
+import config from "@/config";
 
 const useStyles = makeStyles()((theme) => ({
   root: {
@@ -29,22 +32,32 @@ const Footer = () => {
   const { data } = useGetUserConfigQuery();
   const { classes } = useStyles();
 
+  const { t } = useTranslation();
+  const AppTrans = useMemo(() => Trans, [t]);
+
+  const date = useMemo(() => {
+    const year = dayjs().year();
+    return year > (config?.startYear ?? year) ? `${config.startYear}-${year}` : `${year}`;
+  }, [config?.startYear, dayjs]);
+
   return (
     <Stack direction="row" className={classes.root}>
       <Typography variant="caption">
-        <Trans i18nKey={"layout.footer.copyright"}>&copy; All rights reserved</Trans>
+        <AppTrans i18nKey={"layout.footer.copyright"} tOptions={{ date }}>
+          <Link href="https://github.com/star-horizon" target="_blank" color="textPrimary" underline="hover" />
+        </AppTrans>
       </Typography>
       <Stack spacing={1.5} direction="row" className={classes.right}>
         {data?.telegram_discuss_link && (
           <Link href={data?.telegram_discuss_link} target="_blank" variant="caption" color="textPrimary">
-            <Trans i18nKey={"layout.footer.contact-us"}>Contact us</Trans>
+            {t("layout.footer.contact-us")}
           </Link>
         )}
-        <Link component={RouterLink} to="/privacy" target="_blank" variant="caption" color="textPrimary">
-          <Trans i18nKey={"layout.footer.privacy-policy"}>Privacy</Trans>
+        <Link component={RouterLink} to="/privacy-policy" target="_blank" variant="caption" color="textPrimary">
+          {t("layout.footer.privacy-policy")}
         </Link>
         <Link component={RouterLink} to="/terms" target="_blank" variant="caption" color="textPrimary">
-          <Trans i18nKey={"layout.footer.terms-of-service"}>Terms</Trans>
+          {t("layout.footer.terms-of-service")}
         </Link>
       </Stack>
     </Stack>

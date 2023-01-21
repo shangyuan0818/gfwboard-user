@@ -35,7 +35,7 @@
       }
     },
     "footer": {
-      "copyright": "© All Rights Reserved",
+      "copyright": "© {{date}} <0>CROSSWALL NETWORK</0> All Rights Reserved",
       "contact-us": "Contact Us",
       "privacy-policy": "Privacy",
       "terms-of-service": "Terms"

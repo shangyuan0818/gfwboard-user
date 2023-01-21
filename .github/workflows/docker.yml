@@ -11,6 +11,7 @@ on:
     tags: [ 'v*.*.*', 'beta-*.*', 'alpha-*.*', 'v*.*.*-rc*' ]
   pull_request:
     branches: [ "main" ]
+  workflow_dispatch:
 
 env:
   # Use docker.io for Docker Hub if empty

@@ -3,7 +3,7 @@ WORKDIR ~/app
 
 # Install dependencies
 RUN curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm
-COPY package.json package-lock.json ./
+COPY package.json pnpm-lock.yaml ./
 RUN pnpm install --frozen-lockfile
 
 FROM node:lts AS builder

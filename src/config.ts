@@ -25,7 +25,6 @@ const config: DefaultConfigProps = {
   fontFamily: `'Public Sans', sans-serif`,
   miniDrawer: false,
   container: true,
-  presetColor: "theme1",
   themeDirection: "ltr",
   title: "跨越长城",
   title_split: " - ",

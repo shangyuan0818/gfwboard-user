@@ -9,12 +9,11 @@ import ThemeOption from "./theme";
 
 // types
 import { PaletteThemeProps } from "@/types/theme";
-import { PresetColor } from "@/types/config";
 import { PaletteMode } from "@mui/material";
 
 // ==============================|| DEFAULT THEME - PALETTE  ||============================== //
 
-const Palette = (mode: PaletteMode, presetColor: PresetColor) => {
+const Palette = (mode: PaletteMode) => {
   const colors: PalettesProps = mode === "dark" ? presetDarkPalettes : presetPalettes;
 
   let greyPrimary = [

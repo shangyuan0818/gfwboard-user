@@ -25,7 +25,7 @@ type ThemeCustomizationProps = {
 // ==============================|| DEFAULT THEME - MAIN  ||============================== //
 
 export default function ThemeCustomization({ children }: ThemeCustomizationProps) {
-  const { themeDirection, presetColor, fontFamily } = useConfig();
+  const { themeDirection, fontFamily } = useConfig();
   const modeSelect = useSelector((state) => state.view.theme.mode);
   const isSystemDark = useMediaQuery("(prefers-color-scheme: dark)");
   const mode = useMemo<PaletteMode>(() => {
@@ -42,7 +42,7 @@ export default function ThemeCustomization({ children }: ThemeCustomizationProps
     }
   }, [modeSelect, isSystemDark, dayjs]);
 
-  const theme: Theme = useMemo<Theme>(() => Palette(mode, presetColor), [mode, presetColor]);
+  const theme: Theme = useMemo<Theme>(() => Palette(mode), [mode]);
 
   const themeTypography: TypographyVariantsOptions = useMemo<TypographyVariantsOptions>(
     () => Typography(mode, fontFamily, theme),

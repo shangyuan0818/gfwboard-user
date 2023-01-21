@@ -4,16 +4,6 @@ export type FontFamily =
   | `'Poppins', sans-serif`
   | `'Roboto', sans-serif`
   | `'Public Sans', sans-serif`;
-export type PresetColor =
-  | "default"
-  | "theme1"
-  | "theme2"
-  | "theme3"
-  | "theme4"
-  | "theme5"
-  | "theme6"
-  | "theme7"
-  | "theme8";
 
 // ==============================|| CONFIG TYPES  ||============================== //
 
@@ -27,7 +17,6 @@ export type DefaultConfigProps = {
   fontFamily: FontFamily;
   miniDrawer: boolean;
   container: boolean;
-  presetColor: PresetColor;
   themeDirection: ThemeDirection;
   title: string;
   title_split: string;
@@ -47,10 +36,8 @@ export type CustomizationProps = {
   fontFamily: FontFamily;
   miniDrawer: boolean;
   container: boolean;
-  presetColor: PresetColor;
   themeDirection: ThemeDirection;
   onChangeContainer: VoidFunction;
-  onChangePresetColor: (theme: PresetColor) => void;
   onChangeDirection: (direction: ThemeDirection) => void;
   onChangeMiniDrawer: (miniDrawer: boolean) => void;
   onChangeFontFamily: (fontFamily: FontFamily) => void;
